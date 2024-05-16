@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Item.tscn" type="PackedScene" id=1]
+
+[node name="Coif" instance=ExtResource( 1 )]
+item_name = "Coif"
+description = "A simple leather helmet."
+primary_slot = 2

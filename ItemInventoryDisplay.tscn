@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon_32.png" type="Texture" id=1]
+[ext_resource path="res://ItemInventoryDisplay.gd" type="Script" id=2]
+
+[node name="ItemInventoryDisplay" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+mouse_filter = 1
+script = ExtResource( 2 )
+icon_path = NodePath("MarginContainer/HBoxContainer/Icon")
+name_label_path = NodePath("MarginContainer/HBoxContainer/NameLabel")
+slot_label_path = NodePath("MarginContainer/HBoxContainer/SlotLabel")
+
+[node name="Button" type="Button" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+custom_constants/margin_right = 8
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 1016.0
+margin_bottom = 596.0
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 592.0
+mouse_filter = 2
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_left = 36.0
+margin_top = 289.0
+margin_right = 109.0
+margin_bottom = 303.0
+text = "Item Name"
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+margin_left = 113.0
+margin_right = 995.0
+margin_bottom = 592.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="SlotLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_left = 999.0
+margin_top = 289.0
+margin_right = 1012.0
+margin_bottom = 303.0
+text = "W"

@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/icons/bow.png" type="Texture" id=2]
 
 [node name="Shortbow" instance=ExtResource( 1 )]
 item_name = "Shortbow"
 description = "A basic bow."
+icon = ExtResource( 2 )

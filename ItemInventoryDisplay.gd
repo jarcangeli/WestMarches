@@ -2,6 +2,7 @@ extends Control
 class_name ItemInventoryDisplay
 
 var item : Item = null setget set_item, get_item
+var mouse_over : bool = false
 
 export var icon_path : NodePath
 export var name_label_path : NodePath

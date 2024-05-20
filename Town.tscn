@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ItemInventoryDisplay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://InventoryDisplay.gd" type="Script" id=2]
+[ext_resource path="res://EquipmentContainer.tscn" type="PackedScene" id=3]
 
 [node name="Town" type="MarginContainer"]
 anchor_right = 1.0
@@ -60,25 +61,49 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="CharacterLabel" type="Label" parent="HBoxContainer/VBoxRight"]
-margin_top = 83.0
+margin_top = 71.0
 margin_right = 331.0
-margin_bottom = 97.0
+margin_bottom = 85.0
 size_flags_vertical = 6
 text = "Character"
 align = 1
 
 [node name="EquipmentLabel" type="Label" parent="HBoxContainer/VBoxRight"]
-margin_top = 267.0
+margin_top = 232.0
 margin_right = 331.0
-margin_bottom = 281.0
+margin_bottom = 246.0
 size_flags_vertical = 6
 text = "Equipment"
 align = 1
 
-[node name="StatsLabel" type="Label" parent="HBoxContainer/VBoxRight"]
-margin_top = 451.0
+[node name="EquipmentLayout" type="HBoxContainer" parent="HBoxContainer/VBoxRight"]
+margin_top = 322.0
 margin_right = 331.0
-margin_bottom = 465.0
+margin_bottom = 386.0
+custom_constants/separation = 16
+alignment = 1
+
+[node name="EquipmentContainer" parent="HBoxContainer/VBoxRight/EquipmentLayout" instance=ExtResource( 3 )]
+
+[node name="EquipmentContainer2" parent="HBoxContainer/VBoxRight/EquipmentLayout" instance=ExtResource( 3 )]
+margin_left = 93.0
+margin_right = 157.0
+slot = 1
+
+[node name="EquipmentContainer3" parent="HBoxContainer/VBoxRight/EquipmentLayout" instance=ExtResource( 3 )]
+margin_left = 173.0
+margin_right = 237.0
+slot = 2
+
+[node name="EquipmentContainer4" parent="HBoxContainer/VBoxRight/EquipmentLayout" instance=ExtResource( 3 )]
+margin_left = 253.0
+margin_right = 317.0
+slot = 3
+
+[node name="StatsLabel" type="Label" parent="HBoxContainer/VBoxRight"]
+margin_top = 462.0
+margin_right = 331.0
+margin_bottom = 476.0
 size_flags_vertical = 6
 text = "Stats Panel"
 align = 1

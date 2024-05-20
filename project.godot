@@ -33,6 +33,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ItemDatabase="*res://ItemDatabase.tscn"
+SignalBus="*res://SignalBus.gd"
 
 [editor_plugins]
 

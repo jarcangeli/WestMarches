@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/simple-project-timer-logo.png-3b1097259cab78f55f6a1a9cbf8c497c.stex"
+path="res://.import/simple-project-timer-logo.png-ac6f32de347468363263c3efdb614aa2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://simple-project-timer-logo.png"
-dest_files=[ "res://.import/simple-project-timer-logo.png-3b1097259cab78f55f6a1a9cbf8c497c.stex" ]
+source_file="res://addons/simple-project-timer/simple-project-timer-logo.png"
+dest_files=[ "res://.import/simple-project-timer-logo.png-ac6f32de347468363263c3efdb614aa2.stex" ]
 
 [params]
 

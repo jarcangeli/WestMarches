@@ -3,7 +3,7 @@
 [ext_resource path="res://Item.gd" type="Script" id=1]
 [ext_resource path="res://icon_32.png" type="Texture" id=2]
 
-[node name="Item" type="Node"]
+[node name="Item" type="Node" groups=["item"]]
 script = ExtResource( 1 )
 icon = ExtResource( 2 )
 

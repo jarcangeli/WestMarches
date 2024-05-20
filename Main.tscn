@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Town.tscn" type="PackedScene" id=1]
 [ext_resource path="res://default_theme.tres" type="Theme" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://MouseContainer.gd" type="Script" id=4]
 
 [node name="Main" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme = ExtResource( 2 )
 custom_constants/margin_right = 4
 custom_constants/margin_top = 4
@@ -37,3 +40,25 @@ margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
+
+[node name="World" type="Node2D" parent="TabContainer/Map"]
+position = Vector2( 526, 184 )
+
+[node name="Town" type="Node2D" parent="TabContainer/Map/World"]
+
+[node name="Sprite" type="Sprite" parent="TabContainer/Map/World/Town"]
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="TabContainer/Map/World/Town"]
+margin_left = -20.0
+margin_top = 32.0
+margin_right = 21.0
+margin_bottom = 46.0
+text = "TOWN"
+
+[node name="MouseContainer" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="IndicatorSprite" type="Sprite" parent="MouseContainer"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 3 )

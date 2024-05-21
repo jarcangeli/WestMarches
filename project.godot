@@ -12,34 +12,34 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "EquipmentContainer",
 "language": "GDScript",
-"path": "res://EquipmentContainer.gd"
+"path": "res://inventory/EquipmentContainer.gd"
 }, {
 "base": "Node",
 "class": "Item",
 "language": "GDScript",
-"path": "res://Item.gd"
+"path": "res://inventory/Item.gd"
 }, {
 "base": "Control",
-"class": "ItemInventoryDisplay",
+"class": "ItemButtonDisplay",
 "language": "GDScript",
-"path": "res://ItemInventoryDisplay.gd"
+"path": "res://inventory/ItemButtonDisplay.gd"
 } ]
 _global_script_class_icons={
 "EquipmentContainer": "",
 "Item": "",
-"ItemInventoryDisplay": ""
+"ItemButtonDisplay": ""
 }
 
 [application]
 
 config/name="West Marches"
 run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/icons/icon.png"
 
 [autoload]
 
-ItemDatabase="*res://ItemDatabase.tscn"
-SignalBus="*res://SignalBus.gd"
+ItemDatabase="*res://inventory/ItemDatabase.tscn"
+SignalBus="*res://core/SignalBus.gd"
 
 [debug]
 

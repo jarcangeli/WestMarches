@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_32.png-25fed1811edb1df1cf4189a8b5714178.stex"
+path="res://.import/coif.png-8daf39fd19fa506c25bed7dded46d8c9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon_32.png"
-dest_files=[ "res://.import/icon_32.png-25fed1811edb1df1cf4189a8b5714178.stex" ]
+source_file="res://assets/icons/items/coif.png"
+dest_files=[ "res://.import/coif.png-8daf39fd19fa506c25bed7dded46d8c9.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

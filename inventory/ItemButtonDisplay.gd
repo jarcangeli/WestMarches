@@ -1,5 +1,5 @@
 extends Control
-class_name ItemInventoryDisplay
+class_name ItemButtonDisplay
 
 signal item_selected()
 

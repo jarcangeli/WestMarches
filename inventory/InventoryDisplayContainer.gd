@@ -10,7 +10,7 @@ func _ready():
 
 func clear_items():
 	for node in get_children():
-		if node is ItemInventoryDisplay:
+		if node is ItemButtonDisplay:
 			remove_child(node)
 			node.queue_free()
 

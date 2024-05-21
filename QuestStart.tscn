@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://ItemInventoryDisplay.tscn" type="PackedScene" id=1]
-[ext_resource path="res://InventoryDisplayContainer.gd" type="Script" id=2]
-[ext_resource path="res://CharacterEquipUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://inventory/ItemButtonDisplay.tscn" type="PackedScene" id=1]
+[ext_resource path="res://inventory/InventoryDisplayContainer.gd" type="Script" id=2]
+[ext_resource path="res://inventory/CharacterEquipUI.tscn" type="PackedScene" id=3]
 
-[node name="Town" type="MarginContainer"]
+[node name="QuestStart" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0

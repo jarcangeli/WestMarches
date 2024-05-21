@@ -8,3 +8,5 @@ func hconnect(signal_name: String, target: Object, method: String, binds: Array 
 
 signal item_equipped(item, slot)
 signal item_unequipped(item, slot)
+
+signal player_inventory_changed()

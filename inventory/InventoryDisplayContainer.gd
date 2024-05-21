@@ -5,8 +5,14 @@ signal item_selected(item)
 export var item_display_scene_path : Resource 
 
 func _ready():
+	on_player_inventory_changed()
+	
+	SignalBus.hconnect("player_inventory_changed", self, "on_player_inventory_changed")
+
+func on_player_inventory_changed():
 	clear_items()
-	load_items(ItemDatabase.items)
+	if Globals.player_inventory:
+		load_items(Globals.player_inventory.get_children())
 
 func clear_items():
 	for node in get_children():
@@ -18,8 +24,7 @@ func on_item_selected(item):
 	emit_signal("item_selected", item)
 
 func load_items(items):
-	for item_name in items:
-		var item : Item = items[item_name]
+	for item in items:
 		var display = item_display_scene_path.instance()
 		add_child(display)
 		display.item = item

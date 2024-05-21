@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "ItemButtonDisplay",
 "language": "GDScript",
 "path": "res://inventory/ItemButtonDisplay.gd"
+}, {
+"base": "Node2D",
+"class": "POI",
+"language": "GDScript",
+"path": "res://map/POI.gd"
 } ]
 _global_script_class_icons={
 "EquipmentContainer": "",
 "Item": "",
-"ItemButtonDisplay": ""
+"ItemButtonDisplay": "",
+"POI": ""
 }
 
 [application]
@@ -40,6 +46,7 @@ config/icon="res://assets/icons/icon.png"
 
 ItemDatabase="*res://inventory/ItemDatabase.tscn"
 SignalBus="*res://core/SignalBus.gd"
+Globals="*res://core/Globals.gd"
 
 [debug]
 

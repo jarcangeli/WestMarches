@@ -7,4 +7,4 @@
 item_name = "Coif"
 description = "A simple leather helmet."
 icon = ExtResource( 2 )
-primary_slot = 2
+primary_slot_type = 2

@@ -1,22 +1,26 @@
 extends Control
 class_name ItemInventoryDisplay
 
-var item : Item = null setget set_item, get_item
-var mouse_over : bool = false
+signal item_selected()
 
 export var icon_path : NodePath
 export var name_label_path : NodePath
 export var slot_label_path : NodePath
+export var drag_enabled : bool = true
 
 onready var icon = get_node(icon_path)
 onready var name_label = get_node(name_label_path)
 onready var slot_label = get_node(slot_label_path)
 
-const EQUIPPED_COLOUR = "#999999"
+const EQUIPPED_COLOUR = "#bbbbbb"
 const UNEQUIPPED_COLOUR = "#ffffff"
+
+var item : Item = null setget set_item, get_item
+var mouse_over : bool = false
 
 func _ready():
 	refresh_display()
+	$Button.drag_enabled = drag_enabled
 
 func refresh_display():
 	if not is_instance_valid(item):
@@ -42,3 +46,10 @@ func get_item():
 
 func on_item_changed():
 	refresh_display()
+
+func on_other_item_selected(other_item):
+	if item != other_item:
+		$Button.pressed = false
+
+func on_button_pressed():
+	emit_signal("item_selected")

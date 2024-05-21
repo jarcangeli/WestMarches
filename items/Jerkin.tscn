@@ -7,4 +7,4 @@
 item_name = "Jerkin"
 description = "A basic leather chestpiece."
 icon = ExtResource( 2 )
-primary_slot = 3
+primary_slot_type = 3

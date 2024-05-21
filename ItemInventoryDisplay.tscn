@@ -71,3 +71,5 @@ margin_top = 14.0
 margin_right = 210.0
 margin_bottom = 28.0
 text = "W"
+
+[connection signal="pressed" from="Button" to="." method="on_button_pressed"]

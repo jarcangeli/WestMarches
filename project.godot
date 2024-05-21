@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "EquipmentContainer",
+"language": "GDScript",
+"path": "res://EquipmentContainer.gd"
+}, {
 "base": "Node",
 "class": "Item",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://ItemInventoryDisplay.gd"
 } ]
 _global_script_class_icons={
+"EquipmentContainer": "",
 "Item": "",
 "ItemInventoryDisplay": ""
 }
@@ -34,6 +40,10 @@ config/icon="res://icon.png"
 
 ItemDatabase="*res://ItemDatabase.tscn"
 SignalBus="*res://SignalBus.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=false
 
 [editor_plugins]
 

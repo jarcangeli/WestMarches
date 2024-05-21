@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://EquipmentContainer.tscn" type="PackedScene" id=1]
+
+[node name="Character" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="CharacterLabel" type="Label" parent="."]
+margin_top = 74.0
+margin_right = 1016.0
+margin_bottom = 88.0
+size_flags_vertical = 6
+text = "Character"
+align = 1
+
+[node name="EquipmentLabel" type="Label" parent="."]
+margin_top = 240.0
+margin_right = 1016.0
+margin_bottom = 254.0
+size_flags_vertical = 6
+text = "Equipment"
+align = 1
+
+[node name="EquipmentLayout" type="HBoxContainer" parent="."]
+margin_top = 333.0
+margin_right = 1016.0
+margin_bottom = 397.0
+custom_constants/separation = 16
+alignment = 1
+
+[node name="EquipmentContainer" parent="EquipmentLayout" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 356.0
+margin_right = 420.0
+margin_bottom = 64.0
+
+[node name="EquipmentContainer2" parent="EquipmentLayout" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 436.0
+margin_right = 500.0
+margin_bottom = 64.0
+slot = 1
+
+[node name="EquipmentContainer3" parent="EquipmentLayout" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 516.0
+margin_right = 580.0
+margin_bottom = 64.0
+slot = 2
+
+[node name="EquipmentContainer4" parent="EquipmentLayout" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 596.0
+margin_right = 660.0
+margin_bottom = 64.0
+slot = 3
+
+[node name="StatsLabel" type="Label" parent="."]
+margin_top = 475.0
+margin_right = 1016.0
+margin_bottom = 489.0
+size_flags_vertical = 6
+text = "Stats Panel"
+align = 1

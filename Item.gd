@@ -8,6 +8,13 @@ enum Slot {
 	CHEST
 }
 
+const slot_container_icons = [
+	preload("res://assets/icons/slots/weapon.png"),
+	preload("res://assets/icons/slots/weapon.png"),
+	preload("res://assets/icons/slots/head.png"),
+	preload("res://assets/icons/slots/chest.png")
+]
+
 export var item_name : String = "Name"
 
 export(String, MULTILINE) var description : String = "Placeholder description"
@@ -27,3 +34,9 @@ static func slot_to_shortname(slot):
 		Slot.CHEST:
 			return "C"
 	return "-"
+
+static func make_item_preview(item):
+	var sprite = TextureRect.new()
+	if is_instance_valid(item):
+		sprite.texture = item.icon
+	return sprite

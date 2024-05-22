@@ -5,8 +5,11 @@ export var character_equip_ui_scene : Resource
 export var character_container_path : NodePath
 onready var character_container = get_node(character_container_path)
 
-func on_quest_selected(quest):
-	setup_characters(quest.get_characters())
+func initialise():
+	visible = false
+
+func on_quest_selected(_quest):
+	pass #TODO: Change UI based on quest?
 
 func setup_characters(characters):
 	for node in character_container.get_children():

@@ -25,6 +25,8 @@ export var icon : Texture
 
 export(Slot) var primary_slot_type
 
+var base_value = 1
+
 var equip_slot = null
 
 static func slot_to_shortname(slot):
@@ -65,3 +67,7 @@ func on_item_unequipped(item, slot):
 	if equip_slot == slot:
 		equip_slot = null
 		emit_signal("item_changed")
+
+func get_value():
+	#TODO: Calculate from attributes?
+	return base_value

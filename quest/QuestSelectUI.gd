@@ -11,6 +11,10 @@ onready var quest_info_panel = $QuestInfoPanel
 func _ready():
 	quest_info_panel.connect("quest_chosen", self, "on_quest_chosen")
 
+func initialise():
+	visible = true
+	quest_info_panel.initialise()
+
 func set_quests(quests):
 	for node in container.get_children():
 		if node is QuestButton:

@@ -15,25 +15,23 @@ alignment = 1
 script = ExtResource( 2 )
 
 [node name="CharacterLabel" type="Label" parent="."]
-margin_top = 74.0
 margin_right = 1016.0
-margin_bottom = 88.0
-size_flags_vertical = 6
+margin_bottom = 14.0
 text = "Character"
 align = 1
 
 [node name="EquipmentLabel" type="Label" parent="."]
-margin_top = 240.0
+margin_top = 129.0
 margin_right = 1016.0
-margin_bottom = 254.0
+margin_bottom = 143.0
 size_flags_vertical = 6
 text = "Equipment"
 align = 1
 
 [node name="EquipmentLayout" type="HBoxContainer" parent="."]
-margin_top = 333.0
+margin_top = 259.0
 margin_right = 1016.0
-margin_bottom = 397.0
+margin_bottom = 323.0
 custom_constants/separation = 16
 alignment = 1
 
@@ -69,9 +67,9 @@ margin_bottom = 64.0
 slot = 3
 
 [node name="StatsLabel" type="Label" parent="."]
-margin_top = 475.0
+margin_top = 438.0
 margin_right = 1016.0
-margin_bottom = 489.0
+margin_bottom = 452.0
 size_flags_vertical = 6
 text = "Stats Panel"
 align = 1

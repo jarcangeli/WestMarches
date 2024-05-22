@@ -9,6 +9,9 @@ onready var description_text_ui = get_node(description_text_ui_path)
 
 var quest : Quest = null
 
+func initialise():
+	quest = null
+
 func set_quest(new_quest : Quest):
 	quest = new_quest
 	name_label.text = new_quest.quest_name

@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AdventuringParty",
+"language": "GDScript",
+"path": "res://AdventuringParty.gd"
+}, {
+"base": "Node",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Character.gd"
+}, {
 "base": "Control",
 "class": "EquipmentContainer",
 "language": "GDScript",
@@ -40,6 +50,8 @@ _global_script_classes=[ {
 "path": "res://quest/QuestSelectButton.gd"
 } ]
 _global_script_class_icons={
+"AdventuringParty": "",
+"Character": "",
 "EquipmentContainer": "",
 "Item": "",
 "ItemButtonDisplay": "",

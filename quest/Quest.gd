@@ -6,3 +6,6 @@ export(String, MULTILINE) var quest_description : String
 
 export var target_path : NodePath
 onready var target = get_node(target_path)
+
+func get_characters():
+	return $Characters.get_children()

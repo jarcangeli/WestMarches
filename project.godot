@@ -52,7 +52,7 @@ _global_script_class_icons={
 
 config/name="West Marches"
 run/main_scene="res://Main.tscn"
-config/icon="res://assets/icons/icon.png"
+config/icon="res://assets/icons/logo.png"
 
 [autoload]
 

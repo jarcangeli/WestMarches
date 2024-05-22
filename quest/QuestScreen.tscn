@@ -32,6 +32,8 @@ margin_top = 8.0
 margin_right = 1008.0
 margin_bottom = 556.0
 script = ExtResource( 4 )
+character_equip_ui_scene = ExtResource( 3 )
+character_container_path = NodePath("CharactersContainer")
 
 [node name="InventoryDisplayContainer" type="VBoxContainer" parent="QuestEquipUI"]
 margin_right = 330.0

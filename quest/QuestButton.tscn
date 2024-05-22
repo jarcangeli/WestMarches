@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://quest/QuestSelectButton.gd" type="Script" id=1]
+
+[node name="QuestButton" type="Button"]
+margin_top = 4.0
+margin_right = 300.0
+margin_bottom = 24.0
+toggle_mode = true
+text = "Quest 1"
+script = ExtResource( 1 )

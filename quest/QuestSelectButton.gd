@@ -1,12 +1,19 @@
 extends Button
+class_name QuestButton
 
-signal quest_selected(quest)
+signal quest_selected(selected_quest)
 
-export var quest_node_path : NodePath
-onready var quest = get_node(quest_node_path)
+var quest : Quest = null
 
 func _ready():
-	connect("pressed", self, "on_pressed")
+	var err = connect("pressed", self, "on_pressed")
+	if err:
+		push_warning(err)
+	
+	if is_instance_valid(quest):
+		text = quest.quest_name
+	else:
+		push_error("Quest button created with no quest associated")
 
 func on_pressed():
 	emit_signal("quest_selected", quest)

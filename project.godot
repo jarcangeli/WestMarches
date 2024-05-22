@@ -28,12 +28,24 @@ _global_script_classes=[ {
 "class": "POI",
 "language": "GDScript",
 "path": "res://map/POI.gd"
+}, {
+"base": "Node",
+"class": "Quest",
+"language": "GDScript",
+"path": "res://quest/Quest.gd"
+}, {
+"base": "Button",
+"class": "QuestButton",
+"language": "GDScript",
+"path": "res://quest/QuestSelectButton.gd"
 } ]
 _global_script_class_icons={
 "EquipmentContainer": "",
 "Item": "",
 "ItemButtonDisplay": "",
-"POI": ""
+"POI": "",
+"Quest": "",
+"QuestButton": ""
 }
 
 [application]

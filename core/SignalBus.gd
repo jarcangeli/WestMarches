@@ -11,4 +11,7 @@ signal item_unequipped(item, slot)
 
 signal player_inventory_changed()
 
-signal advance_day()
+signal time_advanced()
+
+signal quest_finished() 	# party has finished steps
+signal quest_completed() 	# player has resolved rewards

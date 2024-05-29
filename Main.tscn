@@ -1,17 +1,20 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://quest/QuestScreen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://default_theme.tres" type="Theme" id=2]
 [ext_resource path="res://map/Map.tscn" type="PackedScene" id=3]
-[ext_resource path="res://core/SignalBusButton.gd" type="Script" id=4]
 [ext_resource path="res://inventory/InventoryView.tscn" type="PackedScene" id=5]
 [ext_resource path="res://items/Shortsword.tscn" type="PackedScene" id=6]
 [ext_resource path="res://items/Coif.tscn" type="PackedScene" id=7]
 [ext_resource path="res://PlayerInventory.gd" type="Script" id=8]
 [ext_resource path="res://core/TimeTracker.gd" type="Script" id=9]
+[ext_resource path="res://CompletedQuests.gd" type="Script" id=10]
 [ext_resource path="res://quest/ExampleQuest.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Character.gd" type="Script" id=12]
 [ext_resource path="res://AdventuringParty.gd" type="Script" id=13]
+[ext_resource path="res://quest/PendingQuests.gd" type="Script" id=14]
+[ext_resource path="res://Main.gd" type="Script" id=15]
+[ext_resource path="res://TimeLabel.gd" type="Script" id=16]
 
 [node name="Main" type="MarginContainer"]
 anchor_right = 1.0
@@ -22,8 +25,9 @@ custom_constants/margin_right = 4
 custom_constants/margin_top = 4
 custom_constants/margin_left = 4
 custom_constants/margin_bottom = 4
+script = ExtResource( 15 )
 
-[node name="TimeTracker" type="Node" parent="."]
+[node name="TimeTracker" type="Node" parent="." groups=["time"]]
 script = ExtResource( 9 )
 
 [node name="PlayerInventory" type="Node" parent="."]
@@ -50,6 +54,9 @@ character_name = "Sam"
 script = ExtResource( 12 )
 character_name = "Jen"
 
+[node name="PendingQuests" type="Node" parent="."]
+script = ExtResource( 14 )
+
 [node name="AvailableQuests" type="Node" parent="."]
 
 [node name="ExampleQuest" parent="AvailableQuests" instance=ExtResource( 11 )]
@@ -63,6 +70,9 @@ quest_description = "Ben died so we're going back to get his body."
 target_path = NodePath("../../VBoxContainer/TabContainer/Map/World/POI")
 
 [node name="ActiveQuests" type="Node" parent="."]
+
+[node name="CompletedQuests" type="Node" parent="."]
+script = ExtResource( 10 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 4.0
@@ -82,6 +92,20 @@ text = "Game Progress:"
 
 [node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
 margin_left = 101.0
+margin_right = 504.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 508.0
+margin_top = 3.0
+margin_right = 508.0
+margin_bottom = 25.0
+script = ExtResource( 16 )
+time_tracker_path = NodePath("../../../TimeTracker")
+
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 512.0
 margin_right = 916.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
@@ -91,8 +115,6 @@ margin_left = 920.0
 margin_right = 1016.0
 margin_bottom = 28.0
 text = "Advance Day"
-script = ExtResource( 4 )
-signal_string = "advance_day"
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 margin_top = 32.0
@@ -103,11 +125,15 @@ size_flags_vertical = 3
 
 [node name="Quests" parent="VBoxContainer/TabContainer" instance=ExtResource( 1 )]
 margin_top = 40.0
+pending_quests_path = NodePath("../../../PendingQuests")
 available_quests_path = NodePath("../../../AvailableQuests")
 active_quests_path = NodePath("../../../ActiveQuests")
+completed_quests_path = NodePath("../../../CompletedQuests")
 adventuring_parties_path = NodePath("../../../AdventuringParties")
 
 [node name="Inventory" parent="VBoxContainer/TabContainer" instance=ExtResource( 5 )]
 visible = false
 
 [node name="Map" parent="VBoxContainer/TabContainer" instance=ExtResource( 3 )]
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/AdvanceDayButton" to="." method="on_advance_time_button_pressed"]

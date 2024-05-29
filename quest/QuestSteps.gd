@@ -1,7 +1,5 @@
 extends Node
 
-var active = false
-
 var active_step = null
 var time_in_step = 0
 
@@ -9,7 +7,7 @@ func get_first_step():
 	return get_child(0)
 
 func advance_time():
-	if not active:
+	if not active():
 		return
 	if active_step == null:
 		active_step = get_first_step()
@@ -22,7 +20,13 @@ func advance_time():
 	
 	#TODO: Report early failure?
 	if time_in_step >= active_step.get_duration():
-		SignalBus.emit_signal("quest_completed", get_quest())
+		#TODO: Advance next step don't just finish
+		var quest = get_quest()
+		quest.finished = true
+		SignalBus.emit_signal("quest_finished", quest)
 
 func get_quest():
 	return get_parent()
+
+func active():
+	return get_quest().active()

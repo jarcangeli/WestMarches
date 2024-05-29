@@ -26,6 +26,9 @@ var current_quest : Quest = null
 func _ready():
 	quest_select_ui.connect("quest_chosen", self, "on_quest_chosen")
 	
+	SignalBus.hconnect("quest_finished", self, "on_quest_changed")
+	SignalBus.hconnect("quest_completed", self, "on_quest_changed")
+	
 	initialise()
 
 func get_pending_quests():
@@ -85,5 +88,10 @@ func on_start_quest_button_pressed():
 	SignalBus.emit_signal("player_inventory_changed")
 	current_quest.get_parent().remove_child(current_quest) #TODO: Move to signal
 	active_quests.add_child(current_quest)
+	current_quest.start()
 	
 	initialise()
+
+func on_quest_changed(_quest):
+	initialise()
+	#TODO: Throttle this to once if multiple finish

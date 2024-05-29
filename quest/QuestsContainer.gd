@@ -1,10 +1,11 @@
 extends Node
 
+export var quest_signal : String
 
 func _ready():
-	SignalBus.hconnect("quest_finished", self, "on_quest_finished")
+	SignalBus.hconnect(quest_signal, self, "on_quest_changed")
 
-func on_quest_finished(quest):
+func on_quest_changed(quest):
 	if not is_instance_valid(quest):
 		return
 	if quest.get_parent():

@@ -4,16 +4,6 @@ signal item_selected(item)
 
 export var item_display_scene_path : Resource 
 
-func _ready():
-	on_player_inventory_changed()
-	
-	SignalBus.hconnect("player_inventory_changed", self, "on_player_inventory_changed")
-
-func on_player_inventory_changed():
-	clear_items()
-	if Globals.player_inventory:
-		load_items(Globals.player_inventory.get_children())
-
 func clear_items():
 	for node in get_children():
 		if node is ItemButtonDisplay:

@@ -1,3 +1,3 @@
 extends Node
 
-var player_inventory = null
+var player_inventory : PlayerInventory = null

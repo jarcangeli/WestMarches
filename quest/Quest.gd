@@ -8,6 +8,7 @@ export var target_path : NodePath
 onready var target = get_node(target_path)
 
 onready var steps = $QuestSteps
+onready var rewards = $Rewards
 
 var started = false		# set out
 var finished = false 	# back in town
@@ -25,3 +26,6 @@ func advance_time():
 
 func active():
 	return started and not finished
+
+func get_rewards():
+	return rewards.get_children()

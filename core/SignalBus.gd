@@ -13,5 +13,6 @@ signal player_inventory_changed()
 
 signal time_advanced()
 
-signal quest_finished() 	# party has finished steps
-signal quest_completed() 	# player has resolved rewards
+signal quest_started(quest)
+signal quest_finished(quest) 	# party has finished steps
+signal quest_completed(quest) 	# player has resolved rewards

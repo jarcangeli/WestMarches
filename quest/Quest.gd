@@ -18,6 +18,7 @@ func _ready():
 
 func start():
 	started = true
+	SignalBus.emit_signal("quest_started", self)
 
 func advance_time():
 	steps.advance_time()

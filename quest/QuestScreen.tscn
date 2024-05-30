@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://inventory/ItemButtonDisplay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://inventory/InventoryDisplayContainer.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://quest/QuestSelectUI.gd" type="Script" id=6]
 [ext_resource path="res://quest/QuestButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://quest/QuestInfoPanel.gd" type="Script" id=8]
+[ext_resource path="res://quest/QuestRewardPanel.gd" type="Script" id=9]
 
 [node name="QuestScreen" type="MarginContainer"]
 anchor_right = 1.0
@@ -121,7 +122,7 @@ active_container_path = NodePath("ScrollContainer/VBoxContainerContainer/ActiveC
 completed_container_path = NodePath("ScrollContainer/VBoxContainerContainer/CompletedContainer")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="QuestSelectUI"]
-margin_right = 498.0
+margin_right = 1000.0
 margin_bottom = 548.0
 size_flags_horizontal = 3
 
@@ -170,6 +171,7 @@ margin_bottom = 22.0
 text = "Completed quests:"
 
 [node name="QuestInfoPanel" type="Panel" parent="QuestSelectUI"]
+visible = false
 margin_left = 502.0
 margin_right = 1000.0
 margin_bottom = 548.0
@@ -212,5 +214,54 @@ margin_bottom = 532.0
 size_flags_horizontal = 4
 text = "SPONSOR QUEST"
 
+[node name="QuestRewardPanel" type="Panel" parent="QuestSelectUI"]
+visible = false
+margin_left = 502.0
+margin_right = 1000.0
+margin_bottom = 548.0
+size_flags_horizontal = 3
+script = ExtResource( 9 )
+
+[node name="VBoxContainer" type="MarginContainer" parent="QuestSelectUI/QuestRewardPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 490.0
+margin_bottom = 540.0
+
+[node name="QuestNameLabel" type="Label" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer"]
+margin_right = 482.0
+margin_bottom = 22.0
+text = "Item rewards"
+align = 1
+
+[node name="ExampleTextEdit" type="TextEdit" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 482.0
+margin_bottom = 500.0
+size_flags_vertical = 3
+text = "Item 1
+Item 2
+A stick
+money
+a hat"
+readonly = true
+
+[node name="CollectRewardsButton" type="Button" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer"]
+margin_left = 158.0
+margin_top = 504.0
+margin_right = 324.0
+margin_bottom = 532.0
+size_flags_horizontal = 4
+text = "COLLECT REWARDS"
+
 [connection signal="pressed" from="QuestEquipUI/MarginContainer/VBoxContainer/StartQuestButton" to="." method="on_start_quest_button_pressed"]
-[connection signal="pressed" from="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ChooseQuestButton" to="QuestSelectUI/QuestInfoPanel" method="on_choose_quest_button_pressed"]
+[connection signal="pressed" from="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ChooseQuestButton" to="QuestSelectUI" method="on_choose_quest_button_pressed"]
+[connection signal="pressed" from="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="QuestSelectUI" method="on_collect_rewards_button_pressed"]

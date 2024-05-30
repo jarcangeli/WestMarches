@@ -15,13 +15,15 @@ onready var active_container = get_node(active_container_path)
 onready var completed_container = get_node(completed_container_path)
 
 onready var quest_info_panel = $QuestInfoPanel
+onready var quest_reward_panel = $QuestRewardPanel
+
+var selected_quest : Quest = null
 
 func _ready():
-	quest_info_panel.connect("quest_chosen", self, "on_quest_chosen")
+	update_quest_panels()
 
 func initialise():
 	visible = true
-	quest_info_panel.initialise()
 
 func clear_button_container(container):
 	for node in container.get_children():
@@ -60,7 +62,30 @@ func select_quest(quest):
 		if button is QuestButton and button.quest != quest:
 			button.pressed = false
 	# Preview info
-	quest_info_panel.set_quest(quest)
+	selected_quest = quest
+	update_quest_panels()
 
-func on_quest_chosen(quest):
-	emit_signal("quest_chosen", quest)
+func update_quest_panels():
+	quest_info_panel.visible = false
+	quest_reward_panel.visible = false
+	if not is_instance_valid(selected_quest):
+		return
+	
+	if not selected_quest.started:
+		quest_info_panel.visible = true
+		quest_info_panel.set_quest(selected_quest)
+	elif selected_quest.finished and not selected_quest.completed:
+		quest_reward_panel.visible = true
+		quest_reward_panel.set_quest(selected_quest)
+
+func on_choose_quest_button_pressed():
+	if not is_instance_valid(selected_quest):
+		return
+	emit_signal("quest_chosen", selected_quest)
+	select_quest(null)
+
+func on_collect_rewards_button_pressed():
+	if not is_instance_valid(selected_quest):
+		return
+	SignalBus.emit_signal("quest_completed", selected_quest)
+	select_quest(null)

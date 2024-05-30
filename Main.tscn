@@ -53,25 +53,29 @@ character_name = "Sam"
 script = ExtResource( 12 )
 character_name = "Jen"
 
-[node name="PendingQuests" type="Node" parent="."]
+[node name="Quests" type="Node" parent="."]
+
+[node name="PendingQuests" type="Node" parent="Quests"]
 script = ExtResource( 4 )
 quest_signal = "quest_finished"
 
-[node name="AvailableQuests" type="Node" parent="."]
+[node name="AvailableQuests" type="Node" parent="Quests"]
 
-[node name="ExampleQuest" parent="AvailableQuests" instance=ExtResource( 11 )]
+[node name="ExampleQuest" parent="Quests/AvailableQuests" instance=ExtResource( 11 )]
 quest_name = "First Foray"
 quest_description = "A group of new adventurers are seeking treasure and glory out in the wilderness."
-target_path = NodePath("../../VBoxContainer/TabContainer/Map/World/POI")
+target_path = NodePath("../../../VBoxContainer/TabContainer/Map/World/POI")
 
-[node name="ExampleQuest2" parent="AvailableQuests" instance=ExtResource( 11 )]
+[node name="ExampleQuest2" parent="Quests/AvailableQuests" instance=ExtResource( 11 )]
 quest_name = "Second Foray"
 quest_description = "Ben died so we're going back to get his body."
-target_path = NodePath("../../VBoxContainer/TabContainer/Map/World/POI")
+target_path = NodePath("../../../VBoxContainer/TabContainer/Map/World/POI")
 
-[node name="ActiveQuests" type="Node" parent="."]
+[node name="ActiveQuests" type="Node" parent="Quests"]
+script = ExtResource( 4 )
+quest_signal = "quest_started"
 
-[node name="CompletedQuests" type="Node" parent="."]
+[node name="CompletedQuests" type="Node" parent="Quests"]
 script = ExtResource( 4 )
 quest_signal = "quest_completed"
 
@@ -126,10 +130,10 @@ size_flags_vertical = 3
 
 [node name="Quests" parent="VBoxContainer/TabContainer" instance=ExtResource( 1 )]
 margin_top = 40.0
-pending_quests_path = NodePath("../../../PendingQuests")
-available_quests_path = NodePath("../../../AvailableQuests")
-active_quests_path = NodePath("../../../ActiveQuests")
-completed_quests_path = NodePath("../../../CompletedQuests")
+pending_quests_path = NodePath("../../../Quests/PendingQuests")
+available_quests_path = NodePath("../../../Quests/AvailableQuests")
+active_quests_path = NodePath("../../../Quests/ActiveQuests")
+completed_quests_path = NodePath("../../../Quests/CompletedQuests")
 adventuring_parties_path = NodePath("../../../AdventuringParties")
 
 [node name="Inventory" parent="VBoxContainer/TabContainer" instance=ExtResource( 5 )]

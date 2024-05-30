@@ -78,7 +78,7 @@ gdscript/warnings/unused_signal=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/simple-project-timer/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg", "res://addons/simple-project-timer/plugin.cfg" )
 
 [gui]
 

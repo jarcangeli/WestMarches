@@ -86,8 +86,6 @@ func on_start_quest_button_pressed():
 			character.add_child(item)
 	
 	SignalBus.emit_signal("player_inventory_changed")
-	current_quest.get_parent().remove_child(current_quest) #TODO: Move to signal
-	active_quests.add_child(current_quest)
 	current_quest.start()
 	
 	initialise()

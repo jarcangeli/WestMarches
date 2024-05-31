@@ -21,6 +21,10 @@ func start():
 	started = true
 	SignalBus.emit_signal("quest_started", self)
 
+func finish():
+	finished = true
+	SignalBus.emit_signal("quest_finished", self)
+
 func complete():
 	if completed:
 		push_warning("Completing already completed quest")

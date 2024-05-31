@@ -158,5 +158,20 @@ adventuring_parties_path = NodePath("../../../AdventuringParties")
 [node name="Inventory" parent="VBoxContainer/TabContainer" instance=ExtResource( 5 )]
 visible = false
 
+[node name="Shop" type="MarginContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Shop"]
+margin_top = 9.0
+margin_right = 40.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "TODO"
+align = 1
+valign = 1
+
 [node name="Map" parent="VBoxContainer/TabContainer" instance=ExtResource( 3 )]
 visible = false

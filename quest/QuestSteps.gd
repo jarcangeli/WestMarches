@@ -22,8 +22,7 @@ func advance_time():
 	if time_in_step >= active_step.get_duration():
 		#TODO: Advance next step don't just finish
 		var quest = get_quest()
-		quest.finished = true
-		SignalBus.emit_signal("quest_finished", quest)
+		quest.finish()
 
 func get_quest():
 	return get_parent()

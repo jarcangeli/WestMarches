@@ -87,6 +87,5 @@ func on_choose_quest_button_pressed():
 func on_collect_rewards_button_pressed():
 	if not is_instance_valid(selected_quest):
 		return
-	Globals.player_inventory.add_rewards(selected_quest)
-	SignalBus.emit_signal("quest_completed", selected_quest)
+	selected_quest.complete()
 	select_quest(null)

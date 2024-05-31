@@ -28,6 +28,7 @@ func setup_characters(characters):
 		char_ui.name = character.character_name #TODO: Does this handle repeat names
 		character_container.add_child(char_ui)
 
+#TODO: Inherit ItemDisplayContainer to create a re-usable player invent display?
 func on_player_inventory_changed():
 	inventory_display_container.clear_items()
 	if Globals.player_inventory:

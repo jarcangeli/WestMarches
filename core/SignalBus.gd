@@ -10,6 +10,7 @@ signal item_equipped(item, slot)
 signal item_unequipped(item, slot)
 
 signal player_inventory_changed()
+signal player_currencies_changed()
 
 signal time_advanced()
 

@@ -21,6 +21,17 @@ func start():
 	started = true
 	SignalBus.emit_signal("quest_started", self)
 
+func complete():
+	if completed:
+		push_warning("Completing already completed quest")
+	completed = true
+	if is_instance_valid(Globals.player_inventory):
+		Globals.player_inventory.add_rewards(self)
+	var currency_rewards = get_currency_rewards()
+	if is_instance_valid(Globals.player_currencies) and is_instance_valid(currency_rewards):
+		Globals.player_currencies.add_currencies(currency_rewards)
+	SignalBus.emit_signal("quest_completed", self)
+
 func advance_time():
 	steps.advance_time()
 
@@ -29,3 +40,13 @@ func active():
 
 func get_rewards():
 	return rewards.get_children()
+
+func get_currency_rewards():
+	var return_currencies = null
+	for node in rewards.get_children():
+		if node is Currencies:
+			if return_currencies != null:
+				push_warning("Multiple currencies rewards from quest, discarded")
+				continue
+			return_currencies = node
+	return return_currencies

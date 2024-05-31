@@ -17,6 +17,7 @@ func add_rewards(quest : Quest):
 		return
 	
 	for item in quest.get_rewards():
-		add_item(item)
+		if item is Item:
+			add_item(item)
 	
 	SignalBus.emit_signal("player_inventory_changed")

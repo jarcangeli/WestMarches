@@ -122,7 +122,7 @@ active_container_path = NodePath("ScrollContainer/VBoxContainerContainer/ActiveC
 completed_container_path = NodePath("ScrollContainer/VBoxContainerContainer/CompletedContainer")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="QuestSelectUI"]
-margin_right = 1000.0
+margin_right = 498.0
 margin_bottom = 548.0
 size_flags_horizontal = 3
 
@@ -215,13 +215,13 @@ size_flags_horizontal = 4
 text = "SPONSOR QUEST"
 
 [node name="QuestRewardPanel" type="Panel" parent="QuestSelectUI"]
-visible = false
 margin_left = 502.0
 margin_right = 1000.0
 margin_bottom = 548.0
 size_flags_horizontal = 3
 script = ExtResource( 9 )
 item_rewards_container_path = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer")
+currency_rewards_label_path = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer/CurrencyRewardsLabel")
 
 [node name="VBoxContainer" type="MarginContainer" parent="QuestSelectUI/QuestRewardPanel"]
 anchor_right = 1.0
@@ -244,16 +244,23 @@ text = "Item rewards"
 align = 1
 
 [node name="ItemRewardsContainer" type="VBoxContainer" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 26.0
+margin_right = 482.0
+margin_bottom = 48.0
 script = ExtResource( 2 )
 item_display_scene_path = ExtResource( 1 )
 
+[node name="CurrencyRewardsLabel" type="Label" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer/ItemRewardsContainer"]
+margin_right = 482.0
+margin_bottom = 22.0
+text = "0 gp"
+align = 1
+
 [node name="CollectRewardsButton" type="Button" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer"]
 margin_left = 158.0
-margin_top = 504.0
+margin_top = 52.0
 margin_right = 324.0
-margin_bottom = 532.0
+margin_bottom = 80.0
 size_flags_horizontal = 4
 text = "COLLECT REWARDS"
 

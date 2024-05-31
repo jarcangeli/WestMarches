@@ -15,6 +15,8 @@ func on_item_selected(item):
 
 func load_items(items):
 	for item in items:
+		if not item is Item:
+			continue
 		var display = item_display_scene_path.instance()
 		add_child(display)
 		display.item = item

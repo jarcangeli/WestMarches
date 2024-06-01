@@ -1,7 +1,9 @@
 extends Node
 class_name AdventuringParty
 
-var active_quest : Quest = null
-
 func get_characters():
-	return get_children()
+	var characters = []
+	for node in get_children():
+		if node is Character:
+			characters.append(node)
+	return characters

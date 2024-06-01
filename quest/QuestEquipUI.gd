@@ -14,19 +14,28 @@ func _ready():
 func initialise():
 	visible = false
 
-func on_quest_selected(_quest):
-	pass #TODO: Change UI based on quest?
+func on_quest_selected(quest : Quest):
+	var party : AdventuringParty = quest.party
+	if not is_instance_valid(party) or len(party.get_characters()) == 0:
+		push_error("Equip screen for quest opened with invalid party")
+		clear_characters()
+		return
+	var characters = party.get_characters()
+	setup_characters(characters)
 
 func setup_characters(characters):
-	for node in character_container.get_children():
-		#TODO: Unequip items?
-		node.queue_free()
+	clear_characters()
 	
 	for character in characters:
 		var char_ui = character_equip_ui_scene.instance()
 		char_ui.call_deferred("set_character", character)
 		char_ui.name = character.character_name #TODO: Does this handle repeat names
 		character_container.add_child(char_ui)
+
+func clear_characters():
+	for node in character_container.get_children():
+		#TODO: Unequip items?
+		node.queue_free()
 
 #TODO: Inherit ItemDisplayContainer to create a re-usable player invent display?
 func on_player_inventory_changed():

@@ -5,7 +5,7 @@ export var quest_name : String
 export(String, MULTILINE) var quest_description : String
 
 export var target_path : NodePath
-onready var target = get_node(target_path)
+onready var target = get_node_or_null(target_path)
 
 onready var steps = $QuestSteps
 onready var rewards = $Rewards
@@ -14,10 +14,15 @@ var started = false		# set out
 var finished = false 	# back in town
 var completed = false 	# got rewards
 
+var party : AdventuringParty = null
+
 func _ready():
 	add_to_group("time")
 
-func start():
+func start(new_party):
+	if not is_instance_valid(new_party):
+		push_error("Quest started with invalid party")
+	party = new_party
 	started = true
 	SignalBus.emit_signal("quest_started", self)
 

@@ -22,6 +22,7 @@ onready var quest_select_ui = $QuestSelectUI
 onready var quest_equip_ui = $QuestEquipUI
 
 var current_quest : Quest = null
+var current_party : AdventuringParty = null
 
 func _ready():
 	quest_select_ui.connect("quest_chosen", self, "on_quest_chosen")
@@ -60,13 +61,18 @@ func initialise():
 	var _completed_quests = get_completed_quests()
 	quest_select_ui.set_completed_quests(_completed_quests)
 	
-	#TODO: extend
+	
+	#TODO: extend to allow multiple adventuring parties
 	var adventuring_party = adventuring_parties.get_child(0)
-	quest_equip_ui.setup_characters(adventuring_party.get_characters())
+	current_party = adventuring_party
+	quest_select_ui.set_party(adventuring_party)
 
 func on_quest_chosen(quest):
 	quest_select_ui.visible = false
 	quest_equip_ui.visible = true
+	
+	#HACK: until party selection is finalised just use first available
+	quest.party = current_party
 	
 	current_quest = quest
 	quest_equip_ui.on_quest_selected(quest)
@@ -86,7 +92,7 @@ func on_start_quest_button_pressed():
 			character.add_child(item)
 	
 	SignalBus.emit_signal("player_inventory_changed")
-	current_quest.start()
+	current_quest.start(current_party)
 	
 	initialise()
 

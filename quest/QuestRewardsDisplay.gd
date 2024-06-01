@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 export var item_rewards_container_path : NodePath
 onready var item_rewards_container = get_node(item_rewards_container_path)

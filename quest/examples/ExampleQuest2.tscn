@@ -3,11 +3,13 @@
 [ext_resource path="res://quest/Quest.gd" type="Script" id=1]
 [ext_resource path="res://quest/QuestSteps.gd" type="Script" id=2]
 [ext_resource path="res://quest/QuestStep.gd" type="Script" id=3]
-[ext_resource path="res://items/Shortbow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://items/Jerkin.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Currencies.gd" type="Script" id=5]
 
 [node name="ExampleQuest" type="Node"]
 script = ExtResource( 1 )
+quest_name = "Second Foray"
+quest_description = "Ben died and we are going to recover his corpse."
 
 [node name="QuestSteps" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -17,8 +19,8 @@ script = ExtResource( 3 )
 
 [node name="Rewards" type="Node" parent="."]
 
-[node name="Shortbow" parent="Rewards" instance=ExtResource( 4 )]
-
 [node name="Currencies" type="Node" parent="Rewards"]
 script = ExtResource( 5 )
-gold = 10
+gold = 7
+
+[node name="Jerkin" parent="Rewards" instance=ExtResource( 4 )]

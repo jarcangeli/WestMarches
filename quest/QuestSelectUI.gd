@@ -56,6 +56,9 @@ func set_completed_quests(quests):
 	clear_button_container(completed_container)
 	add_buttons_to_container(quests, completed_container, true)
 
+func set_party(party : AdventuringParty):
+	quest_info_panel.set_party(party)
+
 func select_quest(quest):
 	# Deselect other quests
 	for button in new_container.get_children():

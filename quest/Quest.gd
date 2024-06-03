@@ -42,7 +42,7 @@ func complete():
 	SignalBus.emit_signal("quest_completed", self)
 
 func advance_time():
-	steps.advance_time()
+	steps.advance_time(party)
 
 func active():
 	return started and not finished

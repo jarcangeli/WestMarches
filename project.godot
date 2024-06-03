@@ -63,6 +63,21 @@ _global_script_classes=[ {
 "class": "QuestButton",
 "language": "GDScript",
 "path": "res://quest/QuestSelectButton.gd"
+}, {
+"base": "Node",
+"class": "QuestSchema",
+"language": "GDScript",
+"path": "res://QuestSchema.gd"
+}, {
+"base": "Node",
+"class": "QuestStep",
+"language": "GDScript",
+"path": "res://quest/QuestStep.gd"
+}, {
+"base": "QuestStep",
+"class": "QuestStepTravel",
+"language": "GDScript",
+"path": "res://quest/QuestStepTravel.gd"
 } ]
 _global_script_class_icons={
 "AdventuringParty": "",
@@ -75,7 +90,10 @@ _global_script_class_icons={
 "PlayerCurrencies": "",
 "PlayerInventory": "",
 "Quest": "",
-"QuestButton": ""
+"QuestButton": "",
+"QuestSchema": "",
+"QuestStep": "",
+"QuestStepTravel": ""
 }
 
 [application]

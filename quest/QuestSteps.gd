@@ -1,31 +1,36 @@
 extends Node
 
 var active_step = null
-var time_in_step = 0
+var step_index = 0
 
-func get_first_step():
-	return get_child(0)
+func get_next_step() -> QuestStep:
+	return get_child(step_index) as QuestStep
 
-func advance_time():
+func advance_time(party) -> void:
 	if not active():
 		return
 	if active_step == null:
-		active_step = get_first_step()
+		active_step = get_next_step()
 		if active_step == null:
 			push_error("Could not get active quest step")
 	
-	time_in_step += 1
-	
-	active_step.advance_step() # where quest happens
+	active_step.advance_step(party) # where quest happens
 	
 	#TODO: Report early failure?
-	if time_in_step >= active_step.get_duration():
-		#TODO: Advance next step don't just finish
-		var quest = get_quest()
-		quest.finish()
+	if active_step.finished():
+		step_index += 1
+		if get_child_count() <= step_index:
+			var quest : Quest = get_quest()
+			quest.finish()
+		else:
+			active_step = get_next_step()
+			active_step.start(get_quest(), get_party())
 
-func get_quest():
-	return get_parent()
+func get_quest() -> Quest:
+	return get_parent() as Quest
 
-func active():
+func get_party() -> AdventuringParty:
+	return get_quest().party
+
+func active() -> bool:
 	return get_quest().active()

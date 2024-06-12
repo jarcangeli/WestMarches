@@ -72,12 +72,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "QuestStep",
 "language": "GDScript",
-"path": "res://quest/QuestStep.gd"
+"path": "res://quest/steps/QuestStep.gd"
 }, {
 "base": "QuestStep",
 "class": "QuestStepTravel",
 "language": "GDScript",
-"path": "res://quest/QuestStepTravel.gd"
+"path": "res://quest/steps/QuestStepTravel.gd"
 } ]
 _global_script_class_icons={
 "AdventuringParty": "",

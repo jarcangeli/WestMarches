@@ -15,5 +15,6 @@ func finished():
 	if ( 	not is_instance_valid(party) or 
 			not is_instance_valid(quest) or 
 			not is_instance_valid(destination) ) :
+		push_warning("Invalid quest travel step state, terminating early")
 		return true
 	return party.get_position() == destination

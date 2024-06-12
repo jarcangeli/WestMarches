@@ -2,7 +2,7 @@
 
 [ext_resource path="res://quest/Quest.gd" type="Script" id=1]
 [ext_resource path="res://quest/QuestSteps.gd" type="Script" id=2]
-[ext_resource path="res://quest/QuestStep.gd" type="Script" id=3]
+[ext_resource path="res://quest/steps/QuestStep.gd" type="Script" id=3]
 [ext_resource path="res://items/Jerkin.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Currencies.gd" type="Script" id=5]
 

@@ -27,6 +27,7 @@ var current_party : AdventuringParty = null
 func _ready():
 	quest_select_ui.connect("quest_chosen", self, "on_quest_chosen")
 	
+	SignalBus.hconnect("quest_created", self, "on_quest_changed")
 	SignalBus.hconnect("quest_finished", self, "on_quest_changed")
 	SignalBus.hconnect("quest_completed", self, "on_quest_changed")
 	

@@ -7,12 +7,14 @@ func generate_quest(_map):
 	return null
 
 func get_poi(map):
-	# HACK
+	# HACK: map should expose an API
 	for node in map.get_children():
 		if node is POI:
 			return node
 		else:
-			return get_poi(node)
+			var poi = get_poi(node)
+			if poi is POI:
+				return poi
 	return null
 
 func add_step_to_quest(quest, step):

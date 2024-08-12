@@ -43,6 +43,7 @@ func add_buttons_to_container(quests, container, disabled=false):
 func set_pending_quests(quests):
 	clear_button_container(pending_container)
 	add_buttons_to_container(quests, pending_container)
+	pending_container.visible = len(quests) > 0
 
 func set_new_quests(quests):
 	clear_button_container(new_container)

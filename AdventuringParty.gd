@@ -3,6 +3,8 @@ class_name AdventuringParty
 
 var position = Vector2.ZERO
 
+#TODO: Track what quest we are on
+
 func get_position():
 	return position
 

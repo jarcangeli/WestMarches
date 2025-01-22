@@ -13,6 +13,8 @@ func advance_time(party) -> void:
 		active_step = get_next_step()
 		if active_step == null:
 			push_error("Could not get active quest step")
+			return
+		active_step.start(get_quest(), get_party())
 	
 	active_step.advance_step(party) # where quest happens
 	

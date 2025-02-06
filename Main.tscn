@@ -17,9 +17,9 @@
 [ext_resource path="res://PlayerCurrencies.gd" type="Script" id=15]
 [ext_resource path="res://TimeLabel.gd" type="Script" id=16]
 [ext_resource path="res://quest/examples/ExampleQuest2.tscn" type="PackedScene" id=17]
-[ext_resource path="res://QuestGenerator.gd" type="Script" id=18]
 [ext_resource path="res://AdventuringParties.gd" type="Script" id=19]
-[ext_resource path="res://QuestSchemaKill.gd" type="Script" id=20]
+[ext_resource path="res://quest/schema/QuestSchemaKill.gd" type="Script" id=20]
+[ext_resource path="res://quest/QuestManager.gd" type="Script" id=21]
 
 [node name="Game" type="MarginContainer"]
 anchor_right = 1.0
@@ -62,41 +62,39 @@ character_name = "Sam"
 script = ExtResource( 12 )
 character_name = "Jen"
 
-[node name="QuestGenerator" type="Node" parent="." groups=["time"]]
-script = ExtResource( 18 )
+[node name="QuestManager" type="Node" parent="." groups=["time"]]
+script = ExtResource( 21 )
 parties_path = NodePath("../AdventuringParties")
-available_quests_path = NodePath("../Quests/AvailableQuests")
+available_quests_path = NodePath("AvailableQuests")
 map_path = NodePath("../GameWindow/GameTabs/Map")
 
-[node name="QuestSchemas" type="Node" parent="QuestGenerator"]
+[node name="QuestSchemas" type="Node" parent="QuestManager"]
 
-[node name="Kill" type="Node" parent="QuestGenerator/QuestSchemas"]
+[node name="QuestSchemaKill" type="Node" parent="QuestManager/QuestSchemas"]
 script = ExtResource( 20 )
 
-[node name="Quests" type="Node" parent="."]
-
-[node name="PendingQuests" type="Node" parent="Quests"]
+[node name="PendingQuests" type="Node" parent="QuestManager"]
 script = ExtResource( 4 )
 quest_signal = "quest_finished"
 
-[node name="AvailableQuests" type="Node" parent="Quests"]
+[node name="AvailableQuests" type="Node" parent="QuestManager"]
 script = ExtResource( 4 )
 quest_signal = "quest_created"
 
-[node name="ActiveQuests" type="Node" parent="Quests"]
+[node name="ActiveQuests" type="Node" parent="QuestManager"]
 script = ExtResource( 4 )
 quest_signal = "quest_started"
 
-[node name="CompletedQuests" type="Node" parent="Quests"]
+[node name="CompletedQuests" type="Node" parent="QuestManager"]
 script = ExtResource( 4 )
 quest_signal = "quest_completed"
 
-[node name="ExampleQuests" type="Node" parent="Quests"]
+[node name="ExampleQuests" type="Node" parent="QuestManager"]
 
-[node name="ExampleQuest" parent="Quests/ExampleQuests" instance=ExtResource( 11 )]
+[node name="ExampleQuest" parent="QuestManager/ExampleQuests" instance=ExtResource( 11 )]
 target_path = NodePath("../../../GameWindow/GameTabs/Map/World/POI")
 
-[node name="ExampleQuest2" parent="Quests/ExampleQuests" instance=ExtResource( 17 )]
+[node name="ExampleQuest2" parent="QuestManager/ExampleQuests" instance=ExtResource( 17 )]
 target_path = NodePath("../../../GameWindow/GameTabs/Map/World/POI")
 
 [node name="GameWindow" type="VBoxContainer" parent="."]
@@ -165,41 +163,50 @@ size_flags_vertical = 3
 
 [node name="Quests" parent="GameWindow/GameTabs" instance=ExtResource( 1 )]
 margin_top = 40.0
-pending_quests_path = NodePath("../../../Quests/PendingQuests")
-available_quests_path = NodePath("../../../Quests/AvailableQuests")
-active_quests_path = NodePath("../../../Quests/ActiveQuests")
-completed_quests_path = NodePath("../../../Quests/CompletedQuests")
+pending_quests_path = NodePath("../../../QuestManager/PendingQuests")
+available_quests_path = NodePath("../../../QuestManager/AvailableQuests")
+active_quests_path = NodePath("../../../QuestManager/ActiveQuests")
+completed_quests_path = NodePath("../../../QuestManager/CompletedQuests")
 adventuring_parties_path = NodePath("../../../AdventuringParties")
 
 [node name="Inventory" parent="GameWindow/GameTabs" instance=ExtResource( 5 )]
 visible = false
 margin_top = 40.0
 
-[node name="[PH]Forge" type="MarginContainer" parent="GameWindow/GameTabs"]
+[node name="Map" parent="GameWindow/GameTabs" instance=ExtResource( 3 )]
+visible = false
+
+[node name="PHTabs" type="Control" parent="GameWindow"]
+visible = false
+margin_top = 592.0
+margin_right = 1016.0
+margin_bottom = 592.0
+
+[node name="[PH]Forge" type="MarginContainer" parent="GameWindow/PHTabs"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 40.0
+margin_top = -520.0
 margin_right = -4.0
-margin_bottom = -4.0
+margin_bottom = -498.0
 
-[node name="Label" type="Label" parent="GameWindow/GameTabs/[PH]Forge"]
-margin_top = 247.0
+[node name="Label" type="Label" parent="GameWindow/PHTabs/[PH]Forge"]
 margin_right = 1008.0
-margin_bottom = 269.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "TODO"
 align = 1
 valign = 1
 
-[node name="[PH]Shop" type="MarginContainer" parent="GameWindow/GameTabs"]
+[node name="[PH]Shop" type="MarginContainer" parent="GameWindow/PHTabs"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = -560.0
+margin_right = 47.0
+margin_bottom = -520.0
 
-[node name="Label" type="Label" parent="GameWindow/GameTabs/[PH]Shop"]
+[node name="Label" type="Label" parent="GameWindow/PHTabs/[PH]Shop"]
 margin_top = 9.0
 margin_right = 47.0
 margin_bottom = 31.0
@@ -208,6 +215,3 @@ size_flags_vertical = 6
 text = "TODO"
 align = 1
 valign = 1
-
-[node name="Map" parent="GameWindow/GameTabs" instance=ExtResource( 3 )]
-visible = false

@@ -20,12 +20,12 @@ func get_poi(map):
 func get_monster(map):
 	# HACK: map should expose an API
 	for node in map.get_children():
-		if node is POI:
+		if node is Monster:
 			return node
 		else:
-			var poi = get_poi(node)
-			if poi is POI:
-				return poi
+			var monster = get_monster(node)
+			if monster is Monster:
+				return monster
 	return null
 
 func add_step_to_quest(quest, step):

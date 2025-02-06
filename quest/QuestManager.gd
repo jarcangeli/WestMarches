@@ -27,8 +27,14 @@ func advance_time():
 func generate_quest_for_party(_party : AdventuringParty):
 	#TODO: Use the party to determine appropriate quests
 	var schema : QuestSchema = get_random_quest_schema()
+	if schema == null:
+		push_error("Could not generate quest for party, no schema")
+		return
 	
 	var quest : Quest = schema.generate_quest(map)
+	if quest == null:
+		push_warning("Could not generate a new quest")
+		return
 	#TODO: Somehow track suggested party
 	SignalBus.emit_signal("quest_created", quest)
 

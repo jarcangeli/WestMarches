@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://items/Shortbow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/POI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://items/Jerkin.tscn" type="PackedScene" id=3]
 [ext_resource path="res://map/Map.gd" type="Script" id=4]
+[ext_resource path="res://Monster.gd" type="Script" id=5]
 [ext_resource path="res://assets/icons/icon.png" type="Texture" id=8]
 
 [node name="Map" type="Control"]
@@ -40,6 +41,9 @@ align = 1
 position = Vector2( -221, 129 )
 
 [node name="Jerkin" parent="World/POI" instance=ExtResource( 3 )]
+
+[node name="Minotaur" parent="World/POI" instance=ExtResource( 2 )]
+script = ExtResource( 5 )
 
 [node name="POI2" parent="World" instance=ExtResource( 2 )]
 position = Vector2( 178, 177 )

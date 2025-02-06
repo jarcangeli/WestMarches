@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://quest/Quest.gd" type="Script" id=1]
-[ext_resource path="res://quest/QuestSteps.gd" type="Script" id=2]
+[ext_resource path="res://quest/steps/QuestSteps.gd" type="Script" id=2]
 
 [node name="QuestBase" type="Node"]
 script = ExtResource( 1 )

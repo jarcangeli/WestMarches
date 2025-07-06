@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=18 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/quest_ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="2"]
@@ -10,13 +10,11 @@
 [ext_resource type="Script" uid="uid://bpcsenk3ubug2" path="res://inventory/PlayerInventory.gd" id="8"]
 [ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="9"]
 [ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://ui/AdvanceTimeButton.gd" id="10"]
-[ext_resource type="PackedScene" path="res://quest/examples/ExampleQuest.tscn" id="11"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="12"]
 [ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="13"]
 [ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://ui/PlayerCurrencyDisplay.gd" id="14"]
 [ext_resource type="Script" uid="uid://bvsxe7140kkgc" path="res://core/PlayerCurrencies.gd" id="15"]
 [ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://ui/TimeLabel.gd" id="16"]
-[ext_resource type="PackedScene" path="res://quest/examples/ExampleQuest2.tscn" id="17"]
 [ext_resource type="Script" uid="uid://ba36v1b1jri08" path="res://characters/AdventuringParties.gd" id="19"]
 [ext_resource type="Script" uid="uid://37lfxcb774f2" path="res://quest/QuestManager.gd" id="21"]
 
@@ -83,14 +81,6 @@ quest_signal = "quest_started"
 [node name="CompletedQuests" type="Node" parent="QuestManager"]
 script = ExtResource("4")
 quest_signal = "quest_completed"
-
-[node name="ExampleQuests" type="Node" parent="QuestManager"]
-
-[node name="ExampleQuest" parent="QuestManager/ExampleQuests" instance=ExtResource("11")]
-target_path = NodePath("../../../GameWindow/PHTabs/Map/World/POI")
-
-[node name="ExampleQuest2" parent="QuestManager/ExampleQuests" instance=ExtResource("17")]
-target_path = NodePath("../../../GameWindow/PHTabs/Map/World/POI")
 
 [node name="GameWindow" type="VBoxContainer" parent="."]
 layout_mode = 2

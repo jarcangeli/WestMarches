@@ -6,7 +6,7 @@ signal changed()
 @export var gold = 0
 
 func print_to_string():
-	return str(gold) + " gp"
+	return str(int(gold)) + " gp"
 
 func add_currencies(other_currencies, duplicated = false):
 	gold += other_currencies.gold

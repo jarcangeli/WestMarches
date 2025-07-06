@@ -50,26 +50,24 @@ func update_text():
 	get_node("Label").set_text(string)
 
 func load_time():
-	var save = File.new()
-	if not save.file_exists(save_filepath):
+	if not FileAccess.file_exists(save_filepath):
 		save_time()
-	save.open(save_filepath, File.READ)
+	var save = FileAccess.open(save_filepath, FileAccess.READ)
 	t = save.get_64()
 	save.close()
 	print("[simple-project-timer] Loading . . . Time: ", t)
 
 func save_time():
-	var save = File.new()
-	save.open(save_filepath, File.WRITE)
+	var save = FileAccess.open(save_filepath, FileAccess.READ)
+	save.open(save_filepath, FileAccess.WRITE)
 	save.store_64(t)
 	save.close()
 	print("[simple-project-timer] Saving . . . Time: ", t)
 
 func load_options():
-	var save = File.new()
-	if not save.file_exists(options_filepath):
+	if not FileAccess.file_exists(options_filepath):
 		save_options()
-	save.open(options_filepath, File.READ)
+	var save = FileAccess.open(options_filepath, FileAccess.READ)
 	var test_json_conv = JSON.new()
 	test_json_conv.parse(save.get_line())
 	var data = test_json_conv.get_data()
@@ -90,8 +88,7 @@ func load_options():
 	save.close()
 
 func save_options():
-	var save = File.new()
-	save.open(options_filepath, File.WRITE)
+	var save = FileAccess.open(options_filepath, FileAccess.WRITE)
 	var data = {"pause_on_switch"	 : pause_on_switch, 
 				"use_pause_anim"	 : use_pause_anim,
 				"show_seconds"		 : show_seconds,
@@ -201,4 +198,3 @@ func mouse_exit():
 		get_node("Label").hide()
 		get_node("TimerIcon").show()
 		if collapsible: collapse(true)
-

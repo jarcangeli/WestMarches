@@ -25,6 +25,10 @@ Globals="*res://core/Globals.gd"
 
 gdscript/warnings/unused_signal=false
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/simple-project-timer/plugin.cfg")
+
 [gui]
 
 theme/custom_font="res://assets/fonts/EB_Garamond/GaramondMedium.tres"

@@ -23,6 +23,18 @@ var party : AdventuringParty = null
 func _ready():
 	add_to_group("time")
 
+func initialise(monster, map):
+	quest_name = "Kill " + monster.name
+	quest_description = "A quest to kill " + monster.name
+	
+	travel_step.initialise(map.town, monster)
+	battle_step.initialise([monster])
+	return_step.initialise(monster, map.town)
+	
+	$Rewards/CurrencyReward.gold = ceil(get_difficulty())
+	
+	monster.active_quest = self
+
 func start(new_party):
 	if not is_instance_valid(new_party):
 		push_error("Quest started with invalid party")

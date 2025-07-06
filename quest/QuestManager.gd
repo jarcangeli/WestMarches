@@ -9,38 +9,85 @@ extends Node
 @export var map_path : NodePath
 @onready var map = get_node(map_path)
 
-@onready var quest_schemas = $QuestSchemas
+var quest_base = preload("res://quest/QuestBase.tscn")
 
 const MAX_AVAILABLE_QUESTS = 4
 
 func advance_time():
-	
-	var party = parties.get_next_idle_party()
-	while is_instance_valid(party) and available_quests.get_child_count() < MAX_AVAILABLE_QUESTS:
-		
+	if available_quests.get_child_count() < MAX_AVAILABLE_QUESTS:
 		print("Generating new quests")
-		generate_quest_for_party(party)
-		#TODO: Enable when we get more parties
-		#party = parties.get_next_idle_party()
-		party = null
+		generate_quest()
 
-func generate_quest_for_party(_party : AdventuringParty):
-	#TODO: Use the party to determine appropriate quests
-	var schema : QuestSchema = get_random_quest_schema()
-	if schema == null:
-		push_error("Could not generate quest for party, no schema")
-		return
-	
-	var quest : Quest = schema.generate_quest(map)
+func generate_quest():
+	#TODO: Some logic determing level of quest to generate, e.g. always have 2 easy, 1 med, sometimes a rare/hard
+	var quest : Quest = generate_quest_kill()
 	if quest == null:
-		push_warning("Could not generate a new quest")
+		#Could not generate a new quest
+		#TODO: this should never happen if we generate new monsters
 		return
-	#TODO: Somehow track suggested party
 	SignalBus.quest_created.emit(quest)
 
-func get_random_quest_schema():
-	if quest_schemas.get_child_count() == 0:
-		push_error("Tried to generate quest with no available schemas")
+func generate_quest_kill():
+	var quest : Quest = quest_base.instantiate()
+	
+	var monster = get_monster(map)
+	if not is_instance_valid(monster):
+		print("[TODO] No free monster found to create kill quest, make some more")
 		return null
-	var i = randi() % quest_schemas.get_child_count()
-	return quest_schemas.get_children()[i]
+	
+	quest.quest_name = "Kill " + monster.name
+	quest.quest_description = "A quest to kill " + monster.name
+	
+	var travel_step := QuestStepTravel.new()
+	travel_step.initialise(map.town, monster)
+	add_step_to_quest(quest, travel_step)
+	
+	var battle_step := QuestStepBattle.new()
+	battle_step.initialise([monster])
+	add_step_to_quest(quest, battle_step)
+	
+	var return_step := QuestStepTravel.new()
+	return_step.initialise(monster, map.town)
+	add_step_to_quest(quest, return_step)
+	
+	monster.active_quest = quest
+	
+	return quest
+
+func get_poi(root):
+	# HACK: map should expose an API
+	for node in root.get_children():
+		if node is POI:
+			return node
+		else:
+			var poi = get_poi(node)
+			if poi is POI:
+				return poi
+	return null
+
+func get_monster(root):
+	# HACK: map should expose an API
+	var children = root.get_children()
+	children.shuffle()
+	for node in children:
+		if (node is Monster) and (node.active_quest == null):
+			return node
+		else:
+			var monster = get_monster(node)
+			if (monster is Monster) and (monster.active_quest == null):
+					return monster
+	return null
+
+func add_step_to_quest(quest, step):
+	var steps = quest.get_node("QuestSteps")
+	if not is_instance_valid(steps):
+		push_warning("Couldnt add step to quests")
+		return
+	steps.add_child(step)
+
+func add_reward_to_quest(quest, reward):
+	var rewards = quest.get_node("Rewards")
+	if not is_instance_valid(rewards):
+		push_warning("Couldnt add reward to quests")
+		return
+	rewards.add_child(reward)

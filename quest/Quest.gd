@@ -47,6 +47,10 @@ func advance_time():
 func active():
 	return started and not finished
 
+func get_difficulty():
+	#TODO: determine difficulty from monster + distance
+	return 1
+
 func get_rewards():
 	return rewards.get_children()
 

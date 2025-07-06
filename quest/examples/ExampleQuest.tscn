@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://quest/Quest.gd" type="Script" id=1]
-[ext_resource path="res://quest/steps/QuestSteps.gd" type="Script" id=2]
-[ext_resource path="res://quest/steps/QuestStep.gd" type="Script" id=3]
-[ext_resource path="res://items/Shortbow.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Currencies.gd" type="Script" id=5]
-[ext_resource path="res://quest/steps/QuestStepTravel.gd" type="Script" id=6]
+[ext_resource type="Script" uid="uid://dqau2h1pv3bbt" path="res://quest/Quest.gd" id="1"]
+[ext_resource type="Script" uid="uid://cq02ts2n3ldcw" path="res://quest/steps/QuestSteps.gd" id="2"]
+[ext_resource type="Script" uid="uid://ct887sevatb4f" path="res://quest/steps/QuestStep.gd" id="3"]
+[ext_resource type="PackedScene" path="res://items/Shortbow.tscn" id="4"]
+[ext_resource type="Script" uid="uid://b3f0x0n4m3n40" path="res://core/Currencies.gd" id="5"]
+[ext_resource type="Script" uid="uid://slgqm58yj5ld" path="res://quest/steps/QuestStepTravel.gd" id="6"]
 
 [node name="ExampleQuest" type="Node"]
 script = ExtResource( 1 )

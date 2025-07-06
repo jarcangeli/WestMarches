@@ -8,4 +8,3 @@ func get_items():
 		if node is Item:
 			items.append(node)
 	return items
-

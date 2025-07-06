@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bwaojw2igp0kd"]
 
-[ext_resource type="PackedScene" path="res://quest/quest_ui/QuestScreen.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/quest_ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="3"]
 [ext_resource type="Script" uid="uid://bbpg5w2de17ex" path="res://quest/QuestsContainer.gd" id="4"]
@@ -66,7 +66,7 @@ character_name = "Jen"
 script = ExtResource("21")
 parties_path = NodePath("../AdventuringParties")
 available_quests_path = NodePath("AvailableQuests")
-map_path = NodePath("../GameWindow/GameTabs/Map")
+map_path = NodePath("../GameWindow/PHTabs/Map")
 
 [node name="PendingQuests" type="Node" parent="QuestManager"]
 script = ExtResource("4")
@@ -87,10 +87,10 @@ quest_signal = "quest_completed"
 [node name="ExampleQuests" type="Node" parent="QuestManager"]
 
 [node name="ExampleQuest" parent="QuestManager/ExampleQuests" instance=ExtResource("11")]
-target_path = NodePath("../../../GameWindow/GameTabs/Map/World/POI")
+target_path = NodePath("../../../GameWindow/PHTabs/Map/World/POI")
 
 [node name="ExampleQuest2" parent="QuestManager/ExampleQuests" instance=ExtResource("17")]
-target_path = NodePath("../../../GameWindow/GameTabs/Map/World/POI")
+target_path = NodePath("../../../GameWindow/PHTabs/Map/World/POI")
 
 [node name="GameWindow" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -150,11 +150,6 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Map" parent="GameWindow/GameTabs" instance=ExtResource("3")]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
 [node name="PHTabs" type="Control" parent="GameWindow"]
 visible = false
 layout_mode = 2
@@ -191,3 +186,11 @@ size_flags_vertical = 6
 text = "TODO"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Map" parent="GameWindow/PHTabs" instance=ExtResource("3")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+offset_top = 66.0
+offset_right = 4.0
+offset_bottom = 66.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://c2xf0hqwsw5f7"]
 
 [ext_resource type="PackedScene" path="res://inventory/ItemButtonDisplay.tscn" id="1"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://inventory/ItemsDisplayContainer.gd" id="2"]
@@ -9,323 +9,276 @@
 [ext_resource type="PackedScene" path="res://quest/quest_ui/QuestButton.tscn" id="7"]
 [ext_resource type="Script" uid="uid://bgec4w6jbjdjf" path="res://quest/quest_ui/QuestInfoPanel.gd" id="8"]
 [ext_resource type="Script" uid="uid://dm7nwvytq5g0y" path="res://quest/quest_ui/QuestRewardsDisplay.gd" id="9"]
+[ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://ui/difficulty_atlas_texture.tres" id="9_6c1t7"]
+[ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://ui/difficulty_atlas_texture_background.tres" id="9_8hxfh"]
 
 [node name="QuestScreen" type="MarginContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 32.0
 offset_right = -4.0
 offset_bottom = -4.0
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_top = 8
 theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
+script = ExtResource("5")
 characters_container_path = NodePath("QuestEquipUI/VBoxContainer/CharactersContainer")
 
 [node name="QuestEquipUI" type="HBoxContainer" parent="."]
 visible = false
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 1008.0
-offset_bottom = 556.0
-script = ExtResource( 4 )
-character_equip_ui_scene = ExtResource( 3 )
+layout_mode = 2
+script = ExtResource("4")
+character_equip_ui_scene = ExtResource("3")
 character_container_path = NodePath("VBoxContainer/CharactersContainer")
 
 [node name="ItemsDisplayContainer" type="VBoxContainer" parent="QuestEquipUI"]
-offset_right = 330.0
-offset_bottom = 548.0
+layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource( 2 )
-item_display_scene_path = ExtResource( 1 )
+script = ExtResource("2")
+item_display_scene_path = ExtResource("1")
 
 [node name="InventoryLabel" type="Label" parent="QuestEquipUI/ItemsDisplayContainer"]
-offset_right = 330.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "Inventory"
-align = 1
+horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="QuestEquipUI"]
-offset_left = 334.0
-offset_right = 665.0
-offset_bottom = 548.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_top = 12
 theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="QuestEquipUI/MarginContainer"]
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 319.0
-offset_bottom = 536.0
+layout_mode = 2
 
 [node name="HintLabel" type="Label" parent="QuestEquipUI/MarginContainer/VBoxContainer"]
-offset_right = 307.0
-offset_bottom = 492.0
+layout_mode = 2
 size_flags_vertical = 3
 text = "Equip the party with items until you are satisfied the adventurers are ready for their quest."
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartQuestButton" type="Button" parent="QuestEquipUI/MarginContainer/VBoxContainer"]
-offset_top = 496.0
-offset_right = 307.0
-offset_bottom = 524.0
+layout_mode = 2
 text = "Start Quest"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="QuestEquipUI"]
-offset_left = 669.0
-offset_right = 1000.0
-offset_bottom = 548.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="QuestEquipUI/VBoxContainer"]
-offset_right = 331.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "ADVENTURING PARTY"
-align = 1
+horizontal_alignment = 1
 
 [node name="CharactersContainer" type="TabContainer" parent="QuestEquipUI/VBoxContainer"]
-offset_top = 26.0
-offset_right = 331.0
-offset_bottom = 548.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+current_tab = 0
 
-[node name="Character 1" parent="QuestEquipUI/VBoxContainer/CharactersContainer" instance=ExtResource( 3 )]
-offset_top = 40.0
+[node name="Character 1" parent="QuestEquipUI/VBoxContainer/CharactersContainer" instance=ExtResource("3")]
+layout_mode = 2
+metadata/_tab_index = 0
 
-[node name="Character 2" parent="QuestEquipUI/VBoxContainer/CharactersContainer" instance=ExtResource( 3 )]
+[node name="Character 2" parent="QuestEquipUI/VBoxContainer/CharactersContainer" instance=ExtResource("3")]
 visible = false
+layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="Character 3" parent="QuestEquipUI/VBoxContainer/CharactersContainer" instance=ExtResource( 3 )]
+[node name="Character 3" parent="QuestEquipUI/VBoxContainer/CharactersContainer" instance=ExtResource("3")]
 visible = false
+layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="QuestSelectUI" type="HBoxContainer" parent="."]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 1008.0
-offset_bottom = 556.0
-script = ExtResource( 6 )
-quest_button_scene = ExtResource( 7 )
+layout_mode = 2
+script = ExtResource("6")
+quest_button_scene = ExtResource("7")
 pending_container_path = NodePath("ScrollContainer/VBoxContainerContainer/PendingContainer")
 new_container_path = NodePath("ScrollContainer/VBoxContainerContainer/NewContainer")
 active_container_path = NodePath("ScrollContainer/VBoxContainerContainer/ActiveContainer")
 completed_container_path = NodePath("ScrollContainer/VBoxContainerContainer/CompletedContainer")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="QuestSelectUI"]
-offset_right = 498.0
-offset_bottom = 548.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="VBoxContainerContainer" type="VBoxContainer" parent="QuestSelectUI/ScrollContainer"]
-offset_right = 300.0
-offset_bottom = 78.0
+layout_mode = 2
 
 [node name="MinWidth" type="Control" parent="QuestSelectUI/ScrollContainer/VBoxContainerContainer"]
-offset_right = 300.0
-custom_minimum_size = Vector2( 300, 0 )
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
 
 [node name="PendingContainer" type="VBoxContainer" parent="QuestSelectUI/ScrollContainer/VBoxContainerContainer"]
 visible = false
-offset_top = 4.0
-offset_right = 300.0
-offset_bottom = 26.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="QuestSelectUI/ScrollContainer/VBoxContainerContainer/PendingContainer"]
-offset_right = 300.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "COMPLETED QUESTS"
 
 [node name="NewContainer" type="VBoxContainer" parent="QuestSelectUI/ScrollContainer/VBoxContainerContainer"]
-offset_top = 4.0
-offset_right = 300.0
-offset_bottom = 26.0
+layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="QuestSelectUI/ScrollContainer/VBoxContainerContainer/NewContainer"]
-offset_right = 300.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "Available new quests:"
 
 [node name="ActiveContainer" type="VBoxContainer" parent="QuestSelectUI/ScrollContainer/VBoxContainerContainer"]
-offset_top = 30.0
-offset_right = 300.0
-offset_bottom = 52.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="QuestSelectUI/ScrollContainer/VBoxContainerContainer/ActiveContainer"]
-offset_right = 300.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "Active quests:"
 
 [node name="CompletedContainer" type="VBoxContainer" parent="QuestSelectUI/ScrollContainer/VBoxContainerContainer"]
-offset_top = 56.0
-offset_right = 300.0
-offset_bottom = 78.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="QuestSelectUI/ScrollContainer/VBoxContainerContainer/CompletedContainer"]
-offset_right = 300.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "Quest History:"
 
 [node name="QuestInfoPanel" type="Panel" parent="QuestSelectUI"]
-offset_left = 502.0
-offset_right = 1000.0
-offset_bottom = 548.0
+layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource( 8 )
+script = ExtResource("8")
 quest_name_label_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestNameLabel")
 quest_description_text_ui_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestDescriptionText")
 quest_rewards_display_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay")
 party_name_label_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/PartyNameLabel")
 party_info_label_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/PartyInfoLabel")
+quest_difficulty_display_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/CenterContainer/DifficultyBar")
 
 [node name="VBoxContainer" type="MarginContainer" parent="QuestSelectUI/QuestInfoPanel"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_top = 8
 theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 490.0
-offset_bottom = 540.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer"]
-offset_right = 482.0
-offset_bottom = 500.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer"]
-offset_right = 482.0
-offset_bottom = 500.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="QuestNameLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-offset_right = 482.0
-offset_bottom = 22.0
-align = 1
+layout_mode = 2
+horizontal_alignment = 1
 
 [node name="QuestDescriptionText" type="TextEdit" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-offset_top = 26.0
-offset_right = 482.0
-offset_bottom = 222.0
+layout_mode = 2
 size_flags_vertical = 3
-readonly = true
-wrap_enabled = true
+
+[node name="DifficultyLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Difficulty"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DifficultyBar" type="TextureProgressBar" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/CenterContainer"]
+texture_repeat = 2
+layout_mode = 2
+max_value = 5.0
+step = 0.1
+value = 2.5
+texture_under = ExtResource("9_8hxfh")
+texture_progress = ExtResource("9_6c1t7")
 
 [node name="PartyNameLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-offset_top = 226.0
-offset_right = 482.0
-offset_bottom = 248.0
-align = 1
+layout_mode = 2
+horizontal_alignment = 1
 
 [node name="PartyInfoLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-offset_top = 252.0
-offset_right = 482.0
-offset_bottom = 274.0
+layout_mode = 2
 text = "Party info details"
 
 [node name="RewardsLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-offset_top = 278.0
-offset_right = 482.0
-offset_bottom = 300.0
+layout_mode = 2
 text = "Rewards"
-align = 1
+horizontal_alignment = 1
 
 [node name="QuestRewardsDisplay" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-offset_top = 304.0
-offset_right = 482.0
-offset_bottom = 500.0
+layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource( 9 )
+script = ExtResource("9")
 item_rewards_container_path = NodePath("RewardsContainer")
 currency_rewards_label_path = NodePath("RewardsContainer/CurrencyRewardsLabel")
 
 [node name="RewardsContainer" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay"]
-offset_right = 482.0
-offset_bottom = 196.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 2 )
-item_display_scene_path = ExtResource( 1 )
+script = ExtResource("2")
+item_display_scene_path = ExtResource("1")
 
 [node name="CurrencyRewardsLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay/RewardsContainer"]
-offset_right = 482.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "0 gp"
 
 [node name="ChooseQuestButton" type="Button" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer"]
-offset_left = 170.0
-offset_top = 504.0
-offset_right = 311.0
-offset_bottom = 532.0
+layout_mode = 2
 size_flags_horizontal = 4
 text = "SPONSOR QUEST"
 
 [node name="QuestRewardPanel" type="Panel" parent="QuestSelectUI"]
 visible = false
-offset_left = 669.0
-offset_right = 1000.0
-offset_bottom = 548.0
+layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource( 9 )
+script = ExtResource("9")
 item_rewards_container_path = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer")
 currency_rewards_label_path = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer/CurrencyRewardsLabel")
 
 [node name="VBoxContainer" type="MarginContainer" parent="QuestSelectUI/QuestRewardPanel"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_top = 8
 theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 323.0
-offset_bottom = 540.0
+layout_mode = 2
 
 [node name="QuestNameLabel" type="Label" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer"]
-offset_right = 315.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "Item rewards"
-align = 1
+horizontal_alignment = 1
 
 [node name="ItemRewardsContainer" type="VBoxContainer" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer"]
-offset_top = 26.0
-offset_right = 315.0
-offset_bottom = 48.0
-script = ExtResource( 2 )
-item_display_scene_path = ExtResource( 1 )
+layout_mode = 2
+script = ExtResource("2")
+item_display_scene_path = ExtResource("1")
 
 [node name="CurrencyRewardsLabel" type="Label" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer/ItemRewardsContainer"]
-offset_right = 315.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "0 gp"
-align = 1
+horizontal_alignment = 1
 
 [node name="CollectRewardsButton" type="Button" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer"]
-offset_left = 74.0
-offset_top = 52.0
-offset_right = 240.0
-offset_bottom = 80.0
+layout_mode = 2
 size_flags_horizontal = 4
 text = "COLLECT REWARDS"
 

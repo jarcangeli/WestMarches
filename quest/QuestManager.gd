@@ -29,6 +29,7 @@ func generate_quest():
 
 func generate_quest_kill():
 	var quest : Quest = quest_base.instantiate()
+	add_child(quest)
 	
 	var monster = get_monster(map)
 	if not is_instance_valid(monster):
@@ -38,20 +39,12 @@ func generate_quest_kill():
 	quest.quest_name = "Kill " + monster.name
 	quest.quest_description = "A quest to kill " + monster.name
 	
-	var travel_step := QuestStepTravel.new()
-	travel_step.initialise(map.town, monster)
-	add_step_to_quest(quest, travel_step)
-	
-	var battle_step := QuestStepBattle.new()
-	battle_step.initialise([monster])
-	add_step_to_quest(quest, battle_step)
-	
-	var return_step := QuestStepTravel.new()
-	return_step.initialise(monster, map.town)
-	add_step_to_quest(quest, return_step)
+	#TODO: tidy this up into one initialiser
+	quest.travel_step.initialise(map.town, monster)
+	quest.battle_step.initialise([monster])
+	quest.return_step.initialise(monster, map.town)
 	
 	monster.active_quest = quest
-	
 	return quest
 
 func get_poi(root):

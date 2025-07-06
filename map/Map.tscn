@@ -45,6 +45,7 @@ position = Vector2(-221, 129)
 
 [node name="Minotaur" parent="World/POI" instance=ExtResource("2")]
 script = ExtResource("5")
+level = 14
 
 [node name="POI2" parent="World" instance=ExtResource("2")]
 position = Vector2(178, 177)
@@ -53,6 +54,8 @@ position = Vector2(178, 177)
 
 [node name="Troll" parent="World/POI2" instance=ExtResource("2")]
 script = ExtResource("5")
+level = 10
 
 [node name="Bear" parent="World/POI2" instance=ExtResource("2")]
 script = ExtResource("5")
+level = 1

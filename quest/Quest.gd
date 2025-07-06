@@ -1,5 +1,6 @@
 extends Node
 class_name Quest
+# kill quest
 
 @export var quest_name : String
 @export var quest_description : String # (String, MULTILINE)
@@ -8,6 +9,9 @@ class_name Quest
 @onready var target = get_node_or_null(target_path)
 
 @onready var steps = $QuestSteps
+@onready var travel_step = $QuestSteps/TravelStep
+@onready var battle_step = $QuestSteps/BattleStep
+@onready var return_step = $QuestSteps/ReturnStep
 @onready var rewards = $Rewards
 
 var started = false		# set out
@@ -48,8 +52,11 @@ func active():
 	return started and not finished
 
 func get_difficulty():
-	#TODO: determine difficulty from monster + distance
-	return 1
+	var monsters : Array = battle_step.monsters
+	var difficulty_sum = 0
+	for monster in monsters:
+		difficulty_sum += monster.level
+	return difficulty_sum / 20.0 * 5
 
 func get_rewards():
 	return rewards.get_children()

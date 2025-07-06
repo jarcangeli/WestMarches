@@ -1,12 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://bu81dy404ucm5"]
 
-[ext_resource path="res://quest/Quest.gd" type="Script" id=1]
-[ext_resource path="res://quest/steps/QuestSteps.gd" type="Script" id=2]
+[ext_resource type="Script" uid="uid://dqau2h1pv3bbt" path="res://quest/Quest.gd" id="1"]
+[ext_resource type="Script" uid="uid://cq02ts2n3ldcw" path="res://quest/steps/QuestSteps.gd" id="2"]
+[ext_resource type="Script" uid="uid://slgqm58yj5ld" path="res://quest/steps/QuestStepTravel.gd" id="3_ve4qv"]
+[ext_resource type="Script" uid="uid://2oay62dhv34q" path="res://quest/steps/QuestStepBattle.gd" id="4_tgbfe"]
 
 [node name="QuestBase" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="QuestSteps" type="Node" parent="."]
-script = ExtResource( 2 )
+script = ExtResource("2")
+
+[node name="TravelStep" type="Node" parent="QuestSteps"]
+script = ExtResource("3_ve4qv")
+
+[node name="BattleStep" type="Node" parent="QuestSteps"]
+script = ExtResource("4_tgbfe")
+
+[node name="ReturnStep" type="Node" parent="QuestSteps"]
+script = ExtResource("3_ve4qv")
 
 [node name="Rewards" type="Node" parent="."]

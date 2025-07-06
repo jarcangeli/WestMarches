@@ -14,10 +14,14 @@ extends Panel
 @export var party_info_label_path : NodePath
 @onready var party_info_label = get_node(party_info_label_path)
 
+@export var quest_difficulty_display_path : NodePath
+@onready var quest_difficulty_display : TextureProgressBar = get_node(quest_difficulty_display_path)
+
 func set_quest(quest : Quest):
 	quest_name_label.text = "Quest: " + quest.quest_name
 	quest_description_text_ui.text = quest.quest_description
 	quest_rewards_display.set_quest(quest)
+	quest_difficulty_display.value = quest.get_difficulty()
 
 func set_party(party : AdventuringParty):
 	if not is_instance_valid(party):

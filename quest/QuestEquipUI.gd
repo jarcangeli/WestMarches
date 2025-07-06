@@ -1,14 +1,14 @@
 extends HBoxContainer
 
-export var character_equip_ui_scene : Resource
+@export var character_equip_ui_scene : Resource
 
-export var character_container_path : NodePath
-onready var character_container = get_node(character_container_path)
+@export var character_container_path : NodePath
+@onready var character_container = get_node(character_container_path)
 
-onready var inventory_display_container = $ItemsDisplayContainer
+@onready var inventory_display_container = $ItemsDisplayContainer
 
 func _ready():
-	SignalBus.hconnect("player_inventory_changed", self, "on_player_inventory_changed")
+	SignalBus.player_inventory_changed.connect(self.on_player_inventory_changed)
 	on_player_inventory_changed()
 
 func initialise():
@@ -27,7 +27,7 @@ func setup_characters(characters):
 	clear_characters()
 	
 	for character in characters:
-		var char_ui = character_equip_ui_scene.instance()
+		var char_ui = character_equip_ui_scene.instantiate()
 		char_ui.call_deferred("set_character", character)
 		char_ui.name = character.character_name #TODO: Does this handle repeat names
 		character_container.add_child(char_ui)

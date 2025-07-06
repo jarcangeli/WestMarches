@@ -3,7 +3,7 @@ extends QuestSchema
 
 func generate_quest(map):
 	
-	var quest : Quest = quest_base.instance()
+	var quest : Quest = quest_base.instantiate()
 	quest.quest_name = "Test Explore"
 	quest.quest_description = "Randomly generated description"
 	

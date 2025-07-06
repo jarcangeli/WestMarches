@@ -5,7 +5,7 @@ var drag_enabled : bool = true
 func get_item():
 	return get_parent().item
 
-func get_drag_data(_position):
+func _get_drag_data(_position):
 	if not drag_enabled:
 		return null
 	var item = get_item()

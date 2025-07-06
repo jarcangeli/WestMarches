@@ -6,118 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Node",
-"class": "AdventuringParties",
-"language": "GDScript",
-"path": "res://AdventuringParties.gd"
-}, {
-"base": "Node",
-"class": "AdventuringParty",
-"language": "GDScript",
-"path": "res://AdventuringParty.gd"
-}, {
-"base": "Node",
-"class": "Character",
-"language": "GDScript",
-"path": "res://Character.gd"
-}, {
-"base": "Node",
-"class": "Currencies",
-"language": "GDScript",
-"path": "res://Currencies.gd"
-}, {
-"base": "Control",
-"class": "EquipmentContainer",
-"language": "GDScript",
-"path": "res://inventory/EquipmentContainer.gd"
-}, {
-"base": "Node",
-"class": "Item",
-"language": "GDScript",
-"path": "res://inventory/Item.gd"
-}, {
-"base": "Control",
-"class": "ItemButtonDisplay",
-"language": "GDScript",
-"path": "res://inventory/ItemButtonDisplay.gd"
-}, {
-"base": "POI",
-"class": "Monster",
-"language": "GDScript",
-"path": "res://Monster.gd"
-}, {
-"base": "Node2D",
-"class": "POI",
-"language": "GDScript",
-"path": "res://map/POI.gd"
-}, {
-"base": "Currencies",
-"class": "PlayerCurrencies",
-"language": "GDScript",
-"path": "res://PlayerCurrencies.gd"
-}, {
-"base": "Node",
-"class": "PlayerInventory",
-"language": "GDScript",
-"path": "res://PlayerInventory.gd"
-}, {
-"base": "Node",
-"class": "Quest",
-"language": "GDScript",
-"path": "res://quest/Quest.gd"
-}, {
-"base": "Button",
-"class": "QuestButton",
-"language": "GDScript",
-"path": "res://quest/QuestSelectButton.gd"
-}, {
-"base": "Node",
-"class": "QuestSchema",
-"language": "GDScript",
-"path": "res://quest/schema/QuestSchema.gd"
-}, {
-"base": "Node",
-"class": "QuestStep",
-"language": "GDScript",
-"path": "res://quest/steps/QuestStep.gd"
-}, {
-"base": "QuestStep",
-"class": "QuestStepBattle",
-"language": "GDScript",
-"path": "res://quest/steps/QuestStepBattle.gd"
-}, {
-"base": "QuestStep",
-"class": "QuestStepTravel",
-"language": "GDScript",
-"path": "res://quest/steps/QuestStepTravel.gd"
-} ]
-_global_script_class_icons={
-"AdventuringParties": "",
-"AdventuringParty": "",
-"Character": "",
-"Currencies": "",
-"EquipmentContainer": "",
-"Item": "",
-"ItemButtonDisplay": "",
-"Monster": "",
-"POI": "",
-"PlayerCurrencies": "",
-"PlayerInventory": "",
-"Quest": "",
-"QuestButton": "",
-"QuestSchema": "",
-"QuestStep": "",
-"QuestStepBattle": "",
-"QuestStepTravel": ""
-}
+config_version=5
 
 [application]
 
 config/name="West Marches"
 run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.4")
 config/icon="res://assets/icons/logo.png"
 
 [autoload]
@@ -130,14 +25,10 @@ Globals="*res://core/Globals.gd"
 
 gdscript/warnings/unused_signal=false
 
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg", "res://addons/simple-project-timer/plugin.cfg" )
-
 [gui]
 
-common/drop_mouse_on_gui_input_disabled=true
 theme/custom_font="res://assets/fonts/EB_Garamond/GaramondMedium.tres"
+common/drop_mouse_on_gui_input_disabled=true
 
 [physics]
 
@@ -145,7 +36,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/defaults/default_environment="res://default_env.tres"
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"

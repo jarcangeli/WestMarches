@@ -1,9 +1,9 @@
 extends Node
 
-export var quest_signal : String
+@export var quest_signal : String
 
 func _ready():
-	SignalBus.hconnect(quest_signal, self, "on_quest_changed")
+	SignalBus.quest_signal.connect(self.on_quest_changed)
 
 func on_quest_changed(quest):
 	if not is_instance_valid(quest):

@@ -17,13 +17,13 @@ const slot_container_icons = [
 	preload("res://assets/icons/slots/chest.png")
 ]
 
-export var item_name : String = "Name"
+@export var item_name : String = "Name"
 
-export(String, MULTILINE) var description : String = "Placeholder description"
+@export var description : String = "Placeholder description" # (String, MULTILINE)
 
-export var icon : Texture
+@export var icon : Texture2D
 
-export(Slot) var primary_slot_type
+@export var primary_slot_type: Slot
 
 var base_value = 1
 
@@ -49,24 +49,24 @@ static func make_item_preview(item):
 
 func _ready():
 	#TODO: Does this scale well with every item in the scene?
-	SignalBus.hconnect("item_equipped", self, "on_item_equipped")
-	SignalBus.hconnect("item_unequipped", self, "on_item_unequipped")
+	SignalBus.item_equipped.connect(self.on_item_equipped)
+	SignalBus.item_unequipped.connect(self.on_item_unequipped)
 
 func on_item_equipped(item, slot):
 	if item != self:
 		if slot == equip_slot:
 			equip_slot = null
-			emit_signal("item_changed")
+			item_changed.emit()
 	elif equip_slot != slot:
 		equip_slot = slot
-		emit_signal("item_changed")
+		item_changed.emit()
 
 func on_item_unequipped(item, slot):
 	if item != self:
 		return
 	if equip_slot == slot:
 		equip_slot = null
-		emit_signal("item_changed")
+		item_changed.emit()
 
 func get_value():
 	#TODO: Calculate from attributes?

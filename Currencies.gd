@@ -3,14 +3,14 @@ class_name Currencies
 
 signal changed()
 
-export var gold = 0
+@export var gold = 0
 
-func to_string():
+func print_to_string():
 	return str(gold) + " gp"
 
-func add_currencies(other_currencies, duplicate=false):
+func add_currencies(other_currencies, duplicated = false):
 	gold += other_currencies.gold
-	if not duplicate:
+	if not duplicated:
 		other_currencies.clear()
 	emit_signal("changed")
 

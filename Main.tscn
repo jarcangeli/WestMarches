@@ -1,69 +1,70 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=21 format=3 uid="uid://bwaojw2igp0kd"]
 
-[ext_resource path="res://quest/QuestScreen.tscn" type="PackedScene" id=1]
-[ext_resource path="res://default_theme.tres" type="Theme" id=2]
-[ext_resource path="res://map/Map.tscn" type="PackedScene" id=3]
-[ext_resource path="res://quest/QuestsContainer.gd" type="Script" id=4]
-[ext_resource path="res://inventory/InventoryView.tscn" type="PackedScene" id=5]
-[ext_resource path="res://items/Shortsword.tscn" type="PackedScene" id=6]
-[ext_resource path="res://items/Coif.tscn" type="PackedScene" id=7]
-[ext_resource path="res://PlayerInventory.gd" type="Script" id=8]
-[ext_resource path="res://core/TimeTracker.gd" type="Script" id=9]
-[ext_resource path="res://AdvanceTimeButton.gd" type="Script" id=10]
-[ext_resource path="res://quest/examples/ExampleQuest.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Character.gd" type="Script" id=12]
-[ext_resource path="res://AdventuringParty.gd" type="Script" id=13]
-[ext_resource path="res://ui/PlayerCurrencyDisplay.gd" type="Script" id=14]
-[ext_resource path="res://PlayerCurrencies.gd" type="Script" id=15]
-[ext_resource path="res://TimeLabel.gd" type="Script" id=16]
-[ext_resource path="res://quest/examples/ExampleQuest2.tscn" type="PackedScene" id=17]
-[ext_resource path="res://AdventuringParties.gd" type="Script" id=19]
-[ext_resource path="res://quest/schema/QuestSchemaKill.gd" type="Script" id=20]
-[ext_resource path="res://quest/QuestManager.gd" type="Script" id=21]
+[ext_resource type="PackedScene" path="res://quest/QuestScreen.tscn" id="1"]
+[ext_resource type="Theme" path="res://default_theme.tres" id="2"]
+[ext_resource type="PackedScene" path="res://map/Map.tscn" id="3"]
+[ext_resource type="Script" uid="uid://bbpg5w2de17ex" path="res://quest/QuestsContainer.gd" id="4"]
+[ext_resource type="PackedScene" path="res://inventory/InventoryView.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://items/Shortsword.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://items/Coif.tscn" id="7"]
+[ext_resource type="Script" uid="uid://bpcsenk3ubug2" path="res://PlayerInventory.gd" id="8"]
+[ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="9"]
+[ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://AdvanceTimeButton.gd" id="10"]
+[ext_resource type="PackedScene" path="res://quest/examples/ExampleQuest.tscn" id="11"]
+[ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://Character.gd" id="12"]
+[ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://AdventuringParty.gd" id="13"]
+[ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://ui/PlayerCurrencyDisplay.gd" id="14"]
+[ext_resource type="Script" uid="uid://bvsxe7140kkgc" path="res://PlayerCurrencies.gd" id="15"]
+[ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://TimeLabel.gd" id="16"]
+[ext_resource type="PackedScene" path="res://quest/examples/ExampleQuest2.tscn" id="17"]
+[ext_resource type="Script" uid="uid://ba36v1b1jri08" path="res://AdventuringParties.gd" id="19"]
+[ext_resource type="Script" uid="uid://1yhg8v63fste" path="res://quest/schema/QuestSchemaKill.gd" id="20"]
+[ext_resource type="Script" uid="uid://37lfxcb774f2" path="res://quest/QuestManager.gd" id="21"]
 
 [node name="Game" type="MarginContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-theme = ExtResource( 2 )
-custom_constants/margin_right = 4
-custom_constants/margin_top = 4
-custom_constants/margin_left = 4
-custom_constants/margin_bottom = 4
+theme = ExtResource("2")
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="PlayerCurrencies" type="Node" parent="."]
-script = ExtResource( 15 )
+script = ExtResource("15")
 
 [node name="TimeTracker" type="Node" parent="." groups=["time"]]
-script = ExtResource( 9 )
+script = ExtResource("9")
 
 [node name="PlayerInventory" type="Node" parent="."]
-script = ExtResource( 8 )
+script = ExtResource("8")
 
-[node name="Shortsword" parent="PlayerInventory" instance=ExtResource( 6 )]
+[node name="Shortsword" parent="PlayerInventory" instance=ExtResource("6")]
 
-[node name="Coif" parent="PlayerInventory" instance=ExtResource( 7 )]
+[node name="Coif" parent="PlayerInventory" instance=ExtResource("7")]
 
 [node name="AdventuringParties" type="Node" parent="."]
-script = ExtResource( 19 )
+script = ExtResource("19")
 
 [node name="Party1" type="Node" parent="AdventuringParties"]
-script = ExtResource( 13 )
+script = ExtResource("13")
 
 [node name="Ben" type="Node" parent="AdventuringParties/Party1"]
-script = ExtResource( 12 )
+script = ExtResource("12")
 character_name = "Ben"
 
 [node name="Sam" type="Node" parent="AdventuringParties/Party1"]
-script = ExtResource( 12 )
+script = ExtResource("12")
 character_name = "Sam"
 
 [node name="Jen" type="Node" parent="AdventuringParties/Party1"]
-script = ExtResource( 12 )
+script = ExtResource("12")
 character_name = "Jen"
 
 [node name="QuestManager" type="Node" parent="." groups=["time"]]
-script = ExtResource( 21 )
+script = ExtResource("21")
 parties_path = NodePath("../AdventuringParties")
 available_quests_path = NodePath("AvailableQuests")
 map_path = NodePath("../GameWindow/GameTabs/Map")
@@ -71,147 +72,127 @@ map_path = NodePath("../GameWindow/GameTabs/Map")
 [node name="QuestSchemas" type="Node" parent="QuestManager"]
 
 [node name="QuestSchemaKill" type="Node" parent="QuestManager/QuestSchemas"]
-script = ExtResource( 20 )
+script = ExtResource("20")
 
 [node name="PendingQuests" type="Node" parent="QuestManager"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 quest_signal = "quest_finished"
 
 [node name="AvailableQuests" type="Node" parent="QuestManager"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 quest_signal = "quest_created"
 
 [node name="ActiveQuests" type="Node" parent="QuestManager"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 quest_signal = "quest_started"
 
 [node name="CompletedQuests" type="Node" parent="QuestManager"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 quest_signal = "quest_completed"
 
 [node name="ExampleQuests" type="Node" parent="QuestManager"]
 
-[node name="ExampleQuest" parent="QuestManager/ExampleQuests" instance=ExtResource( 11 )]
+[node name="ExampleQuest" parent="QuestManager/ExampleQuests" instance=ExtResource("11")]
 target_path = NodePath("../../../GameWindow/GameTabs/Map/World/POI")
 
-[node name="ExampleQuest2" parent="QuestManager/ExampleQuests" instance=ExtResource( 17 )]
+[node name="ExampleQuest2" parent="QuestManager/ExampleQuests" instance=ExtResource("17")]
 target_path = NodePath("../../../GameWindow/GameTabs/Map/World/POI")
 
 [node name="GameWindow" type="VBoxContainer" parent="."]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 1020.0
-margin_bottom = 596.0
+layout_mode = 2
 
 [node name="StatsBar" type="HBoxContainer" parent="GameWindow"]
-margin_right = 1016.0
-margin_bottom = 28.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="GameWindow/StatsBar"]
-margin_top = 3.0
-margin_right = 97.0
-margin_bottom = 25.0
+layout_mode = 2
 text = "Game Progress:"
 
 [node name="Control" type="Control" parent="GameWindow/StatsBar"]
-margin_left = 101.0
-margin_right = 358.0
-margin_bottom = 28.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="PlayerCurrencyDisplay" type="Label" parent="GameWindow/StatsBar"]
-margin_left = 362.0
-margin_top = 3.0
-margin_right = 388.0
-margin_bottom = 25.0
+layout_mode = 2
 text = "0 gp"
-script = ExtResource( 14 )
+script = ExtResource("14")
 
 [node name="Control3" type="Control" parent="GameWindow/StatsBar"]
-margin_left = 392.0
-margin_right = 650.0
-margin_bottom = 28.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="TimeLabel" type="Label" parent="GameWindow/StatsBar"]
-margin_left = 654.0
-margin_top = 3.0
-margin_right = 654.0
-margin_bottom = 25.0
-script = ExtResource( 16 )
+layout_mode = 2
+script = ExtResource("16")
 time_tracker_path = NodePath("../../../TimeTracker")
 
 [node name="Control2" type="Control" parent="GameWindow/StatsBar"]
-margin_left = 658.0
-margin_right = 915.0
-margin_bottom = 28.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="AdvanceTimeButton" type="Button" parent="GameWindow/StatsBar"]
-margin_left = 919.0
-margin_right = 1015.0
-margin_bottom = 28.0
+layout_mode = 2
 text = "Advance Day"
-script = ExtResource( 10 )
+script = ExtResource("10")
 
 [node name="GameTabs" type="TabContainer" parent="GameWindow"]
-margin_top = 32.0
-margin_right = 1016.0
-margin_bottom = 592.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+current_tab = 0
 
-[node name="Quests" parent="GameWindow/GameTabs" instance=ExtResource( 1 )]
-margin_top = 40.0
+[node name="Quests" parent="GameWindow/GameTabs" instance=ExtResource("1")]
+layout_mode = 2
 pending_quests_path = NodePath("../../../QuestManager/PendingQuests")
 available_quests_path = NodePath("../../../QuestManager/AvailableQuests")
 active_quests_path = NodePath("../../../QuestManager/ActiveQuests")
 completed_quests_path = NodePath("../../../QuestManager/CompletedQuests")
 adventuring_parties_path = NodePath("../../../AdventuringParties")
+metadata/_tab_index = 0
 
-[node name="Inventory" parent="GameWindow/GameTabs" instance=ExtResource( 5 )]
+[node name="Inventory" parent="GameWindow/GameTabs" instance=ExtResource("5")]
 visible = false
-margin_top = 40.0
+layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="Map" parent="GameWindow/GameTabs" instance=ExtResource( 3 )]
+[node name="Map" parent="GameWindow/GameTabs" instance=ExtResource("3")]
 visible = false
+layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="PHTabs" type="Control" parent="GameWindow"]
 visible = false
-margin_top = 592.0
-margin_right = 1016.0
-margin_bottom = 592.0
+layout_mode = 2
 
 [node name="[PH]Forge" type="MarginContainer" parent="GameWindow/PHTabs"]
 visible = false
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = -520.0
-margin_right = -4.0
-margin_bottom = -498.0
+offset_left = 4.0
+offset_top = -520.0
+offset_right = -4.0
+offset_bottom = -498.0
 
 [node name="Label" type="Label" parent="GameWindow/PHTabs/[PH]Forge"]
-margin_right = 1008.0
-margin_bottom = 22.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "TODO"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="[PH]Shop" type="MarginContainer" parent="GameWindow/PHTabs"]
 visible = false
-margin_top = -560.0
-margin_right = 47.0
-margin_bottom = -520.0
+layout_mode = 0
+offset_top = -560.0
+offset_right = 47.0
+offset_bottom = -520.0
 
 [node name="Label" type="Label" parent="GameWindow/PHTabs/[PH]Shop"]
-margin_top = 9.0
-margin_right = 47.0
-margin_bottom = 31.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "TODO"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1

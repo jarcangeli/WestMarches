@@ -1,18 +1,18 @@
 extends Panel
 
-export var quest_name_label_path : NodePath
-onready var quest_name_label = get_node(quest_name_label_path)
-export var quest_description_text_ui_path : NodePath
-onready var quest_description_text_ui = get_node(quest_description_text_ui_path)
+@export var quest_name_label_path : NodePath
+@onready var quest_name_label = get_node(quest_name_label_path)
+@export var quest_description_text_ui_path : NodePath
+@onready var quest_description_text_ui = get_node(quest_description_text_ui_path)
 
-export var quest_rewards_display_path : NodePath
-onready var quest_rewards_display = get_node(quest_rewards_display_path)
+@export var quest_rewards_display_path : NodePath
+@onready var quest_rewards_display = get_node(quest_rewards_display_path)
 
-export var party_name_label_path : NodePath
-onready var party_name_label = get_node(party_name_label_path)
+@export var party_name_label_path : NodePath
+@onready var party_name_label = get_node(party_name_label_path)
 
-export var party_info_label_path : NodePath
-onready var party_info_label = get_node(party_info_label_path)
+@export var party_info_label_path : NodePath
+@onready var party_info_label = get_node(party_info_label_path)
 
 func set_quest(quest : Quest):
 	quest_name_label.text = "Quest: " + quest.quest_name

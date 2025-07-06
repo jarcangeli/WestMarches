@@ -2,20 +2,20 @@ extends HBoxContainer
 
 signal quest_chosen(quest)
 
-export var quest_button_scene : Resource
+@export var quest_button_scene : Resource
 
-export var pending_container_path : NodePath
-export var new_container_path : NodePath
-export var active_container_path : NodePath
-export var completed_container_path : NodePath
+@export var pending_container_path : NodePath
+@export var new_container_path : NodePath
+@export var active_container_path : NodePath
+@export var completed_container_path : NodePath
 
-onready var pending_container = get_node(pending_container_path)
-onready var new_container = get_node(new_container_path)
-onready var active_container = get_node(active_container_path)
-onready var completed_container = get_node(completed_container_path)
+@onready var pending_container = get_node(pending_container_path)
+@onready var new_container = get_node(new_container_path)
+@onready var active_container = get_node(active_container_path)
+@onready var completed_container = get_node(completed_container_path)
 
-onready var quest_info_panel = $QuestInfoPanel
-onready var quest_reward_panel = $QuestRewardPanel
+@onready var quest_info_panel = $QuestInfoPanel
+@onready var quest_reward_panel = $QuestRewardPanel
 
 var selected_quest : Quest = null
 
@@ -32,11 +32,11 @@ func clear_button_container(container):
 
 func add_buttons_to_container(quests, container, disabled=false):
 	for quest in quests:
-		var quest_button = quest_button_scene.instance()
+		var quest_button = quest_button_scene.instantiate()
 		quest_button.quest = quest
 		quest_button.disabled = disabled
 		container.add_child(quest_button)
-		var err = quest_button.connect("quest_selected", self, "select_quest")
+		var err = quest_button.connect("quest_selected", Callable(self, "select_quest"))
 		if err:
 			push_error(err)
 
@@ -64,7 +64,7 @@ func select_quest(quest):
 	# Deselect other quests
 	for button in new_container.get_children():
 		if button is QuestButton and button.quest != quest:
-			button.pressed = false
+			button.button_pressed = false
 	# Preview info
 	selected_quest = quest
 	update_quest_panels()
@@ -85,7 +85,7 @@ func update_quest_panels():
 func on_choose_quest_button_pressed():
 	if not is_instance_valid(selected_quest):
 		return
-	emit_signal("quest_chosen", selected_quest)
+	quest_chosen.emit(selected_quest)
 	select_quest(null)
 
 func on_collect_rewards_button_pressed():

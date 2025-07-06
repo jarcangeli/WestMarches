@@ -1,7 +1,7 @@
 extends Control
 
 func set_item(item : Item):
-	var name = ""
+	var item_name = ""
 	if is_instance_valid(item):
-		name = item.item_name
-	$VBoxContainer/ItemNameLabel.text = name
+		item_name = item.item_name
+	$VBoxContainer/ItemNameLabel.text = item_name

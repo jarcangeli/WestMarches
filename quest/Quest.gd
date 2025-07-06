@@ -1,14 +1,14 @@
 extends Node
 class_name Quest
 
-export var quest_name : String
-export(String, MULTILINE) var quest_description : String
+@export var quest_name : String
+@export var quest_description : String # (String, MULTILINE)
 
-export var target_path : NodePath
-onready var target = get_node_or_null(target_path)
+@export var target_path : NodePath
+@onready var target = get_node_or_null(target_path)
 
-onready var steps = $QuestSteps
-onready var rewards = $Rewards
+@onready var steps = $QuestSteps
+@onready var rewards = $Rewards
 
 var started = false		# set out
 var finished = false 	# back in town
@@ -24,11 +24,11 @@ func start(new_party):
 		push_error("Quest started with invalid party")
 	party = new_party
 	started = true
-	SignalBus.emit_signal("quest_started", self)
+	SignalBus.quest_started.emit(self)
 
 func finish():
 	finished = true
-	SignalBus.emit_signal("quest_finished", self)
+	SignalBus.quest_finished.emit(self)
 
 func complete():
 	if completed:
@@ -39,7 +39,7 @@ func complete():
 	var currency_rewards = get_currency_rewards()
 	if is_instance_valid(Globals.player_currencies) and is_instance_valid(currency_rewards):
 		Globals.player_currencies.add_currencies(currency_rewards)
-	SignalBus.emit_signal("quest_completed", self)
+	SignalBus.quest_completed.emit(self)
 
 func advance_time():
 	steps.advance_time(party)

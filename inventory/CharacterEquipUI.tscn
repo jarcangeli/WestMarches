@@ -6,70 +6,70 @@
 [node name="Character" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+offset_left = 4.0
+offset_top = 32.0
+offset_right = -4.0
+offset_bottom = -4.0
 size_flags_horizontal = 3
 alignment = 1
 script = ExtResource( 2 )
 
 [node name="CharacterLabel" type="Label" parent="."]
-margin_right = 1016.0
-margin_bottom = 14.0
+offset_right = 1016.0
+offset_bottom = 14.0
 text = "Character"
 align = 1
 
 [node name="EquipmentLabel" type="Label" parent="."]
-margin_top = 129.0
-margin_right = 1016.0
-margin_bottom = 143.0
+offset_top = 129.0
+offset_right = 1016.0
+offset_bottom = 143.0
 size_flags_vertical = 6
 text = "Equipment"
 align = 1
 
 [node name="EquipmentLayout" type="HBoxContainer" parent="."]
-margin_top = 259.0
-margin_right = 1016.0
-margin_bottom = 323.0
-custom_constants/separation = 16
+offset_top = 259.0
+offset_right = 1016.0
+offset_bottom = 323.0
+theme_override_constants/separation = 16
 alignment = 1
 
 [node name="EquipmentContainer" parent="EquipmentLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 356.0
-margin_right = 420.0
-margin_bottom = 64.0
+offset_left = 356.0
+offset_right = 420.0
+offset_bottom = 64.0
 
 [node name="EquipmentContainer2" parent="EquipmentLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 436.0
-margin_right = 500.0
-margin_bottom = 64.0
+offset_left = 436.0
+offset_right = 500.0
+offset_bottom = 64.0
 slot = 1
 
 [node name="EquipmentContainer3" parent="EquipmentLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 516.0
-margin_right = 580.0
-margin_bottom = 64.0
+offset_left = 516.0
+offset_right = 580.0
+offset_bottom = 64.0
 slot = 2
 
 [node name="EquipmentContainer4" parent="EquipmentLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 596.0
-margin_right = 660.0
-margin_bottom = 64.0
+offset_left = 596.0
+offset_right = 660.0
+offset_bottom = 64.0
 slot = 3
 
 [node name="StatsLabel" type="Label" parent="."]
-margin_top = 438.0
-margin_right = 1016.0
-margin_bottom = 452.0
+offset_top = 438.0
+offset_right = 1016.0
+offset_bottom = 452.0
 size_flags_vertical = 6
 text = "Stats Panel"
 align = 1

@@ -6,7 +6,7 @@ signal quest_selected(selected_quest)
 var quest : Quest = null
 
 func _ready():
-	var err = connect("pressed", self, "on_pressed")
+	var err = connect("pressed", Callable(self, "on_pressed"))
 	if err:
 		push_warning(err)
 	
@@ -16,4 +16,4 @@ func _ready():
 		push_error("Quest button created with no quest associated")
 
 func on_pressed():
-	emit_signal("quest_selected", quest)
+	quest_selected.emit(quest)

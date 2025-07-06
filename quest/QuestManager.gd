@@ -1,15 +1,15 @@
 extends Node
 
-export var parties_path : NodePath
-onready var parties = get_node(parties_path)
+@export var parties_path : NodePath
+@onready var parties = get_node(parties_path)
 
-export var available_quests_path : NodePath
-onready var available_quests = get_node(available_quests_path)
+@export var available_quests_path : NodePath
+@onready var available_quests = get_node(available_quests_path)
 
-export var map_path : NodePath
-onready var map = get_node(map_path)
+@export var map_path : NodePath
+@onready var map = get_node(map_path)
 
-onready var quest_schemas = $QuestSchemas
+@onready var quest_schemas = $QuestSchemas
 
 const MAX_AVAILABLE_QUESTS = 4
 
@@ -36,7 +36,7 @@ func generate_quest_for_party(_party : AdventuringParty):
 		push_warning("Could not generate a new quest")
 		return
 	#TODO: Somehow track suggested party
-	SignalBus.emit_signal("quest_created", quest)
+	SignalBus.quest_created.emit(quest)
 
 func get_random_quest_schema():
 	if quest_schemas.get_child_count() == 0:

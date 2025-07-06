@@ -1,5 +1,5 @@
+@tool
 extends Button
-tool
 
 var save_filepath = "res://addons/simple-project-timer/time.sav"
 var options_filepath = "res://addons/simple-project-timer/options.sav"
@@ -16,22 +16,22 @@ var collapsible = false
 
 func initialize():
 	get_node("Label").set_text("Initializing...")
-	get_node("Timer").connect("timeout", self, "timer_tick")
-	connect("pressed", self, "button_pressed")
+	get_node("Timer").connect("timeout", Callable(self, "timer_tick"))
+	connect("pressed", Callable(self, "button_pressed"))
 	get_node("Timer").start()
 	load_time()
 	load_options()
 
 func _gui_input(event):  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
-	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_RIGHT:  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
 		PauseResume_Button_pressed()
 		accept_event()
 
 func _notification(what):
 	if pause_on_switch and not manually_paused:
-		if what == MainLoop.NOTIFICATION_WM_FOCUS_OUT:
+		if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_OUT:
 			pause()
-		elif what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
+		elif what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_IN:
 			# Note: It's impossible to change pause_on_switch when the window is not in focus, 
 			# so likewise I won't ever need to resume when the window is not in focus. 
 			resume()
@@ -70,7 +70,9 @@ func load_options():
 	if not save.file_exists(options_filepath):
 		save_options()
 	save.open(options_filepath, File.READ)
-	var data = parse_json(save.get_line())
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(save.get_line())
+	var data = test_json_conv.get_data()
 	for k in data.keys():
 		set(k, data[k])
 	# Update buttons and stuff to match settings:
@@ -95,7 +97,7 @@ func save_options():
 				"show_seconds"		 : show_seconds,
 				"only_show_mouseover": only_show_mouseover,
 				"collapsible"		 : collapsible}
-	save.store_line(to_json(data))
+	save.store_line(JSON.new().stringify(data))
 	save.close()
 
 func _exit_tree():

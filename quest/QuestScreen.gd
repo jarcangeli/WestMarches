@@ -1,35 +1,35 @@
 extends MarginContainer
 
-export var pending_quests_path : NodePath
-onready var pending_quests = get_node(pending_quests_path)
+@export var pending_quests_path : NodePath
+@onready var pending_quests = get_node(pending_quests_path)
 
-export var available_quests_path : NodePath
-onready var available_quests = get_node(available_quests_path)
+@export var available_quests_path : NodePath
+@onready var available_quests = get_node(available_quests_path)
 
-export var active_quests_path : NodePath
-onready var active_quests = get_node(active_quests_path)
+@export var active_quests_path : NodePath
+@onready var active_quests = get_node(active_quests_path)
 
-export var completed_quests_path : NodePath
-onready var completed_quests = get_node(completed_quests_path)
+@export var completed_quests_path : NodePath
+@onready var completed_quests = get_node(completed_quests_path)
 
-export var adventuring_parties_path : NodePath
-onready var adventuring_parties = get_node(adventuring_parties_path)
+@export var adventuring_parties_path : NodePath
+@onready var adventuring_parties = get_node(adventuring_parties_path)
 
-export var characters_container_path : NodePath
-onready var characters_container = get_node(characters_container_path)
+@export var characters_container_path : NodePath
+@onready var characters_container = get_node(characters_container_path)
 
-onready var quest_select_ui = $QuestSelectUI
-onready var quest_equip_ui = $QuestEquipUI
+@onready var quest_select_ui = $QuestSelectUI
+@onready var quest_equip_ui = $QuestEquipUI
 
 var current_quest : Quest = null
 var current_party : AdventuringParty = null
 
 func _ready():
-	quest_select_ui.connect("quest_chosen", self, "on_quest_chosen")
+	quest_select_ui.connect("quest_chosen", Callable(self, "on_quest_chosen"))
 	
-	SignalBus.hconnect("quest_created", self, "on_quest_changed")
-	SignalBus.hconnect("quest_finished", self, "on_quest_changed")
-	SignalBus.hconnect("quest_completed", self, "on_quest_changed")
+	SignalBus.quest_created.connect(self.on_quest_changed)
+	SignalBus.quest_finished.connect(self.on_quest_changed)
+	SignalBus.quest_completed.connect(self.on_quest_changed)
 	
 	initialise()
 
@@ -92,7 +92,7 @@ func on_start_quest_button_pressed():
 			item.get_parent().remove_child(item)
 			character.add_child(item)
 	
-	SignalBus.emit_signal("player_inventory_changed")
+	SignalBus.player_inventory_changed.emit()
 	current_quest.start(current_party)
 	
 	initialise()

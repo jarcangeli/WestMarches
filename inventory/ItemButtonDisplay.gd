@@ -3,19 +3,19 @@ class_name ItemButtonDisplay
 
 signal item_selected()
 
-export var icon_path : NodePath
-export var name_label_path : NodePath
-export var slot_label_path : NodePath
-export var drag_enabled : bool = true
+@export var icon_path : NodePath
+@export var name_label_path : NodePath
+@export var slot_label_path : NodePath
+@export var drag_enabled : bool = true
 
-onready var icon = get_node(icon_path)
-onready var name_label = get_node(name_label_path)
-onready var slot_label = get_node(slot_label_path)
+@onready var icon = get_node(icon_path)
+@onready var name_label = get_node(name_label_path)
+@onready var slot_label = get_node(slot_label_path)
 
 const EQUIPPED_COLOUR = "#bbbbbb"
 const UNEQUIPPED_COLOUR = "#ffffff"
 
-var item : Item = null setget set_item, get_item
+var item : Item = null: get = get_item, set = set_item
 var mouse_over : bool = false
 
 func _ready():
@@ -31,7 +31,7 @@ func refresh_display():
 		icon.texture = item.icon
 		name_label.text = item.item_name
 		slot_label.text = Item.slot_to_shortname(item.primary_slot_type)
-		hint_tooltip = item.description
+		tooltip_text = item.description
 		if item.equip_slot == null:
 			modulate = UNEQUIPPED_COLOUR
 		else:
@@ -49,7 +49,7 @@ func on_item_changed():
 
 func on_other_item_selected(other_item):
 	if item != other_item:
-		$Button.pressed = false
+		$Button.button_pressed = false
 
 func on_button_pressed():
-	emit_signal("item_selected")
+	item_selected.emit()

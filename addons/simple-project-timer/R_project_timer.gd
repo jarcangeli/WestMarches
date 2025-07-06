@@ -1,10 +1,10 @@
-tool
+@tool
 extends EditorPlugin
 
 var widget
 
 func _enter_tree():
-	widget = preload("res://addons/simple-project-timer/R_timer_widget.tscn").instance()
+	widget = preload("res://addons/simple-project-timer/R_timer_widget.tscn").instantiate()
 	add_control_to_container(CONTAINER_TOOLBAR, widget)
 	widget.get_parent().move_child(widget, widget.get_index() - 3)
 	widget.initialize()

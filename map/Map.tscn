@@ -5,15 +5,15 @@
 [ext_resource path="res://items/Jerkin.tscn" type="PackedScene" id=3]
 [ext_resource path="res://map/Map.gd" type="Script" id=4]
 [ext_resource path="res://Monster.gd" type="Script" id=5]
-[ext_resource path="res://assets/icons/icon.png" type="Texture" id=8]
+[ext_resource path="res://assets/icons/icon.png" type="Texture2D" id=8]
 
 [node name="Map" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+offset_left = 4.0
+offset_top = 32.0
+offset_right = -4.0
+offset_bottom = -4.0
 script = ExtResource( 4 )
 town_path = NodePath("World/Town")
 
@@ -25,14 +25,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="World/Town"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Town"]
 texture = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="World/Town"]
-margin_left = -20.0
-margin_top = 31.0
-margin_right = 21.0
-margin_bottom = 62.0
+offset_left = -20.0
+offset_top = 31.0
+offset_right = 21.0
+offset_bottom = 62.0
 text = "TOWN
 "
 align = 1

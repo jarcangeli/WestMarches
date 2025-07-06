@@ -2,7 +2,7 @@ extends QuestSchema
 
 func generate_quest(map):
 	
-	var quest : Quest = quest_base.instance()
+	var quest : Quest = quest_base.instantiate()
 	
 	var monster = get_monster(map)
 	if not is_instance_valid(monster):

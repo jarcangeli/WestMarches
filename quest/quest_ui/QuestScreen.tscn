@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2xf0hqwsw5f7"]
+[gd_scene load_steps=13 format=3 uid="uid://c2xf0hqwsw5f7"]
 
 [ext_resource type="PackedScene" path="res://inventory/ItemButtonDisplay.tscn" id="1"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://inventory/ItemsDisplayContainer.gd" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dm7nwvytq5g0y" path="res://quest/quest_ui/QuestRewardsDisplay.gd" id="9"]
 [ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://ui/difficulty_atlas_texture.tres" id="9_6c1t7"]
 [ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://ui/difficulty_atlas_texture_background.tres" id="9_8hxfh"]
+[ext_resource type="PackedScene" uid="uid://cimbnhhermucy" path="res://ui/PartySummaryUI.tscn" id="11_4ugqr"]
 
 [node name="QuestScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -153,8 +154,7 @@ script = ExtResource("8")
 quest_name_label_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestNameLabel")
 quest_description_text_ui_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestDescriptionText")
 quest_rewards_display_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay")
-party_name_label_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/PartyNameLabel")
-party_info_label_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/PartyInfoLabel")
+party_summary_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/PartySummaryUI")
 quest_difficulty_display_path = NodePath("VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/CenterContainer/DifficultyBar")
 
 [node name="VBoxContainer" type="MarginContainer" parent="QuestSelectUI/QuestInfoPanel"]
@@ -206,13 +206,8 @@ value = 2.5
 texture_under = ExtResource("9_8hxfh")
 texture_progress = ExtResource("9_6c1t7")
 
-[node name="PartyNameLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="PartySummaryUI" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("11_4ugqr")]
 layout_mode = 2
-horizontal_alignment = 1
-
-[node name="PartyInfoLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Party info details"
 
 [node name="RewardsLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2

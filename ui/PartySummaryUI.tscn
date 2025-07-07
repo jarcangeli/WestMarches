@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cimbnhhermucy"]
+[gd_scene load_steps=5 format=3 uid="uid://cimbnhhermucy"]
 
 [ext_resource type="Script" uid="uid://k0vbt4r1gvu0" path="res://ui/PartySummaryUI.gd" id="1_hokt6"]
 [ext_resource type="PackedScene" uid="uid://b1ycsca7qo073" path="res://ui/CharacterSummaryUI.tscn" id="2_dibcj"]
 [ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://ui/difficulty_atlas_texture_background.tres" id="2_kchre"]
-[ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="2_rciva"]
 [ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://ui/difficulty_atlas_texture.tres" id="3_dibcj"]
-[ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="3_kchre"]
 
 [node name="PartySummaryUI" type="VBoxContainer"]
 anchors_preset = 15
@@ -16,7 +14,6 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("1_hokt6")
 character_summary_scene = ExtResource("2_dibcj")
-party_path = NodePath("Party1")
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 2
@@ -42,6 +39,7 @@ texture_progress = ExtResource("3_dibcj")
 
 [node name="CharacterSummariesScrollArea" type="ScrollContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 3
 vertical_scroll_mode = 0
 
 [node name="CharacterSummaries" type="HBoxContainer" parent="CharacterSummariesScrollArea"]
@@ -56,19 +54,3 @@ layout_mode = 2
 
 [node name="CharacterSummaryUI2" parent="CharacterSummariesScrollArea/CharacterSummaries" instance=ExtResource("2_dibcj")]
 layout_mode = 2
-
-[node name="Party1" type="Node" parent="."]
-script = ExtResource("2_rciva")
-display_name = "The Ladz"
-
-[node name="Ben" type="Node" parent="Party1"]
-script = ExtResource("3_kchre")
-character_name = "Ben"
-
-[node name="Sam" type="Node" parent="Party1"]
-script = ExtResource("3_kchre")
-character_name = "Sam"
-
-[node name="Jen" type="Node" parent="Party1"]
-script = ExtResource("3_kchre")
-character_name = "Jen"

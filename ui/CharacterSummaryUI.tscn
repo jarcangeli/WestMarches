@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1ycsca7qo073"]
+[gd_scene load_steps=3 format=3 uid="uid://b1ycsca7qo073"]
 
 [ext_resource type="Script" uid="uid://dbt271x4hchn5" path="res://ui/CharacterSummaryUI.gd" id="1_hgpji"]
+[ext_resource type="PackedScene" path="res://inventory/ItemButtonDisplay.tscn" id="2_hgpji"]
 
 [node name="CharacterSummaryUI" type="VBoxContainer"]
 anchors_preset = 15
@@ -10,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 script = ExtResource("1_hgpji")
+item_display_scene = ExtResource("2_hgpji")
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 2
@@ -29,3 +31,24 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Current Level"
 horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="ItemDisplayContainer" type="VBoxContainer" parent="ScrollContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="ItemButtonDisplay" parent="ScrollContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3

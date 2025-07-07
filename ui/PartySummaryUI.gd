@@ -2,14 +2,7 @@ extends VBoxContainer
 
 @export var character_summary_scene : Resource
 
-@export var party_path : NodePath
-
 @onready var character_summaries = $CharacterSummariesScrollArea/CharacterSummaries
-
-func _ready() -> void:
-	var party = get_node(party_path)
-	if party:
-		set_party(party)
 
 func clear_party():
 	for node in character_summaries.get_children():

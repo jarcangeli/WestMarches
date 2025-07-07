@@ -17,7 +17,6 @@ config/icon="res://assets/icons/logo.png"
 
 [autoload]
 
-ItemDatabase="*res://inventory/ItemDatabase.tscn"
 SignalBus="*res://core/SignalBus.gd"
 Globals="*res://core/Globals.gd"
 

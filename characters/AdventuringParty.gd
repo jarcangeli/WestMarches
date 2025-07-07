@@ -29,3 +29,9 @@ func get_average_level():
 		count += 1
 		levels += character.level
 	return levels/float(count)
+
+func get_debt():
+	var debt = 0
+	for character in get_characters():
+		debt += character.debt
+	return debt

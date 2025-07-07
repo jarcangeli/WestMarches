@@ -7,6 +7,7 @@ func set_character(new_character):
 		return
 	character = new_character
 	$CharacterLabel.text = character.character_name
+	name = character.character_name
 
 func get_equipment_containers(parent = self, containers = []):
 	for node in parent.get_children():
@@ -23,3 +24,9 @@ func get_equipped_items():
 		if is_instance_valid(container.item):
 			items.append(container.item)
 	return items
+
+func return_equipped_items():
+	var containers = get_equipment_containers()
+	for container in containers:
+		if is_instance_valid(container.item):
+			container.remove_item()

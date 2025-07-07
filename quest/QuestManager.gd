@@ -13,6 +13,11 @@ var quest_base = preload("res://quest/QuestBase.tscn")
 
 const MAX_AVAILABLE_QUESTS = 4
 
+func _ready():
+	print("Generating initial quests")
+	generate_quest()
+	generate_quest()
+
 func advance_time():
 	if available_quests.get_child_count() < MAX_AVAILABLE_QUESTS:
 		print("Generating new quests")

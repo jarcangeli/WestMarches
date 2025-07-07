@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://inventory/ItemButtonDisplay.tscn" id="1"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://inventory/ItemsDisplayContainer.gd" id="2"]
-[ext_resource type="PackedScene" path="res://inventory/CharacterEquipUI.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cjy6e3ym3cu6t" path="res://inventory/CharacterEquipUI.tscn" id="3"]
 [ext_resource type="Script" uid="uid://b6hbmx8mg0bv0" path="res://quest/quest_ui/QuestEquipUI.gd" id="4"]
 [ext_resource type="Script" uid="uid://f664duex3swn" path="res://quest/quest_ui/QuestScreen.gd" id="5"]
 [ext_resource type="Script" uid="uid://d0s6ig5osvmvr" path="res://quest/quest_ui/QuestSelectUI.gd" id="6"]
@@ -29,7 +29,6 @@ script = ExtResource("5")
 characters_container_path = NodePath("QuestEquipUI/VBoxContainer/CharactersContainer")
 
 [node name="QuestEquipUI" type="HBoxContainer" parent="."]
-visible = false
 layout_mode = 2
 script = ExtResource("4")
 character_equip_ui_scene = ExtResource("3")
@@ -46,7 +45,7 @@ layout_mode = 2
 text = "Inventory"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="QuestEquipUI"]
+[node name="CentralMarginContainer" type="MarginContainer" parent="QuestEquipUI"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -54,19 +53,23 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="QuestEquipUI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestEquipUI/CentralMarginContainer"]
 layout_mode = 2
 
-[node name="HintLabel" type="Label" parent="QuestEquipUI/MarginContainer/VBoxContainer"]
+[node name="HintLabel" type="Label" parent="QuestEquipUI/CentralMarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Equip the party with items until you are satisfied the adventurers are ready for their quest."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartQuestButton" type="Button" parent="QuestEquipUI/MarginContainer/VBoxContainer"]
+[node name="StartQuestButton" type="Button" parent="QuestEquipUI/CentralMarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Start Quest"
+
+[node name="AbandonQuestButton" type="Button" parent="QuestEquipUI/CentralMarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="QuestEquipUI"]
 layout_mode = 2
@@ -98,6 +101,7 @@ layout_mode = 2
 metadata/_tab_index = 2
 
 [node name="QuestSelectUI" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 script = ExtResource("6")
 quest_button_scene = ExtResource("7")
@@ -185,9 +189,9 @@ size_flags_vertical = 3
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="QuestDescriptionText" type="TextEdit" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="QuestDescriptionText" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+horizontal_alignment = 1
 
 [node name="DifficultyLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -208,6 +212,7 @@ texture_progress = ExtResource("9_6c1t7")
 
 [node name="PartySummaryUI" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("11_4ugqr")]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="RewardsLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -216,7 +221,6 @@ horizontal_alignment = 1
 
 [node name="QuestRewardsDisplay" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 script = ExtResource("9")
 item_rewards_container_path = NodePath("RewardsContainer")
 currency_rewards_label_path = NodePath("RewardsContainer/CurrencyRewardsLabel")
@@ -224,13 +228,13 @@ currency_rewards_label_path = NodePath("RewardsContainer/CurrencyRewardsLabel")
 [node name="RewardsContainer" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 script = ExtResource("2")
 item_display_scene_path = ExtResource("1")
 
 [node name="CurrencyRewardsLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay/RewardsContainer"]
 layout_mode = 2
 text = "0 gp"
+horizontal_alignment = 1
 
 [node name="ChooseQuestButton" type="Button" parent="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -277,6 +281,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "COLLECT REWARDS"
 
-[connection signal="pressed" from="QuestEquipUI/MarginContainer/VBoxContainer/StartQuestButton" to="." method="on_start_quest_button_pressed"]
+[connection signal="pressed" from="QuestEquipUI/CentralMarginContainer/VBoxContainer/StartQuestButton" to="." method="on_start_quest_button_pressed"]
+[connection signal="pressed" from="QuestEquipUI/CentralMarginContainer/VBoxContainer/AbandonQuestButton" to="." method="on_abandon_quest_button_pressed"]
 [connection signal="pressed" from="QuestSelectUI/QuestInfoPanel/VBoxContainer/VBoxContainer/ChooseQuestButton" to="QuestSelectUI" method="on_choose_quest_button_pressed"]
 [connection signal="pressed" from="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="QuestSelectUI" method="on_collect_rewards_button_pressed"]

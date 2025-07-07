@@ -97,6 +97,13 @@ func on_start_quest_button_pressed():
 	
 	initialise()
 
+func on_abandon_quest_button_pressed():
+	for character_container in characters_container.get_children():
+		character_container.return_equipped_items()
+		character_container.queue_free()
+	quest_select_ui.visible = true
+	quest_equip_ui.visible = false
+
 func on_quest_changed(_quest):
 	initialise()
 	#TODO: Throttle this to once if multiple finish

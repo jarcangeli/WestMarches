@@ -16,7 +16,7 @@ func advance_time(party) -> void:
 			return
 		active_step.start(get_quest(), get_party())
 	
-	active_step.advance_step(party) # where quest happens
+	active_step.advance_step() # where quest happens
 	
 	#TODO: Report early failure?
 	if active_step.finished():

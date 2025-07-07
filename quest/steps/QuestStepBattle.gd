@@ -6,7 +6,7 @@ var monsters : Array
 func initialise(_monsters):
 	monsters = _monsters
 
-func advance_step(_party : AdventuringParty):
+func advance_step():
 	print("Battle quest step advanced")
 
 func finished():

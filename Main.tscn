@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=19 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/quest_ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bpcsenk3ubug2" path="res://inventory/PlayerInventory.gd" id="8"]
 [ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="9"]
 [ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://ui/AdvanceTimeButton.gd" id="10"]
+[ext_resource type="PackedScene" path="res://items/Shortbow.tscn" id="10_kjvhd"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="12"]
 [ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="13"]
 [ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://ui/PlayerCurrencyDisplay.gd" id="14"]
@@ -47,18 +48,50 @@ script = ExtResource("19")
 
 [node name="Party1" type="Node" parent="AdventuringParties"]
 script = ExtResource("13")
+display_name = "The Ladz"
 
 [node name="Ben" type="Node" parent="AdventuringParties/Party1"]
 script = ExtResource("12")
 character_name = "Ben"
 
+[node name="Shortsword" parent="AdventuringParties/Party1/Ben" instance=ExtResource("6")]
+
 [node name="Sam" type="Node" parent="AdventuringParties/Party1"]
 script = ExtResource("12")
 character_name = "Sam"
 
+[node name="Shortbow" parent="AdventuringParties/Party1/Sam" instance=ExtResource("10_kjvhd")]
+
 [node name="Jen" type="Node" parent="AdventuringParties/Party1"]
 script = ExtResource("12")
 character_name = "Jen"
+
+[node name="Shortbow" parent="AdventuringParties/Party1/Jen" instance=ExtResource("10_kjvhd")]
+
+[node name="Party2" type="Node" parent="AdventuringParties"]
+script = ExtResource("13")
+display_name = "Ye Parte"
+
+[node name="Arthur" type="Node" parent="AdventuringParties/Party2"]
+script = ExtResource("12")
+character_name = "Arthur"
+level = 3
+
+[node name="Shortsword" parent="AdventuringParties/Party2/Arthur" instance=ExtResource("6")]
+
+[node name="Benthwyn" type="Node" parent="AdventuringParties/Party2"]
+script = ExtResource("12")
+character_name = "Benthwyn"
+level = 4
+
+[node name="Coif" parent="AdventuringParties/Party2/Benthwyn" instance=ExtResource("7")]
+
+[node name="Shortbow" parent="AdventuringParties/Party2/Benthwyn" instance=ExtResource("10_kjvhd")]
+
+[node name="Gomli" type="Node" parent="AdventuringParties/Party2"]
+script = ExtResource("12")
+character_name = "Gomli"
+level = 3
 
 [node name="QuestManager" type="Node" parent="." groups=["time"]]
 script = ExtResource("21")

@@ -8,7 +8,7 @@ func initialise(_origin, _destination):
 	origin = _origin
 	destination = _destination
 
-func advance_step(party : AdventuringParty):
+func advance_step():
 	print("Travel quest step advanced")
 	party.position = destination.get_position()
 

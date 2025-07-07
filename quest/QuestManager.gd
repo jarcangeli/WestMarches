@@ -9,14 +9,14 @@ extends Node
 @export var map_path : NodePath
 @onready var map = get_node(map_path)
 
-var quest_base = preload("res://quest/QuestBase.tscn")
+var quest_scene = preload("res://quest/QuestKill.tscn")
 
 const MAX_AVAILABLE_QUESTS = 4
 
 func _ready():
 	print("Generating initial quests")
-	generate_quest()
-	generate_quest()
+	call_deferred("generate_quest")
+	call_deferred("generate_quest")
 
 func advance_time():
 	if available_quests.get_child_count() < MAX_AVAILABLE_QUESTS:
@@ -38,7 +38,7 @@ func generate_quest_kill():
 		print("[TODO] No free monster found to create kill quest, make some more")
 		return null
 	
-	var quest : Quest = quest_base.instantiate()
+	var quest : Quest = quest_scene.instantiate()
 	add_child(quest)
 	quest.initialise(monster, map)
 	return quest

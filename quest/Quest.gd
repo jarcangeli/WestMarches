@@ -58,12 +58,15 @@ func complete():
 	SignalBus.quest_completed.emit(self)
 
 func advance_time():
-	steps.advance_time(party)
+	steps.advance_time()
 
 func active():
 	return started and not finished
 
 func get_difficulty():
+	if battle_step == null:
+		return 0
+	
 	var monsters : Array = battle_step.monsters
 	var difficulty_sum = 0
 	for monster in monsters:

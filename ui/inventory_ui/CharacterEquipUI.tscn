@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjy6e3ym3cu6t"]
 
-[ext_resource type="PackedScene" uid="uid://dgh8xrv7w81qm" path="res://inventory/EquipmentContainer.tscn" id="1"]
-[ext_resource type="Script" uid="uid://bse51lb3bxmri" path="res://inventory/CharacterEquipUI.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://dgh8xrv7w81qm" path="res://ui/inventory_ui/EquipmentContainer.tscn" id="1"]
+[ext_resource type="Script" uid="uid://bse51lb3bxmri" path="res://ui/inventory_ui/CharacterEquipUI.gd" id="2"]
 
 [node name="Character" type="VBoxContainer"]
 anchors_preset = 15

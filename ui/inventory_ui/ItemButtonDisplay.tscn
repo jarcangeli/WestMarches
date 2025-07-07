@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://inventory/ItemButtonDisplay.gd" type="Script" id=1]
-[ext_resource path="res://inventory/InventoryItemDisplayArea.gd" type="Script" id=2]
-[ext_resource path="res://assets/icons/icon_32.png" type="Texture2D" id=3]
+[ext_resource type="Script" uid="uid://vljk2nlbkbaq" path="res://ui/inventory_ui/ItemButtonDisplay.gd" id="1"]
+[ext_resource type="Script" uid="uid://csgrvldjkx0gt" path="res://ui/inventory_ui/InventoryItemDisplayArea.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://ynovd7yp0553" path="res://assets/icons/icon_32.png" id="3"]
 
 [node name="ItemButtonDisplay" type="MarginContainer"]
 anchor_left = 0.5

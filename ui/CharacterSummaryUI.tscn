@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1ycsca7qo073"]
 
 [ext_resource type="Script" uid="uid://dbt271x4hchn5" path="res://ui/CharacterSummaryUI.gd" id="1_hgpji"]
-[ext_resource type="PackedScene" path="res://inventory/ItemButtonDisplay.tscn" id="2_hgpji"]
+[ext_resource type="PackedScene" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="2_hgpji"]
 
 [node name="CharacterSummaryUI" type="VBoxContainer"]
 anchors_preset = 15

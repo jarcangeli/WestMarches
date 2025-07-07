@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgh8xrv7w81qm"]
 
-[ext_resource type="Script" uid="uid://cc0djh8gi6afg" path="res://inventory/EquipmentContainer.gd" id="1"]
+[ext_resource type="Script" uid="uid://cc0djh8gi6afg" path="res://ui/inventory_ui/EquipmentContainer.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ctwnbwnd4ou2r" path="res://assets/icons/icon.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://ynovd7yp0553" path="res://assets/icons/icon_32.png" id="3"]
 

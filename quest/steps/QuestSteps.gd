@@ -6,7 +6,7 @@ var step_index = 0
 func get_next_step() -> QuestStep:
 	return get_child(step_index) as QuestStep
 
-func advance_time(party) -> void:
+func advance_time() -> void:
 	if not active():
 		return
 	if active_step == null:

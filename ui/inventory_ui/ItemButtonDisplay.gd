@@ -32,13 +32,14 @@ func refresh_display():
 		name_label.text = item.item_name
 		slot_label.text = Item.slot_to_shortname(item.primary_slot_type)
 		tooltip_text = item.description
-		if item.equip_slot == null:
+		if item.equip_slot == null and item.loaned_character == null:
 			modulate = UNEQUIPPED_COLOUR
 		else:
 			modulate = EQUIPPED_COLOUR
 
 func set_item(new_item):
 	item = new_item
+	$Button.drag_enabled = drag_enabled and (item.loaned_character == null)
 	refresh_display()
 
 func get_item():

@@ -20,15 +20,16 @@ layout_mode = 2
 text = "Test"
 horizontal_alignment = 1
 
-[node name="LevelLabel" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-text = "Current Level"
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Level"
 horizontal_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 2
-
-[node name="LevelBar" type="TextureProgressBar" parent="CenterContainer"]
+[node name="LevelBar" type="TextureProgressBar" parent="HBoxContainer"]
 texture_repeat = 2
 layout_mode = 2
 max_value = 5.0
@@ -40,7 +41,6 @@ texture_progress = ExtResource("3_dibcj")
 [node name="CharacterSummariesScrollArea" type="ScrollContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
-vertical_scroll_mode = 0
 
 [node name="CharacterSummaries" type="HBoxContainer" parent="CharacterSummariesScrollArea"]
 layout_mode = 2

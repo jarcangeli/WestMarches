@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://ckvawd0d573sn"]
 
 [ext_resource type="Script" uid="uid://vljk2nlbkbaq" path="res://ui/inventory_ui/ItemButtonDisplay.gd" id="1"]
 [ext_resource type="Script" uid="uid://csgrvldjkx0gt" path="res://ui/inventory_ui/InventoryItemDisplayArea.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://ynovd7yp0553" path="res://assets/icons/icon_32.png" id="3"]
 
 [node name="ItemButtonDisplay" type="MarginContainer"]
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -14,62 +15,47 @@ offset_top = -25.0
 offset_right = 111.0
 offset_bottom = 25.0
 focus_mode = 1
-mouse_filter = 1
-script = ExtResource( 1 )
+script = ExtResource("1")
 icon_path = NodePath("MarginContainer/HBoxContainer/Icon")
 name_label_path = NodePath("MarginContainer/HBoxContainer/NameLabel")
 slot_label_path = NodePath("MarginContainer/HBoxContainer/SlotLabel")
 
 [node name="Button" type="Button" parent="."]
-offset_right = 222.0
-offset_bottom = 50.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 shortcut_in_tooltip = false
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 222.0
-offset_bottom = 50.0
+layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_top = 4
 theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 214.0
-offset_bottom = 46.0
+layout_mode = 2
 mouse_filter = 2
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-offset_right = 32.0
-offset_bottom = 42.0
+layout_mode = 2
 mouse_filter = 2
-texture = ExtResource( 3 )
+texture = ExtResource("3")
 stretch_mode = 4
 
 [node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer"]
-offset_left = 36.0
-offset_top = 14.0
-offset_right = 109.0
-offset_bottom = 28.0
+layout_mode = 2
 text = "Item Name"
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
-offset_left = 113.0
-offset_right = 193.0
-offset_bottom = 42.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="SlotLabel" type="Label" parent="MarginContainer/HBoxContainer"]
-offset_left = 197.0
-offset_top = 14.0
-offset_right = 210.0
-offset_bottom = 28.0
+layout_mode = 2
 text = "W"
 
 [connection signal="pressed" from="Button" to="." method="on_button_pressed"]

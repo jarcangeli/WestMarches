@@ -29,6 +29,8 @@ var base_value = 1
 
 var equip_slot = null
 
+var loaned_character = null
+
 static func slot_to_shortname(slot):
 	match slot:
 		Slot.HAND:

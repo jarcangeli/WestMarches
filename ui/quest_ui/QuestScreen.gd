@@ -64,7 +64,7 @@ func initialise():
 	
 	
 	#TODO: extend to allow multiple adventuring parties
-	var adventuring_party = adventuring_parties.get_child(0)
+	var adventuring_party = adventuring_parties.get_child(randi() % adventuring_parties.get_child_count())
 	current_party = adventuring_party
 	quest_select_ui.set_party(adventuring_party)
 
@@ -91,6 +91,7 @@ func on_start_quest_button_pressed():
 			character.debt += item.get_value()
 			item.get_parent().remove_child(item)
 			character.add_child(item)
+			item.loaned_character = character
 	
 	SignalBus.player_inventory_changed.emit()
 	current_quest.start(current_party)

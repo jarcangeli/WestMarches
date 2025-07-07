@@ -19,7 +19,7 @@ func load_items(items):
 			continue
 		var display = item_display_scene_path.instantiate()
 		add_child(display)
-		display.item = item
+		display.set_item(item)
 		
 		display.connect("item_selected", Callable(self, "on_item_selected").bind(item)) #ignore errs
 		

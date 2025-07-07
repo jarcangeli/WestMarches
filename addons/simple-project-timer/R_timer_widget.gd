@@ -58,8 +58,7 @@ func load_time():
 	print("[simple-project-timer] Loading . . . Time: ", t)
 
 func save_time():
-	var save = FileAccess.open(save_filepath, FileAccess.READ)
-	save.open(save_filepath, FileAccess.WRITE)
+	var save = FileAccess.open(save_filepath, FileAccess.WRITE)
 	save.store_64(t)
 	save.close()
 	print("[simple-project-timer] Saving . . . Time: ", t)

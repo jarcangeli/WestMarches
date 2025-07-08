@@ -10,7 +10,13 @@ func add_item(item):
 	
 	if is_instance_valid(item.get_parent()):
 		item.get_parent().remove_child(item)
-	add_child(item)
+	
+	if item.consumed_on_acquire:
+		var currencies = item.get_currency_granted()
+		Globals.player_currencies.add_currencies(currencies)
+		item.queue_free()
+	else:
+		add_child(item)
 
 func add_rewards(quest : Quest):
 	if not is_instance_valid(quest):

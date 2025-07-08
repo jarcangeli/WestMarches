@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs45fk6y81isd"]
+
+[ext_resource type="PackedScene" uid="uid://cdiwqj3idmkaw" path="res://inventory/Item.tscn" id="1_gurdc"]
+[ext_resource type="Texture2D" uid="uid://bxrdwoq123u10" path="res://assets/icons/logo_0.5.png" id="2_gurdc"]
+[ext_resource type="Script" uid="uid://b3f0x0n4m3n40" path="res://core/Currencies.gd" id="3_olnyp"]
+
+[node name="Consumable" instance=ExtResource("1_gurdc")]
+item_name = "Consumable"
+description = "Consumable item that grants currency"
+icon = ExtResource("2_gurdc")
+primary_slot_type = 4
+consumed_on_acquire = true
+
+[node name="CurrencyGranted" type="Node" parent="." index="1"]
+script = ExtResource("3_olnyp")

@@ -7,14 +7,16 @@ enum Slot {
 	HAND,
 	OFFHAND,
 	HEAD,
-	CHEST
+	CHEST,
+	NONE
 }
 
 const slot_container_icons = [
 	preload("res://assets/icons/slots/weapon.png"),
 	preload("res://assets/icons/slots/weapon.png"),
 	preload("res://assets/icons/slots/head.png"),
-	preload("res://assets/icons/slots/chest.png")
+	preload("res://assets/icons/slots/chest.png"),
+	preload("res://assets/icons/icon.png")
 ]
 
 @export var item_name : String = "Name"
@@ -24,6 +26,8 @@ const slot_container_icons = [
 @export var icon : Texture2D
 
 @export var primary_slot_type: Slot
+
+@export var consumed_on_acquire : bool = false
 
 var base_value = 1
 
@@ -73,3 +77,11 @@ func on_item_unequipped(item, slot):
 func get_value():
 	#TODO: Calculate from attributes?
 	return base_value
+
+func get_currency_granted():
+	if consumed_on_acquire:
+		# Return first currency
+		for node in get_children():
+			if node is Currencies:
+				return node
+	return null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2xf0hqwsw5f7"]
+[gd_scene load_steps=13 format=3 uid="uid://c2xf0hqwsw5f7"]
 
 [ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="1"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://ui/difficulty_atlas_texture.tres" id="9_6c1t7"]
 [ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://ui/difficulty_atlas_texture_background.tres" id="9_8hxfh"]
 [ext_resource type="PackedScene" uid="uid://cimbnhhermucy" path="res://ui/PartySummaryUI.tscn" id="11_4ugqr"]
+[ext_resource type="PackedScene" uid="uid://wx5sih5dc80a" path="res://ui/inventory_ui/ItemButtonDisplayDisabled.tscn" id="11_qaaot"]
 
 [node name="QuestScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -159,7 +160,7 @@ currency_rewards_label_path = NodePath("RewardsContainer/CurrencyRewardsLabel")
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2")
-item_display_scene_path = ExtResource("1")
+item_display_scene_path = ExtResource("11_qaaot")
 
 [node name="CurrencyRewardsLabel" type="Label" parent="QuestSelectUI/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay/RewardsContainer"]
 layout_mode = 2

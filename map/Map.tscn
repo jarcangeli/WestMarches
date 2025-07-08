@@ -55,6 +55,7 @@ script = ExtResource("5")
 level = 10
 
 [node name="Shortbow" parent="World/POI2/Troll" instance=ExtResource("1")]
+primary_slot_type = 0
 
 [node name="Bear" parent="World/POI2" instance=ExtResource("2")]
 script = ExtResource("5")

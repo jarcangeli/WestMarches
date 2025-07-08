@@ -40,9 +40,11 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("3")
+expand_mode = 1
 stretch_mode = 4
 
 [node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer"]

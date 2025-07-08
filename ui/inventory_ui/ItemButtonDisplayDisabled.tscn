@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wx5sih5dc80a"]
+
+[ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="1_qpriw"]
+
+[node name="ItemButtonDisplayDisabled" instance=ExtResource("1_qpriw")]
+drag_enabled = false

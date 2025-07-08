@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cdiwqj3idmkaw"]
 
-[ext_resource path="res://inventory/Item.gd" type="Script" id=1]
-[ext_resource path="res://assets/icons/icon_32.png" type="Texture2D" id=2]
+[ext_resource type="Script" uid="uid://thhunpldtg0c" path="res://inventory/Item.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ynovd7yp0553" path="res://assets/icons/icon_32.png" id="2"]
 
 [node name="Item" type="Node" groups=["item"]]
-script = ExtResource( 1 )
-icon = ExtResource( 2 )
+script = ExtResource("1")
+item_name = null
+description = null
+icon = ExtResource("2")
+primary_slot_type = null
 
 [node name="Attributes" type="Node" parent="."]

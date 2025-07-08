@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bbpg5w2de17ex" path="res://quest/QuestsContainerNode.gd" id="4"]
 [ext_resource type="PackedScene" path="res://ui/inventory_ui/InventoryView.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://items/Shortsword.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://items/Coif.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://d1lk4lb1s31lu" path="res://items/Coif.tscn" id="7"]
 [ext_resource type="Script" uid="uid://bpcsenk3ubug2" path="res://inventory/PlayerInventory.gd" id="8"]
 [ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="9"]
 [ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://ui/AdvanceTimeButton.gd" id="10"]
@@ -40,6 +40,7 @@ script = ExtResource("9")
 script = ExtResource("8")
 
 [node name="Shortsword" parent="PlayerInventory" instance=ExtResource("6")]
+primary_slot_type = 0
 
 [node name="Coif" parent="PlayerInventory" instance=ExtResource("7")]
 
@@ -55,18 +56,21 @@ script = ExtResource("12")
 character_name = "Ben"
 
 [node name="Shortsword" parent="AdventuringParties/Party1/Ben" instance=ExtResource("6")]
+primary_slot_type = 0
 
 [node name="Sam" type="Node" parent="AdventuringParties/Party1"]
 script = ExtResource("12")
 character_name = "Sam"
 
 [node name="Shortbow" parent="AdventuringParties/Party1/Sam" instance=ExtResource("10_kjvhd")]
+primary_slot_type = 0
 
 [node name="Jen" type="Node" parent="AdventuringParties/Party1"]
 script = ExtResource("12")
 character_name = "Jen"
 
 [node name="Shortbow" parent="AdventuringParties/Party1/Jen" instance=ExtResource("10_kjvhd")]
+primary_slot_type = 0
 
 [node name="Party2" type="Node" parent="AdventuringParties"]
 script = ExtResource("13")
@@ -78,6 +82,7 @@ character_name = "Arthur"
 level = 3
 
 [node name="Shortsword" parent="AdventuringParties/Party2/Arthur" instance=ExtResource("6")]
+primary_slot_type = 0
 
 [node name="Benthwyn" type="Node" parent="AdventuringParties/Party2"]
 script = ExtResource("12")
@@ -87,6 +92,7 @@ level = 4
 [node name="Coif" parent="AdventuringParties/Party2/Benthwyn" instance=ExtResource("7")]
 
 [node name="Shortbow" parent="AdventuringParties/Party2/Benthwyn" instance=ExtResource("10_kjvhd")]
+primary_slot_type = 0
 
 [node name="Gomli" type="Node" parent="AdventuringParties/Party2"]
 script = ExtResource("12")

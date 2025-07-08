@@ -15,11 +15,9 @@ extends MarginContainer
 @export var adventuring_parties_path : NodePath
 @onready var adventuring_parties = get_node(adventuring_parties_path)
 
-@export var characters_container_path : NodePath
-@onready var characters_container = get_node(characters_container_path)
-
 @onready var quest_select_ui = $QuestSelectUI
 @onready var quest_equip_ui = $QuestEquipUI
+@onready var characters_container = quest_equip_ui.characters_container
 
 var current_quest : Quest = null
 var current_party : AdventuringParty = null

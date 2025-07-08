@@ -1,15 +1,25 @@
 extends HBoxContainer
 
+signal quest_abandoned()
+signal quest_started()
+signal rewards_selected()
+
 @export var character_equip_ui_scene : Resource
 
 @export var character_container_path : NodePath
-@onready var character_container = get_node(character_container_path)
+@onready var characters_container = get_node(character_container_path)
 
 @export var value_label_path : NodePath
 @onready var value_label = get_node(value_label_path)
 
 @export var reward_label_path : NodePath
 @onready var reward_label = get_node(reward_label_path)
+
+@export var equip_ui_path : NodePath
+@onready var equip_ui = get_node(equip_ui_path)
+
+@export var reward_ui_path : NodePath
+@onready var reward_ui = get_node(reward_ui_path)
 
 @onready var inventory_display_container = $ItemsDisplayContainer
 
@@ -33,6 +43,13 @@ func on_quest_selected(quest : Quest):
 		return
 	var characters = party.get_characters()
 	setup_characters(characters)
+	
+	if quest.finished:
+		equip_ui.visible = false
+		reward_ui.visible = true
+	else:
+		equip_ui.visible = true
+		reward_ui.visible = false
 
 func setup_characters(characters):
 	clear_characters()
@@ -41,10 +58,10 @@ func setup_characters(characters):
 		var char_ui = character_equip_ui_scene.instantiate()
 		char_ui.call_deferred("set_character", character)
 		char_ui.name = character.character_name #TODO: Does this handle repeat names
-		character_container.add_child(char_ui)
+		characters_container.add_child(char_ui)
 
 func clear_characters():
-	for node in character_container.get_children():
+	for node in characters_container.get_children():
 		#TODO: Unequip items?
 		node.queue_free()
 
@@ -63,3 +80,13 @@ func on_item_unequipped(item, _slot):
 	loaned_item_value -= item.get_value()
 	value_label.text = str(loaned_item_value) + " gp"
 	reward_label.text = str(loaned_item_value) + " gp"
+
+
+func _on_abandon_quest_button_pressed() -> void:
+	quest_abandoned.emit()
+
+func _on_start_quest_button_pressed() -> void:
+	quest_started.emit()
+
+func _on_take_rewards_button_pressed() -> void:
+	rewards_selected.emit()

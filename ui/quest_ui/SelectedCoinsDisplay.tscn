@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj5k2kcgyqnnt"]
+
+[ext_resource type="Script" uid="uid://gpv68y4x2p6v" path="res://ui/quest_ui/SelectCoinRewardsWidget.gd" id="1_cwx3h"]
+[ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="2_juiqi"]
+
+[node name="SelectedCoinsDisplay" type="HBoxContainer"]
+script = ExtResource("1_cwx3h")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Selected:"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SelectMinimumCoinsButton" type="Button" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "<<"
+
+[node name="SelectFewerCoinsButton" type="Button" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "<"
+
+[node name="SelectedCoinsLabel" type="Label" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+4"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_juiqi")
+
+[node name="SelectMoreCoinsButton" type="Button" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ">"
+
+[node name="SelectMaximumCoinsButton" type="Button" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ">>"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3

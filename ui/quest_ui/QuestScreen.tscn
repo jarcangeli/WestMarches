@@ -221,4 +221,4 @@ text = "COLLECT REWARDS"
 [connection signal="quest_abandoned" from="QuestEquipUI" to="." method="on_abandon_quest_button_pressed"]
 [connection signal="quest_started" from="QuestEquipUI" to="." method="on_start_quest_button_pressed"]
 [connection signal="pressed" from="QuestSelectUI/QuestInfoPanel/MarginContainer/VBoxContainer/ChooseQuestButton" to="QuestSelectUI" method="on_choose_quest_button_pressed"]
-[connection signal="pressed" from="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="QuestSelectUI" method="on_collect_rewards_button_pressed"]
+[connection signal="pressed" from="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="QuestSelectUI" method="_on_collect_rewards_button_pressed"]

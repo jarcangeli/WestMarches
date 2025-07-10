@@ -165,13 +165,13 @@ size_flags_vertical = 3
 tab_alignment = 1
 current_tab = 0
 
-[node name="Quests" parent="GameWindow/GameTabs" instance=ExtResource("1")]
+[node name="Quests" parent="GameWindow/GameTabs" node_paths=PackedStringArray("pending_quests", "available_quests", "active_quests", "completed_quests", "adventuring_parties") instance=ExtResource("1")]
 layout_mode = 2
-pending_quests_path = NodePath("../../../QuestManager/PendingQuests")
-available_quests_path = NodePath("../../../QuestManager/AvailableQuests")
-active_quests_path = NodePath("../../../QuestManager/ActiveQuests")
-completed_quests_path = NodePath("../../../QuestManager/CompletedQuests")
-adventuring_parties_path = NodePath("../../../AdventuringParties")
+pending_quests = NodePath("../../../QuestManager/PendingQuests")
+available_quests = NodePath("../../../QuestManager/AvailableQuests")
+active_quests = NodePath("../../../QuestManager/ActiveQuests")
+completed_quests = NodePath("../../../QuestManager/CompletedQuests")
+adventuring_parties = NodePath("../../../AdventuringParties")
 metadata/_tab_index = 0
 
 [node name="Inventory" parent="GameWindow/GameTabs" instance=ExtResource("5")]

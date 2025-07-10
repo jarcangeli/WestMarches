@@ -1,4 +1,5 @@
 extends Node
+class_name QuestContainerNode
 
 @export var quest_signal : String
 

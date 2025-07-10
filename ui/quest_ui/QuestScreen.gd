@@ -1,19 +1,10 @@
 extends MarginContainer
 
-@export var pending_quests_path : NodePath
-@onready var pending_quests = get_node(pending_quests_path)
-
-@export var available_quests_path : NodePath
-@onready var available_quests = get_node(available_quests_path)
-
-@export var active_quests_path : NodePath
-@onready var active_quests = get_node(active_quests_path)
-
-@export var completed_quests_path : NodePath
-@onready var completed_quests = get_node(completed_quests_path)
-
-@export var adventuring_parties_path : NodePath
-@onready var adventuring_parties = get_node(adventuring_parties_path)
+@export var pending_quests : QuestContainerNode
+@export var available_quests : QuestContainerNode
+@export var active_quests : QuestContainerNode
+@export var completed_quests : QuestContainerNode
+@export var adventuring_parties : Node
 
 @onready var quest_select_ui = $QuestSelectUI
 @onready var quest_equip_ui = $QuestEquipUI
@@ -23,7 +14,8 @@ var current_quest : Quest = null
 var current_party : AdventuringParty = null
 
 func _ready():
-	quest_select_ui.connect("quest_chosen", Callable(self, "on_quest_chosen"))
+	quest_select_ui.quest_chosen.connect(on_quest_chosen)
+	quest_select_ui.quest_rewards_selected.connect(on_quest_chosen)
 	
 	SignalBus.quest_created.connect(self.on_quest_changed)
 	SignalBus.quest_finished.connect(self.on_quest_changed)
@@ -70,10 +62,11 @@ func on_quest_chosen(quest):
 	quest_select_ui.visible = false
 	quest_equip_ui.visible = true
 	
-	#HACK: until party selection is finalised just use first available
-	quest.party = current_party
-	
 	current_quest = quest
+	
+	if not quest.started and not quest.party:
+		quest.party = current_party
+	
 	quest_equip_ui.on_quest_selected(quest)
 
 func on_start_quest_button_pressed():

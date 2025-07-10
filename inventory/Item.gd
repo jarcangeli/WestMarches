@@ -45,7 +45,7 @@ static func slot_to_shortname(slot):
 			return "H"
 		Slot.CHEST:
 			return "C"
-	return "-"
+	return ""
 
 static func make_item_preview(item):
 	var sprite = TextureRect.new()

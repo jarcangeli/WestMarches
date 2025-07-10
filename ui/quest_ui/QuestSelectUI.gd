@@ -1,6 +1,7 @@
 extends HBoxContainer
 
 signal quest_chosen(quest)
+signal quest_rewards_selected(quest)
 
 @export var quest_button_scene : Resource
 
@@ -88,8 +89,5 @@ func on_choose_quest_button_pressed():
 	quest_chosen.emit(selected_quest)
 	select_quest(null)
 
-func on_collect_rewards_button_pressed():
-	if not is_instance_valid(selected_quest):
-		return
-	selected_quest.complete()
-	select_quest(null)
+func _on_collect_rewards_button_pressed() -> void:
+	quest_rewards_selected.emit(selected_quest)

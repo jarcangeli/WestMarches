@@ -1,18 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://mfctduq7elj2"]
+[gd_scene load_steps=7 format=3 uid="uid://mfctduq7elj2"]
 
 [ext_resource type="Script" uid="uid://b6hbmx8mg0bv0" path="res://ui/quest_ui/QuestEquipUI.gd" id="1_jvrap"]
 [ext_resource type="PackedScene" uid="uid://cjy6e3ym3cu6t" path="res://ui/inventory_ui/CharacterEquipUI.tscn" id="2_tafbw"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="3_2hioa"]
 [ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="4_kn2sh"]
+[ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="5_tafbw"]
+[ext_resource type="PackedScene" uid="uid://cj5k2kcgyqnnt" path="res://ui/quest_ui/SelectedCoinsDisplay.tscn" id="6_2hioa"]
 
-[node name="QuestEquipUI" type="HBoxContainer"]
+[node name="QuestEquipUI" type="HBoxContainer" node_paths=PackedStringArray("characters_container", "value_label", "reward_label", "equip_ui", "reward_ui")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_jvrap")
 character_equip_ui_scene = ExtResource("2_tafbw")
-character_container_path = NodePath("PartyContainer/CharacterEquipContainer")
-value_label_path = NodePath("CenterMarginContainer/EquipUIContainer/ValueContainer/ValueLabel")
-reward_label_path = NodePath("CenterMarginContainer/EquipUIContainer/RewardContainer/RewardLabel")
-equip_ui_path = NodePath("CenterMarginContainer/EquipUIContainer")
-reward_ui_path = NodePath("CenterMarginContainer/RewardUIContainer")
+characters_container = NodePath("PartyContainer/CharacterEquipContainer")
+value_label = NodePath("CenterMarginContainer/EquipUIContainer/ValueContainer/ValueLabel")
+reward_label = NodePath("CenterMarginContainer/EquipUIContainer/RewardContainer/RewardLabel")
+equip_ui = NodePath("CenterMarginContainer/EquipUIContainer")
+reward_ui = NodePath("CenterMarginContainer/RewardUIContainer")
 
 [node name="ItemsDisplayContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -110,6 +117,58 @@ text = "Choose how the adventurers will pay of their debt - with items or gold"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="OwedCoinsDisplay" type="HBoxContainer" parent="CenterMarginContainer/RewardUIContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterMarginContainer/RewardUIContainer/OwedCoinsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Owed:"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterMarginContainer/RewardUIContainer/OwedCoinsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="OwedPartyCoinsLabel" type="Label" parent="CenterMarginContainer/RewardUIContainer/OwedCoinsDisplay/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+4"
+
+[node name="TextureRect" type="TextureRect" parent="CenterMarginContainer/RewardUIContainer/OwedCoinsDisplay/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_tafbw")
+
+[node name="Control" type="Control" parent="CenterMarginContainer/RewardUIContainer/OwedCoinsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AvailableCoinsDisplay" type="HBoxContainer" parent="CenterMarginContainer/RewardUIContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterMarginContainer/RewardUIContainer/AvailableCoinsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Available:"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterMarginContainer/RewardUIContainer/AvailableCoinsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="AvailablePartyCoinsLabel" type="Label" parent="CenterMarginContainer/RewardUIContainer/AvailableCoinsDisplay/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+4"
+
+[node name="TextureRect" type="TextureRect" parent="CenterMarginContainer/RewardUIContainer/AvailableCoinsDisplay/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_tafbw")
+
+[node name="SelectedCoinsDisplay" parent="CenterMarginContainer/RewardUIContainer" instance=ExtResource("6_2hioa")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="ItemsDisplayContainer" type="VBoxContainer" parent="CenterMarginContainer/RewardUIContainer"]
 layout_mode = 2

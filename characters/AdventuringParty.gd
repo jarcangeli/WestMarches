@@ -35,3 +35,6 @@ func get_debt():
 	for character in get_characters():
 		debt += character.debt
 	return debt
+
+func get_gold():
+	return 5

@@ -6,20 +6,15 @@ signal rewards_selected()
 
 @export var character_equip_ui_scene : Resource
 
-@export var character_container_path : NodePath
-@onready var characters_container = get_node(character_container_path)
+@export var characters_container : Node
+@export var value_label : Label
+@export var reward_label : Label
+@export var equip_ui : Control
+@export var reward_ui : Control
 
-@export var value_label_path : NodePath
-@onready var value_label = get_node(value_label_path)
-
-@export var reward_label_path : NodePath
-@onready var reward_label = get_node(reward_label_path)
-
-@export var equip_ui_path : NodePath
-@onready var equip_ui = get_node(equip_ui_path)
-
-@export var reward_ui_path : NodePath
-@onready var reward_ui = get_node(reward_ui_path)
+@onready var selected_coins_display: HBoxContainer = %SelectedCoinsDisplay
+@onready var available_party_coins_label: Label = %AvailablePartyCoinsLabel
+@onready var owed_party_coins_label: Label = %OwedPartyCoinsLabel
 
 @onready var inventory_display_container = $ItemsDisplayContainer
 
@@ -47,6 +42,12 @@ func on_quest_selected(quest : Quest):
 	if quest.finished:
 		equip_ui.visible = false
 		reward_ui.visible = true
+		
+		var coins : int = quest.party.get_gold()
+		var debt : int = quest.get_currency_rewards().gold + quest.party.get_debt()
+		available_party_coins_label.text = str(coins)
+		owed_party_coins_label.text = str(debt)
+		selected_coins_display.initialise(debt, coins)
 	else:
 		equip_ui.visible = true
 		reward_ui.visible = false

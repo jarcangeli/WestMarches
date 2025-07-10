@@ -9,4 +9,4 @@ description = "Pouch of coins"
 icon = ExtResource("2_s36ai")
 
 [node name="CurrencyGranted" parent="." index="1"]
-gold = 1
+gold = 4

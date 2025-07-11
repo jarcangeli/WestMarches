@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="3"]
 [ext_resource type="Script" uid="uid://bbpg5w2de17ex" path="res://quest/QuestsContainerNode.gd" id="4"]
-[ext_resource type="PackedScene" path="res://ui/inventory_ui/InventoryView.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://b3ruqllcfspo1" path="res://ui/inventory_ui/InventoryView.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://items/Shortsword.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://d1lk4lb1s31lu" path="res://items/Coif.tscn" id="7"]
 [ext_resource type="Script" uid="uid://bpcsenk3ubug2" path="res://inventory/PlayerInventory.gd" id="8"]
@@ -99,10 +99,10 @@ script = ExtResource("12")
 character_name = "Gomli"
 level = 3
 
-[node name="QuestManager" type="Node" parent="." groups=["time"]]
+[node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests") groups=["time"]]
 script = ExtResource("21")
-parties_path = NodePath("../AdventuringParties")
-available_quests_path = NodePath("AvailableQuests")
+parties = NodePath("../AdventuringParties")
+available_quests = NodePath("AvailableQuests")
 map_path = NodePath("../GameWindow/PHTabs/Map")
 
 [node name="PendingQuests" type="Node" parent="QuestManager"]

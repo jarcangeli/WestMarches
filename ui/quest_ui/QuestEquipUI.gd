@@ -17,6 +17,8 @@ signal rewards_selected()
 @onready var owed_party_coins_label: Label = %OwedPartyCoinsLabel
 
 @onready var inventory_display_container = $ItemsDisplayContainer
+@onready var loot_container: VBoxContainer = %LootContainer
+@onready var party_container: VBoxContainer = %PartyContainer
 
 var loaned_item_value = 0
 
@@ -42,15 +44,22 @@ func on_quest_selected(quest : Quest):
 	if quest.finished:
 		equip_ui.visible = false
 		reward_ui.visible = true
+		party_container.visible = false
+		loot_container.visible = true
 		
 		var coins : int = quest.party.get_gold()
 		var debt : int = quest.get_currency_rewards().gold + quest.party.get_debt()
 		available_party_coins_label.text = str(coins)
 		owed_party_coins_label.text = str(debt)
 		selected_coins_display.initialise(debt, coins)
+	
+		loot_container.clear_items()
+		loot_container.load_items(quest.get_rewards())
 	else:
 		equip_ui.visible = true
 		reward_ui.visible = false
+		party_container.visible = true
+		loot_container.visible = false
 
 func setup_characters(characters):
 	clear_characters()

@@ -1,4 +1,5 @@
 extends VBoxContainer
+class_name ItemDisplayContainer
 
 signal item_selected(item)
 
@@ -17,16 +18,19 @@ func load_items(items):
 	for item in items:
 		if not item is Item:
 			continue
-		var display = item_display_scene_path.instantiate()
-		add_child(display)
-		display.set_item(item)
-		
-		display.connect("item_selected", Callable(self, "on_item_selected").bind(item)) #ignore errs
-		
-		var err = connect("item_selected", Callable(display, "on_other_item_selected"))
-		if err:
-			push_error("Could not hook up item ui deselection: " + err)
-		
-		err = item.connect("item_changed", Callable(display, "on_item_changed"))
-		if err:
-			push_error("Could not connect item change to display: " + err)
+		load_item(item)
+
+func load_item(item):
+	var display = item_display_scene_path.instantiate()
+	add_child(display)
+	display.set_item(item)
+	
+	display.connect("item_selected", Callable(self, "on_item_selected").bind(item)) #ignore errs
+	
+	var err = connect("item_selected", Callable(display, "on_other_item_selected"))
+	if err:
+		push_error("Could not hook up item ui deselection: " + err)
+	
+	err = item.connect("item_changed", Callable(display, "on_item_changed"))
+	if err:
+		push_error("Could not connect item change to display: " + err)

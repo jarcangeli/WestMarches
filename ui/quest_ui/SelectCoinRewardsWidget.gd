@@ -26,9 +26,9 @@ func initialise(_debt : int, _party_coins : int):
 	select_maximum()
 
 func update_enabled_buttons():
-	select_minimum_coins_button.disabled = false
-	select_maximum_coins_button.disabled = false
-	select_fewer_coins_button.disabled = selected <= 0
+	select_minimum_coins_button.disabled = selected <= 0
+	select_maximum_coins_button.disabled = selected >= min(debt, party_coins)
+	select_fewer_coins_button.disabled =  selected <= 0
 	select_more_coins_button.disabled = selected >= min(debt, party_coins)
 
 func select_minimum():

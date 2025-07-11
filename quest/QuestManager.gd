@@ -1,10 +1,7 @@
 extends Node
 
-@export var parties_path : NodePath
-@onready var parties = get_node(parties_path)
-
-@export var available_quests_path : NodePath
-@onready var available_quests = get_node(available_quests_path)
+@export var parties : AdventuringParties
+@export var available_quests : QuestContainerNode
 
 @export var map_path : NodePath
 @onready var map = get_node(map_path)
@@ -17,6 +14,7 @@ func _ready():
 	print("Generating initial quests")
 	call_deferred("generate_quest")
 	call_deferred("generate_quest")
+	call_deferred("auto_play_quest")
 
 func advance_time():
 	if available_quests.get_child_count() < MAX_AVAILABLE_QUESTS:
@@ -80,3 +78,9 @@ func add_reward_to_quest(quest, reward):
 		push_warning("Couldnt add reward to quests")
 		return
 	rewards.add_child(reward)
+
+func auto_play_quest():
+	# Debug tool to set a quest to completed state on startup
+	var quest : Quest = available_quests.get_child(0)
+	quest.start(parties.get_child(0))
+	quest.finish()

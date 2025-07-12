@@ -16,4 +16,4 @@ func on_item_selected(item):
 func on_player_inventory_changed():
 	inventory_display_container.clear_items()
 	if Globals.player_inventory:
-		inventory_display_container.load_items(Globals.player_inventory.get_children())
+		inventory_display_container.add_items(Globals.player_inventory.get_children())

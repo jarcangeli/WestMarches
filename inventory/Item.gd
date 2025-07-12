@@ -85,3 +85,9 @@ func get_currency_granted():
 			if node is Currencies:
 				return node
 	return null
+
+func get_container() -> ItemContainer:
+	var parent = get_parent()
+	if parent is ItemContainer:
+		return parent
+	return null

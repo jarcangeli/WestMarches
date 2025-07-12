@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://mfctduq7elj2"]
+[gd_scene load_steps=8 format=3 uid="uid://mfctduq7elj2"]
 
 [ext_resource type="Script" uid="uid://b6hbmx8mg0bv0" path="res://ui/quest_ui/QuestEquipUI.gd" id="1_jvrap"]
 [ext_resource type="PackedScene" uid="uid://cjy6e3ym3cu6t" path="res://ui/inventory_ui/CharacterEquipUI.tscn" id="2_tafbw"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="3_2hioa"]
 [ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="4_kn2sh"]
+[ext_resource type="Script" uid="uid://jm3yoj5s1wvc" path="res://ui/inventory_ui/ItemDropArea.gd" id="5_kn2sh"]
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="5_tafbw"]
 [ext_resource type="PackedScene" uid="uid://cj5k2kcgyqnnt" path="res://ui/quest_ui/SelectedCoinsDisplay.tscn" id="6_2hioa"]
 
@@ -98,8 +99,10 @@ text = "Back"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RewardUIContainer" type="VBoxContainer" parent="CenterMarginContainer"]
+[node name="RewardUIContainer" type="VBoxContainer" parent="CenterMarginContainer" node_paths=PackedStringArray("item_container")]
 layout_mode = 2
+script = ExtResource("5_kn2sh")
+item_container = NodePath("ItemsDisplayContainer")
 
 [node name="HintMarginContainer" type="MarginContainer" parent="CenterMarginContainer/RewardUIContainer"]
 layout_mode = 2

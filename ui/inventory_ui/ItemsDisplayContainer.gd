@@ -3,7 +3,7 @@ class_name ItemDisplayContainer
 
 signal item_selected(item)
 
-@export var item_display_scene_path : Resource 
+@export var item_display_scene_path : Resource = preload("res://ui/inventory_ui/ItemButtonDisplay.tscn")
 
 func clear_items():
 	for node in get_children():
@@ -14,13 +14,13 @@ func clear_items():
 func on_item_selected(item):
 	item_selected.emit(item)
 
-func load_items(items):
+func add_items(items):
 	for item in items:
 		if not item is Item:
 			continue
-		load_item(item)
+		add_item(item)
 
-func load_item(item):
+func add_item(item):
 	var display = item_display_scene_path.instantiate()
 	add_child(display)
 	display.set_item(item)
@@ -34,3 +34,9 @@ func load_item(item):
 	err = item.connect("item_changed", Callable(display, "on_item_changed"))
 	if err:
 		push_error("Could not connect item change to display: " + err)
+
+func remove_item(item):
+	for child in get_children():
+		if child.get_item() == item:
+			child.queue_free()
+			return

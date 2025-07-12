@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func set_quest(quest : Quest):
 	item_rewards_container.clear_items()
-	item_rewards_container.load_items(quest.get_rewards())
+	item_rewards_container.add_items(quest.get_rewards())
 	var currency_rewards : Currencies = quest.get_currency_rewards()
 	if currency_rewards:
 		currency_rewards_label.text = currency_rewards.print_to_string()

@@ -54,7 +54,7 @@ func on_quest_selected(quest : Quest):
 		selected_coins_display.initialise(debt, coins)
 	
 		loot_container.clear_items()
-		loot_container.load_items(quest.get_rewards())
+		loot_container.add_items(quest.get_rewards())
 	else:
 		equip_ui.visible = true
 		reward_ui.visible = false
@@ -79,7 +79,7 @@ func clear_characters():
 func on_player_inventory_changed():
 	inventory_display_container.clear_items()
 	if Globals.player_inventory:
-		inventory_display_container.load_items(Globals.player_inventory.get_children())
+		inventory_display_container.add_items(Globals.player_inventory.get_children())
 
 func on_item_equipped(item, _slot):
 	loaned_item_value += item.get_value()

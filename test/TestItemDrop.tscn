@@ -17,64 +17,70 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_laf7h")
 
-[node name="Inventory1Display" type="VBoxContainer" parent="."]
+[node name="Inventory1" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_laf7h")
+
+[node name="Coif" parent="Inventory1" instance=ExtResource("3_2u32i")]
+
+[node name="Jerkin" parent="Inventory1" instance=ExtResource("4_8lkq5")]
+
+[node name="Inventory2" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_laf7h")
+
+[node name="Shortbow" parent="Inventory2" instance=ExtResource("5_xuy0g")]
+
+[node name="Shortsword" parent="Inventory2" instance=ExtResource("6_8a5t5")]
+
+[node name="Inventory3" type="Node" parent="."]
+script = ExtResource("2_laf7h")
+
+[node name="Inventory1Display" type="VBoxContainer" parent="." node_paths=PackedStringArray("item_container", "item_display_container")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_cfrgu")
-
-[node name="Inventory1" type="Node" parent="Inventory1Display"]
-unique_name_in_owner = true
-script = ExtResource("2_laf7h")
-
-[node name="Coif" parent="Inventory1Display/Inventory1" instance=ExtResource("3_2u32i")]
-
-[node name="Jerkin" parent="Inventory1Display/Inventory1" instance=ExtResource("4_8lkq5")]
+item_container = NodePath("../Inventory1")
+item_display_container = NodePath(".")
 
 [node name="Label" type="Label" parent="Inventory1Display"]
 layout_mode = 2
 text = "Inventory 1"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ItemDropArea" type="Panel" parent="HBoxContainer" node_paths=PackedStringArray("item_container")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("6_2u32i")
-item_container = NodePath("../Inventory3Display")
-
-[node name="Inventory3Display" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("1_cfrgu")
-
-[node name="Inventory3" type="Node" parent="HBoxContainer/Inventory3Display"]
-script = ExtResource("2_laf7h")
-
-[node name="Label" type="Label" parent="HBoxContainer/Inventory3Display"]
-layout_mode = 2
-text = "Inventory 3"
-horizontal_alignment = 1
-
-[node name="Inventory2Display" type="VBoxContainer" parent="."]
+[node name="Inventory2Display" type="VBoxContainer" parent="." node_paths=PackedStringArray("item_container", "item_display_container")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_cfrgu")
-
-[node name="Inventory2" type="Node" parent="Inventory2Display"]
-unique_name_in_owner = true
-script = ExtResource("2_laf7h")
-
-[node name="Shortbow" parent="Inventory2Display/Inventory2" instance=ExtResource("5_xuy0g")]
-
-[node name="Shortsword" parent="Inventory2Display/Inventory2" instance=ExtResource("6_8a5t5")]
+item_container = NodePath("../Inventory2")
+item_display_container = NodePath(".")
 
 [node name="Label" type="Label" parent="Inventory2Display"]
 layout_mode = 2
 text = "Inventory 2"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemDropArea" type="Panel" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("6_2u32i")
+
+[node name="Inventory3Display" type="VBoxContainer" parent="HBoxContainer" node_paths=PackedStringArray("item_container", "item_display_container")]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("1_cfrgu")
+item_container = NodePath("../../Inventory3")
+item_display_container = NodePath(".")
+
+[node name="Label" type="Label" parent="HBoxContainer/Inventory3Display"]
+layout_mode = 2
+text = "Inventory 3"
 horizontal_alignment = 1

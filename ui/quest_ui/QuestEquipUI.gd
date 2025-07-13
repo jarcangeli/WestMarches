@@ -77,7 +77,7 @@ func clear_characters():
 
 #TODO: Inherit ItemDisplayContainer to create a re-usable player invent display?
 func on_player_inventory_changed():
-	inventory_display_container.clear_items()
+	inventory_display_container.clear_item_views()
 	if Globals.player_inventory:
 		inventory_display_container.add_items(Globals.player_inventory.get_children())
 

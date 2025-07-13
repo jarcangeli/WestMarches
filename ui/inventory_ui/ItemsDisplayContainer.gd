@@ -1,11 +1,12 @@
-extends VBoxContainer
+extends ItemDropArea
 class_name ItemDisplayContainer
 
 signal item_selected(item)
 
 @export var item_display_scene_path : Resource = preload("res://ui/inventory_ui/ItemButtonDisplay.tscn")
+@export var item_container : ItemContainer
 
-func clear_items():
+func clear_item_views():
 	for node in get_children():
 		if node is ItemButtonDisplay:
 			remove_child(node)
@@ -20,7 +21,12 @@ func add_items(items):
 			continue
 		add_item(item)
 
-func add_item(item):
+func add_item(item : Item):
+	if item_container:
+		item_container.add_item(item)
+	add_item_display(item)
+
+func add_item_display(item):
 	var display = item_display_scene_path.instantiate()
 	add_child(display)
 	display.set_item(item)
@@ -35,7 +41,7 @@ func add_item(item):
 	if err:
 		push_error("Could not connect item change to display: " + err)
 
-func remove_item(item):
+func remove_item_display(item):
 	for child in get_children():
 		if child.get_item() == item:
 			child.queue_free()

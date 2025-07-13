@@ -1,6 +1,8 @@
 extends Node
 class_name ItemContainer
 
+signal item_added(item)
+
 func add_item(item : Item):
 	if not is_instance_valid(item):
 		return
@@ -8,6 +10,7 @@ func add_item(item : Item):
 	if is_instance_valid(item.get_parent()):
 		item.get_parent().remove_child(item)
 	
+	item_added.emit(item) #TODO: This could cause issues if item is now consumed?
 	if item.consumed_on_acquire and self == Globals.player_inventory:
 		var currencies = item.get_currency_granted()
 		Globals.player_currencies.add_currencies(currencies)

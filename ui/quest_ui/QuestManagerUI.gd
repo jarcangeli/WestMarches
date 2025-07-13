@@ -53,10 +53,10 @@ func on_quest_selected(quest : Quest):
 		var debt : int = quest.get_currency_rewards().gold + quest.party.get_debt()
 		available_party_coins_label.text = str(coins)
 		owed_party_coins_label.text = str(debt)
-		selected_coins_display.initialise(debt, coins)
-	
 		loot_container.clear_item_views()
 		loot_container.add_items(quest.get_rewards())
+		selected_coins_display.initialise(debt, coins)
+	
 	else:
 		equip_ui.visible = true
 		reward_ui.visible = false

@@ -7,8 +7,8 @@ extends MarginContainer
 @export var adventuring_parties : Node
 
 @onready var quest_select_ui = $QuestSelectUI
-@onready var quest_equip_ui = $QuestEquipUI
-@onready var characters_container = quest_equip_ui.characters_container
+@onready var quest_manage_ui = $QuestManageUI
+@onready var characters_container = quest_manage_ui.characters_container
 
 var current_quest : Quest = null
 var current_party : AdventuringParty = null
@@ -38,7 +38,7 @@ func get_completed_quests():
 func initialise():
 	current_quest = null
 	quest_select_ui.initialise()
-	quest_equip_ui.initialise()
+	quest_manage_ui.initialise()
 	
 	var _pending_quests = get_pending_quests()
 	quest_select_ui.set_pending_quests(_pending_quests)
@@ -60,14 +60,14 @@ func initialise():
 
 func on_quest_chosen(quest):
 	quest_select_ui.visible = false
-	quest_equip_ui.visible = true
+	quest_manage_ui.visible = true
 	
 	current_quest = quest
 	
 	if not quest.started and not quest.party:
 		quest.party = current_party
 	
-	quest_equip_ui.on_quest_selected(quest)
+	quest_manage_ui.on_quest_selected(quest)
 
 func on_start_quest_button_pressed():
 	if not is_instance_valid(current_quest):
@@ -94,7 +94,7 @@ func on_abandon_quest_button_pressed():
 		character_container.return_equipped_items()
 		character_container.queue_free()
 	quest_select_ui.visible = true
-	quest_equip_ui.visible = false
+	quest_manage_ui.visible = false
 
 func on_quest_changed(_quest):
 	initialise()

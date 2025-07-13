@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://c2xf0hqwsw5f7"]
 
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://mfctduq7elj2" path="res://QuestEquipUi.tscn" id="2_7npuu"]
+[ext_resource type="PackedScene" uid="uid://mfctduq7elj2" path="res://ui/quest_ui/QuestManageUI.tscn" id="2_7npuu"]
 [ext_resource type="Script" uid="uid://f664duex3swn" path="res://ui/quest_ui/QuestScreen.gd" id="5"]
 [ext_resource type="Script" uid="uid://d0s6ig5osvmvr" path="res://ui/quest_ui/QuestSelectUI.gd" id="6"]
 [ext_resource type="PackedScene" path="res://ui/quest_ui/QuestButton.tscn" id="7"]
@@ -26,7 +26,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("5")
 
-[node name="QuestEquipUI" parent="." instance=ExtResource("2_7npuu")]
+[node name="QuestManageUI" parent="." instance=ExtResource("2_7npuu")]
 visible = false
 layout_mode = 2
 
@@ -81,6 +81,7 @@ layout_mode = 2
 text = "Quest History:"
 
 [node name="QuestInfoPanel" type="Panel" parent="QuestSelectUI"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("8")
@@ -170,7 +171,6 @@ size_flags_horizontal = 4
 text = "SPONSOR QUEST"
 
 [node name="QuestRewardPanel" type="Panel" parent="QuestSelectUI" node_paths=PackedStringArray("item_rewards_container", "currency_rewards_label", "debt_rewards_label")]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("9")
@@ -215,7 +215,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "COLLECT REWARDS"
 
-[connection signal="quest_abandoned" from="QuestEquipUI" to="." method="on_abandon_quest_button_pressed"]
-[connection signal="quest_started" from="QuestEquipUI" to="." method="on_start_quest_button_pressed"]
+[connection signal="quest_abandoned" from="QuestManageUI" to="." method="on_abandon_quest_button_pressed"]
+[connection signal="quest_started" from="QuestManageUI" to="." method="on_start_quest_button_pressed"]
 [connection signal="pressed" from="QuestSelectUI/QuestInfoPanel/MarginContainer/VBoxContainer/ChooseQuestButton" to="QuestSelectUI" method="on_choose_quest_button_pressed"]
 [connection signal="pressed" from="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="QuestSelectUI" method="_on_collect_rewards_button_pressed"]

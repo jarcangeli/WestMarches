@@ -2,6 +2,7 @@ extends Node
 
 signal item_equipped(item, slot)
 signal item_unequipped(item, slot)
+signal item_consumed(item)
 
 signal player_inventory_changed()
 signal player_currencies_changed()

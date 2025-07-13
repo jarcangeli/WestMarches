@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://b6hbmx8mg0bv0" path="res://ui/quest_ui/QuestEquipUI.gd" id="1_jvrap"]
 [ext_resource type="PackedScene" uid="uid://cjy6e3ym3cu6t" path="res://ui/inventory_ui/CharacterEquipUI.tscn" id="2_tafbw"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="3_2hioa"]
-[ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="4_kn2sh"]
 [ext_resource type="Script" uid="uid://jm3yoj5s1wvc" path="res://ui/inventory_ui/ItemDropArea.gd" id="5_kn2sh"]
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="5_tafbw"]
 [ext_resource type="PackedScene" uid="uid://cj5k2kcgyqnnt" path="res://ui/quest_ui/SelectedCoinsDisplay.tscn" id="6_2hioa"]
+[ext_resource type="Script" uid="uid://bpcsenk3ubug2" path="res://inventory/ItemContainer.gd" id="7_kn2sh"]
 
 [node name="QuestEquipUI" type="HBoxContainer" node_paths=PackedStringArray("characters_container", "value_label", "reward_label", "equip_ui", "reward_ui")]
 anchors_preset = 15
@@ -26,7 +26,6 @@ reward_ui = NodePath("CenterMarginContainer/RewardUIContainer")
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_2hioa")
-item_display_scene_path = ExtResource("4_kn2sh")
 
 [node name="InventoryLabel" type="Label" parent="ItemsDisplayContainer"]
 layout_mode = 2
@@ -99,10 +98,10 @@ text = "Back"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RewardUIContainer" type="VBoxContainer" parent="CenterMarginContainer" node_paths=PackedStringArray("item_container")]
+[node name="RewardUIContainer" type="VBoxContainer" parent="CenterMarginContainer" node_paths=PackedStringArray("item_display_container")]
 layout_mode = 2
 script = ExtResource("5_kn2sh")
-item_container = NodePath("ItemsDisplayContainer")
+item_display_container = NodePath("ItemsDisplayContainer")
 
 [node name="HintMarginContainer" type="MarginContainer" parent="CenterMarginContainer/RewardUIContainer"]
 layout_mode = 2
@@ -173,11 +172,12 @@ texture = ExtResource("5_tafbw")
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ItemsDisplayContainer" type="VBoxContainer" parent="CenterMarginContainer/RewardUIContainer"]
+[node name="ItemsDisplayContainer" type="VBoxContainer" parent="CenterMarginContainer/RewardUIContainer" node_paths=PackedStringArray("item_container", "item_display_container")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_2hioa")
-item_display_scene_path = ExtResource("4_kn2sh")
+item_container = NodePath("../ItemRewards")
+item_display_container = NodePath(".")
 
 [node name="ItemsLabel" type="Label" parent="CenterMarginContainer/RewardUIContainer/ItemsDisplayContainer"]
 layout_mode = 2
@@ -196,17 +196,25 @@ text = "Back"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LootContainer" type="VBoxContainer" parent="."]
+[node name="ItemRewards" type="Node" parent="CenterMarginContainer/RewardUIContainer"]
 unique_name_in_owner = true
-visible = false
+script = ExtResource("7_kn2sh")
+
+[node name="LootContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("item_container", "item_display_container")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_2hioa")
-item_display_scene_path = ExtResource("4_kn2sh")
+item_container = NodePath("QuestLoot")
+item_display_container = NodePath(".")
 
 [node name="LootLabel" type="Label" parent="LootContainer"]
 layout_mode = 2
 text = "Loot"
+
+[node name="QuestLoot" type="Node" parent="LootContainer"]
+unique_name_in_owner = true
+script = ExtResource("7_kn2sh")
 
 [node name="PartyContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true

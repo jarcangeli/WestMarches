@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2xf0hqwsw5f7"]
+[gd_scene load_steps=12 format=3 uid="uid://c2xf0hqwsw5f7"]
 
-[ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="1"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://mfctduq7elj2" path="res://QuestEquipUi.tscn" id="2_7npuu"]
 [ext_resource type="Script" uid="uid://f664duex3swn" path="res://ui/quest_ui/QuestScreen.gd" id="5"]
@@ -153,8 +152,6 @@ horizontal_alignment = 1
 [node name="QuestRewardsDisplay" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("9")
-item_rewards_container_path = NodePath("RewardsContainer")
-currency_rewards_label_path = NodePath("RewardsContainer/CurrencyRewardsLabel")
 
 [node name="RewardsContainer" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay"]
 layout_mode = 2
@@ -172,14 +169,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "SPONSOR QUEST"
 
-[node name="QuestRewardPanel" type="Panel" parent="QuestSelectUI"]
+[node name="QuestRewardPanel" type="Panel" parent="QuestSelectUI" node_paths=PackedStringArray("item_rewards_container", "currency_rewards_label", "debt_rewards_label")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("9")
-item_rewards_container_path = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer")
-currency_rewards_label_path = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer/CurrencyRewardsLabel")
-debt_rewards_label_path = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer/DebtRewardsLabel")
+item_rewards_container = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer")
+currency_rewards_label = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer/CurrencyRewardsLabel")
+debt_rewards_label = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer/DebtRewardsLabel")
 
 [node name="VBoxContainer" type="MarginContainer" parent="QuestSelectUI/QuestRewardPanel"]
 layout_mode = 0
@@ -198,10 +195,10 @@ layout_mode = 2
 text = "Item rewards"
 horizontal_alignment = 1
 
-[node name="ItemRewardsContainer" type="VBoxContainer" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer"]
+[node name="ItemRewardsContainer" type="VBoxContainer" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer" node_paths=PackedStringArray("item_display_container")]
 layout_mode = 2
 script = ExtResource("2")
-item_display_scene_path = ExtResource("1")
+item_display_container = NodePath(".")
 
 [node name="CurrencyRewardsLabel" type="Label" parent="QuestSelectUI/QuestRewardPanel/VBoxContainer/VBoxContainer/ItemRewardsContainer"]
 layout_mode = 2

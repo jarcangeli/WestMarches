@@ -1,4 +1,4 @@
-extends Control
+extends ItemDropArea
 class_name EquipmentContainer
 
 @export var slot : Item.Slot # (Item.Slot)
@@ -13,17 +13,18 @@ func _ready():
 	SignalBus.item_equipped.connect(self.on_item_equipped)
 
 func _can_drop_data(_position, data):
-	if not (data is Item):
+	if not super._can_drop_data(position, data):
 		return false
-	return data.primary_slot_type == slot
+	return data.get_item().primary_slot_type == slot
 
 func _drop_data(_position, data):
-	if not (data is Item):
-		push_error("Tried to drop non-item on equipment container")
-		return
-	print("Dropped item " + data.item_name)
-	item = data
-	SignalBus.item_equipped.emit(item, self)
+	if not data.has_method("get_item"):
+		push_error("Tried to drop something without an item on equipment container")
+		return false
+	var _item : Item = data.get_item()
+	print("Dropped item " + _item.item_name)
+	item = _item
+	SignalBus.item_equipped.emit(_item, self)
 	update_item_view()
 
 func remove_item():

@@ -21,6 +21,7 @@ var mouse_over : bool = false
 func _ready():
 	refresh_display()
 	$Button.drag_enabled = drag_enabled
+	SignalBus.item_consumed.connect(on_item_consumed)
 
 func refresh_display():
 	if not is_instance_valid(item):
@@ -54,3 +55,7 @@ func on_other_item_selected(other_item):
 
 func on_button_pressed():
 	item_selected.emit()
+
+func on_item_consumed(consumed_item : Item):
+	if item and consumed_item == item:
+		queue_free()

@@ -2,7 +2,6 @@ extends HBoxContainer
 
 signal quest_abandoned()
 signal quest_started()
-signal rewards_selected()
 
 @export var character_equip_ui_scene : Resource
 
@@ -19,6 +18,8 @@ signal rewards_selected()
 @onready var inventory_display_container = $ItemsDisplayContainer
 @onready var loot_container: VBoxContainer = %LootContainer
 @onready var party_container: VBoxContainer = %PartyContainer
+@onready var item_rewards: ItemContainer = %ItemRewards
+@onready var quest_loot: ItemContainer = %QuestLoot
 
 var loaned_item_value = 0
 
@@ -46,6 +47,7 @@ func on_quest_selected(quest : Quest):
 		reward_ui.visible = true
 		party_container.visible = false
 		loot_container.visible = true
+		inventory_display_container.visible = false
 		
 		var coins : int = quest.party.get_gold()
 		var debt : int = quest.get_currency_rewards().gold + quest.party.get_debt()
@@ -53,13 +55,14 @@ func on_quest_selected(quest : Quest):
 		owed_party_coins_label.text = str(debt)
 		selected_coins_display.initialise(debt, coins)
 	
-		loot_container.clear_items()
+		loot_container.clear_item_views()
 		loot_container.add_items(quest.get_rewards())
 	else:
 		equip_ui.visible = true
 		reward_ui.visible = false
 		party_container.visible = true
 		loot_container.visible = false
+		inventory_display_container.visible = true
 
 func setup_characters(characters):
 	clear_characters()
@@ -99,4 +102,4 @@ func _on_start_quest_button_pressed() -> void:
 	quest_started.emit()
 
 func _on_take_rewards_button_pressed() -> void:
-	rewards_selected.emit()
+	Globals.player_inventory.add_items(item_rewards.get_items())

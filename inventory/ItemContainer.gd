@@ -8,9 +8,10 @@ func add_item(item : Item):
 	if is_instance_valid(item.get_parent()):
 		item.get_parent().remove_child(item)
 	
-	if item.consumed_on_acquire:
+	if item.consumed_on_acquire and self == Globals.player_inventory:
 		var currencies = item.get_currency_granted()
 		Globals.player_currencies.add_currencies(currencies)
+		SignalBus.item_consumed.emit(item)
 		item.queue_free()
 	else:
 		add_child(item)

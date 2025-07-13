@@ -1,20 +1,11 @@
 extends Control
 
-@export var item_rewards_container_path : NodePath
-@onready var item_rewards_container = get_node(item_rewards_container_path)
-
-@export var currency_rewards_label_path : NodePath
-@onready var currency_rewards_label = get_node(currency_rewards_label_path)
-
-@export var debt_rewards_label_path : NodePath
-var debt_rewards_label = null
-
-func _ready() -> void:
-	if not debt_rewards_label_path.is_empty():
-		debt_rewards_label = get_node(debt_rewards_label_path)
+@export var item_rewards_container : ItemDisplayContainer
+@export var currency_rewards_label : Label
+@export var debt_rewards_label : Label
 
 func set_quest(quest : Quest):
-	item_rewards_container.clear_items()
+	item_rewards_container.clear_item_views()
 	item_rewards_container.add_items(quest.get_rewards())
 	var currency_rewards : Currencies = quest.get_currency_rewards()
 	if currency_rewards:

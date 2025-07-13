@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://vpueeiysf855"]
+[gd_scene load_steps=10 format=3 uid="uid://vpueeiysf855"]
 
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="1_cfrgu"]
 [ext_resource type="Script" uid="uid://ovsslanxokvj" path="res://test/TestItemDrop.gd" id="1_laf7h"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://items/Shortbow.tscn" id="5_xuy0g"]
 [ext_resource type="Script" uid="uid://jm3yoj5s1wvc" path="res://ui/inventory_ui/ItemDropArea.gd" id="6_2u32i"]
 [ext_resource type="PackedScene" path="res://items/Shortsword.tscn" id="6_8a5t5"]
+[ext_resource type="PackedScene" uid="uid://dgh8xrv7w81qm" path="res://ui/inventory_ui/EquipmentContainer.tscn" id="9_8lkq5"]
 
 [node name="TestItemDrop" type="HBoxContainer"]
 anchors_preset = 15
@@ -84,3 +85,10 @@ item_display_container = NodePath(".")
 layout_mode = 2
 text = "Inventory 3"
 horizontal_alignment = 1
+
+[node name="EquipmentContainer" parent="HBoxContainer" instance=ExtResource("9_8lkq5")]
+layout_mode = 2
+
+[node name="EquipmentContainer2" parent="HBoxContainer" instance=ExtResource("9_8lkq5")]
+layout_mode = 2
+slot = 2

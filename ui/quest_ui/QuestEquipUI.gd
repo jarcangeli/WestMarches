@@ -1,26 +1,19 @@
 extends HBoxContainer
+class_name QuestEquipUI
 
 signal quest_abandoned()
 signal quest_started()
 
 @export var character_equip_ui_scene : Resource
+@onready var inventory_display_container: ItemDisplayContainer = $InventoryDisplayContainer
 
 @export var characters_container : Node
 @export var value_label : Label
 @export var reward_label : Label
-@export var equip_ui : Control
-@export var reward_ui : Control
 
-@onready var selected_coins_display: HBoxContainer = %SelectedCoinsDisplay
-@onready var available_party_coins_label: Label = %AvailablePartyCoinsLabel
-@onready var owed_party_coins_label: Label = %OwedPartyCoinsLabel
+@onready var reward_ui: Control = %QuestRewardUI
 
-@onready var inventory_display_container = $ItemsDisplayContainer
-@onready var loot_container: VBoxContainer = %LootContainer
-@onready var party_container: VBoxContainer = %PartyContainer
-@onready var item_rewards: ItemContainer = %ItemRewards
-@onready var quest_loot: ItemContainer = %QuestLoot
-
+var current_quest : Quest = null
 var loaned_item_value = 0
 
 func _ready():
@@ -30,10 +23,8 @@ func _ready():
 	SignalBus.item_equipped.connect(on_item_equipped)
 	SignalBus.item_unequipped.connect(on_item_unequipped)
 
-func initialise():
-	visible = false
-
 func on_quest_selected(quest : Quest):
+	current_quest = quest
 	var party : AdventuringParty = quest.party
 	if not is_instance_valid(party) or len(party.get_characters()) == 0:
 		push_error("Equip screen for quest opened with invalid party")
@@ -41,28 +32,6 @@ func on_quest_selected(quest : Quest):
 		return
 	var characters = party.get_characters()
 	setup_characters(characters)
-	
-	if quest.finished:
-		equip_ui.visible = false
-		reward_ui.visible = true
-		party_container.visible = false
-		loot_container.visible = true
-		inventory_display_container.visible = false
-		
-		var coins : int = quest.party.get_gold()
-		var debt : int = quest.get_currency_rewards().gold + quest.party.get_debt()
-		available_party_coins_label.text = str(coins)
-		owed_party_coins_label.text = str(debt)
-		loot_container.clear_item_views()
-		loot_container.add_items(quest.get_rewards())
-		selected_coins_display.initialise(debt, coins)
-	
-	else:
-		equip_ui.visible = true
-		reward_ui.visible = false
-		party_container.visible = true
-		loot_container.visible = false
-		inventory_display_container.visible = true
 
 func setup_characters(characters):
 	clear_characters()
@@ -94,12 +63,27 @@ func on_item_unequipped(item, _slot):
 	value_label.text = str(loaned_item_value) + " gp"
 	reward_label.text = str(loaned_item_value) + " gp"
 
-
 func _on_abandon_quest_button_pressed() -> void:
+	#TODO: Return all items?
+	current_quest = null
 	quest_abandoned.emit()
 
 func _on_start_quest_button_pressed() -> void:
+	if not is_instance_valid(current_quest):
+		quest_abandoned.emit()
+		return
+	
+	for character_container in characters_container.get_children():
+		var character = character_container.character
+		var equipped_items = character_container.get_equipped_items()
+		
+		for item in equipped_items:
+			character.debt += item.get_value()
+			item.get_parent().remove_child(item)
+			character.add_child(item)
+			item.loaned_character = character
+	
+	SignalBus.player_inventory_changed.emit()
+	current_quest.start(current_quest.party)
+	
 	quest_started.emit()
-
-func _on_take_rewards_button_pressed() -> void:
-	Globals.player_inventory.add_items(item_rewards.get_items())

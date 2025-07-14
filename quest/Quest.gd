@@ -50,11 +50,6 @@ func complete():
 	if completed:
 		push_warning("Completing already completed quest")
 	completed = true
-	if is_instance_valid(Globals.player_inventory):
-		Globals.player_inventory.add_rewards(self)
-	var currency_rewards = get_currency_rewards()
-	if is_instance_valid(Globals.player_currencies) and is_instance_valid(currency_rewards):
-		Globals.player_currencies.add_currencies(currency_rewards)
 	SignalBus.quest_completed.emit(self)
 
 func advance_time():

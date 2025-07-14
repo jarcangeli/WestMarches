@@ -1,7 +1,7 @@
 extends HBoxContainer
+class_name QuestSelectUI
 
 signal quest_chosen(quest)
-signal quest_rewards_selected(quest)
 
 @export var quest_button_scene : Resource
 
@@ -22,9 +22,6 @@ var selected_quest : Quest = null
 
 func _ready():
 	update_quest_panels()
-
-func initialise():
-	visible = true
 
 func clear_button_container(container):
 	for node in container.get_children():
@@ -88,6 +85,3 @@ func on_choose_quest_button_pressed():
 		return
 	quest_chosen.emit(selected_quest)
 	select_quest(null)
-
-func _on_collect_rewards_button_pressed() -> void:
-	quest_rewards_selected.emit(selected_quest)

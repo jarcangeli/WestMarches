@@ -150,9 +150,11 @@ layout_mode = 2
 text = "Rewards"
 horizontal_alignment = 1
 
-[node name="QuestRewardsDisplay" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="QuestRewardsDisplay" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("item_rewards_container", "currency_rewards_label")]
 layout_mode = 2
 script = ExtResource("9")
+item_rewards_container = NodePath("RewardsContainer")
+currency_rewards_label = NodePath("RewardsContainer/CurrencyRewardsLabel")
 
 [node name="RewardsContainer" type="VBoxContainer" parent="QuestSelectUI/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay"]
 layout_mode = 2

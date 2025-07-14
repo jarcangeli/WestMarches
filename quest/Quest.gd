@@ -76,6 +76,12 @@ func get_difficulty():
 func get_rewards():
 	return rewards.get_children()
 
+func add_rewards(items : Array):
+	for item in items:
+		if item.get_parent():
+			item.get_parent().remove_child(item)
+		rewards.add_child(item)
+
 func get_currency_rewards():
 	var return_currencies = null
 	for node in rewards.get_children():

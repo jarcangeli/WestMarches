@@ -10,6 +10,7 @@ func set_character(new_character):
 	name = character.character_name
 
 func get_equipment_containers(parent = self, containers = []):
+	#TODO: Use groups?
 	for node in parent.get_children():
 		if node is EquipmentContainer:
 			containers += [node]

@@ -32,6 +32,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="PlayerCurrencies" type="Node" parent="."]
 script = ExtResource("15")
+gold = 10
 
 [node name="TimeTracker" type="Node" parent="." groups=["time"]]
 script = ExtResource("9")
@@ -124,36 +125,36 @@ quest_signal = "quest_completed"
 [node name="GameWindow" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="StatsBar" type="HBoxContainer" parent="GameWindow"]
+[node name="TopBar" type="HBoxContainer" parent="GameWindow"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GameWindow/StatsBar"]
+[node name="Label" type="Label" parent="GameWindow/TopBar"]
 layout_mode = 2
 text = "Game Progress:"
 
-[node name="Control" type="Control" parent="GameWindow/StatsBar"]
+[node name="Control" type="Control" parent="GameWindow/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayerCurrencyDisplay" type="Label" parent="GameWindow/StatsBar"]
+[node name="PlayerCurrencyDisplay" type="Label" parent="GameWindow/TopBar"]
 layout_mode = 2
 text = "0 gp"
 script = ExtResource("14")
 
-[node name="Control3" type="Control" parent="GameWindow/StatsBar"]
+[node name="Control3" type="Control" parent="GameWindow/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TimeLabel" type="Label" parent="GameWindow/StatsBar"]
+[node name="TimeLabel" type="Label" parent="GameWindow/TopBar"]
 layout_mode = 2
 script = ExtResource("16")
 time_tracker_path = NodePath("../../../TimeTracker")
 
-[node name="Control2" type="Control" parent="GameWindow/StatsBar"]
+[node name="Control2" type="Control" parent="GameWindow/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="AdvanceTimeButton" type="Button" parent="GameWindow/StatsBar"]
+[node name="AdvanceTimeButton" type="Button" parent="GameWindow/TopBar"]
 layout_mode = 2
 text = "Advance Day -->"
 script = ExtResource("10")

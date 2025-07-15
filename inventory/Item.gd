@@ -8,6 +8,9 @@ enum Slot {
 	OFFHAND,
 	HEAD,
 	CHEST,
+	FEET,
+	LEGS,
+	ACCESSORY,
 	NONE
 }
 
@@ -16,6 +19,9 @@ const slot_container_icons = [
 	preload("res://assets/icons/slots/weapon.png"),
 	preload("res://assets/icons/slots/head.png"),
 	preload("res://assets/icons/slots/chest.png"),
+	preload("res://assets/icons/slots/boot.png"),
+	preload("res://assets/icons/slots/legs.png"),
+	preload("res://assets/icons/slots/ring.png"),
 	preload("res://assets/icons/icon.png")
 ]
 
@@ -45,6 +51,12 @@ static func slot_to_shortname(slot):
 			return "H"
 		Slot.CHEST:
 			return "C"
+		Slot.LEGS:
+			return "L"
+		Slot.FEET:
+			return "F"
+		Slot.ACCESSORY:
+			return "A"
 	return ""
 
 static func make_item_preview(item):

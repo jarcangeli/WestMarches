@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://q482js4uxeg"]
+
+[ext_resource type="PackedScene" uid="uid://dgh8xrv7w81qm" path="res://ui/inventory_ui/EquipmentContainer.tscn" id="1_0wtss"]
+
+[node name="EquipmentLayout" type="Control"]
+custom_minimum_size = Vector2(245, 400)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -908.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EquipmentContainer" parent="." instance=ExtResource("1_0wtss")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 49.0
+offset_top = 169.0
+offset_right = 113.0
+offset_bottom = 233.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="EquipmentContainer2" parent="." instance=ExtResource("1_0wtss")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 147.0
+offset_top = 170.0
+offset_right = 211.0
+offset_bottom = 234.0
+slot = 6
+
+[node name="EquipmentContainer3" parent="." instance=ExtResource("1_0wtss")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 95.0
+offset_top = 15.0
+offset_right = 159.0
+offset_bottom = 79.0
+slot = 2
+
+[node name="EquipmentContainer4" parent="." instance=ExtResource("1_0wtss")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 97.0
+offset_top = 95.0
+offset_right = 161.0
+offset_bottom = 159.0
+slot = 3
+
+[node name="EquipmentContainer5" parent="." instance=ExtResource("1_0wtss")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 99.0
+offset_top = 242.0
+offset_right = 163.0
+offset_bottom = 306.0
+slot = 5
+
+[node name="EquipmentContainer6" parent="." instance=ExtResource("1_0wtss")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 99.0
+offset_top = 316.0
+offset_right = 163.0
+offset_bottom = 380.0
+slot = 4

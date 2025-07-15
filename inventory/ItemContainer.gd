@@ -29,13 +29,3 @@ func get_items() -> Array:
 		if child is Item:
 			items.append(child)
 	return items
-
-func add_rewards(quest : Quest):
-	if not is_instance_valid(quest):
-		return
-	
-	for item in quest.get_rewards():
-		if item is Item:
-			add_item(item)
-	
-	SignalBus.player_inventory_changed.emit()

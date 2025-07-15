@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfe2atjcmt605"]
+[gd_scene load_steps=8 format=3 uid="uid://bfe2atjcmt605"]
 
 [ext_resource type="Script" uid="uid://dpfordpnms0sa" path="res://ui/quest_ui/QuestRewardUI.gd" id="1_0m5yx"]
 [ext_resource type="Script" uid="uid://jm3yoj5s1wvc" path="res://ui/inventory_ui/ItemDropArea.gd" id="1_o6fn8"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cj5k2kcgyqnnt" path="res://ui/quest_ui/SelectedCoinsDisplay.tscn" id="3_kl2fj"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="4_yis78"]
 [ext_resource type="Script" uid="uid://bpcsenk3ubug2" path="res://inventory/ItemContainer.gd" id="5_58tya"]
+[ext_resource type="PackedScene" uid="uid://wx5sih5dc80a" path="res://ui/inventory_ui/ItemButtonDisplayDisabled.tscn" id="6_2osik"]
 
 [node name="QuestRewardUI" type="HBoxContainer"]
 anchors_preset = 15
@@ -130,6 +131,19 @@ text = "Take Rewards"
 [node name="AbandonQuestButton" type="Button" parent="CenterMarginContainer/RewardUIContainer"]
 layout_mode = 2
 text = "Back"
+
+[node name="ReturnedItemsDisplay" type="VBoxContainer" parent="CenterMarginContainer/RewardUIContainer" node_paths=PackedStringArray("item_container", "item_display_container")]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_yis78")
+item_display_scene_path = ExtResource("6_2osik")
+item_container = NodePath("")
+item_display_container = NodePath(".")
+
+[node name="Label" type="Label" parent="CenterMarginContainer/RewardUIContainer/ReturnedItemsDisplay"]
+layout_mode = 2
+text = "Returned Items"
+horizontal_alignment = 1
 
 [node name="FillControl" type="Control" parent="CenterMarginContainer/RewardUIContainer"]
 layout_mode = 2

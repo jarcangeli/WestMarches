@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu81dy404ucm5"]
+[gd_scene load_steps=8 format=3 uid="uid://bu81dy404ucm5"]
 
 [ext_resource type="Script" uid="uid://dqau2h1pv3bbt" path="res://quest/Quest.gd" id="1_j7jsm"]
 [ext_resource type="Script" uid="uid://cq02ts2n3ldcw" path="res://quest/steps/QuestSteps.gd" id="2_311wg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://2oay62dhv34q" path="res://quest/steps/QuestStepBattle.gd" id="4_rhi58"]
 [ext_resource type="Script" uid="uid://b3f0x0n4m3n40" path="res://core/Currencies.gd" id="5_wpohh"]
 [ext_resource type="PackedScene" uid="uid://drn11vjunj5u2" path="res://items/Coinpouch.tscn" id="6_311wg"]
+[ext_resource type="PackedScene" path="res://items/Jerkin.tscn" id="7_y7bpy"]
 
 [node name="QuestKill" type="Node"]
 script = ExtResource("1_j7jsm")
@@ -28,3 +29,5 @@ script = ExtResource("3_y7bpy")
 script = ExtResource("5_wpohh")
 
 [node name="Coin Pouch" parent="Rewards" instance=ExtResource("6_311wg")]
+
+[node name="Jerkin" parent="Rewards" instance=ExtResource("7_y7bpy")]

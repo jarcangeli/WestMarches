@@ -13,3 +13,11 @@ func get_items():
 		if node is Item:
 			items.append(node)
 	return items
+
+
+func get_loaned_items():
+	var items = []
+	for node in get_children():
+		if node is Item and node.loaned_character == self:
+			items.append(node)
+	return items

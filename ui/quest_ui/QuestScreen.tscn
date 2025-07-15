@@ -25,6 +25,7 @@ layout_mode = 2
 
 [node name="QuestEquipUI" parent="." instance=ExtResource("11_mfksw")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="QuestRewardUI" parent="." instance=ExtResource("12_at2a0")]

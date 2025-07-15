@@ -132,12 +132,11 @@ text = "Take Rewards"
 layout_mode = 2
 text = "Back"
 
-[node name="ReturnedItemsDisplay" type="VBoxContainer" parent="CenterMarginContainer/RewardUIContainer" node_paths=PackedStringArray("item_container", "item_display_container")]
+[node name="ReturnedItemsDisplay" type="VBoxContainer" parent="CenterMarginContainer/RewardUIContainer" node_paths=PackedStringArray("item_display_container")]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("4_yis78")
 item_display_scene_path = ExtResource("6_2osik")
-item_container = NodePath("")
 item_display_container = NodePath(".")
 
 [node name="Label" type="Label" parent="CenterMarginContainer/RewardUIContainer/ReturnedItemsDisplay"]

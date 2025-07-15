@@ -4,7 +4,7 @@ extends HBoxContainer
 @onready var item_detail_view = $ItemDetailView
 
 func _ready():
-	SignalBus.player_inventory_changed.connect(self.on_player_inventory_changed)
+	SignalBus.player_inventory_changed.connect(self.on_player_inventory_changed, CONNECT_DEFERRED)
 	
 	inventory_display_container.connect("item_selected", Callable(self, "on_item_selected"))
 	

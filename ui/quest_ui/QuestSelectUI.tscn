@@ -156,7 +156,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "SPONSOR QUEST"
 
-[node name="QuestRewardPanel" type="Panel" parent="." node_paths=PackedStringArray("item_rewards_container", "currency_rewards_label", "debt_rewards_label")]
+[node name="QuestRewardPanel" type="Panel" parent="." node_paths=PackedStringArray("item_rewards_container", "currency_rewards_label", "debt_rewards_label", "quest_name_label", "quest_description_label")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -164,6 +164,8 @@ script = ExtResource("7_7b3j3")
 item_rewards_container = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer")
 currency_rewards_label = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer/CurrencyRewardsLabel")
 debt_rewards_label = NodePath("VBoxContainer/VBoxContainer/ItemRewardsContainer/DebtRewardsLabel")
+quest_name_label = NodePath("VBoxContainer/VBoxContainer/QuestNameLabel")
+quest_description_label = NodePath("VBoxContainer/VBoxContainer/QuestDescriptionText")
 
 [node name="VBoxContainer" type="MarginContainer" parent="QuestRewardPanel"]
 layout_mode = 0
@@ -178,6 +180,14 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 
 [node name="QuestNameLabel" type="Label" parent="QuestRewardPanel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="QuestDescriptionText" type="Label" parent="QuestRewardPanel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="QuestRewardPanel/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Item rewards"
 horizontal_alignment = 1

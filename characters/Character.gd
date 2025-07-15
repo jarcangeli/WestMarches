@@ -9,8 +9,41 @@ var equip_slots : Dictionary
 
 var debt : int = 0
 
+var base_constitution := 10
+var base_strength := 10
+var base_dexterity := 10
+
+@onready var health := get_max_health()
+
 func _ready():
 	equip_best_gear() #TODO: Remove from _ready
+
+func is_alive():
+	return health > 0
+
+func get_strength() -> int:
+	var strength = base_strength
+	for item : Item in get_equipped_items():
+		strength += item.strength_bonus
+	return clamp(strength, 0, strength)
+
+func get_dexterity() -> int:
+	var dexterity = base_dexterity
+	for item : Item in get_equipped_items():
+		dexterity += item.dexterity_bonus
+	return clamp(dexterity, 0, dexterity)
+
+func get_constitution() -> int:
+	var constitution = base_constitution
+	for item : Item in get_equipped_items():
+		constitution += item.consitution_bonus
+	return clamp(constitution, 1, constitution)
+
+func get_max_health() -> int:
+	return get_constitution() * 10
+
+func damage(value : int):
+	health -= clamp(value, 0, value)
 
 func get_loaned_items():
 	var items = []
@@ -33,3 +66,11 @@ func get_equipped_item(slot : Item.Slot):
 	if item == null or item.get_parent() != self:
 		return null
 	return item
+
+func get_equipped_items():
+	var items = []
+	for item in equip_slots.values():
+		if item == null or item.get_parent() != self:
+			continue
+		items.append(item)
+	return items

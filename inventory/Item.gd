@@ -35,6 +35,10 @@ const slot_container_icons = [
 
 @export var consumed_on_acquire : bool = false
 
+@export var consitution_bonus := 0
+@export var strength_bonus := 0
+@export var dexterity_bonus := 0
+
 var base_value = 1
 
 var equip_slot = null

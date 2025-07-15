@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl4vuiwj85ev"]
+
+[ext_resource type="Script" uid="uid://8v260nocnrls" path="res://test/TestCombat.gd" id="1_kuu8u"]
+[ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="1_oxyo4"]
+[ext_resource type="PackedScene" path="res://items/Shortsword.tscn" id="2_2oxra"]
+[ext_resource type="PackedScene" path="res://items/Jerkin.tscn" id="3_kuu8u"]
+
+[node name="TestCombat" type="Control" node_paths=PackedStringArray("adventurer", "monster")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kuu8u")
+adventurer = NodePath("Conan")
+monster = NodePath("Wyvern")
+
+[node name="CombatLog" type="TextEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Conan" type="Node" parent="."]
+script = ExtResource("1_oxyo4")
+character_name = "Conan the Bararian"
+level = 3
+
+[node name="Shortsword" parent="Conan" instance=ExtResource("2_2oxra")]
+primary_slot_type = 0
+strength_bonus = 30
+
+[node name="Jerkin" parent="Conan" instance=ExtResource("3_kuu8u")]
+consitution_bonus = 10
+
+[node name="Wyvern" type="Node" parent="."]
+script = ExtResource("1_oxyo4")
+character_name = "Mr Wyvern"
+level = 5

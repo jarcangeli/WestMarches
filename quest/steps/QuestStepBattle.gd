@@ -28,3 +28,6 @@ func finished():
 func on_combat_log_line(line : String):
 	print(line)
 	combat_log.append(line)
+
+func get_progress_text():
+	return combat_log

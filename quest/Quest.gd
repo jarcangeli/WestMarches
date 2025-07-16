@@ -9,9 +9,9 @@ class_name Quest
 @onready var target = get_node_or_null(target_path)
 
 @onready var steps = $QuestSteps
-@onready var travel_step = $QuestSteps/TravelStep
-@onready var battle_step = $QuestSteps/BattleStep
-@onready var return_step = $QuestSteps/ReturnStep
+@onready var travel_step : QuestStepTravel = $QuestSteps/TravelStep
+@onready var battle_step : QuestStepBattle = $QuestSteps/BattleStep
+@onready var return_step : QuestStepTravel = $QuestSteps/ReturnStep
 @onready var rewards = $Rewards
 
 var started = false		# set out
@@ -55,6 +55,10 @@ func advance_time():
 
 func active():
 	return started and not finished
+
+func get_progess_text():
+	var progress = travel_step.get_progress_text() + battle_step.get_progress_text() + return_step.get_progress_text()
+	return "\n".join(progress)
 
 func get_difficulty():
 	if battle_step == null:

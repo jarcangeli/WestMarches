@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dulmpfagfjs2k"]
+[gd_scene load_steps=12 format=3 uid="uid://dulmpfagfjs2k"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="1_3p2es"]
 [ext_resource type="Script" uid="uid://d0s6ig5osvmvr" path="res://ui/quest_ui/QuestSelectUI.gd" id="1_ubjuw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dm7nwvytq5g0y" path="res://ui/quest_ui/QuestRewardsDisplay.gd" id="7_7b3j3"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="8_nr7bh"]
 [ext_resource type="PackedScene" uid="uid://wx5sih5dc80a" path="res://ui/inventory_ui/ItemButtonDisplayDisabled.tscn" id="9_jin1d"]
+[ext_resource type="Script" uid="uid://rnj4eogah0sp" path="res://ui/quest_ui/QuestProgressPanel.gd" id="11_1mbw8"]
 
 [node name="QuestSelectUI" type="HBoxContainer"]
 anchors_preset = 15
@@ -68,6 +69,7 @@ layout_mode = 2
 text = "Quest History:"
 
 [node name="QuestInfoPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_1mbw8")
@@ -213,6 +215,48 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 text = "COLLECT REWARDS"
+
+[node name="QuestProgressPanel" type="Panel" parent="." node_paths=PackedStringArray("quest_name_label", "quest_description_text", "quest_progress_text")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("11_1mbw8")
+quest_name_label = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestNameLabel")
+quest_description_text = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestDescriptionText")
+quest_progress_text = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestProgressText")
+
+[node name="MarginContainer" type="MarginContainer" parent="QuestProgressPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="QuestProgressPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="QuestNameLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="QuestDescriptionText" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="QuestProgressText" type="TextEdit" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
 
 [connection signal="pressed" from="QuestInfoPanel/MarginContainer/VBoxContainer/ChooseQuestButton" to="." method="on_choose_quest_button_pressed"]
 [connection signal="pressed" from="QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="." method="on_choose_quest_button_pressed"]

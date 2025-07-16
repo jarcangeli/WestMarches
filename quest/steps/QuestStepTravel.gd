@@ -21,3 +21,14 @@ func finished():
 		push_warning("Invalid quest travel step state, terminating early")
 		return true
 	return party.get_position() == destination.get_position()
+
+func get_progress_text():
+	var text = []
+	if started:
+		var start_text = "The party set out"
+		if destination:
+			start_text +=  " towards " + destination.name
+		text.append(start_text)
+	if finished():
+		text.append("The party reach their destination")
+	return text

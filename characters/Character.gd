@@ -36,7 +36,7 @@ func get_dexterity() -> int:
 func get_constitution() -> int:
 	var constitution = base_constitution
 	for item : Item in get_equipped_items():
-		constitution += item.consitution_bonus
+		constitution += item.constitution_bonus
 	return clamp(constitution, 1, constitution)
 
 func get_max_health() -> int:

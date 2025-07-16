@@ -17,4 +17,7 @@ func advance_step():
 	print("Default quest step advanced")
 
 func finished():
-	return true
+	return started
+
+func get_progress_text():
+	return ""

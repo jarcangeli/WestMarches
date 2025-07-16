@@ -17,6 +17,7 @@ signal quest_chosen(quest)
 
 @onready var quest_info_panel = $QuestInfoPanel
 @onready var quest_reward_panel = $QuestRewardPanel
+@onready var quest_progress_panel: Panel = $QuestProgressPanel
 
 var selected_quest : Quest = null
 
@@ -49,11 +50,11 @@ func set_new_quests(quests):
 
 func set_active_quests(quests):
 	clear_button_container(active_container)
-	add_buttons_to_container(quests, active_container, true)
+	add_buttons_to_container(quests, active_container)
 
 func set_completed_quests(quests):
 	clear_button_container(completed_container)
-	add_buttons_to_container(quests, completed_container, true)
+	add_buttons_to_container(quests, completed_container)
 
 func set_party(party : AdventuringParty):
 	quest_info_panel.set_party(party)
@@ -70,6 +71,7 @@ func select_quest(quest):
 func update_quest_panels():
 	quest_info_panel.visible = false
 	quest_reward_panel.visible = false
+	quest_progress_panel.visible = false
 	if not is_instance_valid(selected_quest):
 		return
 	
@@ -79,6 +81,9 @@ func update_quest_panels():
 	elif selected_quest.finished and not selected_quest.completed:
 		quest_reward_panel.visible = true
 		quest_reward_panel.set_quest(selected_quest)
+	else:
+		quest_progress_panel.visible = true
+		quest_progress_panel.set_quest(selected_quest)
 
 func on_choose_quest_button_pressed():
 	if not is_instance_valid(selected_quest):

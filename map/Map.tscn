@@ -43,7 +43,7 @@ position = Vector2(-221, 129)
 
 [node name="Minotaur" parent="World/POI" instance=ExtResource("2")]
 script = ExtResource("4_pgc66")
-character_name = ""
+character_name = "Minotaur"
 level = 14
 base_constitution = 40
 base_strength = 40
@@ -57,7 +57,7 @@ position = Vector2(178, 177)
 
 [node name="Troll" parent="World/POI2" instance=ExtResource("2")]
 script = ExtResource("4_pgc66")
-character_name = ""
+character_name = "Troll"
 level = 10
 base_constitution = 20
 base_strength = 20
@@ -69,7 +69,7 @@ strength_bonus = 10
 
 [node name="Bear" parent="World/POI2" instance=ExtResource("2")]
 script = ExtResource("4_pgc66")
-character_name = ""
+character_name = "Bear"
 level = 1
 base_constitution = 10
 base_strength = 10

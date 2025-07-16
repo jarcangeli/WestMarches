@@ -32,8 +32,6 @@ func initialise(monster, map):
 	return_step.initialise(monster, map.town)
 	
 	$Rewards/CurrencyReward.gold = ceil(get_difficulty())
-	
-	monster.active_quest = self
 
 func start(new_party):
 	if not is_instance_valid(new_party):

@@ -1,3 +1,6 @@
-[gd_resource type="Theme" format=3 uid="uid://cxldawy7hnlku"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cxldawy7hnlku"]
+
+[ext_resource type="StyleBox" uid="uid://bv6mnt6t7t1fb" path="res://ui/style/base_button.stylebox" id="1_vos2p"]
 
 [resource]
+Button/styles/normal = ExtResource("1_vos2p")

@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dulmpfagfjs2k"]
+[gd_scene load_steps=11 format=3 uid="uid://dulmpfagfjs2k"]
 
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="1_3p2es"]
 [ext_resource type="Script" uid="uid://d0s6ig5osvmvr" path="res://ui/quest_ui/QuestSelectUI.gd" id="1_ubjuw"]
 [ext_resource type="PackedScene" path="res://ui/quest_ui/QuestButton.tscn" id="2_3p2es"]
 [ext_resource type="Script" uid="uid://bgec4w6jbjdjf" path="res://ui/quest_ui/QuestInfoPanel.gd" id="3_1mbw8"]
@@ -18,6 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_3p2es")
 script = ExtResource("1_ubjuw")
 quest_button_scene = ExtResource("2_3p2es")
 pending_container_path = NodePath("QuestScrollContainer/QuestVBoxContainer/PendingContainer")

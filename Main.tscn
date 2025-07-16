@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="3"]
 [ext_resource type="Script" uid="uid://bbpg5w2de17ex" path="res://quest/QuestsContainerNode.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://b3ruqllcfspo1" path="res://ui/inventory_ui/PlayerInventoryView.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://items/Shortsword.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://qsvwvq52xbwi" path="res://items/Shortsword.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://d1lk4lb1s31lu" path="res://items/Coif.tscn" id="7"]
 [ext_resource type="Script" uid="uid://dsujm37ljcj4u" path="res://inventory/PlayerInventory.gd" id="8"]
 [ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="9"]
 [ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://ui/AdvanceTimeButton.gd" id="10"]
-[ext_resource type="PackedScene" path="res://items/Shortbow.tscn" id="10_kjvhd"]
+[ext_resource type="PackedScene" uid="uid://duganlfwbnkrb" path="res://items/Shortbow.tscn" id="10_kjvhd"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="12"]
 [ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="13"]
 [ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://ui/inventory_ui/PlayerCurrencyDisplay.gd" id="14"]
@@ -81,6 +81,9 @@ display_name = "Ye Parte"
 script = ExtResource("12")
 character_name = "Arthur"
 level = 3
+base_constitution = 16
+base_strength = 16
+base_dexterity = 16
 
 [node name="Shortsword" parent="AdventuringParties/Party2/Arthur" instance=ExtResource("6")]
 primary_slot_type = 0
@@ -89,6 +92,9 @@ primary_slot_type = 0
 script = ExtResource("12")
 character_name = "Benthwyn"
 level = 4
+base_constitution = 18
+base_strength = 18
+base_dexterity = 18
 
 [node name="Coif" parent="AdventuringParties/Party2/Benthwyn" instance=ExtResource("7")]
 
@@ -99,6 +105,9 @@ primary_slot_type = 0
 script = ExtResource("12")
 character_name = "Gomli"
 level = 3
+base_constitution = 16
+base_strength = 16
+base_dexterity = 16
 
 [node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests") groups=["time"]]
 script = ExtResource("21")

@@ -36,6 +36,7 @@ enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/
 [gui]
 
 theme/custom_font="res://assets/fonts/EB_Garamond/GaramondMedium.tres"
+theme/default_font_multichannel_signed_distance_field=true
 common/drop_mouse_on_gui_input_disabled=true
 
 [physics]

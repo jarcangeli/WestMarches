@@ -20,7 +20,7 @@ func play_round():
 		play_turn(monster, adventurers)
 
 func play_turn(character : Character, enemies : Array):
-	if not character.is_alive():
+	if not character.is_alive() or is_finished():
 		return
 	
 	var roll := randi() % 100
@@ -29,7 +29,7 @@ func play_turn(character : Character, enemies : Array):
 	var damage = roll + character.get_strength() - enemy.get_dexterity()
 	if damage > 0:
 		enemy.damage(damage)
-		combat_log.emit("%s dealt %d danage to %s (%d/%d)" % [character.character_name, damage, enemy.character_name, enemy.health, enemy.get_max_health()])
+		combat_log.emit("%s dealt %d damage to %s (%d/%d)" % [character.character_name, damage, enemy.character_name, enemy.health, enemy.get_max_health()])
 		if not enemy.is_alive():
 			combat_log.emit(enemy.character_name + " was slain")
 	else:

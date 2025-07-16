@@ -10,6 +10,9 @@ var quest_scene = preload("res://quest/QuestKill.tscn")
 
 const MAX_AVAILABLE_QUESTS = 4
 
+ #TODO: Make this more sofisticated, want max 1 active quest per monster
+var monsters_already_quested = []
+
 func _ready():
 	print("Generating initial quests")
 	call_deferred("generate_quest")
@@ -39,6 +42,7 @@ func generate_quest_kill():
 	var quest : Quest = quest_scene.instantiate()
 	add_child(quest)
 	quest.initialise(monster, map)
+	monsters_already_quested.append(monster)
 	return quest
 
 func get_poi(root):
@@ -57,11 +61,11 @@ func get_monster(root):
 	var children = root.get_children()
 	children.shuffle()
 	for node in children:
-		if (node is Character) and (node.active_quest == null):
+		if (node is Character) and not node in monsters_already_quested:
 			return node
 		else:
 			var monster = get_monster(node)
-			if (monster is Character) and (monster.active_quest == null):
+			if (monster is Character) and not node in monsters_already_quested:
 					return monster
 	return null
 

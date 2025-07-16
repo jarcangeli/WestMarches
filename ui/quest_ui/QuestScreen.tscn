@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2xf0hqwsw5f7"]
+[gd_scene load_steps=6 format=3 uid="uid://c2xf0hqwsw5f7"]
 
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="1_27ytc"]
 [ext_resource type="PackedScene" uid="uid://dulmpfagfjs2k" path="res://ui/quest_ui/QuestSelectUI.tscn" id="2_edwcb"]
 [ext_resource type="Script" uid="uid://f664duex3swn" path="res://ui/quest_ui/QuestScreen.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://dgnhuy66p3u67" path="res://ui/quest_ui/QuestEquipUI.tscn" id="11_mfksw"]
@@ -13,6 +14,7 @@ offset_left = 4.0
 offset_top = 32.0
 offset_right = -4.0
 offset_bottom = -4.0
+theme = ExtResource("1_27ytc")
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8

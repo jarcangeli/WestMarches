@@ -8,3 +8,5 @@ item_name = "Coif"
 description = "A simple leather helmet."
 icon = ExtResource("2")
 primary_slot_type = 2
+constitution_bonus = 10
+dexterity_bonus = 10

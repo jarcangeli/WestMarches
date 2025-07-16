@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" path="res://map/POI.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://items/Jerkin.tscn" id="3"]
 [ext_resource type="Script" uid="uid://ba8ptc7gjnr1f" path="res://map/Map.gd" id="4"]
-[ext_resource type="Script" uid="uid://b550ollskpq3g" path="res://map/Monster.gd" id="5"]
+[ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="4_pgc66"]
 [ext_resource type="Texture2D" uid="uid://ctwnbwnd4ou2r" path="res://assets/icons/icon.png" id="8"]
 
 [node name="Map" type="Control"]
@@ -42,21 +42,35 @@ horizontal_alignment = 1
 position = Vector2(-221, 129)
 
 [node name="Minotaur" parent="World/POI" instance=ExtResource("2")]
-script = ExtResource("5")
+script = ExtResource("4_pgc66")
+character_name = ""
 level = 14
+base_constitution = 40
+base_strength = 40
+base_dexterity = 40
 
 [node name="Jerkin" parent="World/POI/Minotaur" instance=ExtResource("3")]
+dexterity_bonus = 10
 
 [node name="POI2" parent="World" instance=ExtResource("2")]
 position = Vector2(178, 177)
 
 [node name="Troll" parent="World/POI2" instance=ExtResource("2")]
-script = ExtResource("5")
+script = ExtResource("4_pgc66")
+character_name = ""
 level = 10
+base_constitution = 20
+base_strength = 20
+base_dexterity = 20
 
 [node name="Shortbow" parent="World/POI2/Troll" instance=ExtResource("1")]
 primary_slot_type = 0
+strength_bonus = 10
 
 [node name="Bear" parent="World/POI2" instance=ExtResource("2")]
-script = ExtResource("5")
+script = ExtResource("4_pgc66")
+character_name = ""
 level = 1
+base_constitution = 10
+base_strength = 10
+base_dexterity = 10

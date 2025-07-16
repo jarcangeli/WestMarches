@@ -9,9 +9,9 @@ var equip_slots : Dictionary
 
 var debt : int = 0
 
-var base_constitution := 10
-var base_strength := 10
-var base_dexterity := 10
+@export var base_constitution := 10
+@export var base_strength := 10
+@export var base_dexterity := 10
 
 @onready var health := get_max_health()
 

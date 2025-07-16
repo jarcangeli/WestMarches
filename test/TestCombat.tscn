@@ -36,8 +36,11 @@ strength_bonus = 30
 
 [node name="Jerkin" parent="Conan" instance=ExtResource("3_kuu8u")]
 consitution_bonus = 10
+dexterity_bonus = 40
 
 [node name="Wyvern" type="Node" parent="."]
 script = ExtResource("1_oxyo4")
 character_name = "Mr Wyvern"
 level = 5
+base_strength = 20
+base_dexterity = 50

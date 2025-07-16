@@ -57,11 +57,11 @@ func get_monster(root):
 	var children = root.get_children()
 	children.shuffle()
 	for node in children:
-		if (node is Monster) and (node.active_quest == null):
+		if (node is Character) and (node.active_quest == null):
 			return node
 		else:
 			var monster = get_monster(node)
-			if (monster is Monster) and (monster.active_quest == null):
+			if (monster is Character) and (monster.active_quest == null):
 					return monster
 	return null
 

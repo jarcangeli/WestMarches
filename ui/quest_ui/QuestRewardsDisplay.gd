@@ -13,6 +13,7 @@ func set_quest(quest : Quest):
 		quest_description_label.text = quest.quest_description
 	item_rewards_container.clear_item_views()
 	item_rewards_container.add_items(quest.get_rewards())
+	#TODO: Replace with estimated reward value
 	#var currency_rewards : Currencies = quest.get_currency_rewards()
 	#if currency_rewards:
 		#currency_rewards_label.text = currency_rewards.print_to_string()

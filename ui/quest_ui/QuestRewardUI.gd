@@ -10,6 +10,7 @@ signal quest_finished()
 @onready var loot_container: VBoxContainer = %LootContainer
 @onready var returned_items_display: ItemDisplayContainer = %ReturnedItemsDisplay
 
+@onready var items_display_container: ItemDisplayContainer = %ItemsDisplayContainer
 @onready var item_rewards: ItemContainer = %ItemRewards
 
 var current_quest : Quest = null
@@ -22,6 +23,7 @@ func setup_quest_reward_ui(quest : Quest):
 	owed_party_coins_label.text = str(debt)
 	loot_container.clear_item_views()
 	loot_container.add_items(quest.get_rewards())
+	items_display_container.clear_item_views()
 	selected_coins_display.initialise(debt, coins)
 	
 	# Preview returned items

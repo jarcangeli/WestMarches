@@ -16,5 +16,11 @@ func get_item_rewards():
 			items.append(node)
 	return items
 
+func add_item_rewards(items):
+	for node in items:
+		if node.get_parent():
+			node.get_parent().remove_child(node)
+		add_child(node)
+
 func get_location():
 	return get_parent()

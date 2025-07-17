@@ -6,6 +6,8 @@ signal combat_log(line : String)
 var adventurers : Array
 var monsters : Array
 
+var round := 0
+
 func _init(_adventurers : Array, _monsters : Array):
 	adventurers = _adventurers
 	monsters = _monsters
@@ -13,11 +15,18 @@ func _init(_adventurers : Array, _monsters : Array):
 func play_round():
 	if is_finished():
 		return
+	round += 1
+	if round == 1:
+		combat_log.emit("Start of combat!")
+	combat_log.emit("Start of round %d" % round)
 	
 	for adventurer in adventurers:
 		play_turn(adventurer, monsters)
 	for monster in monsters:
 		play_turn(monster, adventurers)
+	
+	if is_finished():
+		combat_log.emit("End of combat!")
 
 func play_turn(character : Character, enemies : Array):
 	if not character.is_alive() or is_finished():

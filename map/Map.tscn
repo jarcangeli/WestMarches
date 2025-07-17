@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cormuewc0570n"]
+[gd_scene load_steps=9 format=3 uid="uid://cormuewc0570n"]
 
 [ext_resource type="PackedScene" uid="uid://duganlfwbnkrb" path="res://items/Shortbow.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cxdhpkvpkirir" path="res://map/POI.tscn" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dndy7x6bujlsv" path="res://map/Encounter.gd" id="4_e5tu3"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="4_pgc66"]
 [ext_resource type="Texture2D" uid="uid://ctwnbwnd4ou2r" path="res://assets/icons/icon.png" id="8"]
+[ext_resource type="PackedScene" uid="uid://drn11vjunj5u2" path="res://items/Coinpouch.tscn" id="8_wyu2p"]
 
 [node name="Map" type="Control"]
 layout_mode = 3
@@ -87,3 +88,5 @@ level = 1
 base_constitution = 10
 base_strength = 10
 base_dexterity = 10
+
+[node name="Coin Pouch" parent="World/Swamp Hut/Honey I\'m home!" instance=ExtResource("8_wyu2p")]

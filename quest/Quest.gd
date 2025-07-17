@@ -73,3 +73,8 @@ func get_rewards():
 	if not battle_step or not battle_step.encounter:
 		return []
 	return battle_step.encounter.get_item_rewards()
+
+func add_rewards(items):
+	if not battle_step or not battle_step.encounter:
+		return
+	return battle_step.encounter.add_item_rewards(items)

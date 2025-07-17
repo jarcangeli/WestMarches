@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3ruqllcfspo1"]
+[gd_scene load_steps=7 format=3 uid="uid://b3ruqllcfspo1"]
 
 [ext_resource type="PackedScene" path="res://ui/inventory_ui/ItemButtonSelectDisplay.tscn" id="1"]
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="1_st5uv"]
 [ext_resource type="Script" uid="uid://84whq0bed761" path="res://ui/inventory_ui/PlayerInventoryView.gd" id="2"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="3"]
 [ext_resource type="Script" uid="uid://c0p814bkv8qxv" path="res://ui/inventory_ui/ItemDetailView.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="5_tjcmg"]
 
 [node name="InventoryView" type="HBoxContainer"]
 anchors_preset = 15
@@ -13,6 +15,7 @@ offset_left = 4.0
 offset_top = 32.0
 offset_right = -4.0
 offset_bottom = -4.0
+theme = ExtResource("1_st5uv")
 script = ExtResource("2")
 
 [node name="ItemsDisplayContainer" type="VBoxContainer" parent="."]
@@ -25,6 +28,12 @@ item_display_scene_path = ExtResource("1")
 layout_mode = 2
 text = "Inventory"
 horizontal_alignment = 1
+
+[node name="ItemButtonDisplay" parent="ItemsDisplayContainer" instance=ExtResource("5_tjcmg")]
+layout_mode = 2
+
+[node name="ItemButtonDisplay2" parent="ItemsDisplayContainer" instance=ExtResource("5_tjcmg")]
+layout_mode = 2
 
 [node name="ItemDetailView" type="MarginContainer" parent="."]
 layout_mode = 2

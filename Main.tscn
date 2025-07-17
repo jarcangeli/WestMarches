@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=20 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://ui/quest_ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="2"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://ui/inventory_ui/PlayerCurrencyDisplay.gd" id="14"]
 [ext_resource type="Script" uid="uid://bvsxe7140kkgc" path="res://core/PlayerCurrencies.gd" id="15"]
 [ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://ui/TimeLabel.gd" id="16"]
+[ext_resource type="PackedScene" uid="uid://biym5k6isys7d" path="res://ui/TavernUI.tscn" id="18_5tuhn"]
 [ext_resource type="Script" uid="uid://ba36v1b1jri08" path="res://characters/AdventuringParties.gd" id="19"]
 [ext_resource type="Script" uid="uid://37lfxcb774f2" path="res://quest/QuestManager.gd" id="21"]
 
@@ -173,9 +174,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Quests" parent="GameWindow/GameTabs" node_paths=PackedStringArray("pending_quests", "available_quests", "active_quests", "completed_quests", "adventuring_parties") instance=ExtResource("1")]
+visible = false
 layout_mode = 2
 pending_quests = NodePath("../../../QuestManager/PendingQuests")
 available_quests = NodePath("../../../QuestManager/AvailableQuests")
@@ -185,9 +187,13 @@ adventuring_parties = NodePath("../../../AdventuringParties")
 metadata/_tab_index = 0
 
 [node name="Inventory" parent="GameWindow/GameTabs" instance=ExtResource("5")]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="Tavern" parent="GameWindow/GameTabs" node_paths=PackedStringArray("adventuring_parties") instance=ExtResource("18_5tuhn")]
+visible = false
+layout_mode = 2
+adventuring_parties = NodePath("../../../AdventuringParties")
 
 [node name="PHTabs" type="Control" parent="GameWindow"]
 visible = false

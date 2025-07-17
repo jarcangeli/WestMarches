@@ -114,7 +114,7 @@ base_dexterity = 16
 script = ExtResource("21")
 parties = NodePath("../AdventuringParties")
 available_quests = NodePath("AvailableQuests")
-map_path = NodePath("../GameWindow/PHTabs/Map")
+map_path = NodePath("../GameWindow/GameTabs/Map")
 
 [node name="PendingQuests" type="Node" parent="QuestManager"]
 script = ExtResource("4")
@@ -195,6 +195,11 @@ visible = false
 layout_mode = 2
 adventuring_parties = NodePath("../../../AdventuringParties")
 
+[node name="Map" parent="GameWindow/GameTabs" instance=ExtResource("3")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
 [node name="PHTabs" type="Control" parent="GameWindow"]
 visible = false
 layout_mode = 2
@@ -231,11 +236,3 @@ size_flags_vertical = 6
 text = "TODO"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Map" parent="GameWindow/PHTabs" instance=ExtResource("3")]
-visible = false
-layout_mode = 2
-anchors_preset = 0
-offset_top = 66.0
-offset_right = 4.0
-offset_bottom = 66.0

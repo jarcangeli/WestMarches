@@ -27,6 +27,7 @@ town_path = NodePath("World/Town")
 position = Vector2(526, 184)
 
 [node name="Town" type="Node2D" parent="World"]
+position = Vector2(509, 87)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Town"]
 texture = ExtResource("8")
@@ -47,7 +48,7 @@ position = Vector2(-221, 129)
 script = ExtResource("4_e5tu3")
 metadata/_custom_type_script = "uid://dndy7x6bujlsv"
 
-[node name="Minotaur" parent="World/The Maze/Bull Hit" instance=ExtResource("2")]
+[node name="Minotaur" type="Node" parent="World/The Maze/Bull Hit"]
 script = ExtResource("4_pgc66")
 character_name = "Minotaur"
 level = 14
@@ -59,13 +60,13 @@ base_dexterity = 40
 dexterity_bonus = 10
 
 [node name="Swamp Hut" parent="World" instance=ExtResource("2")]
-position = Vector2(178, 177)
+position = Vector2(223, 269)
 
 [node name="Knock knock" type="Node2D" parent="World/Swamp Hut"]
 script = ExtResource("4_e5tu3")
 metadata/_custom_type_script = "uid://dndy7x6bujlsv"
 
-[node name="Troll" parent="World/Swamp Hut/Knock knock" instance=ExtResource("2")]
+[node name="Troll" type="Node" parent="World/Swamp Hut/Knock knock"]
 script = ExtResource("4_pgc66")
 character_name = "Troll"
 level = 10
@@ -81,12 +82,8 @@ strength_bonus = 10
 script = ExtResource("4_e5tu3")
 metadata/_custom_type_script = "uid://dndy7x6bujlsv"
 
-[node name="Bear" parent="World/Swamp Hut/Honey I\'m home!" instance=ExtResource("2")]
+[node name="Bear" type="Node" parent="World/Swamp Hut/Honey I\'m home!"]
 script = ExtResource("4_pgc66")
 character_name = "Bear"
-level = 1
-base_constitution = 10
-base_strength = 10
-base_dexterity = 10
 
 [node name="Coin Pouch" parent="World/Swamp Hut/Honey I\'m home!" instance=ExtResource("8_wyu2p")]

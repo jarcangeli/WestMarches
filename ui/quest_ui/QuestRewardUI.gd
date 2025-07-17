@@ -17,7 +17,7 @@ var current_quest : Quest = null
 func setup_quest_reward_ui(quest : Quest):
 	current_quest = quest
 	var coins : int = quest.party.get_gold()
-	var debt : int = quest.get_currency_rewards().gold + quest.party.get_debt()
+	var debt : int = quest.party.get_debt() # quest.get_currency_rewards().gold + 
 	available_party_coins_label.text = str(coins)
 	owed_party_coins_label.text = str(debt)
 	loot_container.clear_item_views()

@@ -12,7 +12,6 @@ class_name Quest
 @onready var travel_step : QuestStepTravel = $QuestSteps/TravelStep
 @onready var battle_step : QuestStepBattle = $QuestSteps/BattleStep
 @onready var return_step : QuestStepTravel = $QuestSteps/ReturnStep
-@onready var rewards = $Rewards
 
 var started = false		# set out
 var finished = false 	# back in town
@@ -23,13 +22,13 @@ var party : AdventuringParty = null
 func _ready():
 	add_to_group("time")
 
-func initialise(monster, map):
-	quest_name = "Kill " + monster.name
-	quest_description = "A quest to kill " + monster.name
+func initialise(encounter : Encounter, map):
+	quest_name = encounter.name
+	quest_description = "Insert description here" #TODO: Property of encounter
 	
-	travel_step.initialise(map.town, monster)
-	battle_step.initialise([monster])
-	return_step.initialise(monster, map.town)
+	travel_step.initialise(map.town, encounter.get_location())
+	battle_step.initialise(encounter)
+	return_step.initialise(encounter.get_location(), map.town)
 	
 	$Rewards/CurrencyReward.gold = ceil(get_difficulty())
 
@@ -61,30 +60,16 @@ func get_progess_text():
 	return "\n".join(progress)
 
 func get_difficulty():
-	if battle_step == null:
+	if not battle_step or not battle_step.encounter:
 		return 0
 	
-	var monsters : Array = battle_step.monsters
+	var monsters : Array = battle_step.encounter.get_monsters()
 	var difficulty_sum = 0
 	for monster in monsters:
 		difficulty_sum += monster.level
 	return difficulty_sum / 20.0 * 5
 
 func get_rewards():
-	return rewards.get_children()
-
-func add_rewards(items : Array):
-	for item in items:
-		if item.get_parent():
-			item.get_parent().remove_child(item)
-		rewards.add_child(item)
-
-func get_currency_rewards():
-	var return_currencies = null
-	for node in rewards.get_children():
-		if node is Currencies:
-			if return_currencies != null:
-				push_warning("Multiple currencies rewards from quest, discarded")
-				continue
-			return_currencies = node
-	return return_currencies
+	if not battle_step or not battle_step.encounter:
+		return []
+	return battle_step.encounter.get_item_rewards()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cormuewc0570n"]
+[gd_scene load_steps=8 format=3 uid="uid://cormuewc0570n"]
 
-[ext_resource type="PackedScene" path="res://items/Shortbow.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://map/POI.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://items/Jerkin.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://duganlfwbnkrb" path="res://items/Shortbow.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cxdhpkvpkirir" path="res://map/POI.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://drhyvfjlgg10p" path="res://items/Jerkin.tscn" id="3"]
 [ext_resource type="Script" uid="uid://ba8ptc7gjnr1f" path="res://map/Map.gd" id="4"]
+[ext_resource type="Script" uid="uid://dndy7x6bujlsv" path="res://map/Encounter.gd" id="4_e5tu3"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="4_pgc66"]
 [ext_resource type="Texture2D" uid="uid://ctwnbwnd4ou2r" path="res://assets/icons/icon.png" id="8"]
 
@@ -38,10 +39,14 @@ text = "TOWN
 "
 horizontal_alignment = 1
 
-[node name="POI" parent="World" instance=ExtResource("2")]
+[node name="The Maze" parent="World" instance=ExtResource("2")]
 position = Vector2(-221, 129)
 
-[node name="Minotaur" parent="World/POI" instance=ExtResource("2")]
+[node name="Bull Hit" type="Node2D" parent="World/The Maze"]
+script = ExtResource("4_e5tu3")
+metadata/_custom_type_script = "uid://dndy7x6bujlsv"
+
+[node name="Minotaur" parent="World/The Maze/Bull Hit" instance=ExtResource("2")]
 script = ExtResource("4_pgc66")
 character_name = "Minotaur"
 level = 14
@@ -49,13 +54,17 @@ base_constitution = 40
 base_strength = 40
 base_dexterity = 40
 
-[node name="Jerkin" parent="World/POI/Minotaur" instance=ExtResource("3")]
+[node name="Jerkin" parent="World/The Maze/Bull Hit" instance=ExtResource("3")]
 dexterity_bonus = 10
 
-[node name="POI2" parent="World" instance=ExtResource("2")]
+[node name="Swamp Hut" parent="World" instance=ExtResource("2")]
 position = Vector2(178, 177)
 
-[node name="Troll" parent="World/POI2" instance=ExtResource("2")]
+[node name="Knock knock" type="Node2D" parent="World/Swamp Hut"]
+script = ExtResource("4_e5tu3")
+metadata/_custom_type_script = "uid://dndy7x6bujlsv"
+
+[node name="Troll" parent="World/Swamp Hut/Knock knock" instance=ExtResource("2")]
 script = ExtResource("4_pgc66")
 character_name = "Troll"
 level = 10
@@ -63,11 +72,15 @@ base_constitution = 20
 base_strength = 20
 base_dexterity = 20
 
-[node name="Shortbow" parent="World/POI2/Troll" instance=ExtResource("1")]
+[node name="Shortbow" parent="World/Swamp Hut/Knock knock" instance=ExtResource("1")]
 primary_slot_type = 0
 strength_bonus = 10
 
-[node name="Bear" parent="World/POI2" instance=ExtResource("2")]
+[node name="Honey I\'m home!" type="Node2D" parent="World/Swamp Hut"]
+script = ExtResource("4_e5tu3")
+metadata/_custom_type_script = "uid://dndy7x6bujlsv"
+
+[node name="Bear" parent="World/Swamp Hut/Honey I\'m home!" instance=ExtResource("2")]
 script = ExtResource("4_pgc66")
 character_name = "Bear"
 level = 1

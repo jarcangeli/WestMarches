@@ -1,17 +1,17 @@
 extends QuestStep
 class_name QuestStepBattle
 
-var monsters : Array
+var encounter : Encounter
 var combat : Combat
 
 var combat_log : Array = []
 
-func initialise(_monsters):
-	monsters = _monsters
+func initialise(_encounter : Encounter):
+	encounter = _encounter
 
 func advance_step():
 	print("Battle started!")
-	combat = Combat.new(party.get_characters(), monsters)
+	combat = Combat.new(party.get_characters(), encounter.get_monsters())
 	combat.combat_log.connect(on_combat_log_line)
 	while (!combat.is_finished()):
 		combat.play_round()

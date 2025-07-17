@@ -11,7 +11,7 @@ var quest_scene = preload("res://quest/QuestKill.tscn")
 const MAX_AVAILABLE_QUESTS = 4
 
  #TODO: Make this more sofisticated, want max 1 active quest per monster
-var monsters_already_quested = []
+var encounters_already_encountered = []
 
 func _ready():
 	print("Generating initial quests")
@@ -34,15 +34,15 @@ func generate_quest():
 	SignalBus.quest_created.emit(quest)
 
 func generate_quest_kill():
-	var monster = get_monster(map)
-	if not is_instance_valid(monster):
-		print("[TODO] No free monster found to create kill quest, make some more")
+	var encounter = get_encounter(map)
+	if not is_instance_valid(encounter):
+		print("[TODO] No free encounter found to create kill quest, make some more")
 		return null
 	
 	var quest : Quest = quest_scene.instantiate()
 	add_child(quest)
-	quest.initialise(monster, map)
-	monsters_already_quested.append(monster)
+	quest.initialise(encounter, map)
+	encounters_already_encountered.append(encounter)
 	return quest
 
 func get_poi(root):
@@ -56,17 +56,17 @@ func get_poi(root):
 				return poi
 	return null
 
-func get_monster(root):
+func get_encounter(root):
 	# HACK: map should expose an API
 	var children = root.get_children()
 	children.shuffle()
 	for node in children:
-		if (node is Character) and not node in monsters_already_quested:
+		if (node is Encounter) and not node in encounters_already_encountered:
 			return node
 		else:
-			var monster = get_monster(node)
-			if (monster is Character) and not node in monsters_already_quested:
-					return monster
+			var encounter = get_encounter(node)
+			if (encounter is Encounter) and not encounter in encounters_already_encountered:
+					return encounter
 	return null
 
 func add_step_to_quest(quest, step):

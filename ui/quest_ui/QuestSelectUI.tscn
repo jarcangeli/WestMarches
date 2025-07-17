@@ -69,7 +69,6 @@ layout_mode = 2
 text = "Quest History:"
 
 [node name="QuestInfoPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_1mbw8")
@@ -151,6 +150,7 @@ script = ExtResource("8_nr7bh")
 item_display_scene_path = ExtResource("9_jin1d")
 
 [node name="CurrencyRewardsLabel" type="Label" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay/RewardsContainer"]
+visible = false
 layout_mode = 2
 text = "0 gp"
 horizontal_alignment = 1
@@ -202,6 +202,7 @@ script = ExtResource("8_nr7bh")
 item_display_container = NodePath(".")
 
 [node name="CurrencyRewardsLabel" type="Label" parent="QuestRewardPanel/VBoxContainer/VBoxContainer/ItemRewardsContainer"]
+visible = false
 layout_mode = 2
 text = "0 gp"
 horizontal_alignment = 1

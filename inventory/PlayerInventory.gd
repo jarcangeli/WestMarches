@@ -4,6 +4,8 @@ func _ready():
 	Globals.player_inventory = self
 	
 	item_added.connect(on_item_added, CONNECT_DEFERRED)
+	
+	on_item_added.call_deferred(null)
 
 func add_item(item : Item):
 	if is_instance_valid(item):

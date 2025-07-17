@@ -29,8 +29,6 @@ func initialise(encounter : Encounter, map):
 	travel_step.initialise(map.town, encounter.get_location())
 	battle_step.initialise(encounter)
 	return_step.initialise(encounter.get_location(), map.town)
-	
-	$Rewards/CurrencyReward.gold = ceil(get_difficulty())
 
 func start(new_party):
 	if not is_instance_valid(new_party):

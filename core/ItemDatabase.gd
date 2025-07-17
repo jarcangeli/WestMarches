@@ -5,8 +5,8 @@ const icons_path = "res://assets/icons/items/"
 
 var icons_by_name = {}
 
-var items_by_index = {}
-var items_by_name = {}
+var item_data_by_index = {}
+var item_data_by_name = {}
 
 enum ITEM_TABLE_HEADER
 {
@@ -38,9 +38,9 @@ func preload_icons(path):
 	var item_file_name = "gogogo"
 	while item_file_name != "":
 		item_file_name = dir.get_next()
-		if item_file_name.ends_with(".import"):
+		if item_file_name.ends_with(".import") or item_file_name.is_empty():
 			continue
-		var file_path = icons_path + '/' + item_file_name
+		var file_path = icons_path + item_file_name
 		var icon : Texture2D = load(file_path)
 		if icon:
 			icons_by_name[item_file_name] = icon
@@ -55,7 +55,7 @@ func get_items_from_path(path):
 	var item_file_name = "gogogo"
 	while item_file_name != "":
 		item_file_name = dir.get_next()
-		var file_path = items_path + '/' + item_file_name
+		var file_path = items_path + "/" + item_file_name
 		if not dir.current_is_dir() and item_file_name.ends_with(".csv"):
 			# File
 			var file = FileAccess.open(file_path, FileAccess.READ)
@@ -80,9 +80,5 @@ func get_items_from_path(path):
 				item_data.currency_generated = int(csv[ITEM_TABLE_HEADER.CURRENCY_GENERATED])
 				if not item_data.valid():
 					continue
-				
-				var item = Item.new(item_data)
-				if not item:
-					continue
-				items_by_index[item.id] = item
-				items_by_name[item.item_name] = item #TODO: Sanitize for mods, or remove
+				item_data_by_index[item_data.id] = item_data
+				item_data_by_name[item_data.item_name] = item_data #TODO: Sanitize for mods, or remove

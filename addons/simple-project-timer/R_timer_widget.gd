@@ -2,6 +2,8 @@
 extends Button
 
 var save_filepath = "res://addons/simple-project-timer/time.sav"
+var new_save_filepath = "res://addons/simple-project-timer/time.save"
+var temp_save_filepath = "res://addons/simple-project-timer/temp.save"
 var options_filepath = "res://addons/simple-project-timer/options.sav"
 
 var t = 0
@@ -50,17 +52,33 @@ func update_text():
 	get_node("Label").set_text(string)
 
 func load_time():
-	if not FileAccess.file_exists(save_filepath):
+	if not FileAccess.file_exists(new_save_filepath) and not FileAccess.file_exists(save_filepath):
 		save_time()
-	var save = FileAccess.open(save_filepath, FileAccess.READ)
-	t = save.get_64()
-	save.close()
-	print("[simple-project-timer] Loading . . . Time: ", t)
+	if not FileAccess.file_exists(new_save_filepath):
+		var save = FileAccess.open(save_filepath, FileAccess.READ)
+		t = save.get_64()
+		save.close()
+		print("[simple-project-timer] Loading . . . Time: ", t)
+	else:
+		var save = FileAccess.open(new_save_filepath, FileAccess.READ)
+		var t_str = save.get_line().strip_edges()
+		var t_arr = t_str.split(":")
+		var h = int(t_arr[0])
+		var m = int(t_arr[1])
+		var s = int(t_arr[2])
+		t = s + m * 60 + h * 3600
+		save.close()
+		print("[simple-project-timer] Loading . . . Time: ", t)
 
 func save_time():
-	var save = FileAccess.open(save_filepath, FileAccess.WRITE)
-	save.store_64(t)
+	var save = FileAccess.open(temp_save_filepath, FileAccess.WRITE)
+	var s = t % 60
+	var m = int(t/60) % 60
+	var h = int(t/3600)
+	save.store_string("%d:%d:%d" % [h,m,s])
 	save.close()
+	DirAccess.remove_absolute(new_save_filepath)
+	DirAccess.rename_absolute(temp_save_filepath, new_save_filepath)
 	print("[simple-project-timer] Saving . . . Time: ", t)
 
 func load_options():
@@ -102,11 +120,11 @@ func _exit_tree():
 
 func button_pressed():
 	get_node("Menu").popup()
-	get_node("Menu").set_global_position(get_global_position() - Vector2(0, -26))  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
+	get_node("Menu").set_position(get_position() - Vector2(0, -26))  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
 
 func Reset_Button_pressed():
 	get_node("ResetConfirm").popup()
-	get_node("ResetConfirm").set_global_position(get_global_position() + Vector2(-330, 52))  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
+	get_node("ResetConfirm").set_position(get_position() + Vector2(-330, 52))  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
 
 func ResetConfirm_confirmed():
 	t = 0

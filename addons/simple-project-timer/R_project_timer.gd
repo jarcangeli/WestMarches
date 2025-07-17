@@ -11,4 +11,3 @@ func _enter_tree():
 
 func _exit_tree():
 	widget.queue_free()
-

@@ -42,7 +42,6 @@ script = ExtResource("9")
 script = ExtResource("8")
 
 [node name="Shortsword" parent="PlayerInventory" instance=ExtResource("6")]
-primary_slot_type = 0
 
 [node name="Coif" parent="PlayerInventory" instance=ExtResource("7")]
 
@@ -58,21 +57,18 @@ script = ExtResource("12")
 character_name = "Ben"
 
 [node name="Shortsword" parent="AdventuringParties/Party1/Ben" instance=ExtResource("6")]
-primary_slot_type = 0
 
 [node name="Sam" type="Node" parent="AdventuringParties/Party1"]
 script = ExtResource("12")
 character_name = "Sam"
 
 [node name="Shortbow" parent="AdventuringParties/Party1/Sam" instance=ExtResource("10_kjvhd")]
-primary_slot_type = 0
 
 [node name="Jen" type="Node" parent="AdventuringParties/Party1"]
 script = ExtResource("12")
 character_name = "Jen"
 
 [node name="Shortbow" parent="AdventuringParties/Party1/Jen" instance=ExtResource("10_kjvhd")]
-primary_slot_type = 0
 
 [node name="Party2" type="Node" parent="AdventuringParties"]
 script = ExtResource("13")
@@ -87,7 +83,6 @@ base_strength = 16
 base_dexterity = 16
 
 [node name="Shortsword" parent="AdventuringParties/Party2/Arthur" instance=ExtResource("6")]
-primary_slot_type = 0
 
 [node name="Benthwyn" type="Node" parent="AdventuringParties/Party2"]
 script = ExtResource("12")
@@ -100,7 +95,6 @@ base_dexterity = 18
 [node name="Coif" parent="AdventuringParties/Party2/Benthwyn" instance=ExtResource("7")]
 
 [node name="Shortbow" parent="AdventuringParties/Party2/Benthwyn" instance=ExtResource("10_kjvhd")]
-primary_slot_type = 0
 
 [node name="Gomli" type="Node" parent="AdventuringParties/Party2"]
 script = ExtResource("12")

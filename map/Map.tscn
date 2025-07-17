@@ -75,7 +75,6 @@ base_strength = 20
 base_dexterity = 20
 
 [node name="Shortbow" parent="World/Swamp Hut/Knock knock" instance=ExtResource("1")]
-primary_slot_type = 0
 strength_bonus = 10
 
 [node name="Honey I\'m home!" type="Node2D" parent="World/Swamp Hut"]

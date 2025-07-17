@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://inventory/ItemDatabase.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://olve5kyu8jse" path="res://core/ItemDatabase.gd" id="1"]
 
 [node name="ItemDatabase" type="Node"]
 script = ExtResource( 1 )

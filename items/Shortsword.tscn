@@ -5,6 +5,7 @@
 
 [node name="Shortsword" instance=ExtResource("1")]
 item_name = "Shortsword"
-description = "A basic sword."
+description = "A basic sword"
 icon = ExtResource("2")
+primary_slot_type = 0
 strength_bonus = 30

@@ -1,6 +1,8 @@
 extends ItemContainer
 class_name Character
 
+var id := -1
+
 @export var character_name : String
 
 @export var level : int = 1
@@ -17,6 +19,15 @@ var debt : int = 0
 
 func _ready():
 	equip_best_gear() #TODO: Remove from _ready
+
+func _init(data : CharacterData = null):
+	if not data:
+		return #TODO: This is just for prototyping characters in place, remove
+	id = data.id
+	character_name = data.character_name
+	base_constitution = data.base_constitution
+	base_dexterity = data.base_dexterity
+	base_strength = data.base_strength
 
 func is_alive():
 	return health > 0

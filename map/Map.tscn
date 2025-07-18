@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cxdhpkvpkirir" path="res://map/POI.tscn" id="2"]
 [ext_resource type="Script" uid="uid://ba8ptc7gjnr1f" path="res://map/Map.gd" id="4"]
 [ext_resource type="Script" uid="uid://dndy7x6bujlsv" path="res://map/Encounter.gd" id="4_e5tu3"]
-[ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="4_pgc66"]
-[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/ItemByName.gd" id="6_e5tu3"]
+[ext_resource type="Script" uid="uid://ba4hauhkd27l" path="res://characters/GenerateMonsterByName.gd" id="5_e5tu3"]
+[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/GenerateItemByName.gd" id="6_e5tu3"]
 [ext_resource type="Texture2D" uid="uid://ctwnbwnd4ou2r" path="res://assets/icons/icon.png" id="8"]
 
 [node name="Map" type="Control"]
@@ -47,12 +47,8 @@ script = ExtResource("4_e5tu3")
 metadata/_custom_type_script = "uid://dndy7x6bujlsv"
 
 [node name="Minotaur" type="Node" parent="World/The Maze/Bull Hit"]
-script = ExtResource("4_pgc66")
-character_name = "Minotaur"
-level = 14
-base_constitution = 40
-base_strength = 40
-base_dexterity = 40
+script = ExtResource("5_e5tu3")
+monster_name = "Minotaur"
 
 [node name="PHJerkin" type="Node" parent="World/The Maze/Bull Hit"]
 script = ExtResource("6_e5tu3")
@@ -66,12 +62,8 @@ script = ExtResource("4_e5tu3")
 metadata/_custom_type_script = "uid://dndy7x6bujlsv"
 
 [node name="Troll" type="Node" parent="World/Swamp Hut/Knock knock"]
-script = ExtResource("4_pgc66")
-character_name = "Troll"
-level = 10
-base_constitution = 20
-base_strength = 20
-base_dexterity = 20
+script = ExtResource("5_e5tu3")
+monster_name = "Troll"
 
 [node name="PHShortbow" type="Node" parent="World/Swamp Hut/Knock knock"]
 script = ExtResource("6_e5tu3")
@@ -82,8 +74,8 @@ script = ExtResource("4_e5tu3")
 metadata/_custom_type_script = "uid://dndy7x6bujlsv"
 
 [node name="Bear" type="Node" parent="World/Swamp Hut/Honey I\'m home!"]
-script = ExtResource("4_pgc66")
-character_name = "Bear"
+script = ExtResource("5_e5tu3")
+monster_name = "Bear"
 
 [node name="PHCoinPouch" type="Node" parent="World/Swamp Hut/Honey I\'m home!"]
 script = ExtResource("6_e5tu3")

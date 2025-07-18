@@ -1,6 +1,0 @@
-id,item_name,description,icon,primary_slot_type,consumed_on_acquire,constitution_bonus,strength_bonus,dexterity_bonus,currency_generated
-1,Coin Pouch,"Pouch of coins",coinpouch.png,-,1,0,0,0,4
-2,Coif,"A simple leather helmet",coif.png,H,0,10,0,10,0
-3,Jerkin,"A basic leather chestpiece",chest.png,C,0,20,0,20,0
-4,Shortbow,"A basic bow",bow.png,W,0,0,20,10,0
-5,Shortsword,"A basic sword",sword.png,W,0,0,30,0,0

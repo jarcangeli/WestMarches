@@ -1,32 +1,20 @@
 extends Database
 
-const monsters_path = "res://core/databases/monsters"
+const monsters_table_name = "monsters"
 
 var monster_data_by_index = {}
 var monster_data_by_name = {}
 
-enum MONSTER_TABLE_HEADER
-{
-	ID,
-	NAME,
-	CONSTITUTION,
-	STRENGTH,
-	DEXTERITY
-}
-
 func _ready():
-	get_database_from_path(monsters_path)
+	load_table(monsters_table_name)
 
-func load_header(_header):
-	pass
-
-func load_line(csv):
+func load_row(row : Dictionary):
 	var monster_data = CharacterData.new()
-	monster_data.id = int(csv[MONSTER_TABLE_HEADER.ID])
-	monster_data.character_name = csv[MONSTER_TABLE_HEADER.NAME]
-	monster_data.constitution_bonus = int(csv[MONSTER_TABLE_HEADER.CONSTITUTION])
-	monster_data.strength_bonus = int(csv[MONSTER_TABLE_HEADER.STRENGTH])
-	monster_data.dexterity_bonus = int(csv[MONSTER_TABLE_HEADER.DEXTERITY])
+	monster_data.id = int(row["id"])
+	monster_data.character_name = row["name"]
+	monster_data.base_constitution = int(row["con"])
+	monster_data.base_strength = int(row["str"])
+	monster_data.base_dexterity = int(row["dex"])
 	if monster_data.valid():
 		monster_data_by_index[monster_data.id] = monster_data
-		monster_data_by_name[monster_data.item_name] = monster_data #TODO: Sanitize for mods, or remove
+		monster_data_by_name[monster_data.character_name] = monster_data #TODO: Sanitize for mods, or remove

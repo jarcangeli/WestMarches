@@ -18,33 +18,13 @@ func preload_icons(path, container):
 		if icon:
 			container[item_file_name] = icon
 
-func load_header(_header):
-	pass
+func load_row(_row):
+	pass #Override
 
-func load_line(_csv):
-	pass
-
-func get_database_from_path(path):
-	var dir = DirAccess.open(path)
-	if dir == null:
-		push_error("Could not load database path: " + path)
+func load_table(table_name):
+	var table = DB.get_table(table_name)
+	if not table:
+		push_error("Could not load table from db: " + table_name)
 		return
-	
-	dir.list_dir_begin() # TODOConverter3To4 fill missing arguments https://github.com/godotengine/godot/pull/40547
-	var file_name = "gogogo"
-	while file_name != "":
-		file_name = dir.get_next()
-		var file_path = path + "/" + file_name
-		if not dir.current_is_dir() and file_name.ends_with(".csv"):
-			# File
-			var file = FileAccess.open(file_path, FileAccess.READ)
-			if not file:
-				continue
-			
-			var header = file.get_csv_line()
-			load_header(header)
-			while !file.eof_reached():
-				var csv = file.get_csv_line()
-				if len(csv) < len(header):
-					continue
-				load_line(csv)
+	for row in table:
+		load_row(row)

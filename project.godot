@@ -20,6 +20,7 @@ config/icon="res://assets/icons/logo.png"
 SignalBus="*res://core/SignalBus.gd"
 Globals="*res://core/Globals.gd"
 ItemDatabase="*res://core/ItemDatabase.gd"
+MonsterDatabase="*res://core/MonsterDatabase.gd"
 
 [debug]
 

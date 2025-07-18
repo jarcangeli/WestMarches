@@ -1,0 +1,22 @@
+INSERT INTO items (
+                      name,
+                      description,
+                      icon,
+                      slot,
+                      consumed,
+                      con,
+                      str,
+                      dex,
+                      currency_generated
+                  )
+                  VALUES (
+                      'Shortsword',
+                      'A basic sword',
+                      'sword.png',
+                      'W',
+                      0,
+                      0,
+                      30,
+                      0,
+                      0
+                  );

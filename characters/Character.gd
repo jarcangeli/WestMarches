@@ -18,6 +18,8 @@ var debt : int = 0
 @onready var health := get_max_health()
 
 func _ready():
+	child_entered_tree.connect(equip_best_gear, CONNECT_DEFERRED)
+	child_exiting_tree.connect(equip_best_gear, CONNECT_DEFERRED)
 	equip_best_gear() #TODO: Remove from _ready
 
 func _init(data : CharacterData = null):
@@ -63,7 +65,7 @@ func get_loaned_items():
 			items.append(node)
 	return items
 
-func equip_best_gear():
+func equip_best_gear(_dummy = null):
 	var items = get_items()
 	for item : Item in items:
 		if not equip_slots.has(item.primary_slot_type):

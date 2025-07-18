@@ -34,7 +34,7 @@ func play_turn(character : Character, enemies : Array):
 	
 	var roll := randi() % 100 + 1
 	combat_log.emit("%s rolled %d" % [character.character_name, roll])
-	var enemy : Character = enemies[randi() % len(enemies)]
+	var enemy : Character = enemies[randi() % len(enemies)] # TODO: Choose highest HP?
 	var damage = roll + character.get_strength() - enemy.get_dexterity()
 	if roll == 100: #TODO: Add crit bonus stat
 		damage = roll + character.get_strength()

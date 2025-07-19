@@ -1,4 +1,4 @@
-extends Node
+extends RefCounted
 class_name Combat
 
 signal combat_log(line : String)
@@ -8,7 +8,7 @@ var monsters : Array
 
 var round_number := 0
 
-func _init(_adventurers : Array, _monsters : Array):
+func _init(_adventurers : Array[Character], _monsters : Array[Character]):
 	adventurers = _adventurers
 	monsters = _monsters
 

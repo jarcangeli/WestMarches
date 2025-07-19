@@ -32,16 +32,17 @@ character_name = "Conan the Bararian"
 
 [node name="Weapon" type="Node" parent="Conan"]
 script = ExtResource("3_me3qr")
-item_name = "Spiked Halberd"
+item_name = "Sylvan Axe"
 
 [node name="Armor" type="Node" parent="Conan"]
 script = ExtResource("3_me3qr")
-item_name = "Scalemail"
+item_name = "Platemail"
 
 [node name="Monster" type="Node" parent="."]
 script = ExtResource("1_oxyo4")
-character_name = "Hill Giant"
+character_name = "Werewolfe"
 base_constitution = 40
-base_dexterity = 0
+base_strength = 40
+base_dexterity = 40
 
 [connection signal="pressed" from="CenterContainer/RunCombatButton" to="." method="_on_run_combat_button_pressed"]

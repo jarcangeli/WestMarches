@@ -64,8 +64,8 @@ func get_difficulty():
 	var monsters : Array = battle_step.encounter.get_monsters()
 	var difficulty_sum = 0
 	for monster in monsters:
-		difficulty_sum += monster.level
-	return difficulty_sum / 20.0 * 5
+		difficulty_sum += monster.get_power_level()
+	return difficulty_sum / 300.0 * 5
 
 func get_rewards():
 	if not battle_step or not battle_step.encounter:

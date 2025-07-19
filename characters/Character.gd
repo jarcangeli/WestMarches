@@ -5,8 +5,6 @@ var id := -1
 
 @export var character_name : String
 
-@export var level : int = 1
-
 var equip_slots : Dictionary
 
 var debt : int = 0
@@ -54,6 +52,9 @@ func get_constitution() -> int:
 
 func get_max_health() -> int:
 	return get_constitution() * 10
+
+func get_power_level() -> int:
+	return max(get_dexterity() + get_constitution() + get_strength() - 30, 0)
 
 func damage(value : int):
 	health -= clamp(value, 0, value)

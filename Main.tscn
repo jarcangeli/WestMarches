@@ -85,7 +85,6 @@ display_name = "Ye Parte"
 [node name="Arthur" type="Node" parent="AdventuringParties/Party2"]
 script = ExtResource("12")
 character_name = "Arthur"
-level = 3
 base_constitution = 16
 base_strength = 16
 base_dexterity = 16
@@ -97,7 +96,6 @@ item_name = "Shortsword"
 [node name="Benthwyn" type="Node" parent="AdventuringParties/Party2"]
 script = ExtResource("12")
 character_name = "Benthwyn"
-level = 4
 base_constitution = 18
 base_strength = 18
 base_dexterity = 18
@@ -113,7 +111,6 @@ item_name = "Shortbow"
 [node name="Gomli" type="Node" parent="AdventuringParties/Party2"]
 script = ExtResource("12")
 character_name = "Gomli"
-level = 3
 base_constitution = 16
 base_strength = 16
 base_dexterity = 16

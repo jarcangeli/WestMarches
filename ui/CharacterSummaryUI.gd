@@ -6,7 +6,7 @@ extends Control
 
 func set_character(character):
 	$NameLabel.text = character.character_name
-	$HBoxContainer/LevelLabel.text = str(character.level)
+	$HBoxContainer/LevelLabel.text = str(character.get_power_level())
 	
 	clear_items()
 	for item in character.get_items():

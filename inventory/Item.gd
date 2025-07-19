@@ -125,7 +125,7 @@ func on_item_unequipped(item, slot):
 
 func get_value():
 	#TODO: Calculate from attributes?
-	return base_value
+	return base_value + ceil((dexterity_bonus + strength_bonus + constitution_bonus) / 10.0)
 
 func get_currency_granted():
 	if consumed_on_acquire:

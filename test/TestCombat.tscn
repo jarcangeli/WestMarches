@@ -4,8 +4,7 @@
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="1_oxyo4"]
 [ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/GenerateItemByName.gd" id="3_me3qr"]
 
-[node name="TestCombat" type="Control" node_paths=PackedStringArray("adventurer", "monster")]
-layout_mode = 3
+[node name="TestCombat" type="VBoxContainer" node_paths=PackedStringArray("adventurer", "monster")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,31 +12,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kuu8u")
 adventurer = NodePath("Conan")
-monster = NodePath("Wyvern")
+monster = NodePath("Monster")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="RunCombatButton" type="Button" parent="CenterContainer"]
+layout_mode = 2
+text = "Run combat"
 
 [node name="CombatLog" type="TextEdit" parent="."]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Conan" type="Node" parent="."]
 script = ExtResource("1_oxyo4")
 character_name = "Conan the Bararian"
 
-[node name="Shortsword" type="Node" parent="Conan"]
+[node name="Weapon" type="Node" parent="Conan"]
 script = ExtResource("3_me3qr")
-item_name = "Shortsword"
+item_name = "Spiked Halberd"
 
-[node name="Jerkin" type="Node" parent="Conan"]
+[node name="Armor" type="Node" parent="Conan"]
 script = ExtResource("3_me3qr")
-item_name = "Jerkin"
+item_name = "Scalemail"
 
-[node name="Wyvern" type="Node" parent="."]
+[node name="Monster" type="Node" parent="."]
 script = ExtResource("1_oxyo4")
-character_name = "Mr Wyvern"
-base_strength = 20
-base_dexterity = 20
+character_name = "Hill Giant"
+base_constitution = 40
+base_dexterity = 0
+
+[connection signal="pressed" from="CenterContainer/RunCombatButton" to="." method="_on_run_combat_button_pressed"]

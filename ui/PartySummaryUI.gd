@@ -1,4 +1,5 @@
 extends VBoxContainer
+class_name PartySummaryUI
 
 @export var character_summary_scene : Resource
 

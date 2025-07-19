@@ -18,6 +18,8 @@ static func simulate(adventurers : Array[Character], monsters : Array[Character]
 		else:
 			results.wins += 1
 	
+	reset_characters(adventurers)
+	reset_characters(monsters)
 	return results
 
 static func reset_characters(characters : Array[Character]):

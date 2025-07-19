@@ -67,6 +67,18 @@ func get_difficulty():
 		difficulty_sum += monster.get_power_level()
 	return difficulty_sum / 300.0 * 5
 
+func simulate_win_percentage(_party : AdventuringParty):
+	#TODO: replace with property party
+	if not battle_step or not battle_step.encounter:
+		return 100
+	if not _party:
+		return 0
+	
+	var adventurers := _party.get_characters()
+	var monsters := battle_step.encounter.get_monsters()
+	var results := CombatSim.simulate(adventurers, monsters, 1000)
+	return results.get_win_percentage()
+
 func get_rewards():
 	if not battle_step or not battle_step.encounter:
 		return []

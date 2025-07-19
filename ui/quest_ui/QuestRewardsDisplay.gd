@@ -1,4 +1,5 @@
 extends Control
+class_name QuestRewardsDisplay
 
 @export var item_rewards_container : ItemDisplayContainer
 @export var currency_rewards_label : Label

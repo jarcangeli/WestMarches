@@ -68,15 +68,15 @@ layout_mode = 2
 layout_mode = 2
 text = "Quest History:"
 
-[node name="QuestInfoPanel" type="Panel" parent="."]
+[node name="QuestInfoPanel" type="Panel" parent="." node_paths=PackedStringArray("quest_name_label", "quest_description_text_ui", "quest_rewards_display", "party_summary", "quest_difficulty_display")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_1mbw8")
-quest_name_label_path = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestNameLabel")
-quest_description_text_ui_path = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestDescriptionText")
-quest_rewards_display_path = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay")
-party_summary_path = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/PartySummaryUI")
-quest_difficulty_display_path = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/DifficultyBar")
+quest_name_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestNameLabel")
+quest_description_text_ui = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestDescriptionText")
+quest_rewards_display = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay")
+party_summary = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/PartySummaryUI")
+quest_difficulty_display = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/DifficultyBar")
 
 [node name="MarginContainer" type="MarginContainer" parent="QuestInfoPanel"]
 layout_mode = 0
@@ -122,7 +122,6 @@ horizontal_alignment = 1
 [node name="DifficultyBar" type="TextureProgressBar" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 texture_repeat = 2
 layout_mode = 2
-max_value = 5.0
 step = 0.1
 value = 2.5
 texture_under = ExtResource("4_niqkt")

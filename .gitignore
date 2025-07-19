@@ -13,3 +13,4 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+addons/godot-sqlite/bin/~libgdsqlite.windows.template_debug.x86_64.dll

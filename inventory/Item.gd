@@ -84,7 +84,7 @@ static func shortname_to_slot(slot_name):
 			return Slot.ACCESSORY
 	return Slot.NONE
 
-static func make_item_preview(item):
+static func make_item_preview(item) -> TextureRect:
 	var sprite = TextureRect.new()
 	if is_instance_valid(item):
 		sprite.texture = item.icon
@@ -129,10 +129,9 @@ func get_value():
 
 func get_currency_granted():
 	if consumed_on_acquire:
-		# Return first currency
-		for node in get_children():
-			if node is Currencies:
-				return node
+		var currencies = Currencies.new()
+		currencies.gold = currency_generated
+		return currencies
 	return null
 
 func get_container() -> ItemContainer:

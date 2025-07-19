@@ -5,6 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://cjy6e3ym3cu6t" path="res://ui/inventory_ui/CharacterEquipUI.tscn" id="3_7p7gu"]
 
 [node name="QuestEquipUI" type="HBoxContainer" node_paths=PackedStringArray("characters_container", "value_label", "reward_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_gtgdr")
 character_equip_ui_scene = ExtResource("3_7p7gu")

@@ -4,7 +4,9 @@ class_name EquipmentContainer
 @export var slot : Item.Slot # (Item.Slot)
 
 var item : Item = null
-var item_view = null
+var item_view : TextureRect = null
+
+var base_item : Item = null
 
 func _ready():
 	if slot >= 0 and slot < len(Item.slot_container_icons):
@@ -27,6 +29,10 @@ func _drop_data(_position, data):
 	SignalBus.item_equipped.emit(_item, self)
 	update_item_view()
 
+func set_base_item(_base_item : Item):
+	base_item = _base_item
+	update_item_view()
+
 func remove_item():
 	remove_item_view()
 	$ItemBackground.visible = false
@@ -41,7 +47,14 @@ func remove_item_view():
 func update_item_view():
 	remove_item_view()
 	
-	item_view = Item.make_item_preview(item)
+	if item:
+		item_view = Item.make_item_preview(item)
+		if item_view:
+			item_view.modulate = Color.WHITE
+	else:
+		item_view = Item.make_item_preview(base_item)
+		if item_view:
+			item_view.modulate = Color.GRAY
 	add_child(item_view)
 	$ItemBackground.visible = true
 

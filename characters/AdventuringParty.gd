@@ -14,8 +14,8 @@ func _ready() -> void:
 func get_position():
 	return position
 
-func get_characters():
-	var characters = []
+func get_characters() -> Array[Character]:
+	var characters : Array[Character] = []
 	for node in get_children():
 		if node is Character:
 			characters.append(node)

@@ -2,8 +2,8 @@
 extends Node2D
 class_name Encounter
 
-func get_monsters():
-	var monsters = []
+func get_monsters() -> Array[Character]:
+	var monsters : Array[Character] = []
 	for node in get_children():
 		if node is Character:
 			monsters.append(node)

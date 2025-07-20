@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=19 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://ui/quest_ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="2"]
+[ext_resource type="Script" uid="uid://c4xyw8i5jmhfa" path="res://test/TestGame.gd" id="2_kjvhd"]
 [ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="3"]
 [ext_resource type="Script" uid="uid://bbpg5w2de17ex" path="res://quest/QuestsContainerNode.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://b3ruqllcfspo1" path="res://ui/inventory_ui/PlayerInventoryView.tscn" id="5"]
@@ -28,6 +29,7 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
+script = ExtResource("2_kjvhd")
 
 [node name="PlayerCurrencies" type="Node" parent="."]
 script = ExtResource("15")
@@ -161,6 +163,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="AdvanceTimeButton" type="Button" parent="GameWindow/TopBar"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Advance Day -->"
 script = ExtResource("10")

@@ -4,9 +4,10 @@ extends Control
 
 @onready var item_container = $ScrollContainer/CenterContainer/ItemDisplayContainer
 
-func set_character(character):
+func set_character(character : Character):
 	$NameLabel.text = character.character_name
-	$HBoxContainer/LevelLabel.text = str(character.get_power_level())
+	$LevelContainer/LevelLabel.text = str(character.get_level())
+	$PowerContainer/PowerLabel.text = str(character.get_power_level())
 	
 	clear_items()
 	for item in character.get_items():

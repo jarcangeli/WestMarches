@@ -54,6 +54,9 @@ func get_constitution() -> int:
 func get_max_health() -> int:
 	return get_constitution() * 10
 
+func get_level():
+	return 1 #TODO: Implement exp and slot unlocks
+
 func get_power_level() -> int:
 	return max(get_dexterity() + get_constitution() + get_strength() - 30, 0)
 

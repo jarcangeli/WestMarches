@@ -13,12 +13,6 @@ const MAX_AVAILABLE_QUESTS = 4
  #TODO: Make this more sofisticated, want max 1 active quest per monster
 var encounters_already_encountered = []
 
-func _ready():
-	print("Generating initial quests")
-	call_deferred("generate_quest")
-	call_deferred("generate_quest")
-	call_deferred("auto_play_quest")
-
 func advance_time():
 	if available_quests.get_child_count() < MAX_AVAILABLE_QUESTS:
 		print("Generating new quests")

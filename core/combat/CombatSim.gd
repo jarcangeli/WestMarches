@@ -8,6 +8,7 @@ static func simulate(adventurers : Array[Character], monsters : Array[Character]
 		reset_characters(monsters)
 		
 		var combat = Combat.new(adventurers, monsters)
+		combat.set_exp_enabled(false)
 		while !combat.is_finished():
 			combat.play_round()
 		var monsters_alive : bool = combat.monsters_alive()

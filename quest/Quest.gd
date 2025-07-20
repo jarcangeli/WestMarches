@@ -24,7 +24,7 @@ func _ready():
 
 func initialise(encounter : Encounter, map):
 	quest_name = encounter.name
-	quest_description = "Insert description here" #TODO: Property of encounter
+	quest_description = encounter.description
 	
 	travel_step.initialise(map.town, encounter.get_location())
 	battle_step.initialise(encounter)

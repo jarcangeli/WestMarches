@@ -15,6 +15,8 @@ var debt : int = 0
 
 @onready var health := get_max_health()
 
+var experience := 0
+
 func _ready():
 	child_entered_tree.connect(equip_best_gear, CONNECT_DEFERRED)
 	child_exiting_tree.connect(equip_best_gear, CONNECT_DEFERRED)
@@ -54,8 +56,8 @@ func get_constitution() -> int:
 func get_max_health() -> int:
 	return get_constitution() * 10
 
-func get_level():
-	return 1 #TODO: Implement exp and slot unlocks
+func get_level() -> int:
+	return 1 + floor(experience / float(40))
 
 func get_power_level() -> int:
 	return max(get_dexterity() + get_constitution() + get_strength() - 30, 0)
@@ -92,3 +94,6 @@ func get_equipped_items():
 			continue
 		items.append(item)
 	return items
+
+func modify_exp(gain):
+	experience += gain

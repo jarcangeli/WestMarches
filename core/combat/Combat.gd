@@ -8,9 +8,14 @@ var monsters : Array
 
 var round_number := 0
 
+var exp_enabled := true
+
 func _init(_adventurers : Array[Character], _monsters : Array[Character]):
 	adventurers = _adventurers
 	monsters = _monsters
+
+func set_exp_enabled(enabled : bool):
+	exp_enabled = enabled
 
 func play_round():
 	if is_finished():
@@ -26,6 +31,13 @@ func play_round():
 		play_turn(monster, adventurers)
 	
 	if is_finished():
+		var n = adventurers_alive()
+		if n > 0:
+			# award any exp to the survivors
+			var experience : int = ceil(get_exp_for_monsters() / float(n))
+			for adventurer in adventurers:
+				if adventurer.is_alive():
+					adventurer.modify_exp(experience)
 		combat_log.emit("End of combat!")
 
 func play_turn(character : Character, enemies : Array):
@@ -56,14 +68,22 @@ func play_turn(character : Character, enemies : Array):
 func is_finished():
 	return not adventurers_alive() or not monsters_alive()
 
-func adventurers_alive() -> bool:
+func adventurers_alive():
+	var count := 0
 	for adventurer in adventurers:
 		if adventurer.is_alive():
-			return true
-	return false
+			count += 1
+	return count
 
 func monsters_alive() -> bool:
 	for monster in monsters:
 		if monster.is_alive():
 			return true
 	return false
+
+func get_exp_for_monsters() -> int:
+	var experience = 0
+	for monster in monsters:
+		if not monster.is_alive():
+			experience += min(monster.get_power_level(), 30)
+	return experience

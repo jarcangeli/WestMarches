@@ -101,6 +101,7 @@ func _init(item_data : ItemData):
 	strength_bonus = item_data.strength_bonus
 	dexterity_bonus = item_data.dexterity_bonus
 	currency_generated = item_data.currency_generated
+	name = item_name
 
 func _ready():
 	#TODO: Does this scale well with every item in the scene?

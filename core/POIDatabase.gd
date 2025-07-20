@@ -2,7 +2,7 @@ extends Node
 
 const pois_path := "res://map/pois/"
 
-var pois_by_name = {}
+var pois_by_name := {}
 
 func _ready():
 	load_pois_from_configs(pois_path)

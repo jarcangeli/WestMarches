@@ -2,6 +2,20 @@
 extends Node2D
 class_name Encounter
 
+var encounter_name : String
+var description : String
+
+func _init(data : EncounterData = null): #TODO: Remove null default
+	if not data:
+		return
+	encounter_name = data.encounter_name
+	description = data.description
+	name = encounter_name
+	for monster_name in data.monster_names:
+		LazyLoadCharacter.run(monster_name, self)
+	for item_name in data.item_names:
+		LazyLoadItem.run(item_name, self)
+
 func get_monsters() -> Array[Character]:
 	var monsters : Array[Character] = []
 	for node in get_children():

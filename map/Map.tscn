@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cormuewc0570n"]
+[gd_scene load_steps=8 format=3 uid="uid://cormuewc0570n"]
 
 [ext_resource type="PackedScene" uid="uid://cxdhpkvpkirir" path="res://map/POI.tscn" id="2"]
 [ext_resource type="Script" uid="uid://ba8ptc7gjnr1f" path="res://map/Map.gd" id="4"]
 [ext_resource type="Script" uid="uid://dndy7x6bujlsv" path="res://map/Encounter.gd" id="4_e5tu3"]
-[ext_resource type="Script" uid="uid://ba4hauhkd27l" path="res://characters/GenerateMonsterByName.gd" id="5_e5tu3"]
-[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/GenerateItemByName.gd" id="6_e5tu3"]
+[ext_resource type="Script" uid="uid://ba4hauhkd27l" path="res://characters/LazyLoadCharacter.gd" id="5_e5tu3"]
+[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/LazyLoadItem.gd" id="6_e5tu3"]
+[ext_resource type="Script" uid="uid://dxqnaoflmcy4j" path="res://map/LazyLoadPOI.gd" id="7_e5tu3"]
 [ext_resource type="Texture2D" uid="uid://ctwnbwnd4ou2r" path="res://assets/icons/icon.png" id="8"]
 
 [node name="Map" type="Control"]
@@ -81,3 +82,8 @@ monster_name = "Bear"
 [node name="PHCoinPouch" type="Node" parent="World/Swamp Hut/Honey I\'m home!"]
 script = ExtResource("6_e5tu3")
 item_name = "Coin Pouch"
+
+[node name="Bridge?" type="Node2D" parent="World"]
+position = Vector2(125, -41)
+script = ExtResource("7_e5tu3")
+poi_name = "River Crossing"

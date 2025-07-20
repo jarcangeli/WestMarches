@@ -28,6 +28,7 @@ func _init(data : CharacterData = null):
 	base_constitution = data.base_constitution
 	base_dexterity = data.base_dexterity
 	base_strength = data.base_strength
+	set_name(character_name)
 
 func is_alive():
 	return health > 0

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="3"]
 [ext_resource type="Script" uid="uid://bbpg5w2de17ex" path="res://quest/QuestsContainerNode.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://b3ruqllcfspo1" path="res://ui/inventory_ui/PlayerInventoryView.tscn" id="5"]
-[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/GenerateItemByName.gd" id="7_2gh4u"]
+[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/LazyLoadItem.gd" id="7_2gh4u"]
 [ext_resource type="Script" uid="uid://dsujm37ljcj4u" path="res://inventory/PlayerInventory.gd" id="8"]
 [ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="9"]
 [ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://ui/AdvanceTimeButton.gd" id="10"]

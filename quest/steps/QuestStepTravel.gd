@@ -4,9 +4,13 @@ class_name QuestStepTravel
 var origin = null
 var destination = null
 
+var item_rewards = []
+
 func initialise(_origin, _destination):
 	origin = _origin
 	destination = _destination
+	if randf() < 0.2: #TODO: Conditional on encounter
+		item_rewards = [ItemDatabase.generate_random_item()]
 
 func advance_step():
 	print("Travel quest step advanced")
@@ -32,3 +36,6 @@ func get_progress_text():
 	if finished():
 		text.append("The party reach their destination")
 	return text
+
+func get_item_rewards():
+	return item_rewards

@@ -80,9 +80,14 @@ func simulate_win_percentage(_party : AdventuringParty):
 	return results.get_win_percentage()
 
 func get_rewards():
-	if not battle_step or not battle_step.encounter:
-		return []
-	return battle_step.encounter.get_item_rewards()
+	var rewards = []
+	if battle_step and battle_step.encounter:
+		rewards += battle_step.encounter.get_item_rewards()
+	if travel_step:
+		rewards += travel_step.get_item_rewards()
+	if return_step:
+		rewards += return_step.get_item_rewards()
+	return rewards
 
 func add_rewards(items):
 	if not battle_step or not battle_step.encounter:

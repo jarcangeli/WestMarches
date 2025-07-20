@@ -27,3 +27,9 @@ func load_row(row : Dictionary):
 	if item_data.valid():
 		item_data_by_index[item_data.id] = item_data
 		item_data_by_name[item_data.item_name] = item_data #TODO: Sanitize for mods, or remove
+
+func generate_random_item() -> Item:
+	var keys = item_data_by_index.keys()
+	var item_data = item_data_by_index[keys[randi() % len(keys)]]
+	var item = Item.new(item_data)
+	return item

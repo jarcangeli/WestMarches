@@ -34,10 +34,13 @@ func set_base_item(_base_item : Item):
 	update_item_view()
 
 func remove_item():
+	if not item:
+		return
 	remove_item_view()
 	$ItemBackground.visible = false
 	SignalBus.item_unequipped.emit(item, self)
 	item = null
+	update_item_view()
 
 func remove_item_view():
 	if is_instance_valid(item_view):

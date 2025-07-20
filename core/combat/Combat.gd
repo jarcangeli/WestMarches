@@ -46,7 +46,10 @@ func play_turn(character : Character, enemies : Array):
 	
 	var roll := randi() % 100 + 1
 	combat_log.emit("%s rolled %d" % [character.character_name, roll])
-	var enemy : Character = enemies[randi() % len(enemies)] # TODO: Choose highest HP?
+	var enemy : Character = target_character(enemies)
+	if not enemy:
+		push_warning("Trying to attack but no characters")
+		return
 	var damage = roll + character.get_strength() - enemy.get_dexterity()
 	if roll == 100: #TODO: Add crit bonus stat
 		damage = roll + character.get_strength()
@@ -64,6 +67,14 @@ func play_turn(character : Character, enemies : Array):
 			combat_log.emit(enemy.character_name + " was slain")
 	else:
 		combat_log.emit(character.character_name + " missed " + enemy.character_name)
+
+func target_character(characters):
+	var highest_hp = 0
+	var target = null
+	for character in characters:
+		if character.health > highest_hp:
+			target = character
+	return target
 
 func is_finished():
 	return not adventurers_alive() or not monsters_alive()

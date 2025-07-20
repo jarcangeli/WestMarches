@@ -4,24 +4,30 @@ class_name Item
 signal item_changed()
 
 enum Slot {
-	HAND,
-	OFFHAND,
-	HEAD,
+	WEAPON,
 	CHEST,
-	FEET,
+	HEAD,
 	LEGS,
-	ACCESSORY,
+	FEET,
+	POTION,
+	RANGED,
+	BELT,
+	RING,
+	CAPE,
 	NONE
 }
 
 const slot_container_icons = [
 	preload("res://assets/icons/slots/weapon.png"),
-	preload("res://assets/icons/slots/weapon.png"),
-	preload("res://assets/icons/slots/head.png"),
 	preload("res://assets/icons/slots/chest.png"),
-	preload("res://assets/icons/slots/boot.png"),
+	preload("res://assets/icons/slots/head.png"),
 	preload("res://assets/icons/slots/legs.png"),
+	preload("res://assets/icons/slots/boot.png"),
+	preload("res://assets/icons/resources/bottle.png"),
+	preload("res://assets/icons/items/bow.png"),
+	preload("res://assets/icons/items/belt.png"),
 	preload("res://assets/icons/slots/ring.png"),
+	preload("res://assets/icons/slots/cape.png"),
 	preload("res://assets/icons/icon.png")
 ]
 var id : int = -1
@@ -42,7 +48,7 @@ var id : int = -1
 
 var currency_generated : int = 0 #TODO: Implement
 
-var base_value = 1
+var base_value := 1
 
 var equip_slot = null
 
@@ -50,38 +56,50 @@ var loaned_character = null
 
 static func slot_to_shortname(slot):
 	match slot:
-		Slot.HAND:
+		Slot.WEAPON:
 			return "W"
-		Slot.OFFHAND:
-			return "O"
+		Slot.CHEST:
+			return "CH"
 		Slot.HEAD:
 			return "H"
-		Slot.CHEST:
-			return "C"
 		Slot.LEGS:
 			return "L"
 		Slot.FEET:
 			return "F"
-		Slot.ACCESSORY:
-			return "A"
+		Slot.POTION:
+			return "P"
+		Slot.RANGED:
+			return "RA"
+		Slot.BELT:
+			return "B"
+		Slot.RING:
+			return "RI"
+		Slot.CAPE:
+			return "CA"
 	return ""
 
 static func shortname_to_slot(slot_name):
 	match slot_name:
 		"W":
-			return Slot.HAND
-		"O":
-			return Slot.OFFHAND
+			return Slot.WEAPON
+		"CH":
+			return Slot.CHEST
 		"H":
 			return Slot.HEAD
-		"C":
-			return Slot.CHEST
 		"L":
 			return Slot.LEGS
 		"F":
 			return Slot.FEET
-		"A":
-			return Slot.ACCESSORY
+		"P":
+			return Slot.POTION
+		"RA":
+			return Slot.RANGED
+		"B":
+			return Slot.BELT
+		"RI":
+			return Slot.RING
+		"CA":
+			return Slot.CAPE
 	return Slot.NONE
 
 static func make_item_preview(item) -> TextureRect:
@@ -124,7 +142,7 @@ func on_item_unequipped(item, slot):
 		equip_slot = null
 		item_changed.emit()
 
-func get_value():
+func get_value() -> int:
 	#TODO: Calculate from attributes?
 	return base_value + ceil((dexterity_bonus + strength_bonus + constitution_bonus) / 10.0)
 

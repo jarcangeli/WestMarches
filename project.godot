@@ -22,7 +22,7 @@ Globals="*res://core/Globals.gd"
 DB="*res://core/SQLiteDatabase.gd"
 ItemDatabase="*res://core/ItemDatabase.gd"
 MonsterDatabase="*res://core/MonsterDatabase.gd"
-TestPoiLoader="*res://test/TestPOILoader.gd"
+POIDatabase="*res://core/POIDatabase.gd"
 
 [debug]
 

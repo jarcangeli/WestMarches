@@ -25,10 +25,11 @@ town_path = NodePath("World/Town")
 position = Vector2(526, 184)
 
 [node name="Town" type="Node2D" parent="World"]
-position = Vector2(509, 87)
+position = Vector2(559, 104)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Town"]
 texture = ExtResource("8")
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="World/Town"]
 offset_left = -20.0

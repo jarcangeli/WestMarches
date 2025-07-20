@@ -84,7 +84,11 @@ func add_reward_to_quest(quest, reward):
 	rewards.add_child(reward)
 
 func auto_play_quest():
+	#TODO: Disable
 	# Debug tool to set a quest to completed state on startup
+	if available_quests.get_child_count() < 1:
+		push_warning("No quests to auto-start for debugging")
+		return
 	var quest : Quest = available_quests.get_child(0)
 	quest.start(parties.get_child(0))
 	quest.finish()

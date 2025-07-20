@@ -76,7 +76,7 @@ func simulate_win_percentage(_party : AdventuringParty):
 	
 	var adventurers := _party.get_characters()
 	var monsters := battle_step.encounter.get_monsters()
-	var results := CombatSim.simulate(adventurers, monsters, 1000)
+	var results := CombatSim.simulate(adventurers, monsters, 300)
 	return results.get_win_percentage()
 
 func get_rewards():

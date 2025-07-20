@@ -1,10 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cormuewc0570n"]
+[gd_scene load_steps=4 format=3 uid="uid://cormuewc0570n"]
 
-[ext_resource type="PackedScene" uid="uid://cxdhpkvpkirir" path="res://map/POI.tscn" id="2"]
 [ext_resource type="Script" uid="uid://ba8ptc7gjnr1f" path="res://map/Map.gd" id="4"]
-[ext_resource type="Script" uid="uid://dndy7x6bujlsv" path="res://map/Encounter.gd" id="4_e5tu3"]
-[ext_resource type="Script" uid="uid://ba4hauhkd27l" path="res://characters/LazyLoadCharacter.gd" id="5_e5tu3"]
-[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/LazyLoadItem.gd" id="6_e5tu3"]
 [ext_resource type="Script" uid="uid://dxqnaoflmcy4j" path="res://map/LazyLoadPOI.gd" id="7_e5tu3"]
 [ext_resource type="Texture2D" uid="uid://ctwnbwnd4ou2r" path="res://assets/icons/icon.png" id="8"]
 
@@ -41,49 +37,32 @@ text = "TOWN
 "
 horizontal_alignment = 1
 
-[node name="The Maze" parent="World" instance=ExtResource("2")]
-position = Vector2(-221, 129)
-
-[node name="Bull Hit" type="Node2D" parent="World/The Maze"]
-script = ExtResource("4_e5tu3")
-metadata/_custom_type_script = "uid://dndy7x6bujlsv"
-
-[node name="Minotaur" type="Node" parent="World/The Maze/Bull Hit"]
-script = ExtResource("5_e5tu3")
-monster_name = "Minotaur"
-
-[node name="PHJerkin" type="Node" parent="World/The Maze/Bull Hit"]
-script = ExtResource("6_e5tu3")
-item_name = "Jerkin"
-
-[node name="Swamp Hut" parent="World" instance=ExtResource("2")]
-position = Vector2(223, 269)
-
-[node name="Knock knock" type="Node2D" parent="World/Swamp Hut"]
-script = ExtResource("4_e5tu3")
-metadata/_custom_type_script = "uid://dndy7x6bujlsv"
-
-[node name="Troll" type="Node" parent="World/Swamp Hut/Knock knock"]
-script = ExtResource("5_e5tu3")
-monster_name = "Troll"
-
-[node name="PHShortbow" type="Node" parent="World/Swamp Hut/Knock knock"]
-script = ExtResource("6_e5tu3")
-item_name = "Shortbow"
-
-[node name="Honey I\'m home!" type="Node2D" parent="World/Swamp Hut"]
-script = ExtResource("4_e5tu3")
-metadata/_custom_type_script = "uid://dndy7x6bujlsv"
-
-[node name="Bear" type="Node" parent="World/Swamp Hut/Honey I\'m home!"]
-script = ExtResource("5_e5tu3")
-monster_name = "Bear"
-
-[node name="PHCoinPouch" type="Node" parent="World/Swamp Hut/Honey I\'m home!"]
-script = ExtResource("6_e5tu3")
-item_name = "Coin Pouch"
-
-[node name="Bridge?" type="Node2D" parent="World"]
+[node name="Bridge" type="Node2D" parent="World"]
 position = Vector2(125, -41)
 script = ExtResource("7_e5tu3")
 poi_name = "River Crossing"
+
+[node name="Watchtower" type="Node2D" parent="World"]
+position = Vector2(262, 107)
+script = ExtResource("7_e5tu3")
+poi_name = "Hilltop Watchtower"
+
+[node name="Barrows" type="Node2D" parent="World"]
+position = Vector2(39, 265)
+script = ExtResource("7_e5tu3")
+poi_name = "Barrows"
+
+[node name="Castle" type="Node2D" parent="World"]
+position = Vector2(-362, -136)
+script = ExtResource("7_e5tu3")
+poi_name = "Ruined Castle"
+
+[node name="SwampHut" type="Node2D" parent="World"]
+position = Vector2(-258, 78)
+script = ExtResource("7_e5tu3")
+poi_name = "Swamp Hut"
+
+[node name="Campsite" type="Node2D" parent="World"]
+position = Vector2(334, 306)
+script = ExtResource("7_e5tu3")
+poi_name = "Campsite"

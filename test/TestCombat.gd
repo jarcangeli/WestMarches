@@ -6,10 +6,11 @@ extends Control
 @onready var combat_log: TextEdit = %CombatLog
 
 func _on_run_combat_button_pressed():
-	var combat = Combat.new([adventurer], [monster])
-	combat.combat_log.connect(on_combat_log_line)
-	while (!combat.is_finished()):
-		combat.play_round()
+	combat_log.clear()
+	#var combat = Combat.new([adventurer], [monster])
+	#combat.combat_log.connect(on_combat_log_line)
+	#while (!combat.is_finished()):
+		#combat.play_round()
 	
 	# Now run a sim
 	var start = Time.get_ticks_msec()

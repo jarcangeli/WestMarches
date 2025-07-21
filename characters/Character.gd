@@ -17,6 +17,12 @@ var debt : int = 0
 
 var experience := 0
 
+# Cached values
+var cached_max_health : int
+var cached_strength : int
+var cached_dexterity : int
+var cached_constitution : int
+
 func _ready():
 	child_entered_tree.connect(equip_best_gear, CONNECT_DEFERRED)
 	child_exiting_tree.connect(equip_best_gear, CONNECT_DEFERRED)
@@ -36,24 +42,36 @@ func is_alive():
 	return health > 0
 
 func get_strength() -> int:
+	return cached_strength
+
+func get_dexterity() -> int:
+	return cached_dexterity
+
+func get_constitution() -> int:
+	return cached_constitution
+
+func get_max_health() -> int:
+	return cached_max_health
+
+func calc_strength() -> int:
 	var strength = base_strength
 	for item : Item in get_equipped_items():
 		strength += item.strength_bonus
 	return clamp(strength, 0, strength)
 
-func get_dexterity() -> int:
+func calc_dexterity() -> int:
 	var dexterity = base_dexterity
 	for item : Item in get_equipped_items():
 		dexterity += item.dexterity_bonus
 	return clamp(dexterity, 0, dexterity)
 
-func get_constitution() -> int:
+func calc_constitution() -> int:
 	var constitution = base_constitution
 	for item : Item in get_equipped_items():
 		constitution += item.constitution_bonus
 	return clamp(constitution, 1, constitution)
 
-func get_max_health() -> int:
+func calc_max_health() -> int:
 	return get_constitution() * 10
 
 func get_level() -> int:
@@ -80,6 +98,11 @@ func equip_best_gear(_dummy = null):
 		else:
 			if equip_slots.get(item.primary_slot_type).get_value() < item.get_value():
 				equip_slots[item.primary_slot_type] = item
+	# Update cached stats
+	cached_constitution = calc_constitution()
+	cached_max_health = calc_max_health()
+	cached_strength = calc_strength()
+	cached_dexterity = calc_dexterity()
 
 func get_equipped_item(slot : Item.Slot):
 	var item = equip_slots.get(slot)

@@ -29,9 +29,21 @@ func generate_quest(party : AdventuringParty):
 	SignalBus.quest_created.emit(quest)
 
 func generate_quest_kill(party : AdventuringParty):
-	var encounter = get_encounter(map)
+	var encounter : Encounter = null
+	var iterations := 0
+	
+	const MIN_PERCENT = 5
+	const MAX_PERCENT = 95
+	const MAX_ITERATIONS = 20
+	
+	while encounter == null and iterations < MAX_ITERATIONS:
+		encounter = get_encounter(map)
+		var results := CombatSim.simulate(party.get_characters(), encounter.get_monsters(), 100)
+		if results == null or results.get_win_percentage() < MIN_PERCENT or results.get_win_percentage() > MAX_PERCENT:
+			encounter = null
+		iterations += 1
 	if not is_instance_valid(encounter):
-		print("[TODO] No free encounter found to create kill quest, make some more")
+		print("[TODO] No good encounter found to create kill quest, make some more")
 		return null
 	
 	var quest : Quest = quest_scene.instantiate()
@@ -53,7 +65,7 @@ func get_poi(root):
 				return poi
 	return null
 
-func get_encounter(root):
+func get_encounter(root) -> Encounter:
 	# HACK: map should expose an API
 	var children = root.get_children()
 	children.shuffle()

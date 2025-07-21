@@ -114,7 +114,7 @@ display_name = "Ugs"
 
 [node name="Ug" type="Node" parent="AdventuringParties/Party3"]
 script = ExtResource("12")
-character_name = "Ben"
+character_name = "Ug"
 
 [node name="PHShortsword" type="Node" parent="AdventuringParties/Party3/Ug"]
 script = ExtResource("7_2gh4u")
@@ -122,7 +122,7 @@ item_name = "Shortsword"
 
 [node name="Og" type="Node" parent="AdventuringParties/Party3"]
 script = ExtResource("12")
-character_name = "Sam"
+character_name = "Og"
 
 [node name="PHShortbow" type="Node" parent="AdventuringParties/Party3/Og"]
 script = ExtResource("7_2gh4u")
@@ -130,7 +130,7 @@ item_name = "Shortbow"
 
 [node name="Ag" type="Node" parent="AdventuringParties/Party3"]
 script = ExtResource("12")
-character_name = "Jen"
+character_name = "Ag"
 
 [node name="PHShortbow" type="Node" parent="AdventuringParties/Party3/Ag"]
 script = ExtResource("7_2gh4u")
@@ -142,7 +142,7 @@ display_name = "The Fellowship"
 
 [node name="Aragorn" type="Node" parent="AdventuringParties/Party4"]
 script = ExtResource("12")
-character_name = "Ben"
+character_name = "Aragorn"
 
 [node name="PHShortsword" type="Node" parent="AdventuringParties/Party4/Aragorn"]
 script = ExtResource("7_2gh4u")
@@ -150,17 +150,17 @@ item_name = "Shortsword"
 
 [node name="Legolas" type="Node" parent="AdventuringParties/Party4"]
 script = ExtResource("12")
-character_name = "Sam"
+character_name = "Legolas"
 
 [node name="PHShortbow" type="Node" parent="AdventuringParties/Party4/Legolas"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortbow"
 
-[node name="Gimbli" type="Node" parent="AdventuringParties/Party4"]
+[node name="Gimli" type="Node" parent="AdventuringParties/Party4"]
 script = ExtResource("12")
-character_name = "Jen"
+character_name = "Gimli"
 
-[node name="PHAxe" type="Node" parent="AdventuringParties/Party4/Gimbli"]
+[node name="PHAxe" type="Node" parent="AdventuringParties/Party4/Gimli"]
 script = ExtResource("7_2gh4u")
 item_name = "Battleaxe"
 

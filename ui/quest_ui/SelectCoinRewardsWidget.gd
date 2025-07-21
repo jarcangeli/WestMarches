@@ -1,4 +1,5 @@
 extends HBoxContainer
+class_name SelectedCoinsDisplay
 
 @export var item_value_label : Label 
 

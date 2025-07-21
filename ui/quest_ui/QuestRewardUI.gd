@@ -4,7 +4,7 @@ class_name QuestRewardUI
 signal quest_abandoned()
 signal quest_finished()
 
-@onready var selected_coins_display: HBoxContainer = %SelectedCoinsDisplay
+@onready var selected_coins_display: SelectedCoinsDisplay = %SelectedCoinsDisplay
 @onready var available_party_coins_label: Label = %AvailablePartyCoinsLabel
 @onready var owed_party_coins_label: Label = %OwedPartyCoinsLabel
 @onready var loot_container: VBoxContainer = %LootContainer
@@ -47,6 +47,8 @@ func _on_take_rewards_button_pressed() -> void:
 	for character : Character in current_quest.party.get_characters():
 		var loaned_items = character.get_loaned_items()
 		Globals.player_inventory.add_items(loaned_items)
+	Globals.player_currencies.add_gold(selected_coins_display.selected)
+	# TODO: Remove party gold
 	current_quest.complete()
 	current_quest = null
 	quest_finished.emit()

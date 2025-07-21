@@ -13,7 +13,7 @@ func iterate():
 	count += 1
 	party_1.quest = null
 	advance_time_button.advance_time()
-	if count < 100:
+	if count < 35:
 		iterate.call_deferred()
 	else:
 		quest_screen.open_quest_select_ui()

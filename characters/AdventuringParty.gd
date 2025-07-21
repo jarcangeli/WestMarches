@@ -1,4 +1,4 @@
-extends Node
+extends ItemContainer
 class_name AdventuringParty
 
 @export var display_name : String
@@ -14,6 +14,12 @@ func _ready() -> void:
 
 func get_position():
 	return position
+
+func is_alive():
+	for character in get_characters():
+		if character.is_alive():
+			return true
+	return false
 
 func get_characters() -> Array[Character]:
 	var characters : Array[Character] = []
@@ -43,3 +49,11 @@ func get_gold():
 func on_quest_completed(quest_completed : Quest):
 	if quest_completed == quest:
 		quest = null
+		var disband_party := true
+		for character in get_characters():
+			if not character.is_alive():
+				character.on_death()
+			else:
+				disband_party = false
+		if disband_party:
+			queue_free() #TODO: A proper send off

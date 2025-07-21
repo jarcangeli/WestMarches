@@ -49,9 +49,11 @@ func play_round():
 	add_log("Start of round %d" % round_number)
 	
 	for adventurer in adventurers:
-		play_turn(adventurer, monsters)
+		if adventurer.is_alive():
+			play_turn(adventurer, monsters)
 	for monster in monsters:
-		play_turn(monster, adventurers)
+		if monster.is_alive():
+			play_turn(monster, adventurers)
 	
 	if is_finished():
 		if not simulated:

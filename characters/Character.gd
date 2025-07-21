@@ -1,6 +1,8 @@
 extends ItemContainer
 class_name Character
 
+signal died()
+
 @export var character_name : String
 
 var id := -1
@@ -76,3 +78,10 @@ func get_equipped_items():
 
 func modify_exp(gain):
 	experience += gain
+
+func on_death():
+	#TODO: Move all items into the party inventory so they aren't lost
+	if get_parent():
+		get_parent().remove_child(self)
+	Globals.character_graveyard.add_child(self)
+	died.emit()

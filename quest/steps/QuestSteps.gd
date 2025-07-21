@@ -21,7 +21,10 @@ func advance_time() -> void:
 	#TODO: Report early failure?
 	if active_step.finished():
 		step_index += 1
-		if get_child_count() <= step_index:
+		if  not get_party().is_alive():
+			var quest : Quest = get_quest()
+			quest.complete()
+		elif get_child_count() <= step_index:
 			var quest : Quest = get_quest()
 			quest.finish()
 		else:

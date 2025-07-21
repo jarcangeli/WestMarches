@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=20 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://ui/quest_ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="9"]
 [ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://ui/AdvanceTimeButton.gd" id="10"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="12"]
+[ext_resource type="Script" uid="uid://dha28liq3sunc" path="res://characters/CharacterGraveyard.gd" id="12_5tuhn"]
 [ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="13"]
 [ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://ui/inventory_ui/PlayerCurrencyDisplay.gd" id="14"]
 [ext_resource type="Script" uid="uid://bvsxe7140kkgc" path="res://core/PlayerCurrencies.gd" id="15"]
@@ -49,7 +50,7 @@ item_name = "Shortsword"
 script = ExtResource("7_2gh4u")
 item_name = "Coif"
 
-[node name="AdventuringParties" type="Node" parent="."]
+[node name="AdventuringParties" type="Node" parent="." groups=["time"]]
 script = ExtResource("19")
 
 [node name="Party1" type="Node" parent="AdventuringParties"]
@@ -185,6 +186,9 @@ quest_signal = "quest_started"
 [node name="CompletedQuests" type="Node" parent="QuestManager"]
 script = ExtResource("4")
 quest_signal = "quest_completed"
+
+[node name="CharacterGraveyard" type="Node" parent="."]
+script = ExtResource("12_5tuhn")
 
 [node name="GameWindow" type="VBoxContainer" parent="."]
 layout_mode = 2

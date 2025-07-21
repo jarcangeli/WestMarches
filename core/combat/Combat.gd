@@ -45,7 +45,7 @@ func play_turn(character : Character, enemies : Array):
 		return
 	
 	var roll := randi() % 100 + 1
-	combat_log.emit("%s rolled %d" % [character.character_name, roll])
+	combat_log.emit("%s rolled %d" % [character.name, roll])
 	var enemy : Character = target_character(enemies)
 	if not enemy:
 		push_warning("Trying to attack but no characters")
@@ -55,18 +55,18 @@ func play_turn(character : Character, enemies : Array):
 		damage = roll + character.get_strength()
 	
 	if roll == 1:
-		combat_log.emit(character.character_name + " critical miss on " + enemy.character_name)
+		combat_log.emit(character.name + " critical miss on " + enemy.name)
 	elif damage > 0:
 		enemy.damage(damage)
 		if roll == 100:
-			combat_log.emit("%s critical hit on %s for %d damage! (%d/%d)" % [character.character_name, enemy.character_name, damage, enemy.health, enemy.get_max_health()])
+			combat_log.emit("%s critical hit on %s for %d damage! (%d/%d)" % [character.name, enemy.name, damage, enemy.health, enemy.get_max_health()])
 		else:
-			combat_log.emit("%s dealt %d damage to %s (%d/%d)" % [character.character_name, damage, enemy.character_name, enemy.health, enemy.get_max_health()])
+			combat_log.emit("%s dealt %d damage to %s (%d/%d)" % [character.name, damage, enemy.name, enemy.health, enemy.get_max_health()])
 		
 		if not enemy.is_alive():
-			combat_log.emit(enemy.character_name + " was slain")
+			combat_log.emit(enemy.name + " was slain")
 	else:
-		combat_log.emit(character.character_name + " missed " + enemy.character_name)
+		combat_log.emit(character.name + " missed " + enemy.name)
 
 func target_character(characters):
 	var highest_hp = 0

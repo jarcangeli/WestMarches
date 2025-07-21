@@ -64,7 +64,6 @@ func on_item_unequipped(item, _slot):
 	reward_label.text = str(loaned_item_value) + " gp"
 
 func _on_abandon_quest_button_pressed() -> void:
-	#TODO: Return all items?
 	current_quest = null
 	quest_abandoned.emit()
 
@@ -84,6 +83,6 @@ func _on_start_quest_button_pressed() -> void:
 			item.loaned_character = character
 	
 	SignalBus.player_inventory_changed.emit()
-	current_quest.start(current_quest.party)
+	current_quest.start()
 	
 	quest_started.emit()

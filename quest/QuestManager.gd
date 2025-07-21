@@ -87,5 +87,5 @@ func auto_play_quest():
 		push_warning("No quests to auto-start for debugging")
 		return
 	var quest : Quest = available_quests.get_child(0)
-	quest.start(parties.get_child(0))
+	quest.start()
 	quest.finish()

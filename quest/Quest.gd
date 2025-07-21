@@ -30,10 +30,9 @@ func initialise(encounter : Encounter, map):
 	battle_step.initialise(encounter)
 	return_step.initialise(encounter.get_location(), map.town)
 
-func start(new_party):
-	if not is_instance_valid(new_party):
+func start():
+	if not is_instance_valid(party):
 		push_error("Quest started with invalid party")
-	party = new_party
 	started = true
 	SignalBus.quest_started.emit(self)
 
@@ -67,14 +66,13 @@ func get_difficulty():
 		difficulty_sum += monster.get_power_level()
 	return difficulty_sum / 300.0 * 5
 
-func simulate_win_percentage(_party : AdventuringParty):
-	#TODO: replace with property party
+func simulate_win_percentage():
 	if not battle_step or not battle_step.encounter:
 		return 100
-	if not _party:
+	if not party:
 		return 0
 	
-	var adventurers := _party.get_characters()
+	var adventurers := party.get_characters()
 	var monsters := battle_step.encounter.get_monsters()
 	var results := CombatSim.simulate(adventurers, monsters, 300)
 	return results.get_win_percentage()

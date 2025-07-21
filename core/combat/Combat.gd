@@ -74,9 +74,10 @@ func play_turn(character : Character, enemies : Array):
 	if not enemy:
 		push_warning("Trying to attack but no characters")
 		return
-	var damage = roll + character.get_strength() - enemy.get_dexterity()
+	var damage = roll + character.stats.get_value(AbilityStats.Type.ATTACK) \
+							- enemy.stats.get_value(AbilityStats.Type.AVOIDANCE)
 	if roll == 100: #TODO: Add crit bonus stat
-		damage = roll + character.get_strength()
+		damage = roll + character.stats.get_value(AbilityStats.Type.ATTACK)
 	
 	if roll == 1:
 		add_log(character.name + " critical miss on " + enemy.name)

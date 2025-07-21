@@ -42,16 +42,10 @@ var id : int = -1
 
 @export var consumed_on_acquire : bool = false
 
-@export var constitution_bonus := 0
-@export var strength_bonus := 0
-@export var dexterity_bonus := 0
-
+var stats : AbilityStats = AbilityStats.new()
 var currency_generated : int = 0 #TODO: Implement
-
 var base_value := 1
-
 var equip_slot = null
-
 var loaned_character = null
 
 static func slot_to_shortname(slot):
@@ -115,9 +109,9 @@ func _init(item_data : ItemData):
 	icon = item_data.icon
 	primary_slot_type = item_data.primary_slot_type
 	consumed_on_acquire = item_data.consumed_on_acquire
-	constitution_bonus = item_data.constitution_bonus
-	strength_bonus = item_data.strength_bonus
-	dexterity_bonus = item_data.dexterity_bonus
+	stats.set_value(AbilityStats.Type.CONSTITUTION, item_data.constitution_bonus)
+	stats.set_value(AbilityStats.Type.ATTACK, item_data.strength_bonus)
+	stats.set_value(AbilityStats.Type.AVOIDANCE, item_data.dexterity_bonus)
 	currency_generated = item_data.currency_generated
 	name = item_name
 
@@ -144,7 +138,7 @@ func on_item_unequipped(item, slot):
 
 func get_value() -> int:
 	#TODO: Calculate from attributes?
-	return base_value + ceil((dexterity_bonus + strength_bonus + constitution_bonus) / 10.0)
+	return base_value + stats.get_weighted_sum() / 10.0
 
 func get_currency_granted():
 	if consumed_on_acquire:

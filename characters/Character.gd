@@ -1,27 +1,18 @@
 extends ItemContainer
 class_name Character
 
-var id := -1
-
 @export var character_name : String
 
+var id := -1
 var equip_slots : Dictionary
-
 var debt : int = 0
 
-@export var base_constitution := 10
-@export var base_strength := 10
-@export var base_dexterity := 10
+var base_stats := AbilityStats.new()
+var stats := CharacterStats.new(base_stats, self)
 
 @onready var health := get_max_health()
 
 var experience := 0
-
-# Cached values
-var cached_max_health : int
-var cached_strength : int
-var cached_dexterity : int
-var cached_constitution : int
 
 func _ready():
 	child_entered_tree.connect(equip_best_gear, CONNECT_DEFERRED)
@@ -33,52 +24,22 @@ func _init(data : CharacterData = null):
 		return #TODO: This is just for prototyping characters in place, remove
 	id = data.id
 	character_name = data.character_name
-	base_constitution = data.base_constitution
-	base_dexterity = data.base_dexterity
-	base_strength = data.base_strength
+	base_stats.set_value(AbilityStats.Type.CONSTITUTION, data.base_constitution)
+	base_stats.set_value(AbilityStats.Type.ATTACK, data.base_strength)
+	base_stats.set_value(AbilityStats.Type.AVOIDANCE, data.base_dexterity)
 	set_name(character_name)
 
 func is_alive():
 	return health > 0
 
-func get_strength() -> int:
-	return cached_strength
-
-func get_dexterity() -> int:
-	return cached_dexterity
-
-func get_constitution() -> int:
-	return cached_constitution
-
 func get_max_health() -> int:
-	return cached_max_health
-
-func calc_strength() -> int:
-	var strength = base_strength
-	for item : Item in get_equipped_items():
-		strength += item.strength_bonus
-	return clamp(strength, 0, strength)
-
-func calc_dexterity() -> int:
-	var dexterity = base_dexterity
-	for item : Item in get_equipped_items():
-		dexterity += item.dexterity_bonus
-	return clamp(dexterity, 0, dexterity)
-
-func calc_constitution() -> int:
-	var constitution = base_constitution
-	for item : Item in get_equipped_items():
-		constitution += item.constitution_bonus
-	return clamp(constitution, 1, constitution)
-
-func calc_max_health() -> int:
-	return get_constitution() * 10
+	return stats.get_value(AbilityStats.Type.CONSTITUTION) * 10
 
 func get_level() -> int:
 	return TuningKnobs.level_from_experience(experience)
 
 func get_power_level() -> int:
-	return max(get_dexterity() + get_constitution() + get_strength() - 30, 0)
+	return stats.get_weighted_sum()
 
 func damage(value : int):
 	health -= clamp(value, 0, value)
@@ -98,11 +59,7 @@ func equip_best_gear(_dummy = null):
 		else:
 			if equip_slots.get(item.primary_slot_type).get_value() < item.get_value():
 				equip_slots[item.primary_slot_type] = item
-	# Update cached stats
-	cached_constitution = calc_constitution()
-	cached_max_health = calc_max_health()
-	cached_strength = calc_strength()
-	cached_dexterity = calc_dexterity()
+	stats.invalidate_cache()
 
 func get_equipped_item(slot : Item.Slot):
 	var item = equip_slots.get(slot)

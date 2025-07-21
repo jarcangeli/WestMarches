@@ -1,0 +1,32 @@
+extends AbilityStats
+class_name CharacterStats
+
+var cache_valid : Array[bool]
+var base_stats : AbilityStats
+var character : ItemContainer
+
+func _init(_base_stats : AbilityStats, _character : Character):
+	base_stats = _base_stats
+	character = _character
+	invalidate_cache()
+
+func get_value(type : AbilityStats.Type) -> int:
+	if not cache_valid[type]:
+		values[type] = calculate_value(type) #update cache
+	return values[type]
+
+func set_value(type : AbilityStats.Type, value : int) -> void:
+	values[type] = value
+
+func calculate_value(type : AbilityStats.Type) -> int:
+	var value = base_stats.get_value(type)
+	for item : Item in character.get_equipped_items():
+		value += item.stats.get_value(type)
+	return value
+
+func invalidate_cache():
+	cache_valid = []
+	for i in range(len(values)):
+		cache_valid.append(false)
+
+#TODO: get_weighted_sum override?

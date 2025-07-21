@@ -3,8 +3,7 @@ extends Node
 @export var parties : AdventuringParties
 @export var available_quests : QuestContainerNode
 
-@export var map_path : NodePath
-@onready var map = get_node(map_path)
+@export var map : Node
 
 var quest_scene = preload("res://quest/QuestKill.tscn")
 
@@ -32,19 +31,15 @@ func generate_quest_kill(party : AdventuringParty):
 	var encounter : Encounter = null
 	var iterations := 0
 	
-	const MIN_PERCENT = 5
-	const MAX_PERCENT = 95
-	const MAX_ITERATIONS = 20
-	
-	while encounter == null and iterations < MAX_ITERATIONS:
+	while encounter == null and iterations < TuningKnobs.QUEST_MAX_ITERATIONS:
 		encounter = get_encounter(map)
+		if not is_instance_valid(encounter):
+			print("[TODO] No good encounter found to create kill quest, make some more")
+			return null
 		var results := CombatSim.simulate(party.get_characters(), encounter.get_monsters(), 100)
-		if results == null or results.get_win_percentage() < MIN_PERCENT or results.get_win_percentage() > MAX_PERCENT:
+		if results == null or results.get_win_percentage() < TuningKnobs.QUEST_MIN_PERCENT or results.get_win_percentage() > TuningKnobs.QUEST_MAX_PERCENT:
 			encounter = null
 		iterations += 1
-	if not is_instance_valid(encounter):
-		print("[TODO] No good encounter found to create kill quest, make some more")
-		return null
 	
 	var quest : Quest = quest_scene.instantiate()
 	add_child(quest)

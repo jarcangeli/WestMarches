@@ -1,0 +1,127 @@
+[gd_scene load_steps=14 format=3 uid="uid://c2a1ptlabf4qg"]
+
+[ext_resource type="Script" uid="uid://pasdpg40sm4w" path="res://test/TestQuests.gd" id="1_hxnl8"]
+[ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://ui/inventory_ui/PlayerCurrencyDisplay.gd" id="2_4kdxb"]
+[ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://ui/quest_ui/QuestScreen.tscn" id="2_5kee0"]
+[ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="2_rn7o8"]
+[ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="3_ghqp3"]
+[ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://ui/TimeLabel.gd" id="3_rn7o8"]
+[ext_resource type="Script" uid="uid://37lfxcb774f2" path="res://quest/QuestManager.gd" id="4_4kdxb"]
+[ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://ui/AdvanceTimeButton.gd" id="4_rm5kl"]
+[ext_resource type="Script" uid="uid://bbpg5w2de17ex" path="res://quest/QuestsContainerNode.gd" id="5_rn7o8"]
+[ext_resource type="Script" uid="uid://ba36v1b1jri08" path="res://characters/AdventuringParties.gd" id="6_rm5kl"]
+[ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="7_3y0sa"]
+[ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="8_5txy0"]
+[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/LazyLoadItem.gd" id="9_p1mye"]
+
+[node name="TestQuests" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hxnl8")
+
+[node name="TimeTracker" type="Node" parent="." groups=["time"]]
+script = ExtResource("2_rn7o8")
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TopBar"]
+layout_mode = 2
+text = "Game Progress:"
+
+[node name="Control" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerCurrencyDisplay" type="Label" parent="TopBar"]
+layout_mode = 2
+text = "0 gp"
+script = ExtResource("2_4kdxb")
+
+[node name="Control3" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimeLabel" type="Label" parent="TopBar"]
+layout_mode = 2
+script = ExtResource("3_rn7o8")
+time_tracker_path = NodePath("../../TimeTracker")
+
+[node name="Control2" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AdvanceTimeButton" type="Button" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Advance Day -->"
+script = ExtResource("4_rm5kl")
+
+[node name="QuestScreen" parent="." node_paths=PackedStringArray("pending_quests", "available_quests", "active_quests", "completed_quests", "adventuring_parties") instance=ExtResource("2_5kee0")]
+layout_mode = 2
+size_flags_vertical = 3
+pending_quests = NodePath("../QuestManager/PendingQuests")
+available_quests = NodePath("../QuestManager/AvailableQuests")
+active_quests = NodePath("../QuestManager/ActiveQuests")
+completed_quests = NodePath("../QuestManager/CompletedQuests")
+adventuring_parties = NodePath("../AdventuringParties")
+
+[node name="Map" parent="." instance=ExtResource("3_ghqp3")]
+visible = false
+layout_mode = 2
+
+[node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests", "map") groups=["time"]]
+script = ExtResource("4_4kdxb")
+parties = NodePath("../AdventuringParties")
+available_quests = NodePath("AvailableQuests")
+map = NodePath("../Map")
+
+[node name="PendingQuests" type="Node" parent="QuestManager"]
+script = ExtResource("5_rn7o8")
+quest_signal = "quest_finished"
+
+[node name="AvailableQuests" type="Node" parent="QuestManager"]
+script = ExtResource("5_rn7o8")
+quest_signal = "quest_created"
+
+[node name="ActiveQuests" type="Node" parent="QuestManager"]
+script = ExtResource("5_rn7o8")
+quest_signal = "quest_started"
+
+[node name="CompletedQuests" type="Node" parent="QuestManager"]
+script = ExtResource("5_rn7o8")
+quest_signal = "quest_completed"
+
+[node name="AdventuringParties" type="Node" parent="."]
+script = ExtResource("6_rm5kl")
+
+[node name="Party1" type="Node" parent="AdventuringParties"]
+script = ExtResource("7_3y0sa")
+display_name = "The Ladz"
+
+[node name="Ben" type="Node" parent="AdventuringParties/Party1"]
+script = ExtResource("8_5txy0")
+character_name = "Ben"
+
+[node name="PHShortsword" type="Node" parent="AdventuringParties/Party1/Ben"]
+script = ExtResource("9_p1mye")
+item_name = "Shortsword"
+
+[node name="Sam" type="Node" parent="AdventuringParties/Party1"]
+script = ExtResource("8_5txy0")
+character_name = "Sam"
+
+[node name="PHShortbow" type="Node" parent="AdventuringParties/Party1/Sam"]
+script = ExtResource("9_p1mye")
+item_name = "Shortbow"
+
+[node name="Jen" type="Node" parent="AdventuringParties/Party1"]
+script = ExtResource("8_5txy0")
+character_name = "Jen"
+
+[node name="PHShortbow" type="Node" parent="AdventuringParties/Party1/Jen"]
+script = ExtResource("9_p1mye")
+item_name = "Shortbow"

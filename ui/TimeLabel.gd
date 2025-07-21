@@ -8,4 +8,5 @@ func _ready():
 	update_ui()
 
 func update_ui():
-	text = "Day " + str(time_tracker.day)
+	if time_tracker:
+		text = "Day " + str(time_tracker.day)

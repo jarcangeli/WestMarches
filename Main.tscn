@@ -164,11 +164,11 @@ character_name = "Gimli"
 script = ExtResource("7_2gh4u")
 item_name = "Battleaxe"
 
-[node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests") groups=["time"]]
+[node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests", "map") groups=["time"]]
 script = ExtResource("21")
 parties = NodePath("../AdventuringParties")
 available_quests = NodePath("AvailableQuests")
-map_path = NodePath("../GameWindow/GameTabs/Map")
+map = NodePath("../GameWindow/GameTabs/Map")
 
 [node name="PendingQuests" type="Node" parent="QuestManager"]
 script = ExtResource("4")

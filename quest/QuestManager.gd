@@ -10,24 +10,25 @@ var quest_scene = preload("res://quest/QuestKill.tscn")
 
 const MAX_AVAILABLE_QUESTS = 4
 
- #TODO: Make this more sofisticated, want max 1 active quest per monster
+ #TODO: Make this more sophisticated, want max 1 active quest per encounter
+# e.g. a failed quest could be re-generated
 var encounters_already_encountered = []
 
 func advance_time():
-	if available_quests.get_child_count() < MAX_AVAILABLE_QUESTS:
-		print("Generating new quests")
-		generate_quest()
+	for party in parties.get_idle_parties():
+		print("Generating quest for " + party.display_name)
+		generate_quest(party)
 
-func generate_quest():
+func generate_quest(party : AdventuringParty):
 	#TODO: Some logic determing level of quest to generate, e.g. always have 2 easy, 1 med, sometimes a rare/hard
-	var quest : Quest = generate_quest_kill()
+	var quest : Quest = generate_quest_kill(party)
 	if quest == null:
 		#Could not generate a new quest
 		#TODO: this should never happen if we generate new monsters
 		return
 	SignalBus.quest_created.emit(quest)
 
-func generate_quest_kill():
+func generate_quest_kill(party : AdventuringParty):
 	var encounter = get_encounter(map)
 	if not is_instance_valid(encounter):
 		print("[TODO] No free encounter found to create kill quest, make some more")
@@ -36,6 +37,8 @@ func generate_quest_kill():
 	var quest : Quest = quest_scene.instantiate()
 	add_child(quest)
 	quest.initialise(encounter, map)
+	quest.party = party
+	party.quest = quest #TODO: This is spaghett
 	encounters_already_encountered.append(encounter)
 	return quest
 

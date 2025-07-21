@@ -5,11 +5,12 @@ class_name AdventuringParty
 
 var position = Vector2.ZERO
 
-#TODO: Track what quest we are on
+var quest = null
 
 func _ready() -> void:
 	if display_name.is_empty():
 		display_name = name
+	SignalBus.quest_completed.connect(on_quest_completed)
 
 func get_position():
 	return position
@@ -38,3 +39,7 @@ func get_debt():
 
 func get_gold():
 	return 5
+
+func on_quest_completed(quest_completed : Quest):
+	if quest_completed == quest:
+		quest = null

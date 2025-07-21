@@ -12,17 +12,18 @@ func _init(_base_stats : AbilityStats, _character : Character):
 
 func get_value(type : AbilityStats.Type) -> int:
 	if not cache_valid[type]:
-		values[type] = calculate_value(type) #update cache
+		calculate_value(type) #update cache
 	return values[type]
 
 func set_value(type : AbilityStats.Type, value : int) -> void:
 	values[type] = value
 
-func calculate_value(type : AbilityStats.Type) -> int:
+func calculate_value(type : AbilityStats.Type):
 	var value = base_stats.get_value(type)
 	for item : Item in character.get_equipped_items():
 		value += item.stats.get_value(type)
-	return value
+	values[type] = value
+	cache_valid[type] = true
 
 func invalidate_cache():
 	cache_valid = []

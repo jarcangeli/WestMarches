@@ -1,20 +1,24 @@
 extends Control
 
 @export var adventurer : Character
-@export var monster : Character
 
 @onready var combat_log: TextEdit = %CombatLog
 
 func _on_run_combat_button_pressed():
 	combat_log.clear()
-	#var combat = Combat.new([adventurer], [monster])
+	var monsters : Array[Character] = []
+	for node in get_children():
+		if node is Character and node != adventurer:
+			monsters.append(node)
+	
+	#var combat = Combat.new([adventurer], monsters)
 	#combat.combat_log.connect(on_combat_log_line)
 	#while (!combat.is_finished()):
 		#combat.play_round()
 	
 	# Now run a sim
 	var start = Time.get_ticks_msec()
-	var results := CombatSim.simulate([adventurer], [monster], 3000)
+	var results := CombatSim.simulate([adventurer], monsters, 3000)
 	var end = Time.get_ticks_msec()
 	on_combat_log_line("-------------------------")
 	on_combat_log_line("Running simulation")

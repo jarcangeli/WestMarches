@@ -24,9 +24,8 @@ func _init(data : CharacterData = null):
 		return #TODO: This is just for prototyping characters in place, remove
 	id = data.id
 	character_name = data.character_name
-	base_stats.set_value(AbilityStats.Type.CONSTITUTION, data.base_constitution)
-	base_stats.set_value(AbilityStats.Type.ATTACK, data.base_strength)
-	base_stats.set_value(AbilityStats.Type.AVOIDANCE, data.base_dexterity)
+	base_stats.values = data.stats.values
+	stats.invalidate_cache()
 	set_name(character_name)
 
 func is_alive():

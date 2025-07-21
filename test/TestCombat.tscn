@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl4vuiwj85ev"]
+[gd_scene load_steps=5 format=3 uid="uid://dl4vuiwj85ev"]
 
 [ext_resource type="Script" uid="uid://8v260nocnrls" path="res://test/TestCombat.gd" id="1_kuu8u"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="1_oxyo4"]
 [ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/LazyLoadItem.gd" id="3_me3qr"]
+[ext_resource type="Script" uid="uid://ba4hauhkd27l" path="res://characters/LazyLoadCharacter.gd" id="4_2oxra"]
 
-[node name="TestCombat" type="VBoxContainer" node_paths=PackedStringArray("adventurer", "monster")]
+[node name="TestCombat" type="VBoxContainer" node_paths=PackedStringArray("adventurer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,7 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kuu8u")
 adventurer = NodePath("Conan")
-monster = NodePath("Monster")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2
@@ -38,8 +38,8 @@ item_name = "Sylvan Axe"
 script = ExtResource("3_me3qr")
 item_name = "Platemail"
 
-[node name="Monster" type="Node" parent="."]
-script = ExtResource("1_oxyo4")
-character_name = "Werewolfe"
+[node name="Wolfy" type="Node" parent="."]
+script = ExtResource("4_2oxra")
+monster_name = "Warg"
 
 [connection signal="pressed" from="CenterContainer/RunCombatButton" to="." method="_on_run_combat_button_pressed"]

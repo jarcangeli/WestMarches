@@ -19,6 +19,7 @@ config/icon="res://assets/icons/logo.png"
 
 SignalBus="*res://core/SignalBus.gd"
 Globals="*res://core/Globals.gd"
+TuningKnobs="*res://core/TuningKnobs.gd"
 DB="*res://core/SQLiteDatabase.gd"
 ItemDatabase="*res://core/ItemDatabase.gd"
 MonsterDatabase="*res://core/MonsterDatabase.gd"

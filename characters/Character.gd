@@ -57,7 +57,7 @@ func get_max_health() -> int:
 	return get_constitution() * 10
 
 func get_level() -> int:
-	return 1 + floor(experience / float(40)) #TODO: Balance against encounters
+	return TuningKnobs.level_from_experience(experience)
 
 func get_power_level() -> int:
 	return max(get_dexterity() + get_constitution() + get_strength() - 30, 0)

@@ -59,11 +59,6 @@ func open_quest_select_ui():
 	
 	var _completed_quests = get_completed_quests()
 	quest_select_ui.set_completed_quests(_completed_quests)
-	
-	#TODO: extend to allow multiple adventuring parties
-	var adventuring_party = adventuring_parties.get_child(randi() % adventuring_parties.get_child_count())
-	current_party = adventuring_party
-	quest_select_ui.set_party(adventuring_party)
 
 func open_quest_equip_ui(quest : Quest):
 	quest_select_ui.visible = false
@@ -78,8 +73,6 @@ func open_quest_reward_ui(quest : Quest):
 	quest_reward_ui.setup_quest_reward_ui(quest)
 
 func on_quest_chosen(quest):
-	if quest and not quest.started and not quest.party:
-		quest.party = current_party #TODO: Shouldn't be random
 	current_quest = quest
 	
 	if not quest:

@@ -7,6 +7,7 @@ extends Panel
 @export var quest_difficulty_display : TextureProgressBar
 
 func set_quest(quest : Quest):
+	set_party(quest.party)
 	quest_name_label.text = "Quest: " + quest.quest_name
 	quest_description_text_ui.text = quest.quest_description
 	quest_rewards_display.set_quest(quest)

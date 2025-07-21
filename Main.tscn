@@ -108,6 +108,62 @@ item_name = "Shortbow"
 script = ExtResource("12")
 character_name = "Gomli"
 
+[node name="Party3" type="Node" parent="AdventuringParties"]
+script = ExtResource("13")
+display_name = "Ugs"
+
+[node name="Ug" type="Node" parent="AdventuringParties/Party3"]
+script = ExtResource("12")
+character_name = "Ben"
+
+[node name="PHShortsword" type="Node" parent="AdventuringParties/Party3/Ug"]
+script = ExtResource("7_2gh4u")
+item_name = "Shortsword"
+
+[node name="Og" type="Node" parent="AdventuringParties/Party3"]
+script = ExtResource("12")
+character_name = "Sam"
+
+[node name="PHShortbow" type="Node" parent="AdventuringParties/Party3/Og"]
+script = ExtResource("7_2gh4u")
+item_name = "Shortbow"
+
+[node name="Ag" type="Node" parent="AdventuringParties/Party3"]
+script = ExtResource("12")
+character_name = "Jen"
+
+[node name="PHShortbow" type="Node" parent="AdventuringParties/Party3/Ag"]
+script = ExtResource("7_2gh4u")
+item_name = "Shortbow"
+
+[node name="Party4" type="Node" parent="AdventuringParties"]
+script = ExtResource("13")
+display_name = "The Fellowship"
+
+[node name="Aragorn" type="Node" parent="AdventuringParties/Party4"]
+script = ExtResource("12")
+character_name = "Ben"
+
+[node name="PHShortsword" type="Node" parent="AdventuringParties/Party4/Aragorn"]
+script = ExtResource("7_2gh4u")
+item_name = "Shortsword"
+
+[node name="Legolas" type="Node" parent="AdventuringParties/Party4"]
+script = ExtResource("12")
+character_name = "Sam"
+
+[node name="PHShortbow" type="Node" parent="AdventuringParties/Party4/Legolas"]
+script = ExtResource("7_2gh4u")
+item_name = "Shortbow"
+
+[node name="Gimbli" type="Node" parent="AdventuringParties/Party4"]
+script = ExtResource("12")
+character_name = "Jen"
+
+[node name="PHAxe" type="Node" parent="AdventuringParties/Party4/Gimbli"]
+script = ExtResource("7_2gh4u")
+item_name = "Battleaxe"
+
 [node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests") groups=["time"]]
 script = ExtResource("21")
 parties = NodePath("../AdventuringParties")

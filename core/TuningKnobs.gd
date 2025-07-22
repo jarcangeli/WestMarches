@@ -6,6 +6,15 @@ const QUEST_MIN_PERCENT = 0
 const QUEST_MAX_PERCENT = 100
 const QUEST_MAX_ITERATIONS = 20
 
+enum Class
+{
+	NONE
+}
+
+const SLOT_UNLOCK_ORDER_BY_CLASS := {
+	Class.NONE: [ Item.Slot.WEAPON, Item.Slot.CHEST, Item.Slot.HEAD, Item.Slot.LEGS, Item.Slot.FEET,
+					Item.Slot.POTION, Item.Slot.RANGED, Item.Slot.BELT, Item.Slot.RING, Item.Slot.CAPE]
+	}
 func experience_from_monster(monster : Character) -> int:
 	return monster.get_power_level()
 

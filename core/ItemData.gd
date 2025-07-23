@@ -7,10 +7,10 @@ var description : String
 var icon : Texture2D
 var primary_slot_type : Item.Slot
 var consumed_on_acquire : bool
-var constitution_bonus : int
-var strength_bonus : int
-var dexterity_bonus : int
 var currency_generated : int
+var stat_values : Array[int]
+var value : int
+var rarity : Globals.Rarity
 
 func valid():
 	return id and item_name and description and icon

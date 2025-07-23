@@ -57,7 +57,7 @@ func get_level() -> int:
 	return TuningKnobs.level_from_experience(experience)
 
 func get_power_level() -> int:
-	return stats.get_weighted_sum()
+	return stats.get_weighted_value()
 
 func damage(value : int):
 	health -= clamp(value, 0, value)

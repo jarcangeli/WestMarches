@@ -47,6 +47,7 @@ var currency_generated : int = 0 #TODO: Implement
 var base_value := 1
 var equip_slot = null
 var loaned_character = null
+var rarity : Globals.Rarity
 
 static func slot_to_shortname(slot):
 	match slot:
@@ -109,10 +110,10 @@ func _init(item_data : ItemData):
 	icon = item_data.icon
 	primary_slot_type = item_data.primary_slot_type
 	consumed_on_acquire = item_data.consumed_on_acquire
-	stats.set_value(AbilityStats.Type.CONSTITUTION, item_data.constitution_bonus)
-	stats.set_value(AbilityStats.Type.ATTACK, item_data.strength_bonus)
-	stats.set_value(AbilityStats.Type.AVOIDANCE, item_data.dexterity_bonus)
 	currency_generated = item_data.currency_generated
+	stats.values = item_data.stat_values
+	base_value = item_data.value
+	rarity = item_data.rarity
 	name = item_name
 
 func _ready():
@@ -137,8 +138,7 @@ func on_item_unequipped(item, slot):
 		item_changed.emit()
 
 func get_value() -> int:
-	#TODO: Calculate from attributes?
-	return base_value + stats.get_weighted_sum() / 10.0
+	return base_value
 
 func get_currency_granted():
 	if consumed_on_acquire:

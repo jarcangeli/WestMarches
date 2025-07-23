@@ -5,6 +5,16 @@ extends Node
 const QUEST_MIN_PERCENT = 0
 const QUEST_MAX_PERCENT = 100
 const QUEST_MAX_ITERATIONS = 20
+const QUEST_TRAVEL_ITEM_CHANCE = 1
+
+const EPIC_VALUE = 80
+const RARE_VALUE = 50
+const UNCOMMON_VALUE = 25
+
+const RARE_CHANCE = 0.05
+const EPIC_CHANCE = 0.12
+const UNCOMMON_CHANCE = 0.30
+#const COMMON_CHANCE = 0.53
 
 const SLOT_UNLOCK_ORDER_BY_CLASS := {
 	Character.CharacterClass.NONE:

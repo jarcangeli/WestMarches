@@ -13,7 +13,8 @@ enum Type
 	AOE_ATTACK,
 	POISON_CHANCE,
 	POISON_DAMAGE,
-	SNIPE_ATTACK
+	SNIPE_ATTACK,
+	SIZE
 }
 
 var values : Array[int] = [
@@ -36,8 +37,22 @@ func get_value(type : AbilityStats.Type) -> int:
 func set_value(type : AbilityStats.Type, value : int) -> void:
 	values[type] = value
 
-func get_weighted_sum(): #TODO: Weight
+#TODO: Remove dupe?
+static var weights : Array[int] = [
+	1, # CONSTITUTION
+	1, # ATTACK
+	1, # AVOIDANCE
+	1, # INTIATIVE
+	10, 	# CRIT_RATE
+	1,	# REGENERATION
+	1,	# THORNS
+	3,	# AOE_ATTACK
+	1,	# POISON_CHANCE
+	1,	# POISON_DAMAGE
+	2	# SNIPE_ATTACK
+]
+func get_weighted_value():
 	var sum := 0
-	for value in values:
-		sum += value
+	for i in range(len(values)):
+		sum += values[i] *  weights[i]
 	return sum

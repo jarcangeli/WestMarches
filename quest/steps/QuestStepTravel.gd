@@ -9,7 +9,7 @@ var item_rewards = []
 func initialise(_origin, _destination):
 	origin = _origin
 	destination = _destination
-	if randf() < 0.2: #TODO: Conditional on encounter
+	if randf() < TuningKnobs.QUEST_TRAVEL_ITEM_CHANCE: #TODO: Conditional on encounter
 		item_rewards = [ItemDatabase.generate_random_item()]
 
 func advance_step():

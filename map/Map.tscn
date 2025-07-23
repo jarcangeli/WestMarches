@@ -37,32 +37,32 @@ text = "TOWN
 "
 horizontal_alignment = 1
 
-[node name="Bridge" type="Node2D" parent="World"]
+[node name="PHBridge" type="Node2D" parent="World"]
 position = Vector2(125, -41)
 script = ExtResource("7_e5tu3")
 poi_name = "River Crossing"
 
-[node name="Watchtower" type="Node2D" parent="World"]
+[node name="PHWatchtower" type="Node2D" parent="World"]
 position = Vector2(262, 107)
 script = ExtResource("7_e5tu3")
 poi_name = "Hilltop Watchtower"
 
-[node name="Barrows" type="Node2D" parent="World"]
+[node name="PHBarrows" type="Node2D" parent="World"]
 position = Vector2(39, 265)
 script = ExtResource("7_e5tu3")
 poi_name = "Barrows"
 
-[node name="Castle" type="Node2D" parent="World"]
+[node name="PHCastle" type="Node2D" parent="World"]
 position = Vector2(-362, -136)
 script = ExtResource("7_e5tu3")
 poi_name = "Ruined Castle"
 
-[node name="SwampHut" type="Node2D" parent="World"]
+[node name="PHSwampHut" type="Node2D" parent="World"]
 position = Vector2(-258, 78)
 script = ExtResource("7_e5tu3")
 poi_name = "Swamp Hut"
 
-[node name="Campsite" type="Node2D" parent="World"]
+[node name="PHCampsite" type="Node2D" parent="World"]
 position = Vector2(334, 306)
 script = ExtResource("7_e5tu3")
 poi_name = "Campsite"

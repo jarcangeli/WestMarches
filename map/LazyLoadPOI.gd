@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 @export var poi_name : String
 
@@ -9,7 +9,8 @@ func _ready():
 	if poi_data:
 		var poi = poi_scene.instantiate()
 		poi.load_data(poi_data)
-		get_parent().add_child.call_deferred(poi)
+		poi.position = position
+		get_parent().add_child.call_deferred(poi, true)
 		queue_free.call_deferred()
 	else:
 		push_error("Could not load POI by name: " + poi_name)

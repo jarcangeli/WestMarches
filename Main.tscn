@@ -246,9 +246,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 0
+current_tab = 3
 
 [node name="Quests" parent="GameWindow/GameTabs" node_paths=PackedStringArray("pending_quests", "available_quests", "active_quests", "completed_quests", "adventuring_parties") instance=ExtResource("1")]
+visible = false
 layout_mode = 2
 pending_quests = NodePath("../../../QuestManager/PendingQuests")
 available_quests = NodePath("../../../QuestManager/AvailableQuests")
@@ -268,7 +269,6 @@ layout_mode = 2
 adventuring_parties = NodePath("../../../AdventuringParties")
 
 [node name="Map" parent="GameWindow/GameTabs" instance=ExtResource("3")]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 

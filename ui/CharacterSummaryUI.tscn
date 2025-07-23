@@ -18,6 +18,11 @@ layout_mode = 2
 text = "Test"
 horizontal_alignment = 1
 
+[node name="ClassLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Test"
+horizontal_alignment = 1
+
 [node name="LevelContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1

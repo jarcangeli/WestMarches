@@ -5,7 +5,7 @@ func set_character(character : Character):
 	var character_class := character.character_class
 	var slot_unlock_order = TuningKnobs.SLOT_UNLOCK_ORDER_BY_CLASS.get(character_class)
 	if not slot_unlock_order:
-		slot_unlock_order = TuningKnobs.SLOT_UNLOCK_ORDER_BY_CLASS.get(TuningKnobs.CharacterClass.NONE)
+		slot_unlock_order = TuningKnobs.SLOT_UNLOCK_ORDER_BY_CLASS.get(Character.CharacterClass.FIGHTER)
 	
 	var unlocked_slots = []
 	var level = character.get_level()

@@ -3,17 +3,25 @@ class_name Character
 
 signal died()
 
+enum CharacterClass
+{
+	NONE,
+	FIGHTER,
+	RANGER,
+	THIEF
+}
+
 @export var character_name : String
 @export var experience := 0
+@export var character_class : CharacterClass = CharacterClass.FIGHTER
 
 @onready var health := get_max_health()
 
 var id := -1
 var equip_slots : Dictionary
-var debt : int = 0
+var debt : int = 0 
 var base_stats := AbilityStats.new()
 var stats := CharacterStats.new(base_stats, self)
-var character_class : TuningKnobs.CharacterClass = TuningKnobs.CharacterClass.NONE
 
 func _ready():
 	child_entered_tree.connect(equip_best_gear, CONNECT_DEFERRED)
@@ -28,6 +36,16 @@ func _init(data : CharacterData = null):
 	base_stats.values = data.stats.values
 	stats.invalidate_cache()
 	set_name(character_name)
+
+static func character_class_to_string(_character_class : CharacterClass):
+	match _character_class:
+		CharacterClass.FIGHTER:
+			return "Fighter"
+		CharacterClass.RANGER:
+			return "Ranger"
+		CharacterClass.THIEF:
+			return "Thief"
+	return "None"
 
 func is_alive():
 	return health > 0

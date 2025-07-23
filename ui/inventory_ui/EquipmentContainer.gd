@@ -14,6 +14,10 @@ func _ready():
 	
 	SignalBus.item_equipped.connect(self.on_item_equipped)
 
+func set_enabled(enabled):
+	drop_enabled = enabled
+	$Background.visible = enabled
+
 func _can_drop_data(_position, data):
 	if not super._can_drop_data(position, data):
 		return false

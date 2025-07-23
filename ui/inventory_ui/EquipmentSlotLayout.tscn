@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://q482js4uxeg"]
+[gd_scene load_steps=3 format=3 uid="uid://q482js4uxeg"]
 
 [ext_resource type="PackedScene" uid="uid://dgh8xrv7w81qm" path="res://ui/inventory_ui/EquipmentContainer.tscn" id="1_0wtss"]
+[ext_resource type="Script" uid="uid://bgkvdlq2c8we4" path="res://ui/inventory_ui/EquipmentSlotLayout.gd" id="1_upabc"]
 
 [node name="EquipmentLayout" type="Control"]
 custom_minimum_size = Vector2(245, 400)
@@ -13,6 +14,7 @@ offset_right = -908.0
 offset_bottom = -248.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_upabc")
 
 [node name="WeaponSlot" parent="." instance=ExtResource("1_0wtss")]
 layout_mode = 2

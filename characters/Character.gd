@@ -4,17 +4,16 @@ class_name Character
 signal died()
 
 @export var character_name : String
+@export var experience := 0
+
+@onready var health := get_max_health()
 
 var id := -1
 var equip_slots : Dictionary
 var debt : int = 0
-
 var base_stats := AbilityStats.new()
 var stats := CharacterStats.new(base_stats, self)
-
-@onready var health := get_max_health()
-
-var experience := 0
+var character_class : TuningKnobs.CharacterClass = TuningKnobs.CharacterClass.NONE
 
 func _ready():
 	child_entered_tree.connect(equip_best_gear, CONNECT_DEFERRED)

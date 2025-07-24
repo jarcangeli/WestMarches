@@ -69,6 +69,7 @@ func play_round():
 	
 	var character_target_order = get_round_order()
 	for character_target in character_target_order:
+		if not is_finished():
 			play_turn(character_target[0], character_target[1])
 	
 	if is_finished():
@@ -86,14 +87,7 @@ func play_turn(character : Character, enemies : Array):
 	if not character.is_alive() or is_finished():
 		return
 	
-	var _damage = play_attack(character, enemies)
-	
-	var healing = character.stats.get_value(AbilityStats.Type.REGENERATION)
-	var healed = character.heal(healing)
-	if healed:
-		add_log("%s healed for %d hitpoints (%d/%d)" % [character.name, healed, character.health, character.get_max_health()])
-
-func play_attack(character : Character, enemies : Array):
+	# Attack
 	var roll := randi() % 100 + 1
 	add_log("%s rolled %d" % [character.name, roll])
 	var enemy : Character = target_character(enemies)
@@ -115,16 +109,34 @@ func play_attack(character : Character, enemies : Array):
 			add_log("%s critical hit on %s for %d damage! (%d/%d)" % [character.name, enemy.name, damage, enemy.health, enemy.get_max_health()])
 		else:
 			add_log("%s dealt %d damage to %s (%d/%d)" % [character.name, damage, enemy.name, enemy.health, enemy.get_max_health()])
-		
-		if not enemy.is_alive():
-			add_log(enemy.name + " was slain")
-			if enemy in monsters:
-				remaining_monsters_alive -= 1
-			elif enemy in adventurers:
-				remaining_adventurers_alive -= 1
 	else:
 		add_log(character.name + " missed " + enemy.name)
-	return damage
+	
+	# Thorns
+	var thorns = enemy.stats.get_value(AbilityStats.Type.THORNS)
+	if damage > 0 and thorns > 0:
+		character.damage(thorns)
+		add_log("%s suffered %d thorns damage from %s (%d/%d)" % [character.name, thorns, enemy.name, character.health, character.get_max_health()])
+	
+	if not enemy.is_alive():
+		add_log(enemy.name + " was slain")
+		if enemy in monsters:
+			remaining_monsters_alive -= 1
+		elif enemy in adventurers:
+			remaining_adventurers_alive -= 1
+	if not character.is_alive():
+		add_log(character.name + " was slain")
+		if character in monsters:
+			remaining_monsters_alive -= 1
+		elif character in adventurers:
+			remaining_adventurers_alive -= 1
+
+	# Healing
+	if character.is_alive():
+		var healing = character.stats.get_value(AbilityStats.Type.REGENERATION)
+		var healed = character.heal(healing)
+		if healed:
+			add_log("%s healed for %d hitpoints (%d/%d)" % [character.name, healed, character.health, character.get_max_health()])
 
 func target_character(characters):
 	var highest_hp = 0

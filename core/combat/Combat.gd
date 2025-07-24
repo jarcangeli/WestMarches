@@ -13,6 +13,8 @@ var round_number := 0
 
 var simulated := false
 
+var cached_round_order = null
+
 func _init(_adventurers : Array[Character], _monsters : Array[Character]):
 	set_characters(_adventurers, _monsters)
 
@@ -48,6 +50,8 @@ func sort_round_order(a, b):
 	return false
 
 func get_round_order(): #returns character and targets pair
+	if cached_round_order:
+		return cached_round_order
 	var character_order = []
 	for character in adventurers:
 		if character.is_alive():
@@ -57,6 +61,7 @@ func get_round_order(): #returns character and targets pair
 			character_order.append([character, adventurers])
 	character_order.shuffle() # break ties
 	character_order.sort_custom(sort_round_order)
+	cached_round_order = character_order
 	return character_order
 
 func play_round():

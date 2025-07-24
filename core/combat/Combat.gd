@@ -40,6 +40,25 @@ func add_log(message : String):
 		return
 	combat_log.emit(message)
 
+func sort_round_order(a, b):
+	var initiative_a = a[0].stats.get_value(AbilityStats.Type.INTIATIVE)
+	var initiative_b = b[0].stats.get_value(AbilityStats.Type.INTIATIVE)
+	if initiative_a > initiative_b:
+		return true
+	return false
+
+func get_round_order(): #returns character and targets pair
+	var character_order = []
+	for character in adventurers:
+		if character.is_alive():
+			character_order.append([character, monsters])
+	for character in monsters:
+		if character.is_alive():
+			character_order.append([character, adventurers])
+	character_order.shuffle() # break ties
+	character_order.sort_custom(sort_round_order)
+	return character_order
+
 func play_round():
 	if is_finished():
 		return
@@ -48,12 +67,9 @@ func play_round():
 		add_log("Start of combat!")
 	add_log("Start of round %d" % round_number)
 	
-	for adventurer in adventurers:
-		if adventurer.is_alive():
-			play_turn(adventurer, monsters)
-	for monster in monsters:
-		if monster.is_alive():
-			play_turn(monster, adventurers)
+	var character_target_order = get_round_order()
+	for character_target in character_target_order:
+			play_turn(character_target[0], character_target[1])
 	
 	if is_finished():
 		if not simulated:

@@ -219,6 +219,8 @@ func get_exp_for_monsters() -> int:
 func do_damage(source : Character, target : Character, value : int, type: CharacterCombatSummary.Stat):
 	target.damage(value)
 	
+	if simulated:
+		return
 	# Track
 	if source:
 		var source_summary = combat_summary.get(source, CharacterCombatSummary.new())
@@ -230,10 +232,11 @@ func do_damage(source : Character, target : Character, value : int, type: Charac
 
 func do_healing(character : Character, value : int):
 	var healed = character.heal(value)
-	
+	if simulated:
+		return healed
+		
 	# Track
 	var summary = combat_summary.get(character, CharacterCombatSummary.new())
 	summary.healing += healed
 	combat_summary.set(character, summary)
-	
 	return healed

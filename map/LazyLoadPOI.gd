@@ -5,6 +5,8 @@ extends Node2D
 const poi_scene := preload("res://map/POI.tscn")
 
 func _ready():
+	if poi_name == name:
+		name = "[TEMP] " + name
 	var poi_data = POIDatabase.pois_by_name.get(poi_name)
 	if poi_data:
 		var poi = poi_scene.instantiate()

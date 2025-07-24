@@ -61,7 +61,7 @@ item_name = "Platemail"
 script = ExtResource("4_2oxra")
 monster_name = "Warg"
 
-[node name="TinyMonster" type="Node" parent="."]
+[node name="Goblin" type="Node" parent="."]
 script = ExtResource("4_2oxra")
 monster_name = "Goblin"
 

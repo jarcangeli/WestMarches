@@ -6,6 +6,8 @@ extends Control
 @onready var combat_summary: TextEdit = %CombatSummary
 @onready var sim_results: TextEdit = %SimResults
 
+#TODO: Why is conan hitting the goblin first, it has lower health
+
 func _on_run_combat_button_pressed():
 	combat_log.clear()
 	combat_summary.clear()

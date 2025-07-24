@@ -4,6 +4,8 @@ class_name LazyLoadCharacter
 @export var monster_name : String
 
 func _ready():
+	if monster_name == name:
+		name = "[TEMP] " + name
 	run(monster_name, get_parent())
 	queue_free.call_deferred()
 

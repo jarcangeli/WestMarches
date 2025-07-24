@@ -92,12 +92,11 @@ func play_turn(character : Character, enemies : Array):
 		return
 	
 	# Attack
-	var roll := randi() % 100 + 1
-	add_log("%s rolled %d" % [character.name, roll])
 	var enemy : Character = target_character(enemies)
 	if not enemy:
-		push_warning("Trying to attack but no characters")
-		return
+		return # all died, thorns?
+	var roll := randi() % 100 + 1
+	add_log("%s rolled %d" % [character.name, roll])
 	var damage = roll + character.stats.get_value(AbilityStats.Type.ATTACK) \
 							- enemy.stats.get_value(AbilityStats.Type.AVOIDANCE)
 	damage = clampi(damage, 0, damage)

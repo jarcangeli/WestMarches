@@ -5,18 +5,15 @@ signal combat_log(line : String)
 
 var adventurers : Array
 var monsters : Array
-
-var remaining_adventurers_alive := 0
-var remaining_monsters_alive := 0
-
-var round_number := 0
-
 var simulated := false
 
+var round_number := 0
+var remaining_adventurers_alive := 0
+var remaining_monsters_alive := 0
 var cached_round_order = null
-
 var poison_damage_map = {}
 var killed_characters = []
+var combat_summary = {}
 
 func _init(_adventurers : Array[Character], _monsters : Array[Character]):
 	set_characters(_adventurers, _monsters)
@@ -31,6 +28,7 @@ func reset():
 	cached_round_order = null
 	poison_damage_map = {}
 	killed_characters = []
+	combat_summary = {}
 	remaining_adventurers_alive = 0
 	for adventurer in adventurers:
 		if adventurer.is_alive():
@@ -115,10 +113,11 @@ func play_turn(character : Character, enemies : Array):
 		damage = 0
 		add_log(character.name + " critical miss on " + enemy.name)
 	elif damage > 0:
-		enemy.damage(damage)
 		if crit:
+			do_damage(character, enemy, damage, CharacterCombatSummary.Stat.CRIT_DAMAGE)
 			add_log("%s critical hit on %s for %d damage! (%d/%d)" % [character.name, enemy.name, damage, enemy.health, enemy.get_max_health()])
 		else:
+			do_damage(character, enemy, damage, CharacterCombatSummary.Stat.ATTACK_DAMAGE)
 			add_log("%s dealt %d damage to %s (%d/%d)" % [character.name, damage, enemy.name, enemy.health, enemy.get_max_health()])
 	else:
 		add_log(character.name + " missed " + enemy.name)
@@ -131,7 +130,7 @@ func play_turn(character : Character, enemies : Array):
 	if damage > 0 and aoe_damage > 0:
 		for aoe_enemy in enemies:
 			if enemy != aoe_enemy and aoe_enemy.is_alive():
-				aoe_enemy.damage(aoe_damage)
+				do_damage(character, aoe_enemy, aoe_damage, CharacterCombatSummary.Stat.AOE_DAMAGE)
 				add_log("%s suffered %d AOE damage damage from %s (%d/%d)" % [aoe_enemy.name, aoe_damage, character.name, aoe_enemy.health, aoe_enemy.get_max_health()])
 				if !aoe_enemy.is_alive():
 					on_kill_character(aoe_enemy)
@@ -141,7 +140,7 @@ func play_turn(character : Character, enemies : Array):
 	if damage > 0 and snipe_damage > 0:
 		var snipe_enemy = target_weakest_character(enemies) 
 		if snipe_enemy:
-			snipe_enemy.damage(snipe_damage)
+			do_damage(character, snipe_enemy, snipe_damage, CharacterCombatSummary.Stat.SNIPE_DAMAGE)
 			add_log("%s suffered %d snipe damage from %s (%d/%d)" % [snipe_enemy.name, snipe_damage, character.name, snipe_enemy.health, snipe_enemy.get_max_health()])
 			if !snipe_enemy.is_alive():
 				on_kill_character(snipe_enemy)
@@ -158,19 +157,19 @@ func play_turn(character : Character, enemies : Array):
 	# Poison damage
 	var poisoned_damage = poison_damage_map.get(character, 0)
 	if poisoned_damage > 0 and character.is_alive():
-		character.damage(poisoned_damage)
+		do_damage(null, character, poisoned_damage, CharacterCombatSummary.Stat.POISON_DAMAGE)
 		add_log("%s suffered %d poison damage (%d/%d)" % [character.name, poisoned_damage, character.health, character.get_max_health()])
 	
 	# Thorns
 	var thorns = enemy.stats.get_value(AbilityStats.Type.THORNS)
 	if damage > 0 and thorns > 0 and character.is_alive():
-		character.damage(thorns)
+		do_damage(enemy, character, poisoned_damage, CharacterCombatSummary.Stat.THORNS_DAMAGE)
 		add_log("%s suffered %d thorns damage from %s (%d/%d)" % [character.name, thorns, enemy.name, character.health, character.get_max_health()])
 
 	# Healing
 	if character.is_alive():
 		var healing = character.stats.get_value(AbilityStats.Type.REGENERATION)
-		var healed = character.heal(healing)
+		var healed = do_healing(character, healing)
 		if healed:
 			add_log("%s healed for %d hitpoints (%d/%d)" % [character.name, healed, character.health, character.get_max_health()])
 	
@@ -216,3 +215,25 @@ func get_exp_for_monsters() -> int:
 		if not monster.is_alive():
 			experience += min(monster.get_power_level(), 30)
 	return experience
+
+func do_damage(source : Character, target : Character, value : int, type: CharacterCombatSummary.Stat):
+	target.damage(value)
+	
+	# Track
+	if source:
+		var source_summary = combat_summary.get(source, CharacterCombatSummary.new())
+		source_summary.damage_done[type] += value
+		combat_summary.set(source, source_summary)
+	var target_summary = combat_summary.get(target, CharacterCombatSummary.new())
+	target_summary.damage_received[type] += value
+	combat_summary.set(target, target_summary)
+
+func do_healing(character : Character, value : int):
+	var healed = character.heal(value)
+	
+	# Track
+	var summary = combat_summary.get(character, CharacterCombatSummary.new())
+	summary.healing += healed
+	combat_summary.set(character, summary)
+	
+	return healed

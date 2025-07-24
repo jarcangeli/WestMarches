@@ -78,14 +78,15 @@ func play_turn(character : Character, enemies : Array):
 		return
 	var damage = roll + character.stats.get_value(AbilityStats.Type.ATTACK) \
 							- enemy.stats.get_value(AbilityStats.Type.AVOIDANCE)
-	if roll == 100: #TODO: Add crit bonus stat
+	var crit : bool = roll > (100 - character.stats.get_value(AbilityStats.Type.CRIT_RATE))
+	if crit:
 		damage = roll + character.stats.get_value(AbilityStats.Type.ATTACK)
 	
 	if roll == 1:
 		add_log(character.name + " critical miss on " + enemy.name)
 	elif damage > 0:
 		enemy.damage(damage)
-		if roll == 100:
+		if crit:
 			add_log("%s critical hit on %s for %d damage! (%d/%d)" % [character.name, enemy.name, damage, enemy.health, enemy.get_max_health()])
 		else:
 			add_log("%s dealt %d damage to %s (%d/%d)" % [character.name, damage, enemy.name, enemy.health, enemy.get_max_health()])

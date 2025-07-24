@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0bfsckn0efs6"]
+
+[ext_resource type="Script" uid="uid://fao15jlqs8y6" path="res://ui/StatDisplay.gd" id="1_3pa2g"]
+[ext_resource type="Texture2D" uid="uid://bv4b8uclyh35m" path="res://assets/icons/stats/constitution.png" id="1_wxmin"]
+
+[node name="StatDisplay" type="HBoxContainer"]
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("1_3pa2g")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="StatIcon" type="TextureRect" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+texture = ExtResource("1_wxmin")
+expand_mode = 1
+
+[node name="StatLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "20"

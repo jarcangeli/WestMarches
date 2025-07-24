@@ -5,31 +5,38 @@
 [ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://ui/difficulty_atlas_texture_background.tres" id="2_kchre"]
 [ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://ui/difficulty_atlas_texture.tres" id="3_dibcj"]
 
-[node name="PartySummaryUI" type="VBoxContainer"]
+[node name="PartySummaryUI" type="ScrollContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 script = ExtResource("1_hokt6")
 character_summary_scene = ExtResource("2_dibcj")
 
-[node name="NameLabel" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Test"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="LevelLabel" type="Label" parent="HBoxContainer"]
+[node name="LevelLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Level"
 horizontal_alignment = 1
 
-[node name="LevelBar" type="TextureProgressBar" parent="HBoxContainer"]
+[node name="LevelBar" type="TextureProgressBar" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 texture_repeat = 2
 layout_mode = 2
 max_value = 5.0
@@ -38,19 +45,22 @@ value = 2.5
 texture_under = ExtResource("2_kchre")
 texture_progress = ExtResource("3_dibcj")
 
-[node name="CharacterSummariesScrollArea" type="ScrollContainer" parent="."]
+[node name="CharacterSummariesScrollArea" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 
-[node name="CharacterSummaries" type="HBoxContainer" parent="CharacterSummariesScrollArea"]
+[node name="CharacterSummaries" type="HBoxContainer" parent="VBoxContainer/CharacterSummariesScrollArea"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="CharacterSummaryUI" parent="CharacterSummariesScrollArea/CharacterSummaries" instance=ExtResource("2_dibcj")]
+[node name="CharacterSummaryUI" parent="VBoxContainer/CharacterSummariesScrollArea/CharacterSummaries" instance=ExtResource("2_dibcj")]
 layout_mode = 2
 
-[node name="CharacterSummaryUI2" parent="CharacterSummariesScrollArea/CharacterSummaries" instance=ExtResource("2_dibcj")]
+[node name="CharacterSummaryUI2" parent="VBoxContainer/CharacterSummariesScrollArea/CharacterSummaries" instance=ExtResource("2_dibcj")]
 layout_mode = 2

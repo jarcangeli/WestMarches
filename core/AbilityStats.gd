@@ -1,6 +1,8 @@
 extends RefCounted
 class_name AbilityStats
 
+const icon_root = "res://assets/icons/stats/"
+
 enum Type
 {
 	CONSTITUTION,
@@ -16,6 +18,25 @@ enum Type
 	SNIPE_DAMAGE,
 	SIZE
 }
+
+static var icons : Array[Texture2D] = [
+	preload(icon_root + "constitution.png"), 	# CONSTITUTION
+	preload(icon_root + "attack.png"), 			# ATTACK
+	preload(icon_root + "avoidance.png"), 		# AVOIDANCE
+	preload(icon_root + "initiative.png"), 		# INTIATIVE
+	preload(icon_root + "crit_rate.png"), 		# CRIT_RATE
+	preload(icon_root + "regeneration.png"),	# REGENERATION
+	preload(icon_root + "thorns.png"),			# THORNS
+	preload(icon_root + "aoe.png"),				# AOE_DAMAGE
+	preload(icon_root + "poison_chance.png"),	# POISON_CHANCE
+	preload(icon_root + "poison_damage.png"),	# POISON_DAMAGE
+	preload(icon_root + "snipe.png")			# SNIPE_DAMAGE
+]
+
+static func get_icon(type : Type):
+	if type == Type.SIZE:
+		return null
+	return icons[type]
 
 var values : Array[int] = [
 	10, # CONSTITUTION

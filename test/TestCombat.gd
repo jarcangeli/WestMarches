@@ -18,12 +18,16 @@ func _on_run_combat_button_pressed():
 	
 	# Now run a sim
 	var start = Time.get_ticks_msec()
-	var results := CombatSim.simulate([adventurer], monsters, 3000)
+	var iterations := 3000
+	var results := CombatSim.simulate([adventurer], monsters, iterations)
 	var end = Time.get_ticks_msec()
 	on_combat_log_line("-------------------------")
 	on_combat_log_line("Running simulation")
 	on_combat_log_line("Simulation completed in %d msecs" % (end - start))
-	on_combat_log_line("Combat sim results %d / %d = %.1f%%" % [results.wins, results.get_run_count(), results.get_win_percentage()])
+	on_combat_log_line("\tor %.2f msecs per iteration" % ((end - start)/float(iterations)))
+	on_combat_log_line("\tor %d usecs per iteration" % int((end - start)/float(iterations)*1000.))
+	on_combat_log_line("Combat sim results %d / %d = %.1f%%" % 
+		[results.wins, results.get_run_count(), results.get_win_percentage()])
 
 
 func on_combat_log_line(line : String):

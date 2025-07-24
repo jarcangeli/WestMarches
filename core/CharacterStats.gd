@@ -15,6 +15,12 @@ func get_value(type : AbilityStats.Type) -> int:
 		calculate_value(type) #update cache
 	return values[type]
 
+func get_values() -> Array[int]:
+	var return_values : Array[int] = []
+	for i in range(0, AbilityStats.Type.SIZE):
+		return_values.append(get_value(i))
+	return return_values
+
 func set_value(type : AbilityStats.Type, value : int) -> void:
 	values[type] = value
 

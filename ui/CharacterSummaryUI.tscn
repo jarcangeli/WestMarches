@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1ycsca7qo073"]
+[gd_scene load_steps=5 format=3 uid="uid://b1ycsca7qo073"]
 
 [ext_resource type="Script" uid="uid://dbt271x4hchn5" path="res://ui/CharacterSummaryUI.gd" id="1_hgpji"]
 [ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="2_hgpji"]
+[ext_resource type="PackedScene" uid="uid://d0bfsckn0efs6" path="res://ui/StatDisplay.tscn" id="3_j28tf"]
+[ext_resource type="Script" uid="uid://c1maxoqmp13lh" path="res://ui/StatsDisplay.gd" id="3_k5sfc"]
 
 [node name="CharacterSummaryUI" type="VBoxContainer"]
 anchors_preset = 15
@@ -52,26 +54,45 @@ text = "Current Level"
 horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StatsDisplay" type="CenterContainer" parent="ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_k5sfc")
+
+[node name="StatsGrid" type="GridContainer" parent="ScrollContainer/VBoxContainer/StatsDisplay"]
+layout_mode = 2
+columns = 4
+
+[node name="StatDisplay" parent="ScrollContainer/VBoxContainer/StatsDisplay/StatsGrid" instance=ExtResource("3_j28tf")]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
-[node name="ItemDisplayContainer" type="VBoxContainer" parent="ScrollContainer/CenterContainer"]
+[node name="ItemDisplayContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ItemButtonDisplay" parent="ScrollContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ItemButtonDisplay2" parent="ScrollContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
+[node name="ItemButtonDisplay" parent="ScrollContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ItemButtonDisplay3" parent="ScrollContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
+[node name="ItemButtonDisplay2" parent="ScrollContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemButtonDisplay3" parent="ScrollContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
 layout_mode = 2
 size_flags_vertical = 3

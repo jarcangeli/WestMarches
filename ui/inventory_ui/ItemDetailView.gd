@@ -1,10 +1,13 @@
 extends Control
 
+@onready var stats_display: CenterContainer = %StatsDisplay
+
 func set_item(item : Item):
 	var item_name = ""
 	var item_detail = ""
 	if is_instance_valid(item):
 		item_name = item.item_name
 		item_detail = item.description
-	$VBoxContainer/ItemNameLabel.text = item_name
-	$VBoxContainer/DetailLabel.text = item_detail
+		stats_display.set_stats(item.stats.values)
+	%ItemNameLabel.text = item_name
+	%DetailLabel.text = item_detail

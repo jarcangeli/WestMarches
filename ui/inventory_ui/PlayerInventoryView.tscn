@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3ruqllcfspo1"]
+[gd_scene load_steps=8 format=3 uid="uid://b3ruqllcfspo1"]
 
 [ext_resource type="PackedScene" path="res://ui/inventory_ui/ItemButtonSelectDisplay.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="1_st5uv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="3"]
 [ext_resource type="Script" uid="uid://c0p814bkv8qxv" path="res://ui/inventory_ui/ItemDetailView.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="5_tjcmg"]
+[ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://ui/StatsDisplay.tscn" id="7_tjcmg"]
 
 [node name="InventoryView" type="HBoxContainer"]
 anchors_preset = 15
@@ -49,13 +50,22 @@ layout_mode = 2
 alignment = 1
 
 [node name="ItemNameLabel" type="Label" parent="ItemDetailView/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "name"
 horizontal_alignment = 1
 
 [node name="DetailLabel" type="Label" parent="ItemDetailView/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Item detail goes here"
 horizontal_alignment = 1
+
+[node name="StatsDisplay" parent="ItemDetailView/VBoxContainer" instance=ExtResource("7_tjcmg")]
+unique_name_in_owner = true
+layout_mode = 2
+show_empty = false
+font_size = 20
+icon_size = 16

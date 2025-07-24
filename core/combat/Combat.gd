@@ -86,6 +86,14 @@ func play_turn(character : Character, enemies : Array):
 	if not character.is_alive() or is_finished():
 		return
 	
+	var _damage = play_attack(character, enemies)
+	
+	var healing = character.stats.get_value(AbilityStats.Type.REGENERATION)
+	var healed = character.heal(healing)
+	if healed:
+		add_log("%s healed for %d hitpoints (%d/%d)" % [character.name, healed, character.health, character.get_max_health()])
+
+func play_attack(character : Character, enemies : Array):
 	var roll := randi() % 100 + 1
 	add_log("%s rolled %d" % [character.name, roll])
 	var enemy : Character = target_character(enemies)
@@ -94,6 +102,7 @@ func play_turn(character : Character, enemies : Array):
 		return
 	var damage = roll + character.stats.get_value(AbilityStats.Type.ATTACK) \
 							- enemy.stats.get_value(AbilityStats.Type.AVOIDANCE)
+	damage = clampi(damage, 0, damage)
 	var crit : bool = roll > (100 - character.stats.get_value(AbilityStats.Type.CRIT_RATE))
 	if crit:
 		damage = roll + character.stats.get_value(AbilityStats.Type.ATTACK)
@@ -115,6 +124,7 @@ func play_turn(character : Character, enemies : Array):
 				remaining_adventurers_alive -= 1
 	else:
 		add_log(character.name + " missed " + enemy.name)
+	return damage
 
 func target_character(characters):
 	var highest_hp = 0

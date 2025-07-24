@@ -62,6 +62,11 @@ func get_power_level() -> int:
 func damage(value : int):
 	health -= clamp(value, 0, value)
 
+func heal(value : int):
+	var old_health = health
+	health = clampi(health + value, health, get_max_health())
+	return health - old_health
+
 func get_loaned_items():
 	var items = []
 	for node in get_children():

@@ -12,6 +12,7 @@ var remaining_adventurers_alive := 0
 var remaining_monsters_alive := 0
 var cached_round_order = null
 var poison_damage_map = {}
+var poison_source_map = {}
 var killed_characters = []
 var combat_summary = {}
 
@@ -27,6 +28,7 @@ func reset():
 	round_number = 0
 	cached_round_order = null
 	poison_damage_map = {}
+	poison_source_map = {}
 	killed_characters = []
 	combat_summary = {}
 	remaining_adventurers_alive = 0
@@ -152,12 +154,14 @@ func play_turn(character : Character, enemies : Array):
 		var current_damage = poison_damage_map.get(enemy, 0)
 		if poison_damage > current_damage:
 			poison_damage_map.set(enemy, poison_damage)
+			poison_source_map.set(enemy, character)
 			add_log("%s was poisoned" % enemy.name)
 	
 	# Poison damage
 	var poisoned_damage = poison_damage_map.get(character, 0)
 	if poisoned_damage > 0 and character.is_alive():
-		do_damage(null, character, poisoned_damage, CharacterCombatSummary.Stat.POISON_DAMAGE)
+		var source = poison_source_map.get(character)
+		do_damage(source, character, poisoned_damage, CharacterCombatSummary.Stat.POISON_DAMAGE)
 		add_log("%s suffered %d poison damage (%d/%d)" % [character.name, poisoned_damage, character.health, character.get_max_health()])
 	
 	# Thorns

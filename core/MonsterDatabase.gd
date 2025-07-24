@@ -19,7 +19,7 @@ func load_row(row : Dictionary):
 	monster_data.stats.set_value(AbilityStats.Type.CRIT_RATE, (row["crit_rate"]))
 	monster_data.stats.set_value(AbilityStats.Type.REGENERATION, (row["regeneration"]))
 	monster_data.stats.set_value(AbilityStats.Type.THORNS, (row["thorns"]))
-	monster_data.stats.set_value(AbilityStats.Type.AOE_ATTACK, (row["aoe_attack"]))
+	monster_data.stats.set_value(AbilityStats.Type.AOE_DAMAGE, (row["aoe_attack"]))
 	monster_data.stats.set_value(AbilityStats.Type.POISON_CHANCE, (row["poison_chance"]))
 	monster_data.stats.set_value(AbilityStats.Type.POISON_DAMAGE, (row["poison_damage"]))
 	monster_data.stats.set_value(AbilityStats.Type.SNIPE_DAMAGE, (row["snipe_damage"]))

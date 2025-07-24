@@ -36,7 +36,7 @@ func load_row(row : Dictionary):
 	item_data.stat_values[AbilityStats.Type.CRIT_RATE] 		= int(row["crit_rate"])
 	item_data.stat_values[AbilityStats.Type.REGENERATION] 	= int(row["regeneration"])
 	item_data.stat_values[AbilityStats.Type.THORNS] 		= int(row["thorns"])
-	item_data.stat_values[AbilityStats.Type.AOE_ATTACK] 	= int(row["aoe_attack"])
+	item_data.stat_values[AbilityStats.Type.AOE_DAMAGE] 	= int(row["aoe_attack"])
 	item_data.stat_values[AbilityStats.Type.POISON_CHANCE] 	= int(row["poison_chance"])
 	item_data.stat_values[AbilityStats.Type.POISON_DAMAGE] 	= int(row["poison_damage"])
 	item_data.stat_values[AbilityStats.Type.SNIPE_DAMAGE] 	= int(row["snipe_damage"])
@@ -73,7 +73,7 @@ static var value_weights : Array[int] = [
 	10, # CRIT_RATE
 	1,	# REGENERATION
 	1,	# THORNS
-	3,	# AOE_ATTACK
+	3,	# AOE_DAMAGE
 	1,	# POISON_CHANCE
 	1,	# POISON_DAMAGE
 	2	# SNIPE_DAMAGE

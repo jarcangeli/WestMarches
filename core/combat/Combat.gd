@@ -15,6 +15,8 @@ var simulated := false
 
 var cached_round_order = null
 
+var poison_damage_map = {}
+
 func _init(_adventurers : Array[Character], _monsters : Array[Character]):
 	set_characters(_adventurers, _monsters)
 
@@ -25,6 +27,8 @@ func set_characters(_adventurers : Array[Character], _monsters : Array[Character
 
 func reset():
 	round_number = 0
+	cached_round_order = null
+	poison_damage_map = {}
 	remaining_adventurers_alive = 0
 	for adventurer in adventurers:
 		if adventurer.is_alive():
@@ -120,6 +124,37 @@ func play_turn(character : Character, enemies : Array):
 	else:
 		add_log(character.name + " missed " + enemy.name)
 	
+	# AOE Damage
+	var aoe_damage = character.stats.get_value(AbilityStats.Type.AOE_DAMAGE)
+	if damage > 0 and aoe_damage > 0:
+		for aoe_enemy in enemies:
+			if enemy != aoe_enemy:
+				aoe_enemy.damage(aoe_damage)
+				add_log("%s suffered %d AOE damage damage from %s (%d/%d)" % [aoe_enemy.name, aoe_damage, character.name, aoe_enemy.health, aoe_enemy.get_max_health()])
+	
+	# Snipe damage
+	var snipe_damage = character.stats.get_value(AbilityStats.Type.SNIPE_DAMAGE)
+	if damage > 0 and snipe_damage > 0:
+		var snipe_enemy = target_weakest_character(enemies) 
+		if snipe_enemy:
+			snipe_enemy.damage(snipe_damage)
+			add_log("%s suffered %d snipe damage from %s (%d/%d)" % [snipe_enemy.name, snipe_damage, character.name, snipe_enemy.health, snipe_enemy.get_max_health()])
+	
+	# Poison chance
+	var poison_chance = character.stats.get_value(AbilityStats.Type.POISON_CHANCE)
+	if poison_chance > 0 and damage > 0 and (randi() % 100) < poison_chance:
+		var poison_damage = character.stats.get_value(AbilityStats.Type.POISON_DAMAGE)
+		var current_damage = poison_damage_map.get(enemy, 0)
+		if poison_damage > current_damage:
+			poison_damage_map.set(enemy, poison_damage)
+			add_log("%s was poisoned" % enemy.name)
+	
+	# Poison damage
+	var poisoned_damage = poison_damage_map.get(character, 0)
+	if poisoned_damage > 0:
+		character.damage(poisoned_damage)
+		add_log("%s suffered %d poison damage (%d/%d)" % [character.name, poisoned_damage, character.health, character.get_max_health()])
+	
 	# Thorns
 	var thorns = enemy.stats.get_value(AbilityStats.Type.THORNS)
 	if damage > 0 and thorns > 0:
@@ -137,6 +172,14 @@ func target_character(characters):
 	var target = null
 	for character in characters:
 		if character.health > highest_hp:
+			target = character
+	return target
+
+func target_weakest_character(characters):
+	var lowest_hp = 0
+	var target = null
+	for character in characters:
+		if character.health < lowest_hp or lowest_hp == 0:
 			target = character
 	return target
 

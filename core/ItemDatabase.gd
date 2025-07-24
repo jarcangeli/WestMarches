@@ -29,9 +29,17 @@ func load_row(row : Dictionary):
 	item_data.currency_generated =int(row["currency_generated"])
 	item_data.stat_values.resize(AbilityStats.Type.SIZE)
 	item_data.stat_values.fill(0)
-	item_data.stat_values[AbilityStats.Type.CONSTITUTION] 	= int(row["con"])
-	item_data.stat_values[AbilityStats.Type.ATTACK] 		= int(row["str"])
-	item_data.stat_values[AbilityStats.Type.AVOIDANCE] 		= int(row["dex"])
+	item_data.stat_values[AbilityStats.Type.CONSTITUTION] 	= int(row["constitution"])
+	item_data.stat_values[AbilityStats.Type.ATTACK] 		= int(row["attack"])
+	item_data.stat_values[AbilityStats.Type.AVOIDANCE] 		= int(row["avoidance"])
+	item_data.stat_values[AbilityStats.Type.INTIATIVE] 		= int(row["initiative"])
+	item_data.stat_values[AbilityStats.Type.CRIT_RATE] 		= int(row["crit_rate"])
+	item_data.stat_values[AbilityStats.Type.REGENERATION] 	= int(row["regeneration"])
+	item_data.stat_values[AbilityStats.Type.THORNS] 		= int(row["thorns"])
+	item_data.stat_values[AbilityStats.Type.AOE_ATTACK] 	= int(row["aoe_attack"])
+	item_data.stat_values[AbilityStats.Type.POISON_CHANCE] 	= int(row["poison_chance"])
+	item_data.stat_values[AbilityStats.Type.POISON_DAMAGE] 	= int(row["poison_damage"])
+	item_data.stat_values[AbilityStats.Type.SNIPE_DAMAGE] 	= int(row["snipe_damage"])
 	item_data.value = get_weighted_value(item_data.stat_values)
 	item_data.rarity = get_rarity_from_value(item_data.value)
 	if item_data.valid():
@@ -68,7 +76,7 @@ static var value_weights : Array[int] = [
 	3,	# AOE_ATTACK
 	1,	# POISON_CHANCE
 	1,	# POISON_DAMAGE
-	2	# SNIPE_ATTACK
+	2	# SNIPE_DAMAGE
 ]
 
 static func get_weighted_value(values : Array[int]):

@@ -13,7 +13,7 @@ enum Type
 	AOE_ATTACK,
 	POISON_CHANCE,
 	POISON_DAMAGE,
-	SNIPE_ATTACK,
+	SNIPE_DAMAGE,
 	SIZE
 }
 
@@ -28,7 +28,7 @@ var values : Array[int] = [
 	0,	# AOE_ATTACK
 	0,	# POISON_CHANCE
 	1,	# POISON_DAMAGE
-	0	# SNIPE_ATTACK
+	0	# SNIPE_DAMAGE
 ]
 
 func get_value(type : AbilityStats.Type) -> int:
@@ -49,7 +49,7 @@ static var weights : Array[int] = [
 	3,	# AOE_ATTACK
 	1,	# POISON_CHANCE
 	1,	# POISON_DAMAGE
-	2	# SNIPE_ATTACK
+	2	# SNIPE_DAMAGE
 ]
 func get_weighted_value():
 	var sum := 0

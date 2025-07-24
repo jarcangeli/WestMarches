@@ -72,6 +72,10 @@ func play_round():
 		if not is_finished():
 			play_turn(character_target[0], character_target[1])
 	
+	for character_target in character_target_order:
+		if not character_target[0].is_alive():
+			on_kill_character(character_target[0])
+	
 	if is_finished():
 		if not simulated:
 			var n = adventurers_alive()
@@ -117,26 +121,12 @@ func play_turn(character : Character, enemies : Array):
 	if damage > 0 and thorns > 0:
 		character.damage(thorns)
 		add_log("%s suffered %d thorns damage from %s (%d/%d)" % [character.name, thorns, enemy.name, character.health, character.get_max_health()])
-	
-	if not enemy.is_alive():
-		add_log(enemy.name + " was slain")
-		if enemy in monsters:
-			remaining_monsters_alive -= 1
-		elif enemy in adventurers:
-			remaining_adventurers_alive -= 1
-	if not character.is_alive():
-		add_log(character.name + " was slain")
-		if character in monsters:
-			remaining_monsters_alive -= 1
-		elif character in adventurers:
-			remaining_adventurers_alive -= 1
 
 	# Healing
-	if character.is_alive():
-		var healing = character.stats.get_value(AbilityStats.Type.REGENERATION)
-		var healed = character.heal(healing)
-		if healed:
-			add_log("%s healed for %d hitpoints (%d/%d)" % [character.name, healed, character.health, character.get_max_health()])
+	var healing = character.stats.get_value(AbilityStats.Type.REGENERATION)
+	var healed = character.heal(healing)
+	if healed:
+		add_log("%s healed for %d hitpoints (%d/%d)" % [character.name, healed, character.health, character.get_max_health()])
 
 func target_character(characters):
 	var highest_hp = 0
@@ -145,6 +135,13 @@ func target_character(characters):
 		if character.health > highest_hp:
 			target = character
 	return target
+
+func on_kill_character(character : Character):
+	add_log(character.name + " was slain")
+	if character in monsters:
+		remaining_monsters_alive -= 1
+	elif character in adventurers:
+		remaining_adventurers_alive -= 1
 
 func is_finished():
 	return remaining_adventurers_alive < 1 or remaining_monsters_alive < 1

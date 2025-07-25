@@ -192,6 +192,7 @@ func target_character(characters):
 	var target = null
 	for character in characters:
 		if character.is_alive() and character.health > highest_hp:
+			highest_hp = character.health
 			target = character
 	return target
 

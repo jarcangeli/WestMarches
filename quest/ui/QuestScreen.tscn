@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2xf0hqwsw5f7"]
 
-[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="1_27ytc"]
-[ext_resource type="PackedScene" uid="uid://dulmpfagfjs2k" path="res://ui/quest_ui/QuestSelectUI.tscn" id="2_edwcb"]
-[ext_resource type="Script" uid="uid://f664duex3swn" path="res://ui/quest_ui/QuestScreen.gd" id="5"]
-[ext_resource type="PackedScene" uid="uid://dgnhuy66p3u67" path="res://ui/quest_ui/QuestEquipUI.tscn" id="11_mfksw"]
-[ext_resource type="PackedScene" uid="uid://bfe2atjcmt605" path="res://ui/quest_ui/QuestRewardUI.tscn" id="12_at2a0"]
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_27ytc"]
+[ext_resource type="PackedScene" uid="uid://dulmpfagfjs2k" path="res://quest/ui/QuestSelectUI.tscn" id="2_edwcb"]
+[ext_resource type="Script" uid="uid://f664duex3swn" path="res://quest/ui/QuestScreen.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://dgnhuy66p3u67" path="res://quest/ui/QuestEquipUI.tscn" id="11_mfksw"]
+[ext_resource type="PackedScene" uid="uid://bfe2atjcmt605" path="res://quest/ui/QuestRewardUI.tscn" id="12_at2a0"]
 
 [node name="QuestScreen" type="MarginContainer"]
 anchors_preset = 15

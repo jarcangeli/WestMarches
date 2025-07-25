@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://biym5k6isys7d"]
 
-[ext_resource type="Script" uid="uid://b7kfbx4oy517b" path="res://ui/TavernUI.gd" id="1_icasl"]
-[ext_resource type="PackedScene" uid="uid://cimbnhhermucy" path="res://ui/PartySummaryUI.tscn" id="2_cks0q"]
+[ext_resource type="Script" uid="uid://b7kfbx4oy517b" path="res://characters/ui/TavernUI.gd" id="1_icasl"]
+[ext_resource type="PackedScene" uid="uid://cimbnhhermucy" path="res://characters/ui/PartySummaryUI.tscn" id="2_cks0q"]
 
 [node name="Tavern" type="MarginContainer"]
 anchors_preset = 15

@@ -3,7 +3,7 @@ class_name ItemDisplayContainer
 
 signal item_selected(item)
 
-@export var item_display_scene_path : Resource = preload("res://ui/inventory_ui/ItemButtonDisplay.tscn")
+@export var item_display_scene_path : Resource = preload("res://items/ui/ItemButtonDisplay.tscn")
 @export var item_container : ItemContainer
 
 func clear_item_views():

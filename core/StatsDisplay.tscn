@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cep2vfoh14qxb"]
 
-[ext_resource type="Script" uid="uid://c1maxoqmp13lh" path="res://ui/StatsDisplay.gd" id="1_un85m"]
-[ext_resource type="PackedScene" uid="uid://d0bfsckn0efs6" path="res://ui/StatDisplay.tscn" id="2_54irn"]
+[ext_resource type="Script" uid="uid://c1maxoqmp13lh" path="res://core/StatsDisplay.gd" id="1_un85m"]
+[ext_resource type="PackedScene" uid="uid://d0bfsckn0efs6" path="res://core/StatDisplay.tscn" id="2_54irn"]
 
 [node name="StatsDisplay" type="CenterContainer"]
 script = ExtResource("1_un85m")

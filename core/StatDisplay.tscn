@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0bfsckn0efs6"]
 
-[ext_resource type="Script" uid="uid://fao15jlqs8y6" path="res://ui/StatDisplay.gd" id="1_3pa2g"]
+[ext_resource type="Script" uid="uid://fao15jlqs8y6" path="res://core/StatDisplay.gd" id="1_3pa2g"]
 [ext_resource type="Texture2D" uid="uid://bv4b8uclyh35m" path="res://assets/icons/stats/constitution.png" id="1_wxmin"]
 
 [node name="StatDisplay" type="HBoxContainer"]

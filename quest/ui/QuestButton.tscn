@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource type="Script" uid="uid://bgymvfl7kjcn2" path="res://ui/quest_ui/QuestSelectButton.gd" id="1"]
+[ext_resource type="Script" uid="uid://bgymvfl7kjcn2" path="res://quest/ui/QuestSelectButton.gd" id="1"]
 
 [node name="QuestButton" type="Button"]
 offset_top = 4.0

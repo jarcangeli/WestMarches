@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdne03tkdk66i"]
 
-[ext_resource type="Script" uid="uid://jm3yoj5s1wvc" path="res://ui/inventory_ui/ItemDropArea.gd" id="1_wwwnm"]
+[ext_resource type="Script" uid="uid://jm3yoj5s1wvc" path="res://items/ui/ItemDropArea.gd" id="1_wwwnm"]
 
 [node name="ItemDropArea" type="VBoxContainer"]
 anchors_preset = 15

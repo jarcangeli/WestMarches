@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cimbnhhermucy"]
 
-[ext_resource type="Script" uid="uid://k0vbt4r1gvu0" path="res://ui/PartySummaryUI.gd" id="1_hokt6"]
-[ext_resource type="PackedScene" uid="uid://b1ycsca7qo073" path="res://ui/CharacterSummaryUI.tscn" id="2_dibcj"]
-[ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://ui/difficulty_atlas_texture_background.tres" id="2_kchre"]
-[ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://ui/difficulty_atlas_texture.tres" id="3_dibcj"]
+[ext_resource type="Script" uid="uid://k0vbt4r1gvu0" path="res://characters/ui/PartySummaryUI.gd" id="1_hokt6"]
+[ext_resource type="PackedScene" uid="uid://b1ycsca7qo073" path="res://characters/ui/CharacterSummaryUI.tscn" id="2_dibcj"]
+[ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://difficulty_atlas_texture_background.tres" id="2_kchre"]
+[ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://difficulty_atlas_texture.tres" id="3_dibcj"]
 
 [node name="PartySummaryUI" type="ScrollContainer"]
 anchors_preset = 15

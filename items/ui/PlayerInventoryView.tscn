@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://b3ruqllcfspo1"]
 
-[ext_resource type="PackedScene" path="res://ui/inventory_ui/ItemButtonSelectDisplay.tscn" id="1"]
-[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://ui/default_theme.tres" id="1_st5uv"]
-[ext_resource type="Script" uid="uid://84whq0bed761" path="res://ui/inventory_ui/PlayerInventoryView.gd" id="2"]
-[ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="3"]
-[ext_resource type="Script" uid="uid://c0p814bkv8qxv" path="res://ui/inventory_ui/ItemDetailView.gd" id="4"]
-[ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://ui/inventory_ui/ItemButtonDisplay.tscn" id="5_tjcmg"]
-[ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://ui/StatsDisplay.tscn" id="7_tjcmg"]
+[ext_resource type="PackedScene" path="res://items/ui/ItemButtonSelectDisplay.tscn" id="1"]
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_st5uv"]
+[ext_resource type="Script" uid="uid://84whq0bed761" path="res://items/ui/PlayerInventoryView.gd" id="2"]
+[ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="3"]
+[ext_resource type="Script" uid="uid://c0p814bkv8qxv" path="res://items/ui/ItemDetailView.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://items/ui/ItemButtonDisplay.tscn" id="5_tjcmg"]
+[ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://core/StatsDisplay.tscn" id="7_tjcmg"]
 
 [node name="InventoryView" type="HBoxContainer"]
 anchors_preset = 15

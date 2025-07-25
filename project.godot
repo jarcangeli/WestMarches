@@ -21,9 +21,9 @@ SignalBus="*res://core/SignalBus.gd"
 Globals="*res://core/Globals.gd"
 TuningKnobs="*res://core/TuningKnobs.gd"
 DB="*res://core/SQLiteDatabase.gd"
-ItemDatabase="*res://core/ItemDatabase.gd"
-MonsterDatabase="*res://core/MonsterDatabase.gd"
-POIDatabase="*res://core/POIDatabase.gd"
+ItemDatabase="*res://items/ItemDatabase.gd"
+MonsterDatabase="*res://characters/MonsterDatabase.gd"
+POIDatabase="*res://map/POIDatabase.gd"
 
 [debug]
 

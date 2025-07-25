@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cj5k2kcgyqnnt"]
 
-[ext_resource type="Script" uid="uid://gpv68y4x2p6v" path="res://ui/quest_ui/SelectCoinRewardsWidget.gd" id="1_cwx3h"]
+[ext_resource type="Script" uid="uid://gpv68y4x2p6v" path="res://quest/ui/SelectCoinRewardsWidget.gd" id="1_cwx3h"]
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="2_juiqi"]
 
 [node name="SelectedCoinsDisplay" type="HBoxContainer"]

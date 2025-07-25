@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgnhuy66p3u67"]
 
-[ext_resource type="Script" uid="uid://b6hbmx8mg0bv0" path="res://ui/quest_ui/QuestEquipUI.gd" id="1_gtgdr"]
-[ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="2_e2btp"]
-[ext_resource type="PackedScene" uid="uid://cjy6e3ym3cu6t" path="res://ui/inventory_ui/CharacterEquipUI.tscn" id="3_7p7gu"]
+[ext_resource type="Script" uid="uid://b6hbmx8mg0bv0" path="res://quest/ui/QuestEquipUI.gd" id="1_gtgdr"]
+[ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="2_e2btp"]
+[ext_resource type="PackedScene" uid="uid://cjy6e3ym3cu6t" path="res://characters/ui/CharacterEquipUI.tscn" id="3_7p7gu"]
 
 [node name="QuestEquipUI" type="HBoxContainer" node_paths=PackedStringArray("characters_container", "value_label", "reward_label")]
 anchors_preset = 15

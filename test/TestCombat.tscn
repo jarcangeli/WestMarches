@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8v260nocnrls" path="res://test/TestCombat.gd" id="1_kuu8u"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="1_oxyo4"]
-[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/LazyLoadItem.gd" id="3_me3qr"]
+[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://items/LazyLoadItem.gd" id="3_me3qr"]
 [ext_resource type="Script" uid="uid://ba4hauhkd27l" path="res://characters/LazyLoadCharacter.gd" id="4_2oxra"]
 
 [node name="TestCombat" type="VBoxContainer" node_paths=PackedStringArray("adventurer")]

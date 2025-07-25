@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://bfe2atjcmt605"]
 
-[ext_resource type="Script" uid="uid://dpfordpnms0sa" path="res://ui/quest_ui/QuestRewardUI.gd" id="1_0m5yx"]
-[ext_resource type="Script" uid="uid://jm3yoj5s1wvc" path="res://ui/inventory_ui/ItemDropArea.gd" id="1_o6fn8"]
+[ext_resource type="Script" uid="uid://dpfordpnms0sa" path="res://quest/ui/QuestRewardUI.gd" id="1_0m5yx"]
+[ext_resource type="Script" uid="uid://jm3yoj5s1wvc" path="res://items/ui/ItemDropArea.gd" id="1_o6fn8"]
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="2_0m5yx"]
-[ext_resource type="PackedScene" uid="uid://cj5k2kcgyqnnt" path="res://ui/quest_ui/SelectedCoinsDisplay.tscn" id="3_kl2fj"]
-[ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://ui/inventory_ui/ItemsDisplayContainer.gd" id="4_yis78"]
-[ext_resource type="Script" uid="uid://bpcsenk3ubug2" path="res://inventory/ItemContainer.gd" id="5_58tya"]
-[ext_resource type="PackedScene" uid="uid://wx5sih5dc80a" path="res://ui/inventory_ui/ItemButtonDisplayDisabled.tscn" id="6_2osik"]
+[ext_resource type="PackedScene" uid="uid://cj5k2kcgyqnnt" path="res://quest/ui/SelectedCoinsDisplay.tscn" id="3_kl2fj"]
+[ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="4_yis78"]
+[ext_resource type="Script" uid="uid://bpcsenk3ubug2" path="res://items/ItemContainer.gd" id="5_58tya"]
+[ext_resource type="PackedScene" uid="uid://wx5sih5dc80a" path="res://items/ui/ItemButtonDisplayDisabled.tscn" id="6_2osik"]
 
 [node name="QuestRewardUI" type="HBoxContainer"]
 anchors_preset = 15

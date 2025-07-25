@@ -6,7 +6,7 @@ extends CenterContainer
 
 @onready var container : GridContainer = $StatsGrid
 
-var stat_display_scene = preload("res://ui/StatDisplay.tscn")
+var stat_display_scene = preload("res://core/StatDisplay.tscn")
 
 func set_stats(values : Array[int]):
 	clear_displays()

@@ -1,18 +1,18 @@
 [gd_scene load_steps=14 format=3 uid="uid://c2a1ptlabf4qg"]
 
 [ext_resource type="Script" uid="uid://pasdpg40sm4w" path="res://test/TestQuests.gd" id="1_hxnl8"]
-[ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://ui/inventory_ui/PlayerCurrencyDisplay.gd" id="2_4kdxb"]
-[ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://ui/quest_ui/QuestScreen.tscn" id="2_5kee0"]
+[ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://items/ui/PlayerCurrencyDisplay.gd" id="2_4kdxb"]
+[ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/ui/QuestScreen.tscn" id="2_5kee0"]
 [ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="2_rn7o8"]
 [ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="3_ghqp3"]
-[ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://ui/TimeLabel.gd" id="3_rn7o8"]
+[ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://core/TimeLabel.gd" id="3_rn7o8"]
 [ext_resource type="Script" uid="uid://37lfxcb774f2" path="res://quest/QuestManager.gd" id="4_4kdxb"]
-[ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://ui/AdvanceTimeButton.gd" id="4_rm5kl"]
+[ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://core/AdvanceTimeButton.gd" id="4_rm5kl"]
 [ext_resource type="Script" uid="uid://bbpg5w2de17ex" path="res://quest/QuestsContainerNode.gd" id="5_rn7o8"]
 [ext_resource type="Script" uid="uid://ba36v1b1jri08" path="res://characters/AdventuringParties.gd" id="6_rm5kl"]
 [ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="7_3y0sa"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="8_5txy0"]
-[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://inventory/LazyLoadItem.gd" id="9_p1mye"]
+[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://items/LazyLoadItem.gd" id="9_p1mye"]
 
 [node name="TestQuests" type="VBoxContainer"]
 anchors_preset = 15

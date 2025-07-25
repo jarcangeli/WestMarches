@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdiwqj3idmkaw"]
 
-[ext_resource type="Script" uid="uid://thhunpldtg0c" path="res://inventory/Item.gd" id="1"]
+[ext_resource type="Script" uid="uid://thhunpldtg0c" path="res://items/Item.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ynovd7yp0553" path="res://assets/icons/icon_32.png" id="2"]
 
 [node name="Item" type="Node" groups=["item"]]

@@ -73,127 +73,14 @@ layout_mode = 2
 layout_mode = 2
 text = "Quest History:"
 
-[node name="QuestInfoPanel" type="Panel" parent="." node_paths=PackedStringArray("quest_name_label", "quest_description_text_ui", "quest_rewards_display", "party_summary", "quest_difficulty_display")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("3_1mbw8")
-quest_name_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestNameLabel")
-quest_description_text_ui = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestDescriptionText")
-quest_rewards_display = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ScrollContainer/QuestRewardsDisplay")
-party_summary = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/PartySummaryUI")
-quest_difficulty_display = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/DifficultyBar")
-
-[node name="MarginContainer" type="MarginContainer" parent="QuestInfoPanel"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="QuestInfoPanel/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="QuestInfoPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="QuestNameLabel" type="Label" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="QuestDescriptionText" type="Label" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="DifficultyLabel" type="Label" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Difficulty"
-horizontal_alignment = 1
-
-[node name="DifficultyBar" type="TextureProgressBar" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-texture_repeat = 2
-layout_mode = 2
-step = 0.1
-value = 100.0
-texture_under = ExtResource("4_niqkt")
-texture_progress = ExtResource("5_in1tt")
-
-[node name="CenterContainer" type="CenterContainer" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="DeathsBar" type="TextureProgressBar" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/CenterContainer"]
-unique_name_in_owner = true
-texture_repeat = 2
-layout_mode = 2
-max_value = 3.0
-value = 1.0
-rounded = true
-texture_progress = SubResource("AtlasTexture_2cb01")
-
-[node name="PartySummaryUI" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("6_rx18j")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 4.0
-scroll_areas_enabled = false
-
-[node name="RewardsLabel" type="Label" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Rewards"
-horizontal_alignment = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="QuestRewardsDisplay" type="VBoxContainer" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ScrollContainer" node_paths=PackedStringArray("item_rewards_container", "currency_rewards_label")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("7_7b3j3")
-item_rewards_container = NodePath("RewardsContainer")
-currency_rewards_label = NodePath("RewardsContainer/CurrencyRewardsLabel")
-
-[node name="RewardsContainer" type="VBoxContainer" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ScrollContainer/QuestRewardsDisplay"]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("8_nr7bh")
-item_display_scene_path = ExtResource("9_jin1d")
-
-[node name="CurrencyRewardsLabel" type="Label" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ScrollContainer/QuestRewardsDisplay/RewardsContainer"]
-visible = false
-layout_mode = 2
-text = "0 gp"
-horizontal_alignment = 1
-
-[node name="ChooseQuestButton" type="Button" parent="QuestInfoPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "SPONSOR QUEST"
-
 [node name="QuestProgressPanel" type="Panel" parent="." node_paths=PackedStringArray("quest_name_label", "quest_description_text", "quest_story_text", "quest_combat_log")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("11_1mbw8")
 quest_name_label = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestNameLabel")
 quest_description_text = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestDescriptionText")
-quest_story_text = NodePath("MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestStory")
-quest_combat_log = NodePath("MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestCombatLog")
+quest_story_text = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestStory")
+quest_combat_log = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestCombatLog")
 
 [node name="MarginContainer" type="MarginContainer" parent="QuestProgressPanel"]
 layout_mode = 1
@@ -223,12 +110,13 @@ horizontal_alignment = 1
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="TabContainer" type="TabContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="QuestInfoTabContainer" type="TabContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="QuestRewardPanel" type="Panel" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer" node_paths=PackedStringArray("item_rewards_container", "currency_rewards_label", "debt_rewards_label", "quest_name_label", "quest_description_label")]
+[node name="QuestRewardPanel" type="Panel" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer" node_paths=PackedStringArray("item_rewards_container", "currency_rewards_label", "debt_rewards_label", "quest_name_label", "quest_description_label")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -240,7 +128,7 @@ quest_name_label = NodePath("VBoxContainer/VBoxContainer/QuestNameLabel")
 quest_description_label = NodePath("VBoxContainer/VBoxContainer/QuestDescriptionText")
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="MarginContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestRewardPanel"]
+[node name="VBoxContainer" type="MarginContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel"]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -249,58 +137,175 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestRewardPanel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="QuestNameLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer"]
+[node name="QuestNameLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="QuestDescriptionText" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer"]
+[node name="QuestDescriptionText" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Item rewards"
 horizontal_alignment = 1
 
-[node name="ItemRewardsContainer" type="VBoxContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer" node_paths=PackedStringArray("item_display_container")]
+[node name="ItemRewardsContainer" type="VBoxContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer" node_paths=PackedStringArray("item_display_container")]
 layout_mode = 2
 script = ExtResource("8_nr7bh")
 item_display_container = NodePath(".")
 
-[node name="CurrencyRewardsLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer/ItemRewardsContainer"]
+[node name="CurrencyRewardsLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer/ItemRewardsContainer"]
 visible = false
 layout_mode = 2
 text = "0 gp"
 horizontal_alignment = 1
 
-[node name="DebtRewardsLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer/ItemRewardsContainer"]
+[node name="DebtRewardsLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer/ItemRewardsContainer"]
 layout_mode = 2
 text = "0 gp"
 horizontal_alignment = 1
 
-[node name="CollectRewardsButton" type="Button" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer"]
+[node name="CollectRewardsButton" type="Button" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "COLLECT REWARDS"
 
-[node name="QuestStory" type="TextEdit" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
+[node name="QuestInfoPanel" type="Panel" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer" node_paths=PackedStringArray("quest_name_label", "quest_description_text_ui", "quest_rewards_display", "party_summary", "quest_difficulty_display")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
-editable = false
+size_flags_horizontal = 3
+script = ExtResource("3_1mbw8")
+quest_name_label = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestNameLabel")
+quest_description_text_ui = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestDescriptionText")
+quest_rewards_display = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ScrollContainer/QuestRewardsDisplay")
+party_summary = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/PartySummaryUI")
+quest_difficulty_display = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/DifficultyBar")
 metadata/_tab_index = 1
 
-[node name="QuestCombatLog" type="TextEdit" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="QuestNameLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="QuestDescriptionText" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="DifficultyLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Difficulty"
+horizontal_alignment = 1
+
+[node name="DifficultyBar" type="TextureProgressBar" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+texture_repeat = 2
+layout_mode = 2
+step = 0.1
+value = 100.0
+texture_under = ExtResource("4_niqkt")
+texture_progress = ExtResource("5_in1tt")
+
+[node name="CenterContainer" type="CenterContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="DeathsBar" type="TextureProgressBar" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+texture_repeat = 2
+layout_mode = 2
+max_value = 3.0
+value = 1.0
+rounded = true
+texture_progress = SubResource("AtlasTexture_2cb01")
+
+[node name="PartySummaryUI" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("6_rx18j")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+scroll_areas_enabled = false
+
+[node name="RewardsLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Rewards"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuestRewardsDisplay" type="VBoxContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ScrollContainer" node_paths=PackedStringArray("item_rewards_container", "currency_rewards_label")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("7_7b3j3")
+item_rewards_container = NodePath("RewardsContainer")
+currency_rewards_label = NodePath("RewardsContainer/CurrencyRewardsLabel")
+
+[node name="RewardsContainer" type="VBoxContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ScrollContainer/QuestRewardsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_nr7bh")
+item_display_scene_path = ExtResource("9_jin1d")
+
+[node name="CurrencyRewardsLabel" type="Label" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ScrollContainer/QuestRewardsDisplay/RewardsContainer"]
+visible = false
+layout_mode = 2
+text = "0 gp"
+horizontal_alignment = 1
+
+[node name="ChooseQuestButton" type="Button" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SPONSOR QUEST"
+
+[node name="QuestStory" type="TextEdit" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 editable = false
 metadata/_tab_index = 2
 
-[connection signal="pressed" from="QuestInfoPanel/MarginContainer/VBoxContainer/ChooseQuestButton" to="." method="on_choose_quest_button_pressed"]
-[connection signal="pressed" from="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="." method="on_choose_quest_button_pressed"]
+[node name="QuestCombatLog" type="TextEdit" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+metadata/_tab_index = 3
+
+[connection signal="pressed" from="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="." method="on_choose_quest_button_pressed"]
+[connection signal="pressed" from="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ChooseQuestButton" to="." method="on_choose_quest_button_pressed"]

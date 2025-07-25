@@ -15,9 +15,10 @@ signal quest_chosen(quest)
 @onready var active_container = get_node(active_container_path)
 @onready var completed_container = get_node(completed_container_path)
 
-@onready var quest_info_panel = $QuestInfoPanel
+@onready var quest_info_panel = %QuestInfoPanel
 @onready var quest_reward_panel = %QuestRewardPanel
 @onready var quest_progress_panel: Panel = $QuestProgressPanel
+@onready var quest_info_tab_container: TabContainer = %QuestInfoTabContainer
 
 var selected_quest : Quest = null
 
@@ -66,24 +67,19 @@ func select_quest(quest):
 	update_quest_panels()
 
 func update_quest_panels():
-	quest_info_panel.visible = false
-	quest_reward_panel.visible = false
-	quest_reward_panel.get_parent().set_tab_hidden(0, true)
-	quest_progress_panel.visible = false
+	quest_info_tab_container.set_tab_hidden(0, true)
 	if not is_instance_valid(selected_quest):
 		return
-	
-	if not selected_quest.started:
-		quest_info_panel.visible = true
-		quest_info_panel.set_quest(selected_quest)
-	else:
-		quest_progress_panel.visible = true
-		quest_progress_panel.set_quest(selected_quest)
-		if selected_quest.finished and not selected_quest.completed:
-			quest_reward_panel.visible = true
-			quest_reward_panel.get_parent().set_tab_hidden(0, false)
-			quest_reward_panel.get_parent().set_current_tab(0)
-			quest_reward_panel.set_quest(selected_quest)
+	quest_info_tab_container.tabs_visible = selected_quest.started
+	quest_info_panel.visible = true
+	quest_info_panel.set_quest(selected_quest)
+	quest_progress_panel.visible = true
+	quest_progress_panel.set_quest(selected_quest)
+	if selected_quest.finished and not selected_quest.completed:
+		quest_reward_panel.visible = true
+		quest_info_tab_container.set_tab_hidden(0, false)
+		quest_info_tab_container.set_current_tab(0)
+		quest_reward_panel.set_quest(selected_quest)
 
 func on_choose_quest_button_pressed():
 	if not is_instance_valid(selected_quest):

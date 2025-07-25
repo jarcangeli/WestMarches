@@ -247,10 +247,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 4
+current_tab = 0
 
 [node name="Quests" parent="GameWindow/GameTabs" node_paths=PackedStringArray("pending_quests", "available_quests", "active_quests", "completed_quests", "adventuring_parties") instance=ExtResource("1")]
-visible = false
 layout_mode = 2
 pending_quests = NodePath("../../../QuestManager/PendingQuests")
 available_quests = NodePath("../../../QuestManager/AvailableQuests")
@@ -275,6 +274,7 @@ layout_mode = 2
 metadata/_tab_index = 3
 
 [node name="Cemetery" type="MarginContainer" parent="GameWindow/GameTabs" node_paths=PackedStringArray("container")]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10

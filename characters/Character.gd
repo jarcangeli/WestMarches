@@ -106,4 +106,5 @@ func on_death():
 	if get_parent():
 		get_parent().remove_child(self)
 	Globals.character_graveyard.add_child(self)
+	SignalBus.character_died.emit(self)
 	died.emit()

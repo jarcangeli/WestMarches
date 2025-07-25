@@ -15,7 +15,11 @@ func add_currencies(other_currencies, duplicated = false):
 	emit_signal("changed")
 
 func add_gold(amount):
-	gold += amount
+	gold += clampi(amount, 0, amount)
+	emit_signal("changed")
+
+func remove_gold(amount):
+	gold -= clampi(amount, 0, amount)
 	emit_signal("changed")
 
 func clear():

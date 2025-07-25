@@ -2,6 +2,7 @@ extends RefCounted
 class_name Combat
 
 signal combat_log(line : String)
+signal combat_story(line : String)
 
 var adventurers : Array
 var monsters : Array
@@ -47,6 +48,12 @@ func add_log(message : String):
 	if simulated:
 		return
 	combat_log.emit(message)
+
+func add_story(message : String):
+	if simulated:
+		return
+	combat_log.emit(message)
+	combat_story.emit(message)
 
 func sort_round_order(a, b):
 	var initiative_a = a[0].stats.get_value(AbilityStats.Type.INTIATIVE)
@@ -197,7 +204,7 @@ func target_weakest_character(characters):
 	return target
 
 func on_kill_character(character : Character):
-	add_log(character.name + " was slain")
+	add_story(character.name + " was slain")
 	killed_characters.append(character)
 	if character in monsters:
 		remaining_monsters_alive -= 1

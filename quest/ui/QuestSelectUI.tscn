@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dulmpfagfjs2k"]
+[gd_scene load_steps=14 format=3 uid="uid://dulmpfagfjs2k"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_3p2es"]
 [ext_resource type="Script" uid="uid://d0s6ig5osvmvr" path="res://quest/ui/QuestSelectUI.gd" id="1_ubjuw"]
@@ -8,9 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://difficulty_atlas_texture.tres" id="5_in1tt"]
 [ext_resource type="PackedScene" uid="uid://cimbnhhermucy" path="res://characters/ui/PartySummaryUI.tscn" id="6_rx18j"]
 [ext_resource type="Script" uid="uid://dm7nwvytq5g0y" path="res://quest/ui/QuestRewardsDisplay.gd" id="7_7b3j3"]
+[ext_resource type="Texture2D" uid="uid://bhir43ek1ivf0" path="res://assets/icons/skull.png" id="7_cqabf"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="8_nr7bh"]
 [ext_resource type="PackedScene" uid="uid://wx5sih5dc80a" path="res://items/ui/ItemButtonDisplayDisabled.tscn" id="9_jin1d"]
 [ext_resource type="Script" uid="uid://rnj4eogah0sp" path="res://quest/ui/QuestProgressPanel.gd" id="11_1mbw8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cb01"]
+atlas = ExtResource("7_cqabf")
+region = Rect2(0, 0, 96, 0)
 
 [node name="QuestSelectUI" type="HBoxContainer"]
 anchors_preset = 15
@@ -123,9 +128,21 @@ horizontal_alignment = 1
 texture_repeat = 2
 layout_mode = 2
 step = 0.1
-value = 2.5
+value = 100.0
 texture_under = ExtResource("4_niqkt")
 texture_progress = ExtResource("5_in1tt")
+
+[node name="CenterContainer" type="CenterContainer" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="DeathsBar" type="TextureProgressBar" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+texture_repeat = 2
+layout_mode = 2
+max_value = 3.0
+value = 1.0
+rounded = true
+texture_progress = SubResource("AtlasTexture_2cb01")
 
 [node name="PartySummaryUI" parent="QuestInfoPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("6_rx18j")]
 layout_mode = 2
@@ -225,14 +242,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "COLLECT REWARDS"
 
-[node name="QuestProgressPanel" type="Panel" parent="." node_paths=PackedStringArray("quest_name_label", "quest_description_text", "quest_progress_text")]
+[node name="QuestProgressPanel" type="Panel" parent="." node_paths=PackedStringArray("quest_name_label", "quest_description_text", "quest_story_text", "quest_combat_log")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("11_1mbw8")
 quest_name_label = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestNameLabel")
 quest_description_text = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestDescriptionText")
-quest_progress_text = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestProgressText")
+quest_story_text = NodePath("MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestStory")
+quest_combat_log = NodePath("MarginContainer/ScrollContainer/VBoxContainer/TabContainer/QuestCombatLog")
 
 [node name="MarginContainer" type="MarginContainer" parent="QuestProgressPanel"]
 layout_mode = 1
@@ -262,10 +280,23 @@ horizontal_alignment = 1
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="QuestProgressText" type="TextEdit" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="QuestStory" type="TextEdit" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 editable = false
+metadata/_tab_index = 0
+
+[node name="QuestCombatLog" type="TextEdit" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+metadata/_tab_index = 1
 
 [connection signal="pressed" from="QuestInfoPanel/MarginContainer/VBoxContainer/ChooseQuestButton" to="." method="on_choose_quest_button_pressed"]
 [connection signal="pressed" from="QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="." method="on_choose_quest_button_pressed"]

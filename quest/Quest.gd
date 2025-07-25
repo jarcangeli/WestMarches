@@ -57,6 +57,9 @@ func get_progess_text():
 	var progress = travel_step.get_progress_text() + battle_step.get_progress_text() + return_step.get_progress_text()
 	return "\n".join(progress)
 
+func get_combat_log():
+	return "\n".join(battle_step.get_combat_log())
+
 func get_difficulty():
 	if not battle_step or not battle_step.encounter:
 		return 0
@@ -67,16 +70,18 @@ func get_difficulty():
 		difficulty_sum += monster.get_power_level()
 	return difficulty_sum / 300.0 * 5
 
-func simulate_win_percentage():
+func simulate_results() -> CombatSimResults:
 	if not battle_step or not battle_step.encounter:
-		return 100
+		var fake_results = CombatSimResults.new()
+		fake_results.wins = 1
+		return fake_results
 	if not party:
-		return 0
+		return CombatSimResults.new()
 	
 	var adventurers := party.get_characters()
 	var monsters := battle_step.encounter.get_monsters()
-	var results := CombatSim.simulate(adventurers, monsters, 300)
-	return results.get_win_percentage()
+	var results : CombatSimResults = CombatSim.simulate(adventurers, monsters, 300)
+	return results
 
 func get_rewards():
 	var rewards = []

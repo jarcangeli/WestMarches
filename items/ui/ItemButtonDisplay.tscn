@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckvawd0d573sn"]
+[gd_scene load_steps=5 format=3 uid="uid://ckvawd0d573sn"]
 
 [ext_resource type="Script" uid="uid://vljk2nlbkbaq" path="res://items/ui/ItemButtonDisplay.gd" id="1"]
 [ext_resource type="Script" uid="uid://csgrvldjkx0gt" path="res://items/ui/InventoryItemDisplayArea.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://ynovd7yp0553" path="res://assets/icons/icon_32.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="3_up2iq"]
 
 [node name="ItemButtonDisplay" type="MarginContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -13,8 +14,10 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -111.0
 offset_top = -25.0
-offset_right = 111.0
-offset_bottom = 25.0
+offset_right = 69.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 focus_mode = 1
 script = ExtResource("1")
@@ -41,7 +44,13 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 mouse_filter = 2
 
+[node name="ItemIcon" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_up2iq")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 1
+
 [node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_filter = 2

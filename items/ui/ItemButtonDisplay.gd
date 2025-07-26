@@ -11,6 +11,7 @@ signal item_selected()
 @onready var icon = get_node(icon_path)
 @onready var name_label = get_node(name_label_path)
 @onready var slot_label = get_node(slot_label_path)
+@onready var item_icon: ItemIcon = %ItemIcon
 
 const EQUIPPED_COLOUR = "#bbbbbb"
 const UNEQUIPPED_COLOUR = "#ffffff"
@@ -24,8 +25,8 @@ func _ready():
 	SignalBus.item_consumed.connect(on_item_consumed)
 
 func refresh_display():
+	item_icon.set_item(item)
 	if not is_instance_valid(item):
-		icon.texture = null
 		name_label.text = "-"
 		slot_label.text = "-"
 	else:

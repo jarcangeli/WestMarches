@@ -4,6 +4,7 @@ class_name ItemIcon
 signal item_selected()
 
 @export var drag_enabled := true
+@export var min_size := 32
 
 @onready var background_texture: TextureRect = %BackgroundTexture
 @onready var border_texture: TextureRect = %BorderTexture

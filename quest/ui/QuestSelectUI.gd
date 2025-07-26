@@ -24,6 +24,7 @@ var selected_quest : Quest = null
 
 func _ready():
 	update_quest_panels()
+	quest_progress_panel.visible = false
 
 func clear_button_container(container):
 	for node in container.get_children():

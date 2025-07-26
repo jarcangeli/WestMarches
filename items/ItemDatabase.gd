@@ -14,6 +14,24 @@ var indexes_by_rarity = {
 	Globals.Rarity.EPIC: 		[]
 }
 
+func get_item_data_by_index(i : int) -> ItemData:
+	var data = ItemData.new()
+	if i in item_data_by_index:
+		var source_data = item_data_by_index[i]
+		data = source_data
+	else:
+		push_warning("Trying to load item data with invalid index " + str(i))
+	return data
+
+func get_item_data_by_name(item_name : String) -> ItemData:
+	var data = ItemData.new()
+	if item_name in item_data_by_name:
+		var source_data = item_data_by_name[item_name]
+		data = source_data
+	else:
+		push_warning("Trying to load item data with invalid name " + item_name)
+	return data
+
 func _ready():
 	preload_icons(icons_path, icons_by_name)
 	load_table(items_table_name)
@@ -61,7 +79,7 @@ func generate_random_item() -> Item:
 		rarity = Globals.Rarity.UNCOMMON
 	
 	var keys = indexes_by_rarity[rarity]
-	var item_data = item_data_by_index[keys[randi() % len(keys)]]
+	var item_data = get_item_data_by_index(keys[randi() % len(keys)])
 	var item = Item.new(item_data)
 	return item
 

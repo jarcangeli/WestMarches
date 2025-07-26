@@ -5,10 +5,8 @@
 
 [node name="StatsDisplay" type="VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
-offset_right = 28.0
-offset_bottom = 20.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+offset_right = 148.0
+offset_bottom = 100.0
 script = ExtResource("1_un85m")
 
 [node name="StatsGrid" type="GridContainer" parent="."]

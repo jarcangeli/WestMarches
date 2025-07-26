@@ -17,15 +17,33 @@ characters_container = NodePath("PartyContainer/CharacterEquipContainer")
 value_label = NodePath("CenterMarginContainer/EquipUIContainer/ValueContainer/ValueLabel")
 reward_label = NodePath("CenterMarginContainer/EquipUIContainer/RewardContainer/RewardLabel")
 
-[node name="InventoryDisplayContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("2_e2btp")
 
-[node name="InventoryLabel" type="Label" parent="InventoryDisplayContainer"]
+[node name="InventoryLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Inventory"
 horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="InventoryDisplayContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_e2btp")
 
 [node name="CenterMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

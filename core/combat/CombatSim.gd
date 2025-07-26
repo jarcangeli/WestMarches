@@ -8,8 +8,6 @@ static func simulate(adventurers : Array[Character], monsters : Array[Character]
 	var combat = Combat.new(adventurers, monsters)
 	combat.set_simulated(true)
 	for i in range(0, iterations):
-		reset_characters(adventurers)
-		reset_characters(monsters)
 		combat.reset()
 		while !combat.is_finished():
 			combat.play_round()
@@ -22,10 +20,5 @@ static func simulate(adventurers : Array[Character], monsters : Array[Character]
 		else:
 			results.wins += 1
 	
-	reset_characters(adventurers)
-	reset_characters(monsters)
+	combat.reset()
 	return results
-
-static func reset_characters(characters : Array[Character]):
-	for character in characters:
-		character.health = character.get_max_health()

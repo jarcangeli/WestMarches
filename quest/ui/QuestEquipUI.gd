@@ -5,7 +5,7 @@ signal quest_abandoned()
 signal quest_started()
 
 @export var character_equip_ui_scene : Resource
-@onready var inventory_display_container: ItemDisplayContainer = $InventoryDisplayContainer
+@onready var inventory_display_container: ItemDisplayContainer = %InventoryDisplayContainer
 
 @export var characters_container : Node
 @export var value_label : Label

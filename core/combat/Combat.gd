@@ -32,6 +32,8 @@ func reset():
 	poison_source_map = {}
 	killed_characters = []
 	combat_summary = {}
+	reset_characters(adventurers)
+	reset_characters(monsters)
 	remaining_adventurers_alive = 0
 	for adventurer in adventurers:
 		if adventurer.is_alive():
@@ -252,3 +254,7 @@ func do_healing(character : Character, value : int):
 	summary.healing += healed
 	combat_summary.set(character, summary)
 	return healed
+
+static func reset_characters(characters : Array[Character]):
+	for character in characters:
+		character.health = character.get_max_health()

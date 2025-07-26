@@ -23,7 +23,7 @@ func set_item(_item : Item):
 		return
 	item = _item
 	icon_texture.texture = item.icon
-	#TODO: Set slot icon based on item slot
+	slot_texture.texture = Item.slot_mini_icons[item.primary_slot_type]
 	var color = Globals.rarity_colours[item.rarity]
 	border_texture.modulate = color
 	tooltip_text = item.item_name #TODO: More info in tooltip

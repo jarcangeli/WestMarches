@@ -30,6 +30,21 @@ const slot_container_icons = [
 	preload("res://assets/icons/slots/cape.png"),
 	preload("res://assets/icons/icon.png")
 ]
+
+const slot_mini_icons = [
+	preload("res://assets/icons/slots/weapon_slot.png"),
+	preload("res://assets/icons/slots/chest_slot.png"),
+	preload("res://assets/icons/slots/helm_slot.png"),
+	preload("res://assets/icons/slots/leg_slot.png"),
+	preload("res://assets/icons/slots/feet_slot.png"),
+	preload("res://assets/icons/slots/potion_slot.png"),
+	preload("res://assets/icons/slots/ranged_slot.png"),
+	preload("res://assets/icons/slots/belt_slot.png"),
+	preload("res://assets/icons/slots/ring_slot.png"),
+	preload("res://assets/icons/slots/cape_slot.png"),
+	preload("res://assets/icons/icon.png")
+]
+
 var id : int = -1
 
 @export var item_name : String = "Name"

@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://ufno3phdjrwy"]
 
 [ext_resource type="Script" uid="uid://bgymvfl7kjcn2" path="res://quest/ui/QuestSelectButton.gd" id="1"]
 
 [node name="QuestButton" type="Button"]
-offset_top = 4.0
-offset_right = 300.0
-offset_bottom = 24.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 303.0
+offset_bottom = 32.0
+focus_mode = 1
 toggle_mode = true
 text = "Quest 1"
-script = ExtResource( 1 )
+script = ExtResource("1")

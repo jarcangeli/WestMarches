@@ -8,12 +8,15 @@ signal item_selected(item)
 
 func clear_item_views():
 	for node in get_children():
-		if node is ItemButtonDisplay:
+		if node is ItemButtonDisplay or node is ItemIcon:
 			remove_child(node)
 			node.queue_free()
 
 func on_item_selected(item):
 	item_selected.emit(item)
+	for node in get_children():
+		if node.get_item() != item:
+			node.set_selected(false)
 
 func add_items(items):
 	for item in items:

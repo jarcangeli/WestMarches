@@ -10,3 +10,10 @@ enum Rarity {
 	RARE		= 2,
 	EPIC		= 3
 }
+
+const rarity_colours = [
+	Color.WHITE,
+	Color.MEDIUM_SEA_GREEN,
+	Color.ROYAL_BLUE,
+	Color.MEDIUM_PURPLE
+]

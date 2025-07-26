@@ -85,6 +85,7 @@ text = "Quest History:"
 [node name="QuestProgressPanel" type="Panel" parent="." node_paths=PackedStringArray("quest_name_label", "quest_description_text", "quest_story_text", "quest_combat_log")]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 script = ExtResource("11_1mbw8")
 quest_name_label = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestNameLabel")
 quest_description_text = NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuestDescriptionText")

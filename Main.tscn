@@ -51,6 +51,10 @@ item_name = "Shortsword"
 script = ExtResource("7_2gh4u")
 item_name = "Coif"
 
+[node name="Item" type="Node" parent="PlayerInventory"]
+script = ExtResource("7_2gh4u")
+item_name = "Sylvan Axe"
+
 [node name="AdventuringParties" type="Node" parent="." groups=["time"]]
 script = ExtResource("19")
 

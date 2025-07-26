@@ -12,7 +12,7 @@ func add_item(item : Item):
 	
 	item_added.emit(item) #TODO: This could cause issues if item is now consumed?
 	
-	#TODO: Need party to be able to loot coin pouches
+	#TODO: Do we need party to be able to loot coin pouches?
 	if item.consumed_on_acquire and self == Globals.player_inventory:
 		var currencies = item.get_currency_granted()
 		Globals.player_currencies.add_currencies(currencies)

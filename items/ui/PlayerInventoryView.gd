@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-@onready var inventory_display_container = $ItemsDisplayContainer
+@onready var inventory_display_container = %ItemsDisplayContainer
 @onready var item_detail_view = $ItemDetailView
 
 func _ready():

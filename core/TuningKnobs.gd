@@ -2,6 +2,8 @@ extends Node
 # [TODO] Class where things that need tuning go
 # when it's tuned, move it to an appropriate location
 
+const DEBUG := true
+
 const QUEST_MIN_PERCENT = 0
 const QUEST_MAX_PERCENT = 100
 const QUEST_MAX_ITERATIONS = 20

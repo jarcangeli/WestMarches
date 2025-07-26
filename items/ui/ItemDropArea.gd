@@ -12,6 +12,8 @@ func _can_drop_data(_position, data):
 	var item = data.get_item()
 	if not item:
 		return false
+	if self == item.get_parent():
+		return false
 	return true
 
 func _drop_data(_position, data):

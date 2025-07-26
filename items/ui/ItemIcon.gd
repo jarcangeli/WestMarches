@@ -12,7 +12,7 @@ signal item_selected()
 @onready var icon_texture: TextureRect = %IconTexture
 
 var item : Item = null
-
+var selected := false
 const selected_background_color = Color.WEB_GRAY
 const background_color = Color.BLACK
 
@@ -43,13 +43,14 @@ func _get_drag_data(_position):
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
-		set_selected(true)
+		set_selected(!selected)
 
 func on_item_consumed(consumed_item : Item):
 	if item and consumed_item == item:
 		queue_free()
 
-func set_selected(selected):
+func set_selected(_selected):
+	selected = _selected
 	if selected:
 		background_texture.modulate = selected_background_color
 	else:

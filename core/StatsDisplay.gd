@@ -1,4 +1,5 @@
-extends CenterContainer
+extends Control
+class_name StatsDisplay
 
 @export var show_empty := true
 @export var font_size := 14
@@ -14,6 +15,10 @@ func set_stats(values : Array[int]):
 	for type in range(0, AbilityStats.Type.SIZE):
 		var value = values[type]
 		if not show_empty and value == 0:
+			continue
+		if type == AbilityStats.Type.CRIT_RATE and value == 1:
+			continue
+		if type == AbilityStats.Type.POISON_DAMAGE and value == 1:
 			continue
 		var stat_display = stat_display_scene.instantiate()
 		container.add_child(stat_display)

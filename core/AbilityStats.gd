@@ -19,6 +19,20 @@ enum Type
 	SIZE
 }
 
+static var names : Array[String] = [
+	"Constitution", # CONSTITUTION
+	"Attack", # ATTACK
+	"Avoidance", # AVOIDANCE
+	"Initiative", # INTIATIVE
+	"Crit Rate", 	# CRIT_RATE
+	"Regeneration",	# REGENERATION
+	"Thorns",	# THORNS
+	"AOE Damage",	# AOE_DAMAGE
+	"Poison Chance",	# POISON_CHANCE
+	"Poison Damage",	# POISON_DAMAGE
+	"Snipe Damage"	# SNIPE_DAMAGE
+]
+
 static var icons : Array[Texture2D] = [
 	preload(icon_root + "constitution.png"), 	# CONSTITUTION
 	preload(icon_root + "attack.png"), 			# ATTACK
@@ -31,6 +45,20 @@ static var icons : Array[Texture2D] = [
 	preload(icon_root + "poison_chance.png"),	# POISON_CHANCE
 	preload(icon_root + "poison_damage.png"),	# POISON_DAMAGE
 	preload(icon_root + "snipe.png")			# SNIPE_DAMAGE
+]
+
+static var colours : Array[Color] = [
+	Color.DEEP_PINK, # CONSTITUTION
+	Color.DARK_RED, # ATTACK
+	Color.DODGER_BLUE, # AVOIDANCE
+	Color.YELLOW, # INTIATIVE
+	Color.ORANGE, 	# CRIT_RATE
+	Color.PINK,	# REGENERATION
+	Color.YELLOW_GREEN,	# THORNS
+	Color.ORANGE_RED,	# AOE_DAMAGE
+	Color.SEA_GREEN,	# POISON_CHANCE
+	Color.DARK_GREEN,	# POISON_DAMAGE
+	Color.INDIAN_RED	# SNIPE_DAMAGE
 ]
 
 static func get_icon(type : Type):
@@ -64,7 +92,7 @@ static var weights : Array[int] = [
 	1, # ATTACK
 	1, # AVOIDANCE
 	1, # INTIATIVE
-	10, 	# CRIT_RATE
+	10, # CRIT_RATE
 	1,	# REGENERATION
 	1,	# THORNS
 	3,	# AOE_DAMAGE

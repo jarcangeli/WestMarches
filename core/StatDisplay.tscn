@@ -1,25 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0bfsckn0efs6"]
+[gd_scene load_steps=4 format=3 uid="uid://d0bfsckn0efs6"]
 
 [ext_resource type="Script" uid="uid://fao15jlqs8y6" path="res://core/StatDisplay.gd" id="1_3pa2g"]
 [ext_resource type="Texture2D" uid="uid://bv4b8uclyh35m" path="res://assets/icons/stats/constitution.png" id="1_wxmin"]
+[ext_resource type="Texture2D" uid="uid://c4oq6xhsxg3m1" path="res://assets/icons/stats/border.png" id="3_0qctl"]
 
 [node name="StatDisplay" type="HBoxContainer"]
-theme_override_constants/separation = 0
+offset_right = 28.0
+offset_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 2
 alignment = 1
 script = ExtResource("1_3pa2g")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="StatLabel" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "20"
+horizontal_alignment = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="StatIcon" type="TextureRect" parent="CenterContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 texture = ExtResource("1_wxmin")
-expand_mode = 1
+expand_mode = 5
 
-[node name="StatLabel" type="Label" parent="."]
+[node name="StatBorder" type="TextureRect" parent="CenterContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "20"
+texture = ExtResource("3_0qctl")
+expand_mode = 5

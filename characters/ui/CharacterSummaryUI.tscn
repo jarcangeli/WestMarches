@@ -40,6 +40,7 @@ text = "Current Level"
 horizontal_alignment = 1
 
 [node name="PowerContainer" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -59,33 +60,41 @@ layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
-[node name="StatsDisplay" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_j28tf")]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsDisplay" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_j28tf")]
 unique_name_in_owner = true
 layout_mode = 2
+show_empty = false
 
-[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
-[node name="ItemDisplayContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer/CenterContainer"]
+[node name="ItemDisplayContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 3
 
-[node name="ItemButtonDisplay" parent="ScrollContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
+[node name="ItemButtonDisplay" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ItemButtonDisplay2" parent="ScrollContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
+[node name="ItemButtonDisplay2" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ItemButtonDisplay3" parent="ScrollContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
+[node name="ItemButtonDisplay3" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
 layout_mode = 2
 size_flags_vertical = 3

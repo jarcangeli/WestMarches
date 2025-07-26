@@ -3,7 +3,7 @@ extends Control
 @export var item_display_scene : Resource
 
 @onready var item_container = %ItemDisplayContainer
-@onready var stats_display: CenterContainer = %StatsDisplay
+@onready var stats_display: Control = %StatsDisplay
 
 func set_character(character : Character):
 	$NameLabel.text = character.character_name

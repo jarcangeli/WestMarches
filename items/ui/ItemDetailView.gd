@@ -1,6 +1,6 @@
 extends Control
 
-@onready var stats_display: CenterContainer = %StatsDisplay
+@onready var stats_display: Control = %StatsDisplay
 
 func set_item(item : Item):
 	var item_name = ""

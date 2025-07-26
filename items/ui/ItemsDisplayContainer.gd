@@ -15,7 +15,7 @@ func clear_item_views():
 func on_item_selected(item):
 	item_selected.emit(item)
 	for node in get_children():
-		if node.get_item() != item:
+		if node.get_item() != item and node.has_method("set_selected"):
 			node.set_selected(false)
 
 func add_items(items):

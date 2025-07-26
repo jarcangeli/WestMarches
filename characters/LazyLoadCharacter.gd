@@ -10,7 +10,7 @@ func _ready():
 	queue_free.call_deferred()
 
 static func run(_name, parent):
-	var monster_data : CharacterData = MonsterDatabase.monster_data_by_name[_name]
+	var monster_data : CharacterData = MonsterDatabase.get_data_by_name(_name)
 	if monster_data:
 		var monster = Character.new(monster_data)
 		parent.add_child.call_deferred(monster, true)

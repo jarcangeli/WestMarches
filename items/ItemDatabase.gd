@@ -4,33 +4,12 @@ const items_table_name = "items"
 const icons_path = "res://assets/icons/items/"
 
 var icons_by_name = {}
-
-var item_data_by_index = {}
-var item_data_by_name = {}
 var indexes_by_rarity = {
 	Globals.Rarity.COMMON: 		[],
 	Globals.Rarity.UNCOMMON: 	[],
 	Globals.Rarity.RARE: 		[],
 	Globals.Rarity.EPIC: 		[]
 }
-
-func get_item_data_by_index(i : int) -> ItemData:
-	var data = ItemData.new()
-	if i in item_data_by_index:
-		var source_data = item_data_by_index[i]
-		data = source_data
-	else:
-		push_warning("Trying to load item data with invalid index " + str(i))
-	return data
-
-func get_item_data_by_name(item_name : String) -> ItemData:
-	var data = ItemData.new()
-	if item_name in item_data_by_name:
-		var source_data = item_data_by_name[item_name]
-		data = source_data
-	else:
-		push_warning("Trying to load item data with invalid name " + item_name)
-	return data
 
 func _ready():
 	preload_icons(icons_path, icons_by_name)
@@ -61,8 +40,8 @@ func load_row(row : Dictionary):
 	item_data.value = get_weighted_value(item_data.stat_values)
 	item_data.rarity = get_rarity_from_value(item_data.value)
 	if item_data.valid():
-		item_data_by_index[item_data.id] = item_data
-		item_data_by_name[item_data.item_name] = item_data #TODO: Sanitize for mods, or remove
+		data_by_index[item_data.id] = item_data
+		data_by_name[item_data.item_name] = item_data #TODO: Sanitize for mods, or remove
 		if indexes_by_rarity.has(item_data.rarity):
 			indexes_by_rarity[item_data.rarity].append(item_data.id)
 		else:
@@ -79,7 +58,7 @@ func generate_random_item() -> Item:
 		rarity = Globals.Rarity.UNCOMMON
 	
 	var keys = indexes_by_rarity[rarity]
-	var item_data = get_item_data_by_index(keys[randi() % len(keys)])
+	var item_data = get_data_by_index(keys[randi() % len(keys)])
 	var item = Item.new(item_data)
 	return item
 

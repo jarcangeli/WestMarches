@@ -4,10 +4,14 @@ class_name StatsDisplay
 @export var show_empty := true
 @export var font_size := 14
 @export var icon_size := 8
+@export var stat_h_separation := 4
 
 @onready var container : GridContainer = $StatsGrid
 
 var stat_display_scene = preload("res://core/StatDisplay.tscn")
+
+func _ready():
+	container.add_theme_constant_override("h_separation", stat_h_separation)
 
 func set_stats(values : Array[int]):
 	clear_displays()

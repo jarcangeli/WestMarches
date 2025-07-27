@@ -187,7 +187,7 @@ item_name = "Battleaxe"
 script = ExtResource("21")
 parties = NodePath("../AdventuringParties")
 available_quests = NodePath("AvailableQuests")
-map = NodePath("../GameWindow/GameTabs/Map")
+map = NodePath("../GameWindow/PHTabs/Map")
 
 [node name="PendingQuests" type="Node" parent="QuestManager"]
 script = ExtResource("4")
@@ -272,11 +272,6 @@ visible = false
 layout_mode = 2
 adventuring_parties = NodePath("../../../AdventuringParties")
 
-[node name="Map" parent="GameWindow/GameTabs" instance=ExtResource("3")]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 3
-
 [node name="Cemetery" type="MarginContainer" parent="GameWindow/GameTabs" node_paths=PackedStringArray("container")]
 visible = false
 layout_mode = 2
@@ -286,7 +281,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("20_2gh4u")
 container = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer")
-metadata/_tab_index = 4
+metadata/_tab_index = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameWindow/GameTabs/Cemetery"]
 layout_mode = 2
@@ -352,3 +347,11 @@ size_flags_vertical = 6
 text = "TODO"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Map" parent="GameWindow/PHTabs" instance=ExtResource("3")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+offset_top = 66.0
+offset_right = 4.0
+offset_bottom = 66.0

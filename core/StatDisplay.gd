@@ -20,5 +20,6 @@ func set_stat(type : AbilityStats.Type, value : int):
 	tooltip_text = "%s: %d" % [stat_name, value]
 
 func set_sizes(font_size : int, icon_size : int):
-	stat_label.add_theme_font_size_override("size", font_size)
+	stat_label.set("theme_override_font_sizes/font_size", font_size)
 	stat_icon.custom_minimum_size = Vector2(icon_size, icon_size)
+	stat_border.custom_minimum_size = Vector2(icon_size, icon_size)

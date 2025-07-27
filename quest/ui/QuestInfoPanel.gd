@@ -16,15 +16,12 @@ func set_quest(quest : Quest):
 	quest_rewards_display.set_quest(quest)
 	quest_difficulty_display.value = quest.get_difficulty()
 	
-	quest_difficulty_display.visible = quest.started
-	deaths_bar.visible = quest.started
-	if not quest.started:
-		var results := quest.simulate_results() #TODO: Another thread?
-		var win_percent = results.get_win_percentage()
-		quest_difficulty_display.value = 100.0 - win_percent
-		quest_difficulty_display.tooltip_text = str(win_percent) + "%"
-		var deaths = results.get_average_character_deaths()
-		deaths_bar.value = deaths
+	var results := quest.simulate_results() #TODO: Another thread?
+	var win_percent = results.get_win_percentage()
+	quest_difficulty_display.value = 100.0 - win_percent
+	quest_difficulty_display.tooltip_text = str(win_percent) + "%"
+	var deaths = results.get_average_character_deaths()
+	deaths_bar.value = deaths
 
 func set_party(party : AdventuringParty):
 	if not is_instance_valid(party):

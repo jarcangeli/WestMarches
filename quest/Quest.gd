@@ -19,6 +19,8 @@ var completed = false 	# got rewards
 
 var party : AdventuringParty = null
 
+var cached_simulation_results : CombatSimResults = null
+
 func _ready():
 	add_to_group("time")
 
@@ -71,6 +73,9 @@ func get_difficulty():
 	return difficulty_sum / 300.0 * 5
 
 func simulate_results() -> CombatSimResults:
+	if cached_simulation_results:
+		return cached_simulation_results
+	
 	if not battle_step or not battle_step.encounter:
 		var fake_results = CombatSimResults.new()
 		fake_results.wins = 1
@@ -81,6 +86,7 @@ func simulate_results() -> CombatSimResults:
 	var adventurers := party.get_characters()
 	var monsters := battle_step.encounter.get_monsters()
 	var results : CombatSimResults = CombatSim.simulate(adventurers, monsters, 300)
+	cached_simulation_results = results
 	return results
 
 func get_rewards():

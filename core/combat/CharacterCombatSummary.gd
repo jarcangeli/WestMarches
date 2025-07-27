@@ -12,6 +12,7 @@ enum Stat
 	SIZE
 }
 
+var character_name : String
 var damage_done : Array[int]
 var damage_received : Array[int]
 var healing := 0
@@ -23,3 +24,15 @@ func _init():
 	damage_received = []
 	damage_received.resize(Stat.SIZE)
 	damage_received.fill(0)
+
+func total_damage_done():
+	var tot = 0
+	for val in damage_done:
+		tot += val
+	return tot
+
+func total_damage_received():
+	var tot = 0
+	for val in damage_received:
+		tot += val
+	return tot

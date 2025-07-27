@@ -59,6 +59,9 @@ func get_progess_text():
 	var progress = travel_step.get_progress_text() + battle_step.get_progress_text() + return_step.get_progress_text()
 	return "\n".join(progress)
 
+func get_combat() -> Combat:
+	return battle_step.combat
+
 func get_combat_log():
 	return "\n".join(battle_step.get_combat_log())
 

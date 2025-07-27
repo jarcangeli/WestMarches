@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dulmpfagfjs2k"]
+[gd_scene load_steps=15 format=3 uid="uid://dulmpfagfjs2k"]
 
 [ext_resource type="Script" uid="uid://d0s6ig5osvmvr" path="res://quest/ui/QuestSelectUI.gd" id="1_ubjuw"]
 [ext_resource type="PackedScene" uid="uid://ufno3phdjrwy" path="res://quest/ui/QuestButton.tscn" id="2_3p2es"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="8_nr7bh"]
 [ext_resource type="PackedScene" uid="uid://wx5sih5dc80a" path="res://items/ui/ItemButtonDisplayDisabled.tscn" id="9_jin1d"]
 [ext_resource type="Script" uid="uid://rnj4eogah0sp" path="res://quest/ui/QuestProgressPanel.gd" id="11_1mbw8"]
+[ext_resource type="PackedScene" uid="uid://r0pxns6ha43u" path="res://core/combat/CombatSummaryUi.tscn" id="12_cqabf"]
 
 [sub_resource type="Theme" id="Theme_bmo6v"]
 
@@ -312,12 +313,18 @@ size_flags_vertical = 3
 editable = false
 metadata/_tab_index = 2
 
+[node name="CombatSummary" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer" instance=ExtResource("12_cqabf")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
 [node name="QuestCombatLog" type="TextEdit" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 editable = false
-metadata/_tab_index = 3
+metadata/_tab_index = 4
 
 [connection signal="pressed" from="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="." method="on_choose_quest_button_pressed"]
 [connection signal="pressed" from="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ChooseQuestButton" to="." method="on_choose_quest_button_pressed"]

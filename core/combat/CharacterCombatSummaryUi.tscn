@@ -1,0 +1,165 @@
+[gd_scene load_steps=10 format=3 uid="uid://dq7xaybwu4gig"]
+
+[ext_resource type="Script" uid="uid://b35m4wn2cjcfw" path="res://core/combat/CharacterCombatSummaryUi.gd" id="1_g34ty"]
+[ext_resource type="Texture2D" uid="uid://cj14q464lrv01" path="res://assets/icons/stats/attack.png" id="1_m63te"]
+[ext_resource type="Texture2D" uid="uid://bv4b8uclyh35m" path="res://assets/icons/stats/constitution.png" id="2_swmd5"]
+[ext_resource type="Texture2D" uid="uid://csd5jlsu8ov1w" path="res://assets/icons/stats/crit_rate.png" id="3_sc1wv"]
+[ext_resource type="Texture2D" uid="uid://x1sbwtguccmn" path="res://assets/icons/stats/thorns.png" id="4_g34ty"]
+[ext_resource type="Texture2D" uid="uid://w24qtqywtxa4" path="res://assets/icons/stats/regeneration.png" id="4_ieo2s"]
+[ext_resource type="Texture2D" uid="uid://b0j7d80b1lj88" path="res://assets/icons/stats/poison_damage.png" id="5_ieo2s"]
+[ext_resource type="Texture2D" uid="uid://7awqjn3g7ctl" path="res://assets/icons/stats/aoe.png" id="6_avux1"]
+[ext_resource type="Texture2D" uid="uid://bxl2otwcc2tbq" path="res://assets/icons/stats/snipe.png" id="7_cx47u"]
+
+[node name="CharacterCombatSummaryUI" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g34ty")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Name"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/CenterContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/CenterContainer/GridContainer"]
+modulate = Color(0.788064, 0.182405, 0.417934, 1)
+layout_mode = 2
+texture = ExtResource("1_m63te")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Damage Done"
+
+[node name="DamageDoneLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2"
+horizontal_alignment = 2
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/CenterContainer/GridContainer"]
+modulate = Color(0.999523, 0.464369, 1, 1)
+layout_mode = 2
+texture = ExtResource("2_swmd5")
+stretch_mode = 3
+
+[node name="Label3" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Damage Taken"
+
+[node name="DamageReceivedLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5"
+horizontal_alignment = 2
+
+[node name="TextureRect8" type="TextureRect" parent="VBoxContainer/CenterContainer/GridContainer"]
+modulate = Color(0.999523, 0.464369, 1, 1)
+layout_mode = 2
+texture = ExtResource("4_ieo2s")
+stretch_mode = 3
+
+[node name="Label4" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Damage Healed"
+
+[node name="HealingLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5"
+horizontal_alignment = 2
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/CenterContainer/GridContainer"]
+modulate = Color(0.92549, 0.482353, 0.254902, 1)
+layout_mode = 2
+texture = ExtResource("3_sc1wv")
+stretch_mode = 3
+
+[node name="Label5" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Crit Damage"
+
+[node name="CritDoneLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "31"
+horizontal_alignment = 2
+
+[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/CenterContainer/GridContainer"]
+modulate = Color(0.796078, 0.854902, 0.498039, 1)
+layout_mode = 2
+texture = ExtResource("4_g34ty")
+stretch_mode = 3
+
+[node name="Label7" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Thorns Damage"
+
+[node name="ThornsDoneLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2"
+horizontal_alignment = 2
+
+[node name="TextureRect5" type="TextureRect" parent="VBoxContainer/CenterContainer/GridContainer"]
+modulate = Color(0.334425, 0.720535, 0.437446, 1)
+layout_mode = 2
+texture = ExtResource("5_ieo2s")
+stretch_mode = 3
+
+[node name="Label9" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Poison Damage"
+
+[node name="PoisonDoneLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3"
+horizontal_alignment = 2
+
+[node name="TextureRect6" type="TextureRect" parent="VBoxContainer/CenterContainer/GridContainer"]
+modulate = Color(0.843137, 0.352941, 0.345098, 1)
+layout_mode = 2
+texture = ExtResource("6_avux1")
+stretch_mode = 3
+
+[node name="Label11" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+layout_mode = 2
+text = "AOE Damage"
+
+[node name="AOEDoneLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3"
+horizontal_alignment = 2
+
+[node name="TextureRect7" type="TextureRect" parent="VBoxContainer/CenterContainer/GridContainer"]
+modulate = Color(0.83, 0.0913, 0.214417, 1)
+layout_mode = 2
+texture = ExtResource("7_cx47u")
+stretch_mode = 3
+
+[node name="Label13" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Snipe Damage"
+
+[node name="SnipeDoneLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3"
+horizontal_alignment = 2

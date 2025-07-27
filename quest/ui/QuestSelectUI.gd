@@ -19,6 +19,7 @@ signal quest_chosen(quest)
 @onready var quest_reward_panel = %QuestRewardPanel
 @onready var quest_progress_panel: Panel = $QuestProgressPanel
 @onready var quest_info_tab_container: TabContainer = %QuestInfoTabContainer
+@onready var combat_summary = %CombatSummary
 
 var selected_quest : Quest = null
 
@@ -76,6 +77,7 @@ func update_quest_panels():
 	quest_info_panel.set_quest(selected_quest)
 	quest_progress_panel.visible = true
 	quest_progress_panel.set_quest(selected_quest)
+	combat_summary.set_combat(selected_quest.get_combat()) #TODO: Multiple combats? Combine?
 	if selected_quest.finished and not selected_quest.completed:
 		quest_reward_panel.visible = true
 		quest_info_tab_container.set_tab_hidden(0, false)

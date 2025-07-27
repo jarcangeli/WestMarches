@@ -238,9 +238,11 @@ func do_damage(source : Character, target : Character, value : int, type: Charac
 	# Track
 	if source:
 		var source_summary = combat_summary.get(source, CharacterCombatSummary.new())
+		source_summary.character_name = source.name
 		source_summary.damage_done[type] += value
 		combat_summary.set(source, source_summary)
 	var target_summary = combat_summary.get(target, CharacterCombatSummary.new())
+	target_summary.character_name = target.name
 	target_summary.damage_received[type] += value
 	combat_summary.set(target, target_summary)
 
@@ -251,6 +253,7 @@ func do_healing(character : Character, value : int):
 		
 	# Track
 	var summary = combat_summary.get(character, CharacterCombatSummary.new())
+	summary.character_name = character.name
 	summary.healing += healed
 	combat_summary.set(character, summary)
 	return healed

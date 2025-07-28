@@ -30,6 +30,10 @@ func _on_take_rewards_button_pressed() -> void:
 	if not current_quest:
 		push_error("Trying to take rewards for null quest")
 		return
+	if current_quest.reward_tier >= Quest.RewardTier.COINS:
+		#Globals.player_currencies.add_gold(current_quest.curr)
+		#TODO: Add gold reward for completing quest
+		pass
 	if current_quest.reward_tier == Quest.RewardTier.CHOICE:
 		Globals.player_inventory.add_items(player_loot_display.get_selected_items())
 	elif current_quest.reward_tier == Quest.RewardTier.RANDOM:
@@ -45,7 +49,6 @@ func _on_take_rewards_button_pressed() -> void:
 		if current_quest.reward_tier == Quest.RewardTier.CHOICE:
 			character.add_items(player_loot_display.get_unselected_items())
 		character.add_items(party_loot_display.get_displayed_items())
-	# TODO: Remove party gold
 	current_quest.complete()
 	current_quest = null
 	quest_finished.emit()

@@ -50,7 +50,7 @@ func finish():
 
 func complete():
 	if completed:
-		push_warning("Completing already completed quest")
+		push_error("Completing already completed quest")
 	finished = true
 	completed = true
 	SignalBus.quest_completed.emit(self)

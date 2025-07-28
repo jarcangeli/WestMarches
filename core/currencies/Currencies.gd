@@ -2,6 +2,7 @@ extends Node
 class_name Currencies
 
 signal changed()
+signal gold_added(amount : int)
 
 @export var gold = 0
 
@@ -15,8 +16,12 @@ func add_currencies(other_currencies, duplicated = false):
 	emit_signal("changed")
 
 func add_gold(amount):
-	gold += clampi(amount, 0, amount)
+	amount = clampi(amount, 0, amount)
+	if amount == 0:
+		return
+	gold += amount
 	emit_signal("changed")
+	gold_added.emit(amount)
 
 func remove_gold(amount):
 	gold -= clampi(amount, 0, amount)

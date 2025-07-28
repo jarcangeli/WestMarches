@@ -4,6 +4,9 @@ extends VBoxContainer
 @onready var despawn_timer: Timer = %DespawnTimer
 @onready var item_label: Label = %ItemLabel
 
+func _ready():
+	item_icon.item_selected.connect(on_despawn_timer_timeout)
+
 func set_item(item : Item):
 	item_icon.set_item(item)
 	item_label.text = item.item_name

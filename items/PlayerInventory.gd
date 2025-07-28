@@ -6,7 +6,6 @@ func _ready():
 	
 	if TuningKnobs.DEBUG:
 		for item_id in ItemDatabase.data_by_index:
-			print(item_id)
 			var item = Item.new(ItemDatabase.get_data_by_index(item_id))
 			add_item(item)
 		

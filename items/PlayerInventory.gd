@@ -1,4 +1,5 @@
 extends ItemContainer
+class_name PlayerInventory
 
 func _ready():
 	Globals.player_inventory = self

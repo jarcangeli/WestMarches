@@ -46,13 +46,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ItemsDisplayContainer" type="VBoxContainer" parent="CenterMarginContainer/RewardUIContainer" node_paths=PackedStringArray("item_container", "item_display_container")]
+[node name="ItemsDisplayContainer" type="VBoxContainer" parent="CenterMarginContainer/RewardUIContainer" node_paths=PackedStringArray("item_display_container")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("4_yis78")
 item_display_scene_path = ExtResource("4_rc7m1")
-item_container = NodePath("")
 item_display_container = NodePath(".")
 
 [node name="ItemsLabel" type="Label" parent="CenterMarginContainer/RewardUIContainer/ItemsDisplayContainer"]
@@ -97,13 +96,12 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LootContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("item_container", "item_display_container")]
+[node name="LootContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("item_display_container")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("4_yis78")
 item_display_scene_path = ExtResource("6_2osik")
-item_container = NodePath("")
 drop_enabled = false
 item_display_container = NodePath(".")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=23 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="2"]
@@ -20,17 +20,18 @@
 [ext_resource type="Script" uid="uid://ba36v1b1jri08" path="res://characters/AdventuringParties.gd" id="19"]
 [ext_resource type="Script" uid="uid://d0ttfscisgsof" path="res://characters/Cemetery.gd" id="20_2gh4u"]
 [ext_resource type="Script" uid="uid://37lfxcb774f2" path="res://quest/QuestManager.gd" id="21"]
+[ext_resource type="Script" uid="uid://d2ul0mcictsbl" path="res://PopupManager.gd" id="21_devvj"]
+[ext_resource type="PackedScene" uid="uid://nstp1h046lac" path="res://items/ui/ItemPopup.tscn" id="22_3b0ty"]
 
-[node name="Game" type="MarginContainer"]
+[node name="Game" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2")
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
 script = ExtResource("2_kjvhd")
 
 [node name="PlayerCurrencies" type="Node" parent="."]
@@ -210,6 +211,10 @@ script = ExtResource("12_5tuhn")
 
 [node name="GameWindow" type="VBoxContainer" parent="."]
 layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 1148.0
+offset_bottom = 644.0
 
 [node name="TopBar" type="HBoxContainer" parent="GameWindow"]
 layout_mode = 2
@@ -355,3 +360,19 @@ anchors_preset = 0
 offset_top = 66.0
 offset_right = 4.0
 offset_bottom = 66.0
+
+[node name="PopupManager" type="VBoxContainer" parent="." node_paths=PackedStringArray("player_inventory")]
+layout_mode = 2
+offset_left = 193.0
+offset_top = 8.0
+offset_right = 239.0
+offset_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+script = ExtResource("21_devvj")
+player_inventory = NodePath("../PlayerInventory")
+item_popup_scene = ExtResource("22_3b0ty")
+
+[node name="Label" type="Label" parent="PopupManager"]
+layout_mode = 2
+text = "Gained"

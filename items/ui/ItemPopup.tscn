@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://nstp1h046lac"]
+
+[ext_resource type="Script" uid="uid://dkla5yx0rfhr0" path="res://ItemPopup.gd" id="1_2xrda"]
+[ext_resource type="PackedScene" uid="uid://dkpr3bn0cncv3" path="res://items/ui/ItemIconDisabled.tscn" id="2_f4ulc"]
+
+[node name="ItemPopup" type="VBoxContainer"]
+offset_left = -23.0
+offset_right = 23.0
+offset_bottom = 84.0
+script = ExtResource("1_2xrda")
+
+[node name="ItemIconDisabled" parent="." instance=ExtResource("2_f4ulc")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ItemLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Item"
+horizontal_alignment = 1
+
+[node name="DespawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 4.0
+one_shot = true
+autostart = true

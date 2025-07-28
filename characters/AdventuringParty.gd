@@ -37,12 +37,6 @@ func get_average_level():
 		levels += character.get_power_level()
 	return levels/float(count)
 
-func get_debt():
-	var debt = 0
-	for character in get_characters():
-		debt += character.debt
-	return debt
-
 func get_gold():
 	return 5
 

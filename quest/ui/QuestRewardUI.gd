@@ -4,27 +4,18 @@ class_name QuestRewardUI
 signal quest_abandoned()
 signal quest_finished()
 
-@onready var selected_coins_display: SelectedCoinsDisplay = %SelectedCoinsDisplay
-@onready var available_party_coins_label: Label = %AvailablePartyCoinsLabel
-@onready var owed_party_coins_label: Label = %OwedPartyCoinsLabel
-@onready var loot_container: VBoxContainer = %LootContainer
+@onready var party_loot_display: VBoxContainer = %LootContainer
 @onready var returned_items_display: ItemDisplayContainer = %ReturnedItemsDisplay
-
-@onready var items_display_container: ItemDisplayContainer = %ItemsDisplayContainer
-@onready var item_rewards: ItemContainer = %ItemRewards
+@onready var player_loot_display: ItemDisplayContainer = %ItemsDisplayContainer
 
 var current_quest : Quest = null
 
 func setup_quest_reward_ui(quest : Quest):
 	current_quest = quest
-	var coins : int = quest.party.get_gold()
-	var debt : int = quest.party.get_debt() # quest.get_currency_rewards().gold + 
-	available_party_coins_label.text = str(coins)
-	owed_party_coins_label.text = str(debt)
-	loot_container.clear_item_views()
-	loot_container.add_items(quest.get_rewards())
-	items_display_container.clear_item_views()
-	selected_coins_display.initialise(debt, coins)
+	player_loot_display.clear_item_views()
+	player_loot_display.add_items(quest.get_player_rewards())
+	party_loot_display.clear_item_views()
+	party_loot_display.add_items(quest.get_party_rewards()) #TODO: Gets all the remaining
 	
 	# Preview returned items
 	returned_items_display.clear_item_views()
@@ -33,21 +24,27 @@ func setup_quest_reward_ui(quest : Quest):
 		returned_items_display.add_items(loaned_items)
 
 func undo_quest_reward_ui_setup():
-	if current_quest:
-		current_quest.add_rewards(loot_container.item_container.get_items())
-	
 	returned_items_display.clear_item_views()
 
 func _on_take_rewards_button_pressed() -> void:
 	if not current_quest:
 		push_error("Trying to take rewards for null quest")
 		return
-	Globals.player_inventory.add_items(item_rewards.get_items())
+	if current_quest.reward_tier == Quest.RewardTier.CHOICE:
+		Globals.player_inventory.add_items(player_loot_display.get_selected_items())
+	elif current_quest.reward_tier == Quest.RewardTier.RANDOM:
+		Globals.player_inventory.add_items(player_loot_display.get_displayed_items())
 	# Return items
 	for character : Character in current_quest.party.get_characters():
 		var loaned_items = character.get_loaned_items()
 		Globals.player_inventory.add_items(loaned_items)
-	Globals.player_currencies.add_gold(selected_coins_display.selected)
+		
+		#TODO: Just adds items to the last character
+		#TODO: Want a way to redistribute NEW items between party members (smartly)
+		#TODO: Let the player move items between party members in the tavern
+		if current_quest.reward_tier == Quest.RewardTier.CHOICE:
+			character.add_items(player_loot_display.get_unselected_items())
+		character.add_items(party_loot_display.get_displayed_items())
 	# TODO: Remove party gold
 	current_quest.complete()
 	current_quest = null

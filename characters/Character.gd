@@ -19,7 +19,6 @@ enum CharacterClass
 
 var id := -1
 var equip_slots : Dictionary
-var debt : int = 0 
 var base_stats := AbilityStats.new()
 var stats := CharacterStats.new(base_stats, self)
 

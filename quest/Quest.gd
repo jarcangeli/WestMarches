@@ -3,10 +3,15 @@ class_name Quest
 # kill quest
 
 @export var quest_name : String
-@export var quest_description : String # (String, MULTILINE)
+@export var quest_description : String
 
-@export var target_path : NodePath
-@onready var target = get_node_or_null(target_path)
+enum RewardTier
+{
+	NONE,
+	COINS,
+	RANDOM,
+	CHOICE
+}
 
 @onready var steps = $QuestSteps
 @onready var travel_step : QuestStepTravel = $QuestSteps/TravelStep
@@ -17,9 +22,10 @@ var started = false		# set out
 var finished = false 	# back in town
 var completed = false 	# got rewards
 
+var reward_tier : RewardTier = RewardTier.RANDOM
 var party : AdventuringParty = null
-
 var cached_simulation_results : CombatSimResults = null
+var random_reward_item : Item = null
 
 func _ready():
 	add_to_group("time")
@@ -92,15 +98,37 @@ func simulate_results() -> CombatSimResults:
 	cached_simulation_results = results
 	return results
 
-func get_rewards():
-	var rewards = []
+func get_player_rewards():
+	var all_rewards = []
 	if battle_step and battle_step.encounter:
-		rewards += battle_step.encounter.get_item_rewards()
+		all_rewards += battle_step.encounter.get_item_rewards()
 	if travel_step:
-		rewards += travel_step.get_item_rewards()
+		all_rewards += travel_step.get_item_rewards()
 	if return_step:
-		rewards += return_step.get_item_rewards()
-	return rewards
+		all_rewards += return_step.get_item_rewards()
+	
+	if reward_tier == RewardTier.CHOICE:
+		return all_rewards
+	if reward_tier == RewardTier.RANDOM:
+		if not random_reward_item:
+			random_reward_item = all_rewards.pick_random()
+		return [random_reward_item]
+	return []
+
+func get_party_rewards():
+	var all_rewards = []
+	if battle_step and battle_step.encounter:
+		all_rewards += battle_step.encounter.get_item_rewards()
+	if travel_step:
+		all_rewards += travel_step.get_item_rewards()
+	if return_step:
+		all_rewards += return_step.get_item_rewards()
+	if not random_reward_item:
+		random_reward_item = all_rewards.pick_random()
+	
+	var i = all_rewards.find(random_reward_item)
+	all_rewards.remove_at(i)
+	return all_rewards
 
 func add_rewards(items):
 	if not battle_step or not battle_step.encounter:

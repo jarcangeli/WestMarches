@@ -77,7 +77,6 @@ func _on_start_quest_button_pressed() -> void:
 		var equipped_items = character_container.get_equipped_items()
 		
 		for item in equipped_items:
-			character.debt += item.get_value()
 			item.get_parent().remove_child(item)
 			character.add_child(item)
 			item.loaned_character = character

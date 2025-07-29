@@ -3,8 +3,12 @@ class_name ItemDisplayContainer
 
 signal item_selected(item)
 
+@export var select_enabled := true
 @export var item_display_scene_path : Resource = preload("res://items/ui/ItemButtonDisplay.tscn")
 @export var item_container : ItemContainer = null #if no item container set, acts as a view on other containers
+
+func _ready():
+	print(get_path(), " - select enabled: ", select_enabled)
 
 func clear_item_views():
 	for node in get_children():
@@ -13,6 +17,8 @@ func clear_item_views():
 			node.queue_free()
 
 func on_item_selected(item):
+	if not select_enabled:
+		return
 	item_selected.emit(item)
 	for node in get_children():
 		if node.has_method("get_item") and node.get_item() != item and node.has_method("set_selected"):
@@ -31,6 +37,7 @@ func add_item(item : Item):
 
 func add_item_display(item):
 	var display = item_display_scene_path.instantiate()
+	display.select_enabled = select_enabled
 	add_child(display)
 	display.set_item(item)
 	

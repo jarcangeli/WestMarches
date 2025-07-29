@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ynovd7yp0553" path="res://assets/icons/icon_32.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="3_up2iq"]
 
-[node name="ItemButtonDisplay" type="MarginContainer"]
+[node name="ItemButtonDisplay" type="MarginContainer" node_paths=PackedStringArray("icon", "name_label", "slot_label", "item_icon")]
 custom_minimum_size = Vector2(0, 40)
 anchors_preset = 8
 anchor_left = 0.5
@@ -21,9 +21,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 focus_mode = 1
 script = ExtResource("1")
-icon_path = NodePath("MarginContainer/HBoxContainer/Icon")
-name_label_path = NodePath("MarginContainer/HBoxContainer/NameLabel")
-slot_label_path = NodePath("MarginContainer/HBoxContainer/SlotLabel")
+icon = NodePath("MarginContainer/HBoxContainer/Icon")
+name_label = NodePath("MarginContainer/HBoxContainer/NameLabel")
+slot_label = NodePath("MarginContainer/HBoxContainer/SlotLabel")
+item_icon = NodePath("MarginContainer/HBoxContainer/ItemIcon")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2

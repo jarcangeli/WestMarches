@@ -1,9 +1,6 @@
-extends Control
+extends ItemDisplay
 class_name ItemIcon
 
-signal item_selected()
-
-@export var drag_enabled := true
 @export var min_size := 32
 
 @onready var background_texture: TextureRect = %BackgroundTexture
@@ -11,27 +8,18 @@ signal item_selected()
 @onready var slot_texture: TextureRect = %SlotTexture
 @onready var icon_texture: TextureRect = %IconTexture
 
-var item : Item = null
-var selected := false
 const selected_background_color = Color.WEB_GRAY
 const background_color = Color.BLACK
 
-func _ready():
-	SignalBus.item_consumed.connect(on_item_consumed)
-
-func set_item(_item : Item):
-	if not _item:
+func refresh_display():
+	if not item:
 		return
-	item = _item
 	icon_texture.texture = item.icon
 	slot_texture.texture = Item.slot_mini_icons[item.primary_slot_type]
 	var color = Globals.rarity_colours[item.rarity]
 	border_texture.modulate = color
 	tooltip_text = item.item_name #TODO: More info in tooltip
 	background_texture.modulate = background_color
-
-func get_item() -> Item:
-	return item
 
 func _get_drag_data(_position):
 	if not drag_enabled:
@@ -41,19 +29,11 @@ func _get_drag_data(_position):
 	print("Picked up " + _item.item_name)
 	return self
 
-func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
-		set_selected(!selected)
-
-func on_item_consumed(consumed_item : Item):
-	if item and consumed_item == item:
-		queue_free()
-
 func set_selected(_selected):
-	selected = _selected
-	if selected:
+	if not select_enabled:
+		return
+	if _selected:
 		background_texture.modulate = selected_background_color
 	else:
 		background_texture.modulate = background_color
-	if selected:
-		item_selected.emit()
+	super.set_selected(_selected)

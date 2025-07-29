@@ -1,28 +1,22 @@
-extends Control
+extends ItemDisplay
 class_name ItemButtonDisplay
 
-signal item_selected()
-
-@export var icon_path : NodePath
-@export var name_label_path : NodePath
-@export var slot_label_path : NodePath
-@export var drag_enabled : bool = true
-
-@onready var icon = get_node(icon_path)
-@onready var name_label = get_node(name_label_path)
-@onready var slot_label = get_node(slot_label_path)
-@onready var item_icon: ItemIcon = %ItemIcon
+@export var icon : TextureRect
+@export var name_label : Label
+@export var slot_label : Label
+@export var item_icon: ItemIcon
 
 const EQUIPPED_COLOUR = "#bbbbbb"
 const UNEQUIPPED_COLOUR = "#ffffff"
 
-var item : Item = null: get = get_item, set = set_item
 var mouse_over : bool = false
 
 func _ready():
-	refresh_display()
 	$Button.drag_enabled = drag_enabled
-	SignalBus.item_consumed.connect(on_item_consumed)
+	$Button.disabled = not select_enabled
+	$Button.focus_mode = FocusMode.FOCUS_ALL if select_enabled else FocusMode.FOCUS_NONE
+	item_icon.select_enabled = select_enabled
+	item_icon.drag_enabled = drag_enabled
 
 func refresh_display():
 	item_icon.set_item(item)
@@ -40,23 +34,14 @@ func refresh_display():
 			modulate = EQUIPPED_COLOUR
 
 func set_item(new_item):
-	item = new_item
+	super.set_item(new_item)
 	$Button.drag_enabled = drag_enabled and (item.loaned_character == null)
-	refresh_display()
 
-func get_item():
-	return item
-
-func on_item_changed():
-	refresh_display()
-
-func on_other_item_selected(other_item):
-	if item != other_item:
-		$Button.button_pressed = false
+func set_selected(_selected):
+	if not select_enabled:
+		return
+	super.set_selected(_selected)
+	$Button.button_pressed = _selected
 
 func on_button_pressed():
 	item_selected.emit()
-
-func on_item_consumed(consumed_item : Item):
-	if item and consumed_item == item:
-		queue_free()

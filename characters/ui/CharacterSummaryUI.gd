@@ -16,6 +16,7 @@ func set_character(character : Character):
 	for item in character.get_items():
 		var item_display = item_display_scene.instantiate()
 		item_display.drag_enabled = false
+		item_display.select_enabled = false
 		item_container.add_child(item_display)
 		item_display.set_item(item)
 

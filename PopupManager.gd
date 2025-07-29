@@ -18,6 +18,7 @@ func _ready():
 	player_inventory.item_added.connect(on_player_item_gained)
 	player_currencies.gold_added.connect(on_player_item_gained)
 	gold_popup_timer.timeout.connect(on_gold_popup_timer_timeout)
+	gold_popup.gui_input.connect(on_gold_popup_input_even)
 	gold_popup.visible = false
 	gold_popup_amount_label.text = "0"
 	on_children_changed(null)
@@ -37,5 +38,12 @@ func on_player_gold_gained(amount : int):
 	gold_popup.visible = true
 
 func on_gold_popup_timer_timeout():
+	hide_gold_popup()
+
+func on_gold_popup_input_even(event : InputEvent):
+	if event is InputEventMouseButton:
+		hide_gold_popup()
+
+func hide_gold_popup():
 	gold_popup.visible = false
 	gold_popup_amount_label.text = "0"

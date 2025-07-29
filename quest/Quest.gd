@@ -13,6 +13,8 @@ enum RewardTier
 	CHOICE
 }
 
+const reward_tier_values = [0, 5, 10, 20]
+
 @onready var steps = $QuestSteps
 @onready var travel_step : QuestStepTravel = $QuestSteps/TravelStep
 @onready var battle_step : QuestStepBattle = $QuestSteps/BattleStep
@@ -134,3 +136,6 @@ func add_rewards(items):
 	if not battle_step or not battle_step.encounter:
 		return
 	return battle_step.encounter.add_item_rewards(items)
+
+func get_reward_tier_value(tier : RewardTier):
+	return reward_tier_values[tier]

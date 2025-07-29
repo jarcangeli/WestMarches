@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgnhuy66p3u67"]
+[gd_scene load_steps=8 format=3 uid="uid://dgnhuy66p3u67"]
 
 [ext_resource type="Script" uid="uid://b6hbmx8mg0bv0" path="res://quest/ui/QuestEquipUI.gd" id="1_gtgdr"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="2_e2btp"]
 [ext_resource type="PackedScene" uid="uid://cjy6e3ym3cu6t" path="res://characters/ui/CharacterEquipUI.tscn" id="3_7p7gu"]
+[ext_resource type="Texture2D" uid="uid://oixhqqnlw8a4" path="res://assets/icons/line.png" id="4_dexsc"]
+[ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="4_r64x3"]
+[ext_resource type="Texture2D" uid="uid://b6gypqhutgbfp" path="res://assets/icons/question.png" id="5_olxkv"]
+[ext_resource type="Texture2D" uid="uid://bsj0q7eqljq3y" path="res://assets/icons/picker.png" id="6_h2eiy"]
 
 [node name="QuestEquipUI" type="HBoxContainer" node_paths=PackedStringArray("characters_container", "value_label", "reward_label")]
 anchors_preset = 15
@@ -86,7 +90,15 @@ text = "Sponsor Value: "
 layout_mode = 2
 text = "0 gp"
 
+[node name="HelpButton" type="Button" parent="CenterMarginContainer/EquipUIContainer/ValueContainer"]
+visible = false
+layout_mode = 2
+icon = ExtResource("5_olxkv")
+flat = true
+icon_alignment = 1
+
 [node name="RewardContainer" type="HBoxContainer" parent="CenterMarginContainer/EquipUIContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -97,6 +109,110 @@ text = "Reward Value: "
 [node name="RewardLabel" type="Label" parent="CenterMarginContainer/EquipUIContainer/RewardContainer"]
 layout_mode = 2
 text = "0 gp"
+
+[node name="RewardProgress" type="VBoxContainer" parent="CenterMarginContainer/EquipUIContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="IconControl" type="Control" parent="CenterMarginContainer/EquipUIContainer/RewardProgress"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="IconCoins" type="TextureRect" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/IconControl"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = -8.0
+offset_right = 111.0
+offset_bottom = 32.0
+texture = ExtResource("4_r64x3")
+stretch_mode = 3
+
+[node name="IconRandom" type="TextureRect" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/IconControl"]
+offset_left = 162.0
+offset_top = -7.0
+offset_right = 202.0
+offset_bottom = 33.0
+texture = ExtResource("5_olxkv")
+stretch_mode = 3
+
+[node name="IconChoice" type="TextureRect" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/IconControl"]
+offset_left = 331.0
+offset_top = -7.0
+offset_right = 371.0
+offset_bottom = 33.0
+texture = ExtResource("6_h2eiy")
+stretch_mode = 3
+
+[node name="ProgressControl" type="Control" parent="CenterMarginContainer/EquipUIContainer/RewardProgress"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="RewardProgressBar" type="ProgressBar" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/ProgressControl"]
+unique_name_in_owner = true
+modulate = Color(0.97, 0.811567, 0.291, 1)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+offset_right = 357.0
+offset_bottom = 20.0
+step = 1.0
+value = 25.0
+rounded = true
+show_percentage = false
+
+[node name="CoinsLine" type="TextureRect" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/ProgressControl"]
+modulate = Color(3.85046e-07, 0.648718, 0.324655, 1)
+layout_mode = 2
+offset_left = 91.0
+offset_top = 8.0
+offset_right = 123.0
+offset_bottom = 40.0
+texture = ExtResource("4_dexsc")
+
+[node name="RandomLine" type="TextureRect" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/ProgressControl"]
+modulate = Color(0.329136, 0.374448, 0.846259, 1)
+layout_mode = 2
+offset_left = 180.0
+offset_top = 8.0
+offset_right = 212.0
+offset_bottom = 40.0
+texture = ExtResource("4_dexsc")
+
+[node name="ChoiceLine" type="TextureRect" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/ProgressControl"]
+modulate = Color(0.707064, 0.330127, 0.886831, 1)
+layout_mode = 2
+offset_left = 357.0
+offset_top = 8.0
+offset_right = 389.0
+offset_bottom = 40.0
+texture = ExtResource("4_dexsc")
+
+[node name="LabelControl" type="Control" parent="CenterMarginContainer/EquipUIContainer/RewardProgress"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="CoinsThresholdLabel" type="Label" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/LabelControl"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 81.0
+offset_right = 109.0
+offset_bottom = 22.0
+text = "5 gp"
+
+[node name="RandomThresholdLabel" type="Label" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/LabelControl"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 168.0
+offset_right = 204.0
+offset_bottom = 22.0
+text = "10 gp"
+
+[node name="ChoiceThresholdLabel" type="Label" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/LabelControl"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 327.0
+offset_right = 363.0
+offset_bottom = 22.0
+text = "20 gp"
 
 [node name="StartQuestButton" type="Button" parent="CenterMarginContainer/EquipUIContainer"]
 layout_mode = 2

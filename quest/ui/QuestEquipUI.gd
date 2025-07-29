@@ -11,7 +11,11 @@ signal quest_started()
 @export var value_label : Label
 @export var reward_label : Label
 
-@onready var reward_ui: Control = %QuestRewardUI
+@onready var coins_threshold_label: Label = %CoinsThresholdLabel
+@onready var random_threshold_label: Label = %RandomThresholdLabel
+@onready var choice_threshold_label: Label = %ChoiceThresholdLabel
+
+@onready var reward_progress: ProgressBar = %RewardProgressBar
 
 var current_quest : Quest = null
 var loaned_item_value = 0
@@ -32,6 +36,12 @@ func on_quest_selected(quest : Quest):
 		return
 	var characters = party.get_characters()
 	setup_characters(characters)
+	
+	reward_progress.max_value = quest.get_reward_tier_value(Quest.RewardTier.CHOICE)
+	reward_progress.value = 0
+	coins_threshold_label.text = "%d gp" % quest.get_reward_tier_value(Quest.RewardTier.COINS)
+	random_threshold_label.text = "%d gp" % quest.get_reward_tier_value(Quest.RewardTier.RANDOM)
+	choice_threshold_label.text = "%d gp" % quest.get_reward_tier_value(Quest.RewardTier.CHOICE)
 
 func setup_characters(characters):
 	clear_characters()
@@ -57,11 +67,13 @@ func on_item_equipped(item, _slot):
 	loaned_item_value += item.get_value()
 	value_label.text = str(loaned_item_value) + " gp"
 	reward_label.text = str(loaned_item_value) + " gp"
+	reward_progress.value += loaned_item_value
 
 func on_item_unequipped(item, _slot):
 	loaned_item_value -= item.get_value()
 	value_label.text = str(loaned_item_value) + " gp"
 	reward_label.text = str(loaned_item_value) + " gp"
+	reward_progress.value -= loaned_item_value
 
 func _on_abandon_quest_button_pressed() -> void:
 	current_quest = null
@@ -71,6 +83,8 @@ func _on_start_quest_button_pressed() -> void:
 	if not is_instance_valid(current_quest):
 		quest_abandoned.emit()
 		return
+	
+	var loaned_item_value; #TODO: Make this apply to quest
 	
 	for character_container in characters_container.get_children():
 		var character = character_container.character

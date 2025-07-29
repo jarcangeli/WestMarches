@@ -46,6 +46,7 @@ func open_quest_select_ui():
 	quest_select_ui.visible = true
 	quest_equip_ui.visible = false
 	quest_reward_ui.visible = false
+	var previous_quest = current_quest
 	current_quest = null
 	
 	var _pending_quests = get_pending_quests()
@@ -59,6 +60,8 @@ func open_quest_select_ui():
 	
 	var _completed_quests = get_completed_quests()
 	quest_select_ui.set_completed_quests(_completed_quests)
+	
+	quest_select_ui.select_quest(previous_quest)
 
 func open_quest_equip_ui(quest : Quest):
 	quest_select_ui.visible = false

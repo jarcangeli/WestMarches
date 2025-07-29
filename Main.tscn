@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=26 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="2"]
@@ -13,10 +13,12 @@
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="12"]
 [ext_resource type="Script" uid="uid://dha28liq3sunc" path="res://characters/CharacterGraveyard.gd" id="12_5tuhn"]
 [ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="13"]
+[ext_resource type="Script" uid="uid://bpcsenk3ubug2" path="res://items/ItemContainer.gd" id="13_mxvw5"]
 [ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://items/ui/PlayerCurrencyDisplay.gd" id="14"]
 [ext_resource type="Script" uid="uid://bvsxe7140kkgc" path="res://core/currencies/PlayerCurrencies.gd" id="15"]
 [ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://core/TimeLabel.gd" id="16"]
 [ext_resource type="PackedScene" uid="uid://biym5k6isys7d" path="res://characters/ui/TavernUI.tscn" id="18_5tuhn"]
+[ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="18_hhcpw"]
 [ext_resource type="Script" uid="uid://ba36v1b1jri08" path="res://characters/AdventuringParties.gd" id="19"]
 [ext_resource type="Script" uid="uid://d0ttfscisgsof" path="res://characters/Cemetery.gd" id="20_2gh4u"]
 [ext_resource type="Script" uid="uid://37lfxcb774f2" path="res://quest/QuestManager.gd" id="21"]
@@ -109,10 +111,6 @@ script = ExtResource("12")
 character_name = "Benthwyn"
 experience = 320
 character_class = 2
-
-[node name="PHCoif" type="Node" parent="AdventuringParties/Party2/Benthwyn"]
-script = ExtResource("7_2gh4u")
-item_name = "Coif"
 
 [node name="PHShortbow" type="Node" parent="AdventuringParties/Party2/Benthwyn"]
 script = ExtResource("7_2gh4u")
@@ -210,6 +208,9 @@ quest_signal = "quest_completed"
 [node name="CharacterGraveyard" type="Node" parent="."]
 script = ExtResource("12_5tuhn")
 
+[node name="ShopInventory" type="Node" parent="."]
+script = ExtResource("13_mxvw5")
+
 [node name="GameWindow" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_left = 4.0
@@ -257,9 +258,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 0
+current_tab = 2
 
 [node name="Quests" parent="GameWindow/GameTabs" node_paths=PackedStringArray("pending_quests", "available_quests", "active_quests", "completed_quests", "adventuring_parties") instance=ExtResource("1")]
+visible = false
 layout_mode = 2
 pending_quests = NodePath("../../../QuestManager/PendingQuests")
 available_quests = NodePath("../../../QuestManager/AvailableQuests")
@@ -273,10 +275,70 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
+[node name="Shop" type="MarginContainer" parent="GameWindow/GameTabs"]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameWindow/GameTabs/Shop"]
+layout_mode = 2
+
+[node name="PlayerItems" type="VBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GameWindow/GameTabs/Shop/HBoxContainer/PlayerItems"]
+layout_mode = 2
+text = "Player Items"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/PlayerItems"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/PlayerItems/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="GridContainer" type="GridContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/PlayerItems/ScrollContainer/MarginContainer" node_paths=PackedStringArray("item_container")]
+layout_mode = 2
+columns = 4
+script = ExtResource("18_hhcpw")
+item_container = NodePath("../../../../../../../../PlayerInventory")
+drop_enabled = false
+
+[node name="TransactionItems" type="VBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer" node_paths=PackedStringArray("item_display_container")]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("18_hhcpw")
+item_display_container = NodePath(".")
+
+[node name="Label" type="Label" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionItems"]
+layout_mode = 2
+text = "Items in transaction"
+horizontal_alignment = 1
+
+[node name="ShopItems" type="VBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer" node_paths=PackedStringArray("item_container", "item_display_container")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("18_hhcpw")
+item_container = NodePath("../../../../../ShopInventory")
+drop_enabled = false
+item_display_container = NodePath(".")
+
+[node name="Label" type="Label" parent="GameWindow/GameTabs/Shop/HBoxContainer/ShopItems"]
+layout_mode = 2
+text = "Shop Items"
+
 [node name="Tavern" parent="GameWindow/GameTabs" node_paths=PackedStringArray("adventuring_parties") instance=ExtResource("18_5tuhn")]
 visible = false
 layout_mode = 2
 adventuring_parties = NodePath("../../../AdventuringParties")
+metadata/_tab_index = 3
 
 [node name="Cemetery" type="MarginContainer" parent="GameWindow/GameTabs" node_paths=PackedStringArray("container")]
 visible = false
@@ -287,7 +349,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("20_2gh4u")
 container = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer")
-metadata/_tab_index = 3
+metadata/_tab_index = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameWindow/GameTabs/Cemetery"]
 layout_mode = 2
@@ -376,12 +438,14 @@ item_popup_scene = ExtResource("22_3b0ty")
 player_currencies = NodePath("../PlayerCurrencies")
 
 [node name="Label" type="Label" parent="PopupManager"]
+visible = false
 layout_mode = 2
 text = "Gained"
 horizontal_alignment = 1
 
 [node name="GoldPopup" type="HBoxContainer" parent="PopupManager"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1

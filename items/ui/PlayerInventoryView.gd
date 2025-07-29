@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends Container
 
 @onready var inventory_display_container = %ItemsDisplayContainer
 @onready var item_detail_view = $ItemDetailView

@@ -9,7 +9,6 @@ signal quest_started()
 
 @export var characters_container : Node
 @export var value_label : Label
-@export var reward_label : Label
 
 @onready var coins_threshold_label: Label = %CoinsThresholdLabel
 @onready var random_threshold_label: Label = %RandomThresholdLabel
@@ -66,13 +65,11 @@ func on_player_inventory_changed():
 func on_item_equipped(item, _slot):
 	loaned_item_value += item.get_value()
 	value_label.text = str(loaned_item_value) + " gp"
-	reward_label.text = str(loaned_item_value) + " gp"
 	reward_progress.value += loaned_item_value
 
 func on_item_unequipped(item, _slot):
 	loaned_item_value -= item.get_value()
 	value_label.text = str(loaned_item_value) + " gp"
-	reward_label.text = str(loaned_item_value) + " gp"
 	reward_progress.value -= loaned_item_value
 
 func _on_abandon_quest_button_pressed() -> void:
@@ -84,7 +81,7 @@ func _on_start_quest_button_pressed() -> void:
 		quest_abandoned.emit()
 		return
 	
-	var loaned_item_value; #TODO: Make this apply to quest
+	current_quest.set_reward_tier_from_sponsor(loaned_item_value)
 	
 	for character_container in characters_container.get_children():
 		var character = character_container.character

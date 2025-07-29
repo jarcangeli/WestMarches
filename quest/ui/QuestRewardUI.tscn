@@ -59,16 +59,16 @@ layout_mode = 2
 text = "Items"
 horizontal_alignment = 1
 
-[node name="OwedCoinsDisplay" type="HBoxContainer" parent="CenterMarginContainer/RewardUIContainer"]
+[node name="CoinsRewardDisplay" type="HBoxContainer" parent="CenterMarginContainer/RewardUIContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="OwedPartyCoinsLabel" type="Label" parent="CenterMarginContainer/RewardUIContainer/OwedCoinsDisplay"]
+[node name="CoinsRewardLabel" type="Label" parent="CenterMarginContainer/RewardUIContainer/CoinsRewardDisplay"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "+4"
 
-[node name="TextureRect" type="TextureRect" parent="CenterMarginContainer/RewardUIContainer/OwedCoinsDisplay"]
+[node name="TextureRect" type="TextureRect" parent="CenterMarginContainer/RewardUIContainer/CoinsRewardDisplay"]
 layout_mode = 2
 texture = ExtResource("2_0m5yx")
 

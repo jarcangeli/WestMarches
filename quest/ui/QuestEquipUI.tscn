@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b6gypqhutgbfp" path="res://assets/icons/question.png" id="5_olxkv"]
 [ext_resource type="Texture2D" uid="uid://bsj0q7eqljq3y" path="res://assets/icons/picker.png" id="6_h2eiy"]
 
-[node name="QuestEquipUI" type="HBoxContainer" node_paths=PackedStringArray("characters_container", "value_label", "reward_label")]
+[node name="QuestEquipUI" type="HBoxContainer" node_paths=PackedStringArray("characters_container", "value_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,7 +19,6 @@ script = ExtResource("1_gtgdr")
 character_equip_ui_scene = ExtResource("3_7p7gu")
 characters_container = NodePath("PartyContainer/CharacterEquipContainer")
 value_label = NodePath("CenterMarginContainer/EquipUIContainer/ValueContainer/ValueLabel")
-reward_label = NodePath("CenterMarginContainer/EquipUIContainer/RewardContainer/RewardLabel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -64,16 +63,18 @@ theme_override_constants/separation = 30
 [node name="HintMarginContainer" type="MarginContainer" parent="CenterMarginContainer/EquipUIContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="HintLabel" type="Label" parent="CenterMarginContainer/EquipUIContainer/HintMarginContainer"]
 custom_minimum_size = Vector2(20, 10)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Equip the party with items until you are satisfied the adventurers are ready for their quest."
+text = "Equip the party with items until you are satisfied the adventurers are ready for their quest.
+
+Loaned items are returned when the quest is completed, unless..."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -97,19 +98,6 @@ icon = ExtResource("5_olxkv")
 flat = true
 icon_alignment = 1
 
-[node name="RewardContainer" type="HBoxContainer" parent="CenterMarginContainer/EquipUIContainer"]
-visible = false
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="CenterMarginContainer/EquipUIContainer/RewardContainer"]
-layout_mode = 2
-text = "Reward Value: "
-
-[node name="RewardLabel" type="Label" parent="CenterMarginContainer/EquipUIContainer/RewardContainer"]
-layout_mode = 2
-text = "0 gp"
-
 [node name="RewardProgress" type="VBoxContainer" parent="CenterMarginContainer/EquipUIContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -128,6 +116,7 @@ texture = ExtResource("4_r64x3")
 stretch_mode = 3
 
 [node name="IconRandom" type="TextureRect" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/IconControl"]
+layout_mode = 0
 offset_left = 162.0
 offset_top = -7.0
 offset_right = 202.0
@@ -136,6 +125,7 @@ texture = ExtResource("5_olxkv")
 stretch_mode = 3
 
 [node name="IconChoice" type="TextureRect" parent="CenterMarginContainer/EquipUIContainer/RewardProgress/IconControl"]
+layout_mode = 0
 offset_left = 331.0
 offset_top = -7.0
 offset_right = 371.0
@@ -214,6 +204,23 @@ offset_right = 363.0
 offset_bottom = 22.0
 text = "20 gp"
 
+[node name="HintMarginContainer2" type="MarginContainer" parent="CenterMarginContainer/EquipUIContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HintLabel" type="Label" parent="CenterMarginContainer/EquipUIContainer/HintMarginContainer2"]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Sponsor the party to unlock increasingly valuable rewards"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="StartQuestButton" type="Button" parent="CenterMarginContainer/EquipUIContainer"]
 layout_mode = 2
 text = "Start Quest"
@@ -221,10 +228,6 @@ text = "Start Quest"
 [node name="AbandonQuestButton" type="Button" parent="CenterMarginContainer/EquipUIContainer"]
 layout_mode = 2
 text = "Back"
-
-[node name="FillControl" type="Control" parent="CenterMarginContainer/EquipUIContainer"]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="PartyContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true

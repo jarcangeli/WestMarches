@@ -15,7 +15,7 @@ func add_currencies(other_currencies, duplicated = false):
 		other_currencies.clear()
 	emit_signal("changed")
 
-func add_gold(amount):
+func add_gold(amount : int):
 	amount = clampi(amount, 0, amount)
 	if amount == 0:
 		return

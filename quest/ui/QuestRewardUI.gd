@@ -7,6 +7,7 @@ signal quest_finished()
 @onready var party_loot_display: VBoxContainer = %LootContainer
 @onready var returned_items_display: ItemDisplayContainer = %ReturnedItemsDisplay
 @onready var player_loot_display: ItemDisplayContainer = %ItemsDisplayContainer
+@onready var coins_reward_label: Label = %CoinsRewardLabel
 
 var current_quest : Quest = null
 
@@ -16,6 +17,7 @@ func setup_quest_reward_ui(quest : Quest):
 	player_loot_display.add_items(quest.get_player_rewards())
 	party_loot_display.clear_item_views()
 	party_loot_display.add_items(quest.get_party_rewards()) #TODO: Gets all the remaining
+	coins_reward_label.text = str(quest.get_gold_reward())
 	
 	# Preview returned items
 	returned_items_display.clear_item_views()
@@ -31,9 +33,8 @@ func _on_take_rewards_button_pressed() -> void:
 		push_error("Trying to take rewards for null quest")
 		return
 	if current_quest.reward_tier >= Quest.RewardTier.COINS:
-		#Globals.player_currencies.add_gold(current_quest.curr)
-		#TODO: Add gold reward for completing quest
-		pass
+		Globals.player_currencies.add_gold(current_quest.get_gold_reward())
+		#TODO: Deduct from party?
 	if current_quest.reward_tier == Quest.RewardTier.CHOICE:
 		Globals.player_inventory.add_items(player_loot_display.get_selected_items())
 	elif current_quest.reward_tier == Quest.RewardTier.RANDOM:

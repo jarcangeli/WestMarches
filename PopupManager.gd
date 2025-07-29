@@ -16,7 +16,7 @@ func _ready():
 	child_entered_tree.connect(on_children_changed, CONNECT_DEFERRED)
 	child_exiting_tree.connect(on_children_changed, CONNECT_DEFERRED)
 	player_inventory.item_added.connect(on_player_item_gained)
-	player_currencies.gold_added.connect(on_player_item_gained)
+	player_currencies.gold_added.connect(on_player_gold_gained)
 	gold_popup_timer.timeout.connect(on_gold_popup_timer_timeout)
 	gold_popup.gui_input.connect(on_gold_popup_input_even)
 	gold_popup.visible = false

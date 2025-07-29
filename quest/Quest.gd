@@ -13,7 +13,7 @@ enum RewardTier
 	CHOICE
 }
 
-const reward_tier_values = [0, 5, 10, 20]
+const reward_tier_values = [0, 10, 20, 40]
 
 @onready var steps = $QuestSteps
 @onready var travel_step : QuestStepTravel = $QuestSteps/TravelStep
@@ -117,6 +117,9 @@ func get_player_rewards():
 		return [random_reward_item]
 	return []
 
+func get_gold_reward():
+	return roundi(reward_tier_values[RewardTier.COINS] / 2.0)
+
 func get_party_rewards():
 	var all_rewards = []
 	if battle_step and battle_step.encounter:
@@ -125,11 +128,12 @@ func get_party_rewards():
 		all_rewards += travel_step.get_item_rewards()
 	if return_step:
 		all_rewards += return_step.get_item_rewards()
-	if not random_reward_item:
-		random_reward_item = all_rewards.pick_random()
 	
-	var i = all_rewards.find(random_reward_item)
-	all_rewards.remove_at(i)
+	if reward_tier == RewardTier.RANDOM:
+		if not random_reward_item:
+			random_reward_item = all_rewards.pick_random()
+		var i = all_rewards.find(random_reward_item)
+		all_rewards.remove_at(i)
 	return all_rewards
 
 func add_rewards(items):
@@ -139,3 +143,13 @@ func add_rewards(items):
 
 func get_reward_tier_value(tier : RewardTier):
 	return reward_tier_values[tier]
+
+func set_reward_tier_from_sponsor(value : int):
+	if value >= reward_tier_values[RewardTier.CHOICE]:
+		reward_tier = RewardTier.CHOICE
+	elif value >= reward_tier_values[RewardTier.RANDOM]:
+		reward_tier = RewardTier.RANDOM
+	elif value >= reward_tier_values[RewardTier.COINS]:
+		reward_tier = RewardTier.COINS
+	else:
+		reward_tier = RewardTier.NONE

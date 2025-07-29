@@ -10,22 +10,53 @@ signal quest_chosen(quest)
 @export var active_container_path : NodePath
 @export var completed_container_path : NodePath
 
+
 @onready var pending_container = get_node(pending_container_path)
 @onready var new_container = get_node(new_container_path)
 @onready var active_container = get_node(active_container_path)
 @onready var completed_container = get_node(completed_container_path)
 
+@onready var quest_name_label: Label = %QuestNameLabel
+@onready var quest_description_text: Label = %QuestDescriptionText
+@onready var quest_story: TextEdit = %QuestStory
+@onready var quest_combat_log: TextEdit = %QuestCombatLog
 @onready var quest_info_panel = %QuestInfoPanel
 @onready var quest_reward_panel = %QuestRewardPanel
-@onready var quest_progress_panel: Panel = $QuestProgressPanel
 @onready var quest_info_tab_container: TabContainer = %QuestInfoTabContainer
 @onready var combat_summary = %CombatSummary
 
 var selected_quest : Quest = null
 
+enum Tabs #should match tabs in quest_info_tab_container (QuestInfoTabContainer)
+{
+	REWARDS_INFO,
+	START_INFO,
+	STORY,
+	COMBAT_SUMMARY,
+	COMBAT_LOG,
+	SIZE
+}
+
 func _ready():
 	update_quest_panels()
-	quest_progress_panel.visible = false
+	$QuestProgressPanel.visible = false
+	set_tab_titles()
+
+func set_tab_titles():
+	for i in range(Tabs.SIZE):
+		var tab_title = "Tab"
+		match i:
+			Tabs.REWARDS_INFO:
+				tab_title = "Rewards"
+			Tabs.START_INFO:
+				tab_title = "Quest Details"
+			Tabs.STORY:
+				tab_title = "Quest Progress"
+			Tabs.COMBAT_SUMMARY:
+				tab_title = "Combat Summary"
+			Tabs.COMBAT_LOG:
+				tab_title = "Combat Log"
+		quest_info_tab_container.set_tab_title(i, tab_title)
 
 func clear_button_container(container):
 	for node in container.get_children():
@@ -69,20 +100,34 @@ func select_quest(quest):
 	update_quest_panels()
 
 func update_quest_panels():
-	quest_info_tab_container.set_tab_hidden(0, true)
 	if not is_instance_valid(selected_quest):
 		return
-	quest_info_tab_container.tabs_visible = selected_quest.started
-	quest_info_panel.visible = true
+	$QuestProgressPanel.visible = true
+	quest_name_label.text = selected_quest.quest_name
+	quest_description_text.text = selected_quest.quest_description
+	quest_story.text = selected_quest.get_progess_text()
+	quest_combat_log.text = selected_quest.get_combat_log()
 	quest_info_panel.set_quest(selected_quest)
-	quest_progress_panel.visible = true
-	quest_progress_panel.set_quest(selected_quest)
-	combat_summary.set_combat(selected_quest.get_combat()) #TODO: Multiple combats? Combine?
+	quest_reward_panel.set_quest(selected_quest)
+	quest_info_tab_container.set_current_tab(Tabs.START_INFO)
+	combat_summary.set_combat(selected_quest.get_combat())
+
+	#TODO: multiple combats?
+	
+	# Hide all tabs if a quest hasn't been started
+	quest_info_tab_container.tabs_visible = selected_quest.started
+	
+	# Hide rewards preview if not finished or already looted
+	quest_info_tab_container.set_tab_hidden(Tabs.REWARDS_INFO, not selected_quest.finished or selected_quest.completed)
+	
+	# Hide empty tabs	
+	quest_info_tab_container.set_tab_hidden(Tabs.COMBAT_LOG, quest_combat_log.text.is_empty())
+	quest_info_tab_container.set_tab_hidden(Tabs.COMBAT_SUMMARY, quest_combat_log.text.is_empty())
+	quest_info_tab_container.set_tab_hidden(Tabs.STORY, quest_story.text.is_empty())
+
 	if selected_quest.finished and not selected_quest.completed:
-		quest_reward_panel.visible = true
-		quest_info_tab_container.set_tab_hidden(0, false)
-		quest_info_tab_container.set_current_tab(0)
-		quest_reward_panel.set_quest(selected_quest)
+		# Default to rewards preview if rewards need looting
+		quest_info_tab_container.set_current_tab(Tabs.REWARDS_INFO)
 
 func on_choose_quest_button_pressed():
 	if not is_instance_valid(selected_quest):

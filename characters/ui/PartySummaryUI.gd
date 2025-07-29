@@ -5,16 +5,18 @@ class_name PartySummaryUI
 @export var scroll_areas_enabled := true
 
 @onready var character_summaries = %CharacterSummaries
+@onready var coins_label: Label = %CoinsLabel
 
 func clear_party():
 	for node in character_summaries.get_children():
 		node.queue_free()
 
-func set_party(party):
+func set_party(party : AdventuringParty):
 	clear_party()
 	
 	%NameLabel.text = party.display_name
 	%LevelBar.value = party.get_average_level() / 300 * 5
+	coins_label.text = str(party.get_gold())
 	
 	for character in party.get_characters():
 		var character_summary = character_summary_scene.instantiate()

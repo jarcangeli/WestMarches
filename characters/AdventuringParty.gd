@@ -6,6 +6,7 @@ class_name AdventuringParty
 var position = Vector2.ZERO
 
 var quest = null
+var gold := 5
 
 func _ready() -> void:
 	if display_name.is_empty():
@@ -38,7 +39,7 @@ func get_average_level():
 	return levels/float(count)
 
 func get_gold():
-	return 5
+	return gold
 
 func on_quest_completed(quest_completed : Quest):
 	if quest_completed == quest:

@@ -222,6 +222,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="StartQuestButton" type="Button" parent="CenterMarginContainer/EquipUIContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Start Quest"
 

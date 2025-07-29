@@ -13,8 +13,8 @@ signal quest_started()
 @onready var coins_threshold_label: Label = %CoinsThresholdLabel
 @onready var random_threshold_label: Label = %RandomThresholdLabel
 @onready var choice_threshold_label: Label = %ChoiceThresholdLabel
-
 @onready var reward_progress: ProgressBar = %RewardProgressBar
+@onready var start_quest_button: Button = %StartQuestButton
 
 var current_quest : Quest = null
 var loaned_item_value = 0
@@ -25,6 +25,7 @@ func _ready():
 	
 	SignalBus.item_equipped.connect(on_item_equipped)
 	SignalBus.item_unequipped.connect(on_item_unequipped)
+	update_start_quest_button_state()
 
 func on_quest_selected(quest : Quest):
 	current_quest = quest
@@ -66,11 +67,13 @@ func on_item_equipped(item, _slot):
 	loaned_item_value += item.get_value()
 	value_label.text = str(loaned_item_value) + " gp"
 	reward_progress.value += loaned_item_value
+	update_start_quest_button_state()
 
 func on_item_unequipped(item, _slot):
 	loaned_item_value -= item.get_value()
 	value_label.text = str(loaned_item_value) + " gp"
 	reward_progress.value -= loaned_item_value
+	update_start_quest_button_state()
 
 func _on_abandon_quest_button_pressed() -> void:
 	current_quest = null
@@ -96,3 +99,6 @@ func _on_start_quest_button_pressed() -> void:
 	current_quest.start()
 	
 	quest_started.emit()
+
+func update_start_quest_button_state():
+	start_quest_button.disabled = loaned_item_value <= 0

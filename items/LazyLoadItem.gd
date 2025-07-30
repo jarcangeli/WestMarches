@@ -13,6 +13,9 @@ static func run(_name, parent):
 	var item_data = ItemDatabase.get_data_by_name(_name)
 	if item_data:
 		var item = Item.new(item_data)
-		parent.add_child.call_deferred(item, true)
+		if parent.has_method("add_item"):
+			parent.add_item.call_deferred(item)
+		else:
+			parent.add_child.call_deferred(item, true)
 	else:
 		push_error("Could not load item by name: " + _name)

@@ -8,7 +8,11 @@ signal item_selected(item)
 @export var item_container : ItemContainer = null #if no item container set, acts as a view on other containers
 
 func _ready():
-	print(get_path(), " - select enabled: ", select_enabled)
+	if item_container:
+		item_container.item_added.connect(add_item_display)
+		for item in item_container.get_items():
+			add_item_display(item)
+	super._ready()
 
 func clear_item_views():
 	for node in get_children():

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://items/ui/ItemButtonDisplay.tscn" id="5_tjcmg"]
 [ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://core/StatsDisplay.tscn" id="7_tjcmg"]
 
-[node name="InventoryView" type="HBoxContainer"]
+[node name="InventoryView" type="HBoxContainer" node_paths=PackedStringArray("inventory_display_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,6 +18,7 @@ offset_right = -4.0
 offset_bottom = -4.0
 theme = ExtResource("1_st5uv")
 script = ExtResource("2")
+inventory_display_container = NodePath("VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

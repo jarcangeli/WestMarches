@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=27 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="2"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://biym5k6isys7d" path="res://characters/ui/TavernUI.tscn" id="18_5tuhn"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="18_hhcpw"]
 [ext_resource type="Script" uid="uid://ba36v1b1jri08" path="res://characters/AdventuringParties.gd" id="19"]
+[ext_resource type="Script" uid="uid://84whq0bed761" path="res://items/ui/PlayerInventoryView.gd" id="19_xrxkg"]
 [ext_resource type="Script" uid="uid://d0ttfscisgsof" path="res://characters/Cemetery.gd" id="20_2gh4u"]
 [ext_resource type="Script" uid="uid://37lfxcb774f2" path="res://quest/QuestManager.gd" id="21"]
 [ext_resource type="Script" uid="uid://d2ul0mcictsbl" path="res://PopupManager.gd" id="21_devvj"]
@@ -211,6 +212,18 @@ script = ExtResource("12_5tuhn")
 [node name="ShopInventory" type="Node" parent="."]
 script = ExtResource("13_mxvw5")
 
+[node name="PHShortbow" type="Node" parent="ShopInventory"]
+script = ExtResource("7_2gh4u")
+item_name = "Shortbow"
+
+[node name="PHShortsword" type="Node" parent="ShopInventory"]
+script = ExtResource("7_2gh4u")
+item_name = "Shortsword"
+
+[node name="PHShortsword2" type="Node" parent="ShopInventory"]
+script = ExtResource("7_2gh4u")
+item_name = "Shortsword"
+
 [node name="GameWindow" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_left = 4.0
@@ -282,9 +295,11 @@ metadata/_tab_index = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="GameWindow/GameTabs/Shop"]
 layout_mode = 2
 
-[node name="PlayerItems" type="VBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer"]
+[node name="PlayerItems" type="VBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer" node_paths=PackedStringArray("inventory_display_container")]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("19_xrxkg")
+inventory_display_container = NodePath("ScrollContainer/MarginContainer/GridContainer")
 
 [node name="Label" type="Label" parent="GameWindow/GameTabs/Shop/HBoxContainer/PlayerItems"]
 layout_mode = 2
@@ -303,32 +318,80 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="GridContainer" type="GridContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/PlayerItems/ScrollContainer/MarginContainer" node_paths=PackedStringArray("item_container")]
+[node name="GridContainer" type="GridContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/PlayerItems/ScrollContainer/MarginContainer"]
 layout_mode = 2
-columns = 4
+columns = 2
 script = ExtResource("18_hhcpw")
-item_container = NodePath("../../../../../../../../PlayerInventory")
-drop_enabled = false
+source_whitelist = [NodePath("../../../../TransactionContainer/TransactionLayout/ScrollContainer/MarginContainer/HBoxContainer/SellItems")]
 
-[node name="TransactionItems" type="VBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer" node_paths=PackedStringArray("item_display_container")]
+[node name="TransactionContainer" type="MarginContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("18_hhcpw")
-item_display_container = NodePath(".")
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionItems"]
+[node name="TransactionLayout" type="VBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionContainer/TransactionLayout"]
 layout_mode = 2
 text = "Items in transaction"
 horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionContainer/TransactionLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionContainer/TransactionLayout/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionContainer/TransactionLayout/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="SellItems" type="VBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionContainer/TransactionLayout/ScrollContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("item_display_container")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("18_hhcpw")
+item_display_container = NodePath(".")
+source_whitelist = [NodePath("../../../../../../PlayerItems/ScrollContainer/MarginContainer/GridContainer")]
+
+[node name="BuyItems" type="VBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionContainer/TransactionLayout/ScrollContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("item_display_container")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("18_hhcpw")
+item_display_container = NodePath(".")
+source_whitelist = [NodePath("../../../../../../ShopItems")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionContainer/TransactionLayout"]
+layout_mode = 2
+alignment = 1
+
+[node name="TradeButton" type="Button" parent="GameWindow/GameTabs/Shop/HBoxContainer/TransactionContainer/TransactionLayout/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.905092, 0.624817, 0.298797, 1)
+layout_mode = 2
+text = "TRADE"
 
 [node name="ShopItems" type="VBoxContainer" parent="GameWindow/GameTabs/Shop/HBoxContainer" node_paths=PackedStringArray("item_container", "item_display_container")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("18_hhcpw")
 item_container = NodePath("../../../../../ShopInventory")
-drop_enabled = false
 item_display_container = NodePath(".")
+source_whitelist = [NodePath("../TransactionContainer/TransactionLayout/ScrollContainer/MarginContainer/HBoxContainer/BuyItems")]
 
 [node name="Label" type="Label" parent="GameWindow/GameTabs/Shop/HBoxContainer/ShopItems"]
 layout_mode = 2

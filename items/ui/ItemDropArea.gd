@@ -4,6 +4,12 @@ class_name ItemDropArea
 @export var drop_enabled := true
 @export var item_display_container : ItemDisplayContainer
 
+@export var source_whitelist : Array
+
+func _ready():
+	for i in range(0, len(source_whitelist)):
+		source_whitelist[i] = get_node_or_null(source_whitelist[i])
+
 func _can_drop_data(_position, data):
 	if not drop_enabled:
 		return false
@@ -13,6 +19,9 @@ func _can_drop_data(_position, data):
 	if not item:
 		return false
 	if self == item.get_parent():
+		return false
+	var source = data.get_parent()
+	if not source_whitelist.is_empty() and not source in source_whitelist:
 		return false
 	return true
 

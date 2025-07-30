@@ -1,7 +1,7 @@
 extends Container
 
-@onready var inventory_display_container = %ItemsDisplayContainer
-@onready var item_detail_view = $ItemDetailView
+@export var inventory_display_container : Container
+@onready var item_detail_view = get_node_or_null("ItemDetailView")
 
 func _ready():
 	SignalBus.player_inventory_changed.connect(self.on_player_inventory_changed, CONNECT_DEFERRED)
@@ -11,7 +11,8 @@ func _ready():
 	on_player_inventory_changed()
 
 func on_item_selected(item):
-	item_detail_view.set_item(item)
+	if item_detail_view:
+		item_detail_view.set_item(item)
 
 func on_player_inventory_changed():
 	inventory_display_container.clear_item_views()

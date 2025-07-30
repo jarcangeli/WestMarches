@@ -2,9 +2,16 @@ extends Node
 class_name ItemContainer
 
 signal item_added(item)
+#TODO: No item removed signal?
+
+func contains(item : Item) -> bool:
+	for node in get_children():
+		if node == item:
+			return true
+	return false #TODO: Optimize? Sorted nodes?
 
 func add_item(item : Item):
-	if not is_instance_valid(item):
+	if not is_instance_valid(item) or contains(item):
 		return
 	
 	if is_instance_valid(item.get_parent()):
@@ -19,7 +26,7 @@ func add_item(item : Item):
 		SignalBus.item_consumed.emit(item)
 		item.queue_free()
 	else:
-		add_child(item)
+		add_child(item, true)
 
 func add_items(items) -> void:
 	for item in items:

@@ -24,7 +24,7 @@ func add_gold(amount : int):
 	gold_added.emit(amount)
 
 func remove_gold(amount):
-	gold -= clampi(amount, 0, amount)
+	gold -= clampi(0, amount, amount)
 	emit_signal("changed")
 
 func clear():

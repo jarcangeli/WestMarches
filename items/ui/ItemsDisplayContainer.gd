@@ -37,7 +37,8 @@ func add_items(items):
 func add_item(item : Item):
 	if item_container:
 		item_container.add_item(item)
-	add_item_display(item)
+	else:
+		add_item_display(item)
 
 func add_item_display(item):
 	var display = item_display_scene_path.instantiate()
@@ -65,7 +66,9 @@ func get_displayed_items():
 	var items = []
 	for node in get_children():
 		if node is ItemButtonDisplay or node is ItemIcon:
-			items.append(node.item)
+			var item = node.item
+			if item:
+				items.append(node.item)
 	return items
 
 func get_selected_items():

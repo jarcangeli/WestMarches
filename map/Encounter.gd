@@ -4,16 +4,35 @@ class_name Encounter
 
 var encounter_name : String
 var description : String
+var repeatable := false
+
+var monster_names : Array[String] = []
+var item_names : Array[String] = []
 
 func _init(data : EncounterData = null): #TODO: Remove null default
 	if not data:
 		return
 	encounter_name = data.encounter_name
 	description = data.description
+	repeatable = data.repeatable
 	name = encounter_name
-	for monster_name in data.monster_names:
+	monster_names = data.monster_names
+	item_names = data.item_names
+	generate_monsters()
+	generate_items()
+
+func generate_monsters():
+	for node in get_children():
+		if node is Character:
+			node.queue_free()
+	for monster_name in monster_names:
 		LazyLoadCharacter.run(monster_name, self)
-	for item_name in data.item_names:
+
+func generate_items():
+	for node in get_children():
+		if node is Item:
+			node.queue_free()
+	for item_name in item_names:
 		LazyLoadItem.run(item_name, self)
 
 func get_monsters() -> Array[Character]:

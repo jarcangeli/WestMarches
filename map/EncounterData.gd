@@ -8,3 +8,5 @@ class_name EncounterData
 @export var monster_names : Array[String] = []
 
 @export var item_names : Array[String] = []
+
+@export var repeatable := false

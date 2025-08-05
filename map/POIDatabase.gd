@@ -38,6 +38,7 @@ func load_pois_from_configs(path):
 			var encounter_data := EncounterData.new()
 			encounter_data.encounter_name = config.get_value(section, "name")
 			encounter_data.description = config.get_value(section, "description")
+			encounter_data.repeatable = bool(config.get_value(section, "repeatable"))
 			for key : String in encounter_keys:
 				if key.begins_with("monster"):
 					encounter_data.monster_names.append(config.get_value(section, key))

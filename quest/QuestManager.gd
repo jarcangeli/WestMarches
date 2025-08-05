@@ -13,6 +13,18 @@ const MAX_AVAILABLE_QUESTS = 4
 # e.g. a failed quest could be re-generated
 var encounters_already_encountered = []
 
+func _ready():
+	SignalBus.quest_completed.connect(on_quest_completed)
+
+func on_quest_completed(quest : Quest):
+	var encounter : Encounter = quest.battle_step.encounter
+	if encounter and encounter.repeatable:
+		encounter.generate_items()
+		encounter.generate_monsters()
+		var i = encounters_already_encountered.find(encounter)
+		if i >= 0:
+			encounters_already_encountered.remove_at(i)
+
 func advance_time():
 	for party in parties.get_idle_parties():
 		print("Generating quest for " + party.display_name)

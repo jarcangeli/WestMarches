@@ -1,5 +1,7 @@
 extends Control
 
+@export var shop_inventory : ItemContainer
+
 @onready var sell_items: ItemDisplayContainer = %SellItems
 @onready var buy_items: ItemDisplayContainer = %BuyItems
 @onready var trade_button: Button = %TradeButton
@@ -9,6 +11,7 @@ extends Control
 @onready var shop_items: ItemDisplayContainer = %ShopItems
 
 func _ready() -> void:
+	shop_items.set_item_container(shop_inventory)
 	trade_button.pressed.connect(trade_button_pressed)
 	sell_items.child_entered_tree.connect(update_amount_label, CONNECT_DEFERRED)
 	sell_items.child_exiting_tree.connect(update_amount_label, CONNECT_DEFERRED)

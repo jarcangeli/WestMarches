@@ -8,11 +8,15 @@ signal item_selected(item)
 @export var item_container : ItemContainer = null #if no item container set, acts as a view on other containers
 
 func _ready():
+	set_item_container(item_container)
+	super._ready()
+
+func set_item_container(container : ItemContainer):
+	item_container = container
 	if item_container:
 		item_container.item_added.connect(add_item_display)
 		for item in item_container.get_items():
 			add_item_display(item)
-	super._ready()
 
 func clear_item_views():
 	for node in get_children():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=27 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="2"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://items/ui/PlayerCurrencyDisplay.gd" id="14"]
 [ext_resource type="Script" uid="uid://bvsxe7140kkgc" path="res://core/currencies/PlayerCurrencies.gd" id="15"]
 [ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://core/TimeLabel.gd" id="16"]
+[ext_resource type="Script" uid="uid://bbr40iytx555f" path="res://test/FPSLabel.gd" id="16_xrxkg"]
 [ext_resource type="PackedScene" uid="uid://biym5k6isys7d" path="res://characters/ui/TavernUI.tscn" id="18_5tuhn"]
 [ext_resource type="Script" uid="uid://ba36v1b1jri08" path="res://characters/AdventuringParties.gd" id="19"]
 [ext_resource type="PackedScene" uid="uid://ct06m6nwbyn5k" path="res://Shop.tscn" id="19_mxvw5"]
@@ -258,6 +259,10 @@ time_tracker_path = NodePath("../../../TimeTracker")
 [node name="Control2" type="Control" parent="GameWindow/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="FPSLabel" type="Label" parent="GameWindow/TopBar"]
+layout_mode = 2
+script = ExtResource("16_xrxkg")
 
 [node name="AdvanceTimeButton" type="Button" parent="GameWindow/TopBar"]
 unique_name_in_owner = true

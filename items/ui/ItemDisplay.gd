@@ -8,6 +8,7 @@ signal item_selected()
 
 var item : Item = null: get = get_item, set = set_item
 var selected := false
+var animated = false
 
 func _ready():
 	refresh_display()
@@ -41,3 +42,9 @@ func on_item_consumed(consumed_item : Item):
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		set_selected(!selected)
+
+func on_mouse_entered():
+	animated = true
+
+func on_mouse_excited():
+	animated = false

@@ -11,6 +11,19 @@ class_name ItemIcon
 const selected_background_color = Color.WEB_GRAY
 const background_color = Color.BLACK
 
+const anim_speed = 4.0
+
+const border_base_texture = preload("res://assets/icons/border.png")
+const anim_border_textures = [preload("res://assets/icons/border_inner.png"), preload("res://assets/icons/border_outer.png")]
+
+var elapsed_time := 0.0
+func _process(delta: float) -> void:
+	elapsed_time = elapsed_time + delta * anim_speed #TODO: This has to be awful perf
+	if animated:
+		border_texture.texture = anim_border_textures[roundi(elapsed_time) % 2]
+	else:
+		border_texture.texture = border_base_texture
+
 func refresh_display():
 	if not item:
 		return

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwt2awegps8rb"]
 
 [ext_resource type="Script" uid="uid://dm7abjaa5541x" path="res://items/ui/ItemIcon.gd" id="1_7lq8n"]
-[ext_resource type="Texture2D" uid="uid://c5lup4vewfq6b" path="res://assets/icons/background.png" id="1_ub0mh"]
+[ext_resource type="Texture2D" uid="uid://cw3cvgawjmk68" path="res://assets/icons/background_checked.png" id="2_7lq8n"]
 [ext_resource type="Texture2D" uid="uid://dgurk74pav4dr" path="res://assets/icons/slots/weapon_slot.png" id="3_5kxxi"]
 [ext_resource type="Texture2D" uid="uid://q20mrmbd2fdt" path="res://assets/icons/border_inner.png" id="3_7lq8n"]
 [ext_resource type="Texture2D" uid="uid://c4fdfngkvwsdv" path="res://assets/icons/items/scimitar.png" id="4_o0ggu"]
@@ -24,7 +24,7 @@ unique_name_in_owner = true
 modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ub0mh")
+texture = ExtResource("2_7lq8n")
 expand_mode = 5
 
 [node name="BorderTexture" type="TextureRect" parent="."]

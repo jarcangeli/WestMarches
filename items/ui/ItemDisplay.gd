@@ -8,7 +8,7 @@ signal item_selected()
 
 var item : Item = null: get = get_item, set = set_item
 var selected := false
-var animated = false
+var hovered = false
 
 func _ready():
 	refresh_display()
@@ -44,7 +44,9 @@ func _on_gui_input(event: InputEvent) -> void:
 		set_selected(!selected)
 
 func on_mouse_entered():
-	animated = true
+	hovered = true
+	if select_enabled and not selected:
+		set_selected(true)
 
 func on_mouse_excited():
-	animated = false
+	hovered = false

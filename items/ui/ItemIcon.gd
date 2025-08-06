@@ -8,19 +8,19 @@ class_name ItemIcon
 @onready var slot_texture: TextureRect = %SlotTexture
 @onready var icon_texture: TextureRect = %IconTexture
 
-const selected_background_color = Color.WEB_GRAY
+const selected_background_color = Color(0.2, 0.2, 0.2)
 const background_color = Color.BLACK
 
 const anim_speed = 4.0
 
 const border_base_texture = preload("res://assets/icons/border.png")
-const anim_border_textures = [preload("res://assets/icons/border_inner.png"), preload("res://assets/icons/border_outer.png")]
+const anim_border_textures = [border_base_texture, preload("res://assets/icons/border_inner.png"), preload("res://assets/icons/border_outer.png")]
 
 var elapsed_time := 0.0
 func _process(delta: float) -> void:
 	elapsed_time = elapsed_time + delta * anim_speed #TODO: This has to be awful perf
-	if animated:
-		border_texture.texture = anim_border_textures[roundi(elapsed_time) % 2]
+	if hovered:
+		border_texture.texture = anim_border_textures[roundi(elapsed_time) % len(anim_border_textures)]
 	else:
 		border_texture.texture = border_base_texture
 

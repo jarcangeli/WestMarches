@@ -19,6 +19,7 @@ config/icon="res://assets/icons/logo.png"
 
 SignalBus="*res://core/SignalBus.gd"
 Globals="*res://core/Globals.gd"
+AudioBus="*res://core/audio/AudioBus.gd"
 TuningKnobs="*res://core/TuningKnobs.gd"
 DB="*res://core/SQLiteDatabase.gd"
 ItemDatabase="*res://items/ItemDatabase.gd"
@@ -37,6 +38,10 @@ naming/script_name_casing=1
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/simple-project-timer/plugin.cfg")
+
+[global_group]
+
+button=""
 
 [gui]
 

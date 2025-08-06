@@ -47,6 +47,7 @@ func on_mouse_entered():
 	hovered = true
 	if select_enabled and not selected:
 		set_selected(true)
+	AudioBus.play.emit(AudioBus.object_interact)
 
 func on_mouse_excited():
 	hovered = false

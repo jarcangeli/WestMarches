@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgymvfl7kjcn2" path="res://quest/ui/QuestSelectButton.gd" id="1"]
 
-[node name="QuestButton" type="Button"]
+[node name="QuestButton" type="Button" groups=["button"]]
 offset_left = 3.0
 offset_top = 2.0
 offset_right = 303.0

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dixnrlxogdft6"]
+
+[ext_resource type="Script" uid="uid://crslo87xhd58y" path="res://core/audio/AudioPlayerPool.gd" id="1"]
+
+[node name="AudioPlayerPool" type="Node"]
+script = ExtResource("1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.487
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+volume_db = -10.487
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+volume_db = -10.487
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+volume_db = -10.487
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="."]
+volume_db = -10.487
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="."]
+volume_db = -10.487

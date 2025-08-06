@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=28 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/ui/QuestScreen.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="2"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" uid="uid://d2ul0mcictsbl" path="res://PopupManager.gd" id="21_devvj"]
 [ext_resource type="PackedScene" uid="uid://nstp1h046lac" path="res://items/ui/ItemPopup.tscn" id="22_3b0ty"]
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="23_bg4s2"]
+[ext_resource type="PackedScene" uid="uid://dixnrlxogdft6" path="res://core/audio/AudioPlayerPool.tscn" id="27_sqvbp"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -424,3 +425,5 @@ texture = ExtResource("23_bg4s2")
 unique_name_in_owner = true
 wait_time = 4.0
 one_shot = true
+
+[node name="AudioPlayerPool" parent="." instance=ExtResource("27_sqvbp")]

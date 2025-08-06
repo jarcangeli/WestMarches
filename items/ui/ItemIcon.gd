@@ -8,8 +8,8 @@ class_name ItemIcon
 @onready var slot_texture: TextureRect = %SlotTexture
 @onready var icon_texture: TextureRect = %IconTexture
 
-const selected_background_color = Color(0.2, 0.2, 0.2)
-const background_color = Color.BLACK
+const selected_background_color = Color(0.4, 0.4, 0.4)
+const background_color = Color(0.2, 0.2, 0.2)
 
 const anim_speed = 4.0
 

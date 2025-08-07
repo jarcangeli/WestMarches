@@ -11,8 +11,8 @@ custom_minimum_size = Vector2(32, 32)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1116.0
-offset_bottom = -612.0
+offset_right = -1120.0
+offset_bottom = -616.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -25,28 +25,28 @@ modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("2_7lq8n")
-expand_mode = 5
+stretch_mode = 4
 
 [node name="BorderTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("3_7lq8n")
-expand_mode = 5
+stretch_mode = 4
 
 [node name="SlotTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("3_5kxxi")
-expand_mode = 5
+stretch_mode = 4
 
 [node name="IconTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("4_o0ggu")
-expand_mode = 5
+stretch_mode = 4
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="on_mouse_entered"]

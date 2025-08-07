@@ -6,7 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="4_vdbi3"]
 
 [node name="Shop" type="MarginContainer"]
-visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_c0ofq")
 metadata/_tab_index = 2
 
@@ -94,7 +98,7 @@ size_flags_vertical = 3
 alignment = 1
 script = ExtResource("3_odqjv")
 item_display_container = NodePath(".")
-source_whitelist = [NodePath("../../../../../../ShopItems")]
+source_whitelist = [NodePath("../../../../../../VBoxContainer/ShopItems")]
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/TransactionContainer/TransactionLayout"]
 layout_mode = 2
@@ -149,14 +153,18 @@ modulate = Color(0.905092, 0.624817, 0.298797, 1)
 layout_mode = 2
 text = "TRADE"
 
-[node name="ShopItems" type="VBoxContainer" parent="HBoxContainer" node_paths=PackedStringArray("item_display_container")]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShopItems" type="VBoxContainer" parent="HBoxContainer/VBoxContainer" node_paths=PackedStringArray("item_display_container")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_odqjv")
 item_display_container = NodePath(".")
-source_whitelist = [NodePath("../TransactionContainer/TransactionLayout/ScrollContainer/MarginContainer/HBoxContainer/BuyItems")]
+source_whitelist = [NodePath("../../TransactionContainer/TransactionLayout/ScrollContainer/MarginContainer/HBoxContainer/BuyItems")]
 
-[node name="Label" type="Label" parent="HBoxContainer/ShopItems"]
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/ShopItems"]
 layout_mode = 2
 text = "Shop Items"

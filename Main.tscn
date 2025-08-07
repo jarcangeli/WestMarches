@@ -293,6 +293,7 @@ layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="Shop" parent="GameWindow/GameTabs" node_paths=PackedStringArray("shop_inventory") instance=ExtResource("19_mxvw5")]
+visible = false
 layout_mode = 2
 shop_inventory = NodePath("../../../ShopInventory")
 

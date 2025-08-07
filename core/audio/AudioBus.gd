@@ -8,5 +8,5 @@ enum Buses {
 signal play(stream)
 signal mute(bus, toggle)
 
-const object_interact = preload("res://assets/sounds/PlasticPiece_on_CardBoard_8.wav")
-const button_press = preload("res://assets/sounds/menu-button-click-30.mp3")
+const object_interact = preload("res://assets/sounds/ui-mechanical-button-click-gfx-sounds-1-1-00-00.mp3")
+const button_press = preload("res://assets/sounds/ui-mechanical-button-click-gfx-sounds-1-1-00-00.mp3")

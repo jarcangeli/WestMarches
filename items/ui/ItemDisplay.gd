@@ -44,10 +44,20 @@ func _on_gui_input(event: InputEvent) -> void:
 		set_selected(!selected)
 
 func on_mouse_entered():
-	hovered = true
+	set_hovered(true)
 	if select_enabled and not selected:
 		set_selected(true)
 	AudioBus.play.emit(AudioBus.object_interact)
 
 func on_mouse_excited():
-	hovered = false
+	set_hovered(false)
+
+func set_hovered(_hovered):
+	hovered = _hovered
+	var margin = -8 if hovered else 0
+	#TODO: Tween in and out
+	add_theme_constant_override("margin_left", margin)
+	add_theme_constant_override("margin_right", margin)
+	add_theme_constant_override("margin_top", margin)
+	add_theme_constant_override("margin_bottom", margin)
+	z_index = -margin

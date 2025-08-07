@@ -1,7 +1,7 @@
 extends Container
 
 @export var inventory_display_container : Container
-@onready var item_detail_view = get_node_or_null("ItemDetailView")
+@export var item_detail_view : Control = null
 
 func _ready():
 	SignalBus.player_inventory_changed.connect(self.on_player_inventory_changed, CONNECT_DEFERRED)

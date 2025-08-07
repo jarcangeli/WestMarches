@@ -8,21 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://items/ui/ItemButtonDisplay.tscn" id="5_tjcmg"]
 [ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://core/StatsDisplay.tscn" id="7_tjcmg"]
 
-[node name="InventoryView" type="HBoxContainer" node_paths=PackedStringArray("inventory_display_container")]
+[node name="InventoryView" type="HBoxContainer" node_paths=PackedStringArray("inventory_display_container", "item_detail_view")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 32.0
-offset_right = -4.0
-offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_st5uv")
 script = ExtResource("2")
 inventory_display_container = NodePath("VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer")
+item_detail_view = NodePath("VBoxContainer2/ItemDetailView")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.4
 
 [node name="InventoryLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -46,7 +47,7 @@ theme_override_constants/margin_bottom = 4
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-columns = 6
+columns = 7
 script = ExtResource("3")
 item_display_scene_path = ExtResource("4_kp0oj")
 drop_enabled = false
@@ -54,46 +55,52 @@ drop_enabled = false
 [node name="ItemButtonDisplay" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("5_tjcmg")]
 layout_mode = 2
 
-[node name="ItemButtonDisplay2" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("5_tjcmg")]
+[node name="ItemIcon" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
 layout_mode = 2
 
-[node name="ItemDetailView" type="MarginContainer" parent="."]
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ItemDetailView" type="MarginContainer" parent="VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("4")
 
-[node name="Panel" type="Panel" parent="ItemDetailView"]
+[node name="Panel" type="Panel" parent="VBoxContainer2/ItemDetailView"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="ItemDetailView"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/ItemDetailView"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ItemDetailView/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/ItemDetailView/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="ItemNameLabel" type="Label" parent="ItemDetailView/MarginContainer/VBoxContainer"]
+[node name="ItemNameLabel" type="Label" parent="VBoxContainer2/ItemDetailView/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
 text = "name"
 
-[node name="DetailLabel" type="Label" parent="ItemDetailView/MarginContainer/VBoxContainer"]
+[node name="DetailLabel" type="Label" parent="VBoxContainer2/ItemDetailView/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Item detail goes here"
 horizontal_alignment = 1
 
-[node name="StatsDisplay" parent="ItemDetailView/MarginContainer/VBoxContainer" instance=ExtResource("7_tjcmg")]
+[node name="StatsDisplay" parent="VBoxContainer2/ItemDetailView/MarginContainer/VBoxContainer" instance=ExtResource("7_tjcmg")]
 unique_name_in_owner = true
 layout_mode = 2
 show_empty = false

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckvawd0d573sn"]
+[gd_scene load_steps=4 format=3 uid="uid://ckvawd0d573sn"]
 
 [ext_resource type="Script" uid="uid://vljk2nlbkbaq" path="res://items/ui/ItemButtonDisplay.gd" id="1"]
-[ext_resource type="Script" uid="uid://csgrvldjkx0gt" path="res://items/ui/InventoryItemDisplayArea.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://ynovd7yp0553" path="res://assets/icons/icon_32.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="3_up2iq"]
 
@@ -21,18 +20,22 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 1
+mouse_filter = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 script = ExtResource("1")
 icon = NodePath("MarginContainer/HBoxContainer/Icon")
 name_label = NodePath("MarginContainer/HBoxContainer/NameLabel")
 slot_label = NodePath("MarginContainer/HBoxContainer/SlotLabel")
-item_icon = NodePath("MarginContainer/HBoxContainer/ItemIcon")
+item_icon = NodePath("MarginContainer/HBoxContainer/VBoxContainer/ItemIcon")
 
-[node name="Button" type="Button" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-shortcut_in_tooltip = false
-script = ExtResource("2")
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -45,8 +48,13 @@ theme_override_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/separation = 10
 
-[node name="ItemIcon" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_up2iq")]
+[node name="VBoxContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ItemIcon" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_up2iq")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 1
@@ -75,4 +83,5 @@ visible = false
 layout_mode = 2
 text = "W"
 
-[connection signal="pressed" from="Button" to="." method="on_button_pressed"]
+[connection signal="mouse_entered" from="." to="." method="on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="on_mouse_excited"]

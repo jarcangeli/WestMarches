@@ -54,10 +54,16 @@ func on_mouse_excited():
 
 func set_hovered(_hovered):
 	hovered = _hovered
-	var margin = -8 if hovered else 0
-	#TODO: Tween in and out
-	add_theme_constant_override("margin_left", margin)
-	add_theme_constant_override("margin_right", margin)
-	add_theme_constant_override("margin_top", margin)
-	add_theme_constant_override("margin_bottom", margin)
-	z_index = -margin
+	var margin = -8.0 if hovered else 0.0
+	z_index = int(-margin)
+	
+	# Tween margins
+	var tween_speed = 0.2 if hovered else 0.4
+	var tween1 = get_tree().create_tween()
+	tween1.tween_property(self, "theme_override_constants/margin_left", margin, tween_speed)
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property(self, "theme_override_constants/margin_right", margin, tween_speed)
+	var tween3 = get_tree().create_tween()
+	tween3.tween_property(self, "theme_override_constants/margin_top", margin, tween_speed)
+	var tween4 = get_tree().create_tween()
+	tween4.tween_property(self, "theme_override_constants/margin_bottom", margin, tween_speed)

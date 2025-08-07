@@ -12,11 +12,18 @@ const UNEQUIPPED_COLOUR = "#ffffff"
 var mouse_over : bool = false
 
 func _ready():
-	$Button.drag_enabled = drag_enabled
-	$Button.disabled = not select_enabled
-	$Button.focus_mode = FocusMode.FOCUS_ALL if select_enabled else FocusMode.FOCUS_NONE
+	#$Button.drag_enabled = drag_enabled
+	#$Button.disabled = not select_enabled
+	#$Button.focus_mode = FocusMode.FOCUS_ALL if select_enabled else FocusMode.FOCUS_NONE
 	item_icon.select_enabled = select_enabled
 	item_icon.drag_enabled = drag_enabled
+
+func _get_drag_data(_position):
+	if not drag_enabled or not item:
+		return null
+	set_drag_preview(Item.make_item_preview(item))
+	print("Picked up " + item.item_name)
+	return self
 
 func refresh_display():
 	item_icon.set_item(item)
@@ -35,13 +42,13 @@ func refresh_display():
 
 func set_item(new_item):
 	super.set_item(new_item)
-	$Button.drag_enabled = drag_enabled and (item.loaned_character == null)
+	drag_enabled = drag_enabled and (item.loaned_character == null)
 
 func set_selected(_selected):
 	if not select_enabled:
 		return
 	super.set_selected(_selected)
-	$Button.button_pressed = _selected
 
-func on_button_pressed():
-	item_selected.emit()
+func set_hovered(_hovered):
+	super.set_hovered(_hovered)
+	item_icon.set_hovered(_hovered)

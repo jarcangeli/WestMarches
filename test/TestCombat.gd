@@ -9,6 +9,8 @@ extends Control
 #TODO: Why is conan hitting the goblin first, it has lower health
 
 func _on_run_combat_button_pressed():
+	adventurer.equip_best_gear()
+	
 	combat_log.clear()
 	combat_summary.clear()
 	sim_results.clear()

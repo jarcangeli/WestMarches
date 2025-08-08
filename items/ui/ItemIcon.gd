@@ -16,6 +16,22 @@ const anim_speed = 4.0
 const border_base_texture = preload("res://assets/icons/border.png")
 const anim_border_textures = [border_base_texture, preload("res://assets/icons/border_inner.png"), preload("res://assets/icons/border_outer.png")]
 
+const background_textures := [
+	preload("res://assets/icons/backgrounds/background.png"),
+	preload("res://assets/icons/backgrounds/background_checked.png"),
+	preload("res://assets/icons/backgrounds/background_checked_lower.png"),
+	preload("res://assets/icons/backgrounds/background_checked_upper.png"),
+	preload("res://assets/icons/backgrounds/background_rings.png"),
+	preload("res://assets/icons/backgrounds/background_spots.png"),
+	preload("res://assets/icons/backgrounds/background_spots_negative.png")
+]
+
+func _ready():
+	randomize_background_texture()
+
+func randomize_background_texture():
+	background_texture.texture = background_textures.pick_random()
+
 var elapsed_time := 0.0
 func _process(delta: float) -> void:
 	elapsed_time = elapsed_time + delta * anim_speed #TODO: This has to be awful perf

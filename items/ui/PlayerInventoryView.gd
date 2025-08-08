@@ -2,6 +2,7 @@ extends Container
 
 @export var inventory_display_container : Container
 @export var item_detail_view : Control = null
+@export var detailed_item_icon: ItemIcon
 
 func _ready():
 	SignalBus.player_inventory_changed.connect(self.on_player_inventory_changed, CONNECT_DEFERRED)
@@ -13,6 +14,9 @@ func _ready():
 func on_item_selected(item):
 	if item_detail_view:
 		item_detail_view.set_item(item)
+	if detailed_item_icon:
+		detailed_item_icon.set_item(item)
+		detailed_item_icon.randomize_background_texture()
 
 func on_player_inventory_changed():
 	inventory_display_container.clear_item_views()

@@ -16,8 +16,7 @@ func add_item(item : Item):
 	if is_instance_valid(item):
 		if item.loaned_character:
 			item.loaned_character = null
-		if item.equip_slot:
-			item.equip_slot = null
+			#TODO: Properly unequip
 	super.add_item(item)
 
 func on_item_added(_item: Item):

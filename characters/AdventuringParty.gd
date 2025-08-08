@@ -22,12 +22,16 @@ func is_alive():
 			return true
 	return false
 
-func get_characters() -> Array[Character]:
+func get_characters(include_dead := false) -> Array[Character]:
 	var characters : Array[Character] = []
 	for node in get_children():
-		if node is Character:
+		if node is Character and (include_dead or not node.dead):
 			characters.append(node)
+	characters.sort_custom(custom_character_comparison)
 	return characters
+
+func custom_character_comparison(char_a : Character, char_b : Character):
+	return char_a.get_level() > char_b.get_level()
 
 func get_average_level():
 	#TODO: Factor in gear to get power level
@@ -51,4 +55,28 @@ func on_quest_completed(quest_completed : Quest):
 			else:
 				disband_party = false
 		if disband_party:
-			queue_free() #TODO: A proper send off
+			if get_parent():
+				get_parent().remove_child(self)
+			Globals.character_graveyard.add_child(self)
+		else:
+			redistribute_items()
+			sell_spare_items()
+
+func redistribute_items():
+	# Move loot to party
+	for character in get_characters():
+		add_items(character.get_unequipped_items())
+	# Equip best gear (including shared pool)
+	for character : Character in get_characters():
+		character.equip_best_gear(self)
+		add_items(character.get_unequipped_items())
+
+func sell_spare_items():
+	if not Globals.shop:
+		push_error("No shop to sell spare items to")
+		return
+	for item in get_items():
+		Globals.shop.sell_item(self, item)
+	for character in get_characters():
+		for item in character.get_unequipped_items():
+			Globals.shop.sell_item(self, item)

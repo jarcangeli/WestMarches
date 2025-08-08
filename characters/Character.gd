@@ -21,10 +21,9 @@ var id := -1
 var equip_slots : Dictionary
 var base_stats := AbilityStats.new()
 var stats := CharacterStats.new(base_stats, self)
+var dead := false
 
 func _ready():
-	child_entered_tree.connect(equip_best_gear, CONNECT_DEFERRED)
-	child_exiting_tree.connect(equip_best_gear, CONNECT_DEFERRED)
 	equip_best_gear() #TODO: Remove from _ready
 
 func _init(data : CharacterData = null):
@@ -46,8 +45,8 @@ static func character_class_to_string(_character_class : CharacterClass):
 			return "Thief"
 	return "None"
 
-func is_alive():
-	return health > 0
+func is_alive(): # TODO: Rework to use dead? (care in combat)
+	return health > 0 and not dead
 
 func get_max_health() -> int:
 	return stats.get_value(AbilityStats.Type.CONSTITUTION) * 10
@@ -73,7 +72,14 @@ func get_loaned_items():
 			items.append(node)
 	return items
 
-func equip_best_gear(_dummy = null):
+func unequip_item(item : Item):
+	for slot in equip_slots.keys():
+		var slot_item = equip_slots[slot]
+		if slot_item == item:
+			slot_item = null
+			return
+
+func equip_best_gear(item_pool = null):
 	var items = get_items()
 	for item : Item in items:
 		if not equip_slots.has(item.primary_slot_type):
@@ -81,6 +87,15 @@ func equip_best_gear(_dummy = null):
 		else:
 			if equip_slots.get(item.primary_slot_type).get_value() < item.get_value():
 				equip_slots[item.primary_slot_type] = item
+	if is_instance_valid(item_pool) and item_pool is ItemContainer:
+		for item : Item in item_pool.get_items():
+			if not equip_slots.has(item.primary_slot_type):
+				add_item(item)
+				equip_slots[item.primary_slot_type] = item
+			else:
+				if equip_slots.get(item.primary_slot_type).get_value() < item.get_value():
+					add_item(item)
+					equip_slots[item.primary_slot_type] = item
 	stats.invalidate_cache()
 
 func get_equipped_item(slot : Item.Slot):
@@ -97,13 +112,19 @@ func get_equipped_items():
 		items.append(item)
 	return items
 
+func get_unequipped_items():
+	var equipped_items = get_equipped_items()
+	var items = []
+	for item in get_items():
+		if item == null or item in equipped_items:
+			continue
+		items.append(item)
+	return items
+
 func modify_exp(gain):
 	experience += gain
 
 func on_death():
-	#TODO: Move all items into the party inventory so they aren't lost
-	if get_parent():
-		get_parent().remove_child(self)
-	Globals.character_graveyard.add_child(self)
 	SignalBus.character_died.emit(self)
+	dead = true
 	died.emit()

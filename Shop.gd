@@ -1,4 +1,5 @@
 extends Control
+class_name Shop
 
 @export var shop_inventory : ItemContainer
 
@@ -18,6 +19,8 @@ func _ready() -> void:
 	buy_items.child_entered_tree.connect(update_amount_label, CONNECT_DEFERRED)
 	buy_items.child_exiting_tree.connect(update_amount_label, CONNECT_DEFERRED)
 	update_amount_label()
+	
+	Globals.shop = self
 
 func trade_button_pressed():
 	var sold_items = sell_items.get_displayed_items()
@@ -52,3 +55,9 @@ func update_amount_label(_dummy = null):
 	
 	var amount = sell_amount - buy_amount
 	trade_amount_label.text = ("+" if amount >= 0 else "") + str(amount)
+
+func sell_item(party : AdventuringParty, item : Item):
+	var value = item.get_value()
+	shop_items.add_item(item)
+	party.gold += value
+	print(item.item_name, " sold to shop by ", party.display_name, " for ", str(value))

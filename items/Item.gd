@@ -60,7 +60,6 @@ var id : int = -1
 var stats : AbilityStats = AbilityStats.new()
 var currency_generated : int = 0 #TODO: Implement
 var base_value := 1
-var equip_slot = null
 var loaned_character = null
 var rarity : Globals.Rarity
 
@@ -130,27 +129,6 @@ func _init(item_data : ItemData):
 	base_value = item_data.value
 	rarity = item_data.rarity
 	name = item_name
-
-func _ready():
-	#TODO: Does this scale well with every item in the scene?
-	SignalBus.item_equipped.connect(self.on_item_equipped)
-	SignalBus.item_unequipped.connect(self.on_item_unequipped)
-
-func on_item_equipped(item, slot):
-	if item != self:
-		if slot == equip_slot:
-			equip_slot = null
-			item_changed.emit()
-	elif equip_slot != slot:
-		equip_slot = slot
-		item_changed.emit()
-
-func on_item_unequipped(item, slot):
-	if item != self:
-		return
-	if equip_slot == slot:
-		equip_slot = null
-		item_changed.emit()
 
 func get_value() -> int:
 	return base_value

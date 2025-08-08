@@ -35,7 +35,7 @@ func refresh_display():
 		name_label.text = item.item_name
 		slot_label.text = Item.slot_to_shortname(item.primary_slot_type)
 		tooltip_text = item.description
-		if item.equip_slot == null and item.loaned_character == null:
+		if item.loaned_character == null: #TODO: equipped slot?
 			modulate = UNEQUIPPED_COLOUR
 		else:
 			modulate = EQUIPPED_COLOUR

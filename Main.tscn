@@ -64,124 +64,124 @@ item_name = "Sylvan Axe"
 [node name="AdventuringParties" type="Node" parent="." groups=["time"]]
 script = ExtResource("19")
 
-[node name="Party1" type="Node" parent="AdventuringParties"]
+[node name="TheLadz" type="Node" parent="AdventuringParties"]
 script = ExtResource("13")
 display_name = "The Ladz"
 
-[node name="Ben" type="Node" parent="AdventuringParties/Party1"]
+[node name="Ben" type="Node" parent="AdventuringParties/TheLadz"]
 script = ExtResource("12")
 character_name = "Ben"
 
-[node name="PHShortsword" type="Node" parent="AdventuringParties/Party1/Ben"]
+[node name="PHShortsword" type="Node" parent="AdventuringParties/TheLadz/Ben"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortsword"
 
-[node name="Sam" type="Node" parent="AdventuringParties/Party1"]
+[node name="Sam" type="Node" parent="AdventuringParties/TheLadz"]
 script = ExtResource("12")
 character_name = "Sam"
 character_class = 2
 
-[node name="PHShortbow" type="Node" parent="AdventuringParties/Party1/Sam"]
+[node name="PHShortbow" type="Node" parent="AdventuringParties/TheLadz/Sam"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortbow"
 
-[node name="Jen" type="Node" parent="AdventuringParties/Party1"]
+[node name="Jen" type="Node" parent="AdventuringParties/TheLadz"]
 script = ExtResource("12")
 character_name = "Jen"
 character_class = 2
 
-[node name="PHShortbow" type="Node" parent="AdventuringParties/Party1/Jen"]
+[node name="PHShortbow" type="Node" parent="AdventuringParties/TheLadz/Jen"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortbow"
 
-[node name="Party2" type="Node" parent="AdventuringParties"]
+[node name="YeParte" type="Node" parent="AdventuringParties"]
 script = ExtResource("13")
 display_name = "Ye Parte"
 
-[node name="Arthur" type="Node" parent="AdventuringParties/Party2"]
+[node name="Arthur" type="Node" parent="AdventuringParties/YeParte"]
 script = ExtResource("12")
 character_name = "Arthur"
 experience = 50
 character_class = 3
 
-[node name="PHShortsword" type="Node" parent="AdventuringParties/Party2/Arthur"]
+[node name="PHShortsword" type="Node" parent="AdventuringParties/YeParte/Arthur"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortsword"
 
-[node name="Benthwyn" type="Node" parent="AdventuringParties/Party2"]
+[node name="Benthwyn" type="Node" parent="AdventuringParties/YeParte"]
 script = ExtResource("12")
 character_name = "Benthwyn"
 experience = 320
 character_class = 2
 
-[node name="PHShortbow" type="Node" parent="AdventuringParties/Party2/Benthwyn"]
+[node name="PHShortbow" type="Node" parent="AdventuringParties/YeParte/Benthwyn"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortbow"
 
-[node name="Gomli" type="Node" parent="AdventuringParties/Party2"]
+[node name="Gomli" type="Node" parent="AdventuringParties/YeParte"]
 script = ExtResource("12")
 character_name = "Gomli"
 experience = 60
 
-[node name="Party3" type="Node" parent="AdventuringParties"]
+[node name="Ugs" type="Node" parent="AdventuringParties"]
 script = ExtResource("13")
 display_name = "Ugs"
 
-[node name="Ug" type="Node" parent="AdventuringParties/Party3"]
+[node name="Ug" type="Node" parent="AdventuringParties/Ugs"]
 script = ExtResource("12")
 character_name = "Ug"
 
-[node name="PHShortsword" type="Node" parent="AdventuringParties/Party3/Ug"]
+[node name="PHShortsword" type="Node" parent="AdventuringParties/Ugs/Ug"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortsword"
 
-[node name="Og" type="Node" parent="AdventuringParties/Party3"]
+[node name="Og" type="Node" parent="AdventuringParties/Ugs"]
 script = ExtResource("12")
 character_name = "Og"
 character_class = 3
 
-[node name="PHShortsword" type="Node" parent="AdventuringParties/Party3/Og"]
+[node name="PHShortsword" type="Node" parent="AdventuringParties/Ugs/Og"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortsword"
 
-[node name="Ag" type="Node" parent="AdventuringParties/Party3"]
+[node name="Ag" type="Node" parent="AdventuringParties/Ugs"]
 script = ExtResource("12")
 character_name = "Ag"
 character_class = 2
 
-[node name="PHShortbow" type="Node" parent="AdventuringParties/Party3/Ag"]
+[node name="PHShortbow" type="Node" parent="AdventuringParties/Ugs/Ag"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortbow"
 
-[node name="Party4" type="Node" parent="AdventuringParties"]
+[node name="TheFellowship" type="Node" parent="AdventuringParties"]
 script = ExtResource("13")
 display_name = "The Fellowship"
 
-[node name="Aragorn" type="Node" parent="AdventuringParties/Party4"]
+[node name="Aragorn" type="Node" parent="AdventuringParties/TheFellowship"]
 script = ExtResource("12")
 character_name = "Aragorn"
 experience = 200
 
-[node name="PHShortsword" type="Node" parent="AdventuringParties/Party4/Aragorn"]
+[node name="PHShortsword" type="Node" parent="AdventuringParties/TheFellowship/Aragorn"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortsword"
 
-[node name="Legolas" type="Node" parent="AdventuringParties/Party4"]
+[node name="Legolas" type="Node" parent="AdventuringParties/TheFellowship"]
 script = ExtResource("12")
 character_name = "Legolas"
 experience = 200
 character_class = 2
 
-[node name="PHShortbow" type="Node" parent="AdventuringParties/Party4/Legolas"]
+[node name="PHShortbow" type="Node" parent="AdventuringParties/TheFellowship/Legolas"]
 script = ExtResource("7_2gh4u")
 item_name = "Shortbow"
 
-[node name="Gimli" type="Node" parent="AdventuringParties/Party4"]
+[node name="Gimli" type="Node" parent="AdventuringParties/TheFellowship"]
 script = ExtResource("12")
 character_name = "Gimli"
 experience = 200
 
-[node name="PHAxe" type="Node" parent="AdventuringParties/Party4/Gimli"]
+[node name="PHAxe" type="Node" parent="AdventuringParties/TheFellowship/Gimli"]
 script = ExtResource("7_2gh4u")
 item_name = "Battleaxe"
 
@@ -217,13 +217,17 @@ script = ExtResource("13_mxvw5")
 script = ExtResource("7_2gh4u")
 item_name = "Shortbow"
 
-[node name="PHShortsword" type="Node" parent="ShopInventory"]
+[node name="PHDagger" type="Node" parent="ShopInventory"]
 script = ExtResource("7_2gh4u")
-item_name = "Shortsword"
+item_name = "Dagger"
 
-[node name="PHShortsword2" type="Node" parent="ShopInventory"]
+[node name="PHCoif" type="Node" parent="ShopInventory"]
 script = ExtResource("7_2gh4u")
-item_name = "Shortsword"
+item_name = "Coif"
+
+[node name="PHJerkin" type="Node" parent="ShopInventory"]
+script = ExtResource("7_2gh4u")
+item_name = "Jerkin"
 
 [node name="GameWindow" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -234,6 +238,7 @@ offset_bottom = 644.0
 
 [node name="TopBar" type="HBoxContainer" parent="GameWindow"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="GameWindow/TopBar"]
 layout_mode = 2
@@ -243,12 +248,29 @@ text = "Game Progress:"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayerCurrencyDisplay" type="Label" parent="GameWindow/TopBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameWindow/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PlayerCurrencyDisplay" type="Label" parent="GameWindow/TopBar/HBoxContainer"]
 layout_mode = 2
 text = "0 gp"
 script = ExtResource("14")
 
+[node name="TextureRect" type="TextureRect" parent="GameWindow/TopBar/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("23_bg4s2")
+
 [node name="Control3" type="Control" parent="GameWindow/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FPSLabel" type="Label" parent="GameWindow/TopBar"]
+layout_mode = 2
+text = "FPS:60"
+script = ExtResource("16_xrxkg")
+
+[node name="Control2" type="Control" parent="GameWindow/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -256,14 +278,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 script = ExtResource("16")
 time_tracker_path = NodePath("../../../TimeTracker")
-
-[node name="Control2" type="Control" parent="GameWindow/TopBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="FPSLabel" type="Label" parent="GameWindow/TopBar"]
-layout_mode = 2
-script = ExtResource("16_xrxkg")
 
 [node name="AdvanceTimeButton" type="Button" parent="GameWindow/TopBar"]
 unique_name_in_owner = true

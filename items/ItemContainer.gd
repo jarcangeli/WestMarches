@@ -14,7 +14,11 @@ func add_item(item : Item):
 	if not is_instance_valid(item) or contains(item):
 		return
 	
+	if item.loaned_character:
+		item.loaned_character.unequip_item(item)
 	if is_instance_valid(item.get_parent()):
+		if item.get_parent() is Character:
+			item.get_parent().unequip_item(item)
 		item.get_parent().remove_child(item)
 	
 	item_added.emit(item) #TODO: This could cause issues if item is now consumed?

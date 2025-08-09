@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://rgfp18x67g71"]
+
+[ext_resource type="Script" uid="uid://cuwr4cloxym53" path="res://test/TestEncounterBalance.gd" id="1_yyh1l"]
+[ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="2_psxil"]
+[ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="3_lxiss"]
+[ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://items/LazyLoadItem.gd" id="4_ql5us"]
+[ext_resource type="PackedScene" uid="uid://cimbnhhermucy" path="res://characters/ui/PartySummaryUI.tscn" id="5_psxil"]
+
+[node name="TestEncounterBalance" type="HBoxContainer" node_paths=PackedStringArray("party", "results_text")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yyh1l")
+party = NodePath("Ugs")
+results_text = NodePath("Panel/TextEdit")
+
+[node name="Ugs" type="Node" parent="."]
+script = ExtResource("2_psxil")
+display_name = "Ugs"
+
+[node name="Ug" type="Node" parent="Ugs"]
+script = ExtResource("3_lxiss")
+character_name = "Ug"
+
+[node name="PHShortsword" type="Node" parent="Ugs/Ug"]
+script = ExtResource("4_ql5us")
+item_name = "Shortsword"
+
+[node name="Og" type="Node" parent="Ugs"]
+script = ExtResource("3_lxiss")
+character_name = "Og"
+character_class = 3
+
+[node name="PHShortsword" type="Node" parent="Ugs/Og"]
+script = ExtResource("4_ql5us")
+item_name = "Shortsword"
+
+[node name="Ag" type="Node" parent="Ugs"]
+script = ExtResource("3_lxiss")
+character_name = "Ag"
+character_class = 2
+
+[node name="PHShortbow" type="Node" parent="Ugs/Ag"]
+script = ExtResource("4_ql5us")
+item_name = "Shortbow"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/CenterContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Test Encounters"
+
+[node name="PartySummaryUI" parent="VBoxContainer" instance=ExtResource("5_psxil")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextEdit" type="TextEdit" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "test"
+editable = false
+
+[connection signal="pressed" from="VBoxContainer/CenterContainer/Button" to="." method="_on_button_pressed"]

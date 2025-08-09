@@ -21,8 +21,7 @@ func _on_run_combat_button_pressed():
 	
 	var combat = Combat.new([adventurer], monsters)
 	combat.combat_log.connect(on_combat_log_line)
-	while (!combat.is_finished()):
-		combat.play_round()
+	combat.play_through()
 	print_summary(combat)
 	
 	# Now run a sim

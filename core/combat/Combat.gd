@@ -20,6 +20,10 @@ var combat_summary = {}
 func _init(_adventurers : Array[Character], _monsters : Array[Character]):
 	set_characters(_adventurers, _monsters)
 
+func play_through():
+	while (!is_finished()):
+		play_round()
+
 func set_characters(_adventurers : Array[Character], _monsters : Array[Character]):
 	adventurers = _adventurers
 	monsters = _monsters

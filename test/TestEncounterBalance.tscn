@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yyh1l")
-party = NodePath("Ugs")
+party = NodePath("TheFellowship")
 results_text = NodePath("Panel/TextEdit")
 
 [node name="Ugs" type="Node" parent="."]
@@ -45,6 +45,38 @@ character_class = 2
 [node name="PHShortbow" type="Node" parent="Ugs/Ag"]
 script = ExtResource("4_ql5us")
 item_name = "Shortbow"
+
+[node name="TheFellowship" type="Node" parent="."]
+script = ExtResource("2_psxil")
+display_name = "The Fellowship"
+
+[node name="Aragorn" type="Node" parent="TheFellowship"]
+script = ExtResource("3_lxiss")
+character_name = "Aragorn"
+experience = 200
+
+[node name="PHShortsword" type="Node" parent="TheFellowship/Aragorn"]
+script = ExtResource("4_ql5us")
+item_name = "Shortsword"
+
+[node name="Legolas" type="Node" parent="TheFellowship"]
+script = ExtResource("3_lxiss")
+character_name = "Legolas"
+experience = 200
+character_class = 2
+
+[node name="PHShortbow" type="Node" parent="TheFellowship/Legolas"]
+script = ExtResource("4_ql5us")
+item_name = "Shortbow"
+
+[node name="Gimli" type="Node" parent="TheFellowship"]
+script = ExtResource("3_lxiss")
+character_name = "Gimli"
+experience = 200
+
+[node name="PHAxe" type="Node" parent="TheFellowship/Gimli"]
+script = ExtResource("4_ql5us")
+item_name = "Battleaxe"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

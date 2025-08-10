@@ -8,6 +8,10 @@ extends Control
 const iterations = 100
 
 func test_encounters():
+	# Now run a sim
+	var start = Time.get_ticks_msec()
+	var total_iterations := 0
+	
 	var results = {}
 	for poi : POIData in POIDatabase.pois_by_name.values():
 		var poi_results = {}
@@ -24,10 +28,16 @@ func test_encounters():
 			
 			# Sim combat
 			var result := CombatSim.simulate(party.get_characters(), monsters, iterations)
+			total_iterations += iterations
 			poi_results[encounter.encounter_name] = result
 		results[poi.poi_name] = poi_results
 	
 	display(results)
+	
+	var end = Time.get_ticks_msec()
+	print("Simulation completed in %d msecs" % (end - start))
+	print("\tor %.2f msecs per iteration" % ((end - start)/float(total_iterations)))
+	print("\tor %d usecs per iteration" % int((end - start)/float(total_iterations)*1000.))
 
 func display(results : Dictionary):
 	party_summary_ui.set_party(party)

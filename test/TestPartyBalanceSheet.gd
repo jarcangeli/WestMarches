@@ -51,7 +51,7 @@ func display(party, results : Dictionary):
 		texts.append(poi_name)
 		var poi : POIData = POIDatabase.pois_by_name[poi_name]
 		display_label_text(poi_name)
-		for _i in range(0, 4):
+		for _i in range(0, 5):
 			display_label_text('')
 		
 		for encounter_data in poi.encounters:
@@ -60,11 +60,22 @@ func display(party, results : Dictionary):
 			var monsters = ', '.join(encounter_data.monster_names)
 			
 			var monsters_power_level = 0
+			var largest_attack := 0
+			var largest_defence := 0
 			for monster_name in encounter_data.monster_names:
 				var monster_data : CharacterData = MonsterDatabase.get_data_by_name(monster_name)
 				var monster = Character.new(monster_data)
 				monsters_power_level += monster.get_power_level()
+				
+				var attack = monster.stats.get_value(AbilityStats.Type.ATTACK)
+				var defence = monster.stats.get_value(AbilityStats.Type.AVOIDANCE)
+				if attack > largest_attack:
+					largest_attack = attack
+				if defence > largest_defence:
+					largest_defence = defence
+			
 			display_label_text(monsters_power_level)
+			display_label_text("%d/%d " % [largest_attack, largest_defence])
 			var result : CombatSimResults = results[poi_name][encounter_data.encounter_name]
 			display_label_text(str(int(result.get_win_percentage())) + '%')
 			display_label_text(result.get_average_character_deaths())

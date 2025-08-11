@@ -36,4 +36,8 @@ func invalidate_cache():
 	for i in range(len(values)):
 		cache_valid.append(false)
 
-#TODO: get_weighted_sum override?
+func get_weighted_value():
+	var sum := 0
+	for i in range(len(values)):
+		sum += get_value(i) *  weights[i]
+	return sum

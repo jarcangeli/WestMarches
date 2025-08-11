@@ -100,6 +100,7 @@ static var weights : Array[int] = [
 	1,	# POISON_DAMAGE
 	2	# SNIPE_DAMAGE
 ]
+
 func get_weighted_value():
 	var sum := 0
 	for i in range(len(values)):

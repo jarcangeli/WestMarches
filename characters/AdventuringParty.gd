@@ -45,6 +45,12 @@ func get_average_level():
 func get_gold():
 	return gold
 
+func get_power_level():
+	var total = 0
+	for character in get_characters():
+		total += character.get_power_level()
+	return total
+
 func on_quest_completed(quest_completed : Quest):
 	if quest_completed == quest:
 		quest = null

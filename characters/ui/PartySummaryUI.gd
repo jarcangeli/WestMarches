@@ -6,6 +6,7 @@ class_name PartySummaryUI
 
 @onready var character_summaries = %CharacterSummaries
 @onready var coins_label: Label = %CoinsLabel
+@onready var power_label: Label = %PowerLabel
 
 func clear_party():
 	for node in character_summaries.get_children():
@@ -17,6 +18,7 @@ func set_party(party : AdventuringParty):
 	%NameLabel.text = party.display_name
 	%LevelBar.value = party.get_average_level() / 300 * 5
 	coins_label.text = str(party.get_gold())
+	power_label.text = str(party.get_power_level())
 	
 	for character in party.get_characters():
 		var character_summary = character_summary_scene.instantiate()

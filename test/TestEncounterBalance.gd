@@ -48,9 +48,18 @@ func display(results : Dictionary):
 		var poi : POIData = POIDatabase.pois_by_name[poi_name]
 		for encounter_data in poi.encounters:
 			var monsters = ', '.join(encounter_data.monster_names)
-			texts.append("\t%s - [%s]"% [encounter_data.encounter_name, monsters])
+			
+			var monsters_power_level = 0
+			for monster_name in encounter_data.monster_names:
+				var monster_data : CharacterData = MonsterDatabase.get_data_by_name(monster_name)
+				var monster = Character.new(monster_data)
+				monsters_power_level += monster.get_power_level()
+			
+			texts.append("\t%s - (%d) [%s]"% [encounter_data.encounter_name, monsters_power_level, monsters])
+			
 			var result : CombatSimResults = results[poi_name][encounter_data.encounter_name]
 			texts.append("\t\t%.1f%%\t\t\t%.1f" % [ result.get_win_percentage(), result.get_average_character_deaths()])
+	
 	results_text.text = '\n'.join(texts)
 
 func _on_button_pressed() -> void:

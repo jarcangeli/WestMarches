@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnxx4acdn0xb0"]
+
+[ext_resource type="Script" uid="uid://uq0meffbh3b6" path="res://test/TestPartyBalanceSheet.gd" id="1_c1uph"]
+[ext_resource type="PackedScene" uid="uid://cimbnhhermucy" path="res://characters/ui/PartySummaryUI.tscn" id="2_1hm2b"]
+
+[node name="TestPartyBalanceSheet" type="HBoxContainer" node_paths=PackedStringArray("results_container")]
+size_flags_horizontal = 3
+script = ExtResource("1_c1uph")
+results_container = NodePath("Panel/MarginContainer/ScrollContainer/GridContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PartySummaryUI" parent="VBoxContainer" instance=ExtResource("2_1hm2b")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Test"
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "1555"
+
+[node name="Label3" type="Label" parent="Panel/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "45%"
+
+[node name="Label4" type="Label" parent="Panel/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "2.1"
+
+[node name="Label5" type="Label" parent="Panel/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Monster"
+
+[node name="Label6" type="Label" parent="Panel/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Test2"
+
+[node name="Label7" type="Label" parent="Panel/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6

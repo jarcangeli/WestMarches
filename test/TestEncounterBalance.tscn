@@ -1,114 +1,129 @@
 [gd_scene load_steps=6 format=3 uid="uid://rgfp18x67g71"]
 
 [ext_resource type="Script" uid="uid://cuwr4cloxym53" path="res://test/TestEncounterBalance.gd" id="1_yyh1l"]
+[ext_resource type="PackedScene" uid="uid://bnxx4acdn0xb0" path="res://test/TestPartyBalanceSheet.tscn" id="2_lxiss"]
 [ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="2_psxil"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="3_lxiss"]
 [ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://items/LazyLoadItem.gd" id="4_ql5us"]
-[ext_resource type="PackedScene" uid="uid://cimbnhhermucy" path="res://characters/ui/PartySummaryUI.tscn" id="5_psxil"]
 
-[node name="TestEncounterBalance" type="HBoxContainer" node_paths=PackedStringArray("party", "results_text")]
+[node name="TestEncounterBalance" type="MarginContainer" node_paths=PackedStringArray("parties", "results_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 script = ExtResource("1_yyh1l")
-party = NodePath("TheFellowship")
-results_text = NodePath("Panel/TextEdit")
-
-[node name="Ugs" type="Node" parent="."]
-script = ExtResource("2_psxil")
-display_name = "Ugs"
-
-[node name="Ug" type="Node" parent="Ugs"]
-script = ExtResource("3_lxiss")
-character_name = "Ug"
-
-[node name="PHShortsword" type="Node" parent="Ugs/Ug"]
-script = ExtResource("4_ql5us")
-item_name = "Shortsword"
-
-[node name="Og" type="Node" parent="Ugs"]
-script = ExtResource("3_lxiss")
-character_name = "Og"
-character_class = 3
-
-[node name="PHShortsword" type="Node" parent="Ugs/Og"]
-script = ExtResource("4_ql5us")
-item_name = "Shortsword"
-
-[node name="Ag" type="Node" parent="Ugs"]
-script = ExtResource("3_lxiss")
-character_name = "Ag"
-character_class = 2
-
-[node name="PHShortbow" type="Node" parent="Ugs/Ag"]
-script = ExtResource("4_ql5us")
-item_name = "Shortbow"
-
-[node name="TheFellowship" type="Node" parent="."]
-script = ExtResource("2_psxil")
-display_name = "The Fellowship"
-
-[node name="Aragorn" type="Node" parent="TheFellowship"]
-script = ExtResource("3_lxiss")
-character_name = "Aragorn"
-experience = 200
-
-[node name="PHShortsword" type="Node" parent="TheFellowship/Aragorn"]
-script = ExtResource("4_ql5us")
-item_name = "Shortsword"
-
-[node name="Legolas" type="Node" parent="TheFellowship"]
-script = ExtResource("3_lxiss")
-character_name = "Legolas"
-experience = 200
-character_class = 2
-
-[node name="PHShortbow" type="Node" parent="TheFellowship/Legolas"]
-script = ExtResource("4_ql5us")
-item_name = "Shortbow"
-
-[node name="Gimli" type="Node" parent="TheFellowship"]
-script = ExtResource("3_lxiss")
-character_name = "Gimli"
-experience = 200
-
-[node name="PHAxe" type="Node" parent="TheFellowship/Gimli"]
-script = ExtResource("4_ql5us")
-item_name = "Battleaxe"
+parties = NodePath("Parties")
+results_container = NodePath("VBoxContainer/TabContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
+size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="VBoxContainer/CenterContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Test Encounters"
 
-[node name="PartySummaryUI" parent="VBoxContainer" instance=ExtResource("5_psxil")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Panel" type="Panel" parent="."]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
 
-[node name="TextEdit" type="TextEdit" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "test"
-editable = false
+[node name="TestPartyBalanceSheet" parent="VBoxContainer/TabContainer" instance=ExtResource("2_lxiss")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Parties" type="Node" parent="."]
+
+[node name="Ugs" type="Node" parent="Parties"]
+script = ExtResource("2_psxil")
+display_name = "Ugs"
+
+[node name="Ug" type="Node" parent="Parties/Ugs"]
+script = ExtResource("3_lxiss")
+character_name = "Ug"
+
+[node name="PHShortsword" type="Node" parent="Parties/Ugs/Ug"]
+script = ExtResource("4_ql5us")
+item_name = "Shortsword"
+
+[node name="Og" type="Node" parent="Parties/Ugs"]
+script = ExtResource("3_lxiss")
+character_name = "Og"
+character_class = 3
+
+[node name="PHShortsword" type="Node" parent="Parties/Ugs/Og"]
+script = ExtResource("4_ql5us")
+item_name = "Shortsword"
+
+[node name="Ag" type="Node" parent="Parties/Ugs"]
+script = ExtResource("3_lxiss")
+character_name = "Ag"
+character_class = 2
+
+[node name="PHShortbow" type="Node" parent="Parties/Ugs/Ag"]
+script = ExtResource("4_ql5us")
+item_name = "Shortbow"
+
+[node name="TheFellowship" type="Node" parent="Parties"]
+script = ExtResource("2_psxil")
+display_name = "The Fellowship"
+
+[node name="Aragorn" type="Node" parent="Parties/TheFellowship"]
+script = ExtResource("3_lxiss")
+character_name = "Aragorn"
+experience = 200
+
+[node name="PHSword" type="Node" parent="Parties/TheFellowship/Aragorn"]
+script = ExtResource("4_ql5us")
+item_name = "Runed Greatsword"
+
+[node name="Helm" type="Node" parent="Parties/TheFellowship/Aragorn"]
+script = ExtResource("4_ql5us")
+item_name = "Winged Helmet"
+
+[node name="Chest" type="Node" parent="Parties/TheFellowship/Aragorn"]
+script = ExtResource("4_ql5us")
+item_name = "Studded Leather"
+
+[node name="Legolas" type="Node" parent="Parties/TheFellowship"]
+script = ExtResource("3_lxiss")
+character_name = "Legolas"
+experience = 200
+character_class = 2
+
+[node name="PHShortbow" type="Node" parent="Parties/TheFellowship/Legolas"]
+script = ExtResource("4_ql5us")
+item_name = "Shortbow"
+
+[node name="PHSword" type="Node" parent="Parties/TheFellowship/Legolas"]
+script = ExtResource("4_ql5us")
+item_name = "Longsword"
+
+[node name="Gimli" type="Node" parent="Parties/TheFellowship"]
+script = ExtResource("3_lxiss")
+character_name = "Gimli"
+experience = 200
+
+[node name="PHAxe" type="Node" parent="Parties/TheFellowship/Gimli"]
+script = ExtResource("4_ql5us")
+item_name = "Battleaxe"
+
+[node name="Helm" type="Node" parent="Parties/TheFellowship/Gimli"]
+script = ExtResource("4_ql5us")
+item_name = "Darkiron Helmet"
+
+[node name="Chest" type="Node" parent="Parties/TheFellowship/Gimli"]
+script = ExtResource("4_ql5us")
+item_name = "Breastplate"
 
 [connection signal="pressed" from="VBoxContainer/CenterContainer/Button" to="." method="_on_button_pressed"]

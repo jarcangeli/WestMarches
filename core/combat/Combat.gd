@@ -68,6 +68,13 @@ func sort_round_order(a, b):
 		return true
 	return false
 
+func sort_character_order(a, b):
+	var hp_a = a.stats.get_value(AbilityStats.Type.CONSTITUTION)
+	var hp_b = b.stats.get_value(AbilityStats.Type.CONSTITUTION)
+	if hp_a > hp_b:
+		return true
+	return false
+
 func get_round_order(): #returns character and targets pair
 	if cached_round_order:
 		return cached_round_order
@@ -90,6 +97,9 @@ func play_round():
 	if round_number == 1:
 		add_log("Start of combat!")
 	add_log("Start of round %d" % round_number)
+	
+	adventurers.sort_custom(sort_character_order)
+	monsters.sort_custom(sort_character_order)
 	
 	var character_target_order = get_round_order()
 	for character_target in character_target_order:
@@ -194,13 +204,10 @@ func play_turn(character : Character, enemies : Array):
 		on_kill_character(character)
 
 func target_character(characters):
-	var highest_hp = 0
-	var target = null
 	for character in characters:
-		if character.is_alive() and character.health > highest_hp:
-			highest_hp = character.health
-			target = character
-	return target
+		if character.is_alive():
+			return character
+	return null
 
 func target_weakest_character(characters):
 	var lowest_hp = 0

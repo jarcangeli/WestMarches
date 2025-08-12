@@ -49,7 +49,7 @@ func is_alive(): # TODO: Rework to use dead? (care in combat)
 	return health > 0 and not dead
 
 func get_max_health() -> int:
-	return stats.get_value(AbilityStats.Type.CONSTITUTION) * 10
+	return stats.get_value(AbilityStats.Type.CONSTITUTION)
 
 func get_level() -> int:
 	return TuningKnobs.level_from_experience(experience)

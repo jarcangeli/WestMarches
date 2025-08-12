@@ -28,6 +28,8 @@ func load_row(row : Dictionary):
 	item_data.stat_values.fill(0)
 	item_data.stat_values[AbilityStats.Type.CONSTITUTION] 	= int(row["constitution"])
 	item_data.stat_values[AbilityStats.Type.ATTACK] 		= int(row["attack"])
+	item_data.stat_values[AbilityStats.Type.DAMAGE_DIE] 	= int(row["damage_die"])
+	item_data.stat_values[AbilityStats.Type.DAMAGE_BONUS] 	= int(row["damage_bonus"])
 	item_data.stat_values[AbilityStats.Type.AVOIDANCE] 		= int(row["avoidance"])
 	item_data.stat_values[AbilityStats.Type.INTIATIVE] 		= int(row["initiative"])
 	item_data.stat_values[AbilityStats.Type.CRIT_RATE] 		= int(row["crit_rate"])
@@ -62,24 +64,10 @@ func generate_random_item() -> Item:
 	var item = Item.new(item_data)
 	return item
 
-static var value_weights : Array[int] = [
-	1, # CONSTITUTION
-	1, # ATTACK
-	1, # AVOIDANCE
-	1, # INTIATIVE
-	10, # CRIT_RATE
-	1,	# REGENERATION
-	1,	# THORNS
-	3,	# AOE_DAMAGE
-	1,	# POISON_CHANCE
-	1,	# POISON_DAMAGE
-	2	# SNIPE_DAMAGE
-]
-
 static func get_weighted_value(values : Array[int]):
 	var sum := 0
 	for i in range(len(values)):
-		sum += values[i] *  value_weights[i]
+		sum += values[i] *  AbilityStats.weights[i]
 	return sum
 
 static func get_rarity_from_value(value : int):

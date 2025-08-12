@@ -126,25 +126,26 @@ func play_turn(character : Character, enemies : Array):
 		return # all died, thorns?
 	var roll := randi() % 100 + 1
 	add_log("%s rolled %d" % [character.name, roll])
-	var damage = roll + character.stats.get_value(AbilityStats.Type.ATTACK) \
+	var hit = roll + character.stats.get_value(AbilityStats.Type.ATTACK) \
 							- enemy.stats.get_value(AbilityStats.Type.AVOIDANCE)
-	damage = clampi(damage, 0, damage)
-	var crit : bool = roll > (100 - character.stats.get_value(AbilityStats.Type.CRIT_RATE))
-	if crit and roll > 1:
-		damage = roll + character.stats.get_value(AbilityStats.Type.ATTACK)
+	var damage = (randi() % 6 + 1) * character.stats.get_value(AbilityStats.Type.DAMAGE_DIE) \
+					+ character.stats.get_value(AbilityStats.Type.DAMAGE_BONUS)
 	
+	var crit : bool = roll > (100 - character.stats.get_value(AbilityStats.Type.CRIT_RATE))
 	if roll == 1:
+		hit = false
 		damage = 0
 		add_log(character.name + " critical miss on " + enemy.name)
-	elif damage > 0:
-		if crit:
-			do_damage(character, enemy, damage, CharacterCombatSummary.Stat.CRIT_DAMAGE)
-			add_log("%s critical hit on %s for %d damage! (%d/%d)" % [character.name, enemy.name, damage, enemy.health, enemy.get_max_health()])
-		else:
-			do_damage(character, enemy, damage, CharacterCombatSummary.Stat.ATTACK_DAMAGE)
-			add_log("%s dealt %d damage to %s (%d/%d)" % [character.name, damage, enemy.name, enemy.health, enemy.get_max_health()])
-	else:
+	elif crit:
+		hit = true
+		damage = 2 * damage
+		do_damage(character, enemy, damage, CharacterCombatSummary.Stat.CRIT_DAMAGE)
+		add_log("%s critical hit on %s for %d damage! (%d/%d)" % [character.name, enemy.name, damage, enemy.health, enemy.get_max_health()])
+	elif not hit:
 		add_log(character.name + " missed " + enemy.name)
+	else:
+		do_damage(character, enemy, damage, CharacterCombatSummary.Stat.ATTACK_DAMAGE)
+		add_log("%s dealt %d damage to %s (%d/%d)" % [character.name, damage, enemy.name, enemy.health, enemy.get_max_health()])
 	
 	if !enemy.is_alive():
 		on_kill_character(enemy)

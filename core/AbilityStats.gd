@@ -7,6 +7,8 @@ enum Type
 {
 	CONSTITUTION,
 	ATTACK,
+	DAMAGE_DIE,
+	DAMAGE_BONUS,
 	AVOIDANCE,
 	INTIATIVE,
 	CRIT_RATE,
@@ -22,6 +24,8 @@ enum Type
 static var names : Array[String] = [
 	"Constitution", # CONSTITUTION
 	"Attack", # ATTACK
+	"Damage Die", # DAMAGE_DIE
+	"Damage Bonus", # DAMAGE_BONUS
 	"Avoidance", # AVOIDANCE
 	"Initiative", # INTIATIVE
 	"Crit Rate", 	# CRIT_RATE
@@ -36,6 +40,8 @@ static var names : Array[String] = [
 static var icons : Array[Texture2D] = [
 	preload(icon_root + "constitution.png"), 	# CONSTITUTION
 	preload(icon_root + "attack.png"), 			# ATTACK
+	preload(icon_root + "attack.png"), 			# DAMAGE_DIE
+	preload(icon_root + "attack.png"), 			# DAMAGE_BONUS
 	preload(icon_root + "avoidance.png"), 		# AVOIDANCE
 	preload(icon_root + "initiative.png"), 		# INTIATIVE
 	preload(icon_root + "crit_rate.png"), 		# CRIT_RATE
@@ -50,6 +56,8 @@ static var icons : Array[Texture2D] = [
 static var colours : Array[Color] = [
 	Color.DEEP_PINK, # CONSTITUTION
 	Color.DARK_RED, # ATTACK
+	Color.DARK_RED, # DAMAGE_DIE
+	Color.DARK_RED, # DAMAGE_BONUS
 	Color.DODGER_BLUE, # AVOIDANCE
 	Color.YELLOW, # INTIATIVE
 	Color.ORANGE, 	# CRIT_RATE
@@ -69,6 +77,8 @@ static func get_icon(type : Type):
 var values : Array[int] = [
 	10, # CONSTITUTION
 	10, # ATTACK
+	1, # DAMAGE_DIE
+	0, # DAMAGE_BONUS
 	10, # AVOIDANCE
 	10, # INTIATIVE
 	1, 	# CRIT_RATE
@@ -90,6 +100,8 @@ func set_value(type : AbilityStats.Type, value : int) -> void:
 static var weights : Array[int] = [
 	1, # CONSTITUTION
 	1, # ATTACK
+	3, # DAMAGE_DIE
+	1, # DAMAGE_BONUS
 	1, # AVOIDANCE
 	1, # INTIATIVE
 	10, # CRIT_RATE

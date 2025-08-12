@@ -27,6 +27,8 @@ func play_through():
 func set_characters(_adventurers : Array[Character], _monsters : Array[Character]):
 	adventurers = _adventurers
 	monsters = _monsters
+	adventurers.sort_custom(sort_character_order)
+	monsters.sort_custom(sort_character_order)
 	reset()
 
 func reset():
@@ -97,9 +99,6 @@ func play_round():
 	if round_number == 1:
 		add_log("Start of combat!")
 	add_log("Start of round %d" % round_number)
-	
-	adventurers.sort_custom(sort_character_order)
-	monsters.sort_custom(sort_character_order)
 	
 	var character_target_order = get_round_order()
 	for character_target in character_target_order:

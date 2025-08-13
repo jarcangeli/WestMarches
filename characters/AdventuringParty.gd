@@ -12,6 +12,9 @@ func _ready() -> void:
 	if display_name.is_empty():
 		display_name = name
 	SignalBus.quest_completed.connect(on_quest_completed)
+	
+	for character in get_characters():
+		character.equip_best_gear()
 
 func get_position():
 	return position

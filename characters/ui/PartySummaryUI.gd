@@ -15,13 +15,13 @@ func clear_party():
 func set_party(party : AdventuringParty):
 	clear_party()
 	
-	%NameLabel.text = party.display_name
-	%LevelBar.value = party.get_average_level() / 300 * 5
-	coins_label.text = str(party.get_gold())
-	power_label.text = str(party.get_power_level())
-	
 	for character in party.get_characters():
 		var character_summary = character_summary_scene.instantiate()
 		character_summaries.add_child(character_summary)
 		character_summary.set_character(character)
 		character_summary.set_scroll_enabled(scroll_areas_enabled)
+	
+	%NameLabel.text = party.display_name
+	%LevelBar.value = party.get_average_level() / 300 * 5
+	coins_label.text = str(party.get_gold())
+	power_label.text = str(party.get_power_level())

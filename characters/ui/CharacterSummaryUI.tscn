@@ -90,12 +90,9 @@ columns = 3
 
 [node name="ItemButtonDisplay" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="ItemButtonDisplay2" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="ItemButtonDisplay3" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
 layout_mode = 2
-size_flags_vertical = 3

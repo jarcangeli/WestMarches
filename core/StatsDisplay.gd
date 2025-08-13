@@ -20,8 +20,8 @@ func set_stats(values : Array[int]):
 		var value = values[type]
 		if not show_empty and value == 0:
 			continue
-		if type == AbilityStats.Type.CRIT_RATE and value == 1:
-			continue
+		#if type == AbilityStats.Type.CRIT_RATE and value == 1:
+			#continue
 		#if type == AbilityStats.Type.POISON_DAMAGE and value == 1:
 			#continue
 		var stat_display = stat_display_scene.instantiate()

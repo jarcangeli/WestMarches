@@ -124,14 +124,15 @@ func play_turn(character : Character, enemies : Array):
 	var enemy : Character = target_character(enemies)
 	if not enemy:
 		return # all died, thorns?
-	var roll := randi() % 100 + 1
+	const HIT_DICE = 20
+	var roll := randi() % HIT_DICE + 1
 	add_log("%s rolled %d" % [character.name, roll])
 	var hit = roll + character.stats.get_value(AbilityStats.Type.ATTACK) \
 							- enemy.stats.get_value(AbilityStats.Type.AVOIDANCE)
 	var damage = (randi() % 6 + 1) * character.stats.get_value(AbilityStats.Type.DAMAGE_DIE) \
 					+ character.stats.get_value(AbilityStats.Type.DAMAGE_BONUS)
 	
-	var crit : bool = roll > (100 - character.stats.get_value(AbilityStats.Type.CRIT_RATE))
+	var crit : bool = roll > (HIT_DICE - character.stats.get_value(AbilityStats.Type.CRIT_RATE))
 	if roll == 1:
 		hit = false
 		damage = 0

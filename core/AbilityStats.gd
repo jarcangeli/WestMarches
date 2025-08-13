@@ -40,8 +40,8 @@ static var names : Array[String] = [
 static var icons : Array[Texture2D] = [
 	preload(icon_root + "constitution.png"), 	# CONSTITUTION
 	preload(icon_root + "attack.png"), 			# ATTACK
-	preload(icon_root + "attack.png"), 			# DAMAGE_DIE
-	preload(icon_root + "attack.png"), 			# DAMAGE_BONUS
+	preload(icon_root + "damage_die.png"), 			# DAMAGE_DIE
+	preload(icon_root + "damage_bonus.png"), 			# DAMAGE_BONUS
 	preload(icon_root + "avoidance.png"), 		# AVOIDANCE
 	preload(icon_root + "initiative.png"), 		# INTIATIVE
 	preload(icon_root + "crit_rate.png"), 		# CRIT_RATE
@@ -76,10 +76,10 @@ static func get_icon(type : Type):
 
 var values : Array[int] = [
 	10, # CONSTITUTION
-	10, # ATTACK
+	1, # ATTACK
 	1, # DAMAGE_DIE
 	0, # DAMAGE_BONUS
-	10, # AVOIDANCE
+	5, # AVOIDANCE
 	10, # INTIATIVE
 	1, 	# CRIT_RATE
 	0,	# REGENERATION

@@ -52,6 +52,7 @@ func generate_quest_kill(party : AdventuringParty):
 		var win_p = results.get_win_percentage()
 		if results == null or win_p < TK.QUEST_MIN_PERCENT  or win_p > TK.QUEST_MAX_PERCENT:
 			if iterations < TK.QUEST_MAX_ITERATIONS - 1: # Keep last iteration whatever it is
+				print("iteration " + str(iterations+1))
 				encounter = null
 			else:
 				push_warning("Falling back to innapropriate encounter %s for party %s as reached max iterations" % [party.display_name, encounter.encounter_name])

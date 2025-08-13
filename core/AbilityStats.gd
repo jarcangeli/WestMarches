@@ -86,7 +86,7 @@ var values : Array[int] = [
 	0,	# THORNS
 	0,	# AOE_DAMAGE
 	0,	# POISON_CHANCE
-	1,	# POISON_DAMAGE
+	0,	# POISON_DAMAGE
 	0	# SNIPE_DAMAGE
 ]
 

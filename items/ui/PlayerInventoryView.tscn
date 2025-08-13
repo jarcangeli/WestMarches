@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3ruqllcfspo1"]
+[gd_scene load_steps=7 format=3 uid="uid://b3ruqllcfspo1"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_st5uv"]
 [ext_resource type="Script" uid="uid://84whq0bed761" path="res://items/ui/PlayerInventoryView.gd" id="2"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="3"]
 [ext_resource type="Script" uid="uid://c0p814bkv8qxv" path="res://items/ui/ItemDetailView.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="4_kp0oj"]
-[ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://items/ui/ItemButtonDisplay.tscn" id="5_tjcmg"]
 [ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://core/StatsDisplay.tscn" id="7_tjcmg"]
 
 [node name="InventoryView" type="HBoxContainer" node_paths=PackedStringArray("inventory_display_container", "item_detail_view", "detailed_item_icon")]
@@ -53,10 +52,320 @@ script = ExtResource("3")
 item_display_scene_path = ExtResource("4_kp0oj")
 drop_enabled = false
 
-[node name="ItemButtonDisplay" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("5_tjcmg")]
+[node name="ItemIcon" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
 layout_mode = 2
 
-[node name="ItemIcon" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+[node name="ItemIcon2" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+layout_mode = 2
+
+[node name="ItemIcon3" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+layout_mode = 2
+
+[node name="ItemIcon4" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+layout_mode = 2
+
+[node name="ItemIcon5" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon6" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon7" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon8" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon9" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon10" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon11" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon12" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon13" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon14" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon15" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon16" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon17" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon18" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon19" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon20" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon21" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon22" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon23" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon24" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon25" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon26" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon27" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon28" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon29" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon30" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon31" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon32" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon33" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon34" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon35" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon36" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon37" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon38" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon39" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon40" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon41" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon42" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon43" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon44" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon45" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon46" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon47" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon48" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon49" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon50" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon51" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon52" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon53" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon54" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon55" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon56" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon57" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon58" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon59" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon60" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon61" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon62" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon63" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon64" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon65" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon66" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon67" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon68" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon69" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon70" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon71" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon72" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon73" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon74" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon75" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon76" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon77" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon78" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon79" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
+layout_mode = 2
+
+[node name="ItemIcon80" parent="VBoxContainer/ScrollContainer/MarginContainer/ItemsDisplayContainer" instance=ExtResource("4_kp0oj")]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
@@ -67,9 +376,9 @@ alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 150
 theme_override_constants/margin_bottom = 30
 
 [node name="DetailedItemIcon" parent="VBoxContainer2/MarginContainer" instance=ExtResource("4_kp0oj")]

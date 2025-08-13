@@ -27,7 +27,7 @@ const SLOT_UNLOCK_ORDER_BY_CLASS := {
 	Character.CharacterClass.RANGER:
 		[ Item.Slot.RANGED, Item.Slot.LEGS, Item.Slot.FEET, Item.Slot.BELT, Item.Slot.WEAPON ],
 	Character.CharacterClass.THIEF:
-		[ Item.Slot.WEAPON, Item.Slot.POTION, Item.Slot.RING, Item.Slot.FEET, Item.Slot.CAPE,  ]
+		[ Item.Slot.WEAPON, Item.Slot.POTION, Item.Slot.RING, Item.Slot.FEET, Item.Slot.CAPE  ]
 	}
 
 func experience_from_monster(monster : Character) -> int:

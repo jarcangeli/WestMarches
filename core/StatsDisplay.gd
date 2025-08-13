@@ -22,8 +22,8 @@ func set_stats(values : Array[int]):
 			continue
 		if type == AbilityStats.Type.CRIT_RATE and value == 1:
 			continue
-		if type == AbilityStats.Type.POISON_DAMAGE and value == 1:
-			continue
+		#if type == AbilityStats.Type.POISON_DAMAGE and value == 1:
+			#continue
 		var stat_display = stat_display_scene.instantiate()
 		container.add_child(stat_display)
 		stat_display.set_stat.call_deferred(type, value)

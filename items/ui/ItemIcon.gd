@@ -1,8 +1,6 @@
 extends ItemDisplay
 class_name ItemIcon
 
-@export var min_size := 32
-
 @onready var background_texture: TextureRect = %BackgroundTexture
 @onready var border_texture: TextureRect = %BorderTexture
 @onready var slot_texture: TextureRect = %SlotTexture

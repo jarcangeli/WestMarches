@@ -52,11 +52,11 @@ func load_row(row : Dictionary):
 func generate_random_item() -> Item:
 	var rarity := Globals.Rarity.COMMON
 	var roll = randf()
-	if roll > 1.0 - TuningKnobs.EPIC_CHANCE:
+	if roll > 1.0 - TK.EPIC_CHANCE:
 		rarity = Globals.Rarity.EPIC
-	elif roll > (1.0 - TuningKnobs.EPIC_CHANCE - TuningKnobs.RARE_CHANCE):
+	elif roll > (1.0 - TK.EPIC_CHANCE - TK.RARE_CHANCE):
 		rarity = Globals.Rarity.RARE
-	elif roll > (1.0 - TuningKnobs.EPIC_CHANCE - TuningKnobs.RARE_CHANCE - TuningKnobs.UNCOMMON_CHANCE):
+	elif roll > (1.0 - TK.EPIC_CHANCE - TK.RARE_CHANCE - TK.UNCOMMON_CHANCE):
 		rarity = Globals.Rarity.UNCOMMON
 	
 	var keys = indexes_by_rarity[rarity]
@@ -71,10 +71,10 @@ static func get_weighted_value(values : Array[int]):
 	return sum
 
 static func get_rarity_from_value(value : int):
-	if value > TuningKnobs.EPIC_VALUE:
+	if value > TK.EPIC_VALUE:
 		return Globals.Rarity.EPIC
-	elif value > TuningKnobs.RARE_VALUE: 
+	elif value > TK.RARE_VALUE: 
 		return Globals.Rarity.RARE
-	elif value > TuningKnobs.UNCOMMON_VALUE:
+	elif value > TK.UNCOMMON_VALUE:
 		return Globals.Rarity.UNCOMMON
 	return Globals.Rarity.COMMON

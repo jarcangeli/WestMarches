@@ -4,8 +4,8 @@ extends Node
 
 const DEBUG := true
 
-const QUEST_MIN_PERCENT = 0
-const QUEST_MAX_PERCENT = 100
+const QUEST_MIN_PERCENT = 1
+const QUEST_MAX_PERCENT = 99
 const QUEST_MAX_ITERATIONS = 20
 const QUEST_TRAVEL_ITEM_CHANCE = 1
 

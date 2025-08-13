@@ -3,9 +3,9 @@ class_name EquipmentSlotLayout
 
 func set_character(character : Character):
 	var character_class := character.character_class
-	var slot_unlock_order = TuningKnobs.SLOT_UNLOCK_ORDER_BY_CLASS.get(character_class)
+	var slot_unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(character_class)
 	if not slot_unlock_order:
-		slot_unlock_order = TuningKnobs.SLOT_UNLOCK_ORDER_BY_CLASS.get(Character.CharacterClass.FIGHTER)
+		slot_unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(Character.CharacterClass.FIGHTER)
 	
 	var unlocked_slots = []
 	var level = character.get_level()

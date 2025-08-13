@@ -4,7 +4,7 @@ class_name PlayerInventory
 func _ready():
 	Globals.player_inventory = self
 	
-	if TuningKnobs.DEBUG:
+	if TK.DEBUG:
 		for item_id in ItemDatabase.data_by_index:
 			var item = Item.new(ItemDatabase.get_data_by_index(item_id))
 			add_item(item)

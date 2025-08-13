@@ -43,14 +43,18 @@ func generate_quest_kill(party : AdventuringParty):
 	var encounter : Encounter = null
 	var iterations := 0
 	
-	while encounter == null and iterations < TuningKnobs.QUEST_MAX_ITERATIONS:
+	while encounter == null and iterations < TK.QUEST_MAX_ITERATIONS:
 		encounter = get_encounter(map)
 		if not is_instance_valid(encounter):
 			print("[TODO] No good encounter found to create kill quest, make some more")
 			return null
 		var results := CombatSim.simulate(party.get_characters(), encounter.get_monsters(), 100)
-		if results == null or results.get_win_percentage() < TuningKnobs.QUEST_MIN_PERCENT or results.get_win_percentage() > TuningKnobs.QUEST_MAX_PERCENT:
-			encounter = null
+		var win_p = results.get_win_percentage()
+		if results == null or win_p < TK.QUEST_MIN_PERCENT  or win_p > TK.QUEST_MAX_PERCENT:
+			if iterations < TK.QUEST_MAX_ITERATIONS - 1: # Keep last iteration whatever it is
+				encounter = null
+			else:
+				push_warning("Falling back to innapropriate encounter %s for party %s as reached max iterations" % [party.display_name, encounter.encounter_name])
 		iterations += 1
 	
 	var quest : Quest = quest_scene.instantiate()

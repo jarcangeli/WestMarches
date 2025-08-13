@@ -110,7 +110,7 @@ func play_round():
 			var n = adventurers_alive()
 			if n > 0:
 				# award any exp to the survivors
-				var experience : int = ceil(TuningKnobs.experience_from_monsters(monsters) / float(n))
+				var experience : int = ceil(TK.experience_from_monsters(monsters) / float(n))
 				for adventurer in adventurers:
 					if adventurer.is_alive():
 						adventurer.modify_exp(experience)

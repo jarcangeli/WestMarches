@@ -100,17 +100,17 @@ func set_value(type : AbilityStats.Type, value : int) -> void:
 static var weights : Array[int] = [
 	1, # CONSTITUTION
 	1, # ATTACK
-	3, # DAMAGE_DIE
-	1, # DAMAGE_BONUS
+	6, # DAMAGE_DIE
+	2, # DAMAGE_BONUS
 	1, # AVOIDANCE
 	1, # INTIATIVE
 	10, # CRIT_RATE
 	1,	# REGENERATION
 	1,	# THORNS
-	3,	# AOE_DAMAGE
+	6,	# AOE_DAMAGE
 	1,	# POISON_CHANCE
 	1,	# POISON_DAMAGE
-	2	# SNIPE_DAMAGE
+	4	# SNIPE_DAMAGE
 ]
 
 func get_weighted_value():

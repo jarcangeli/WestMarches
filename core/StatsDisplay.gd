@@ -17,6 +17,8 @@ func set_stats(values : Array[int]):
 	clear_displays()
 	
 	for type in range(0, AbilityStats.Type.SIZE):
+		if len(values) <= type:
+			break
 		var value = values[type]
 		if not show_empty and value == 0:
 			continue

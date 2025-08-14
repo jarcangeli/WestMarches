@@ -98,13 +98,13 @@ func set_value(type : AbilityStats.Type, value : int) -> void:
 
 #TODO: Remove dupe?
 static var weights : Array[int] = [
-	1, # CONSTITUTION
-	1, # ATTACK
-	6, # DAMAGE_DIE
-	2, # DAMAGE_BONUS
-	1, # AVOIDANCE
-	1, # INTIATIVE
-	10, # CRIT_RATE
+	1,	# CONSTITUTION
+	1,	# ATTACK
+	6,	# DAMAGE_DIE
+	2,	# DAMAGE_BONUS
+	1,	# AVOIDANCE
+	1,	# INTIATIVE
+	10,	# CRIT_RATE
 	1,	# REGENERATION
 	1,	# THORNS
 	6,	# AOE_DAMAGE

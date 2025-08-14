@@ -12,6 +12,7 @@ const UNEQUIPPED_COLOUR = "#ffffff"
 var mouse_over : bool = false
 
 func _ready():
+	tween_container = self
 	#$Button.drag_enabled = drag_enabled
 	#$Button.disabled = not select_enabled
 	#$Button.focus_mode = FocusMode.FOCUS_ALL if select_enabled else FocusMode.FOCUS_NONE
@@ -34,7 +35,6 @@ func refresh_display():
 		icon.texture = item.icon
 		name_label.text = item.item_name
 		slot_label.text = Item.slot_to_shortname(item.primary_slot_type)
-		tooltip_text = item.description
 		if item.loaned_character == null: #TODO: equipped slot?
 			modulate = UNEQUIPPED_COLOUR
 		else:

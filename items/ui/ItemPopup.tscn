@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://nstp1h046lac"]
 
-[ext_resource type="Script" uid="uid://dkla5yx0rfhr0" path="res://ItemPopup.gd" id="1_2xrda"]
+[ext_resource type="Script" uid="uid://dkla5yx0rfhr0" path="res://items/ui/ItemPopup.gd" id="1_2xrda"]
 [ext_resource type="PackedScene" uid="uid://dkpr3bn0cncv3" path="res://items/ui/ItemIconDisabled.tscn" id="2_f4ulc"]
 
 [node name="ItemPopup" type="VBoxContainer"]

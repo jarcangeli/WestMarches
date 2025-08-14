@@ -5,6 +5,7 @@ class_name ItemIcon
 @onready var border_texture: TextureRect = %BorderTexture
 @onready var slot_texture: TextureRect = %SlotTexture
 @onready var icon_texture: TextureRect = %IconTexture
+@onready var texture_container: MarginContainer = %TextureContainer
 
 const selected_background_color = Color(0.4, 0.4, 0.4)
 const background_color = Color(0.2, 0.2, 0.2)
@@ -25,6 +26,7 @@ const background_textures := [
 ]
 
 func _ready():
+	tween_container = texture_container
 	randomize_background_texture()
 
 func randomize_background_texture():
@@ -45,7 +47,6 @@ func refresh_display():
 	slot_texture.texture = Item.slot_mini_icons[item.primary_slot_type]
 	var color = Globals.rarity_colours[item.rarity]
 	border_texture.modulate = color
-	tooltip_text = item.item_name #TODO: More info in tooltip
 	background_texture.modulate = background_color
 
 func _get_drag_data(_position):

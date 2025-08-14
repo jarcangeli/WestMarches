@@ -1,8 +1,9 @@
-extends Node
+extends Control
 
 @onready var advance_time_button: Button = %AdvanceTimeButton
 
 func _ready():
+	Globals.game = self
 	debug_generate.call_deferred()
 
 func debug_generate():

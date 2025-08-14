@@ -5,10 +5,15 @@ signal item_selected()
 
 @export var drag_enabled : bool = true
 @export var select_enabled : bool = true
+@export var tooltip_enabled : bool = true
 
 var item : Item = null: get = get_item, set = set_item
 var selected := false
 var hovered = false
+var tooltip : ItemTooltip = null
+var tween_container = null
+
+const tooltip_scene := preload("res://items/ui/ItemTooltip.tscn")
 
 func _ready():
 	refresh_display()
@@ -53,17 +58,37 @@ func on_mouse_excited():
 	set_hovered(false)
 
 func set_hovered(_hovered):
-	hovered = _hovered
-	var margin = -8.0 if hovered else 0.0
-	z_index = int(-margin)
+	if not _hovered:
+		if tooltip:
+			tooltip.queue_free()
+	elif _hovered and not hovered:
+		show_tooltip()
 	
-	# Tween margins
-	var tween_speed = 0.2 if hovered else 0.4
-	var tween1 = get_tree().create_tween()
-	tween1.tween_property(self, "theme_override_constants/margin_left", margin, tween_speed)
-	var tween2 = get_tree().create_tween()
-	tween2.tween_property(self, "theme_override_constants/margin_right", margin, tween_speed)
-	var tween3 = get_tree().create_tween()
-	tween3.tween_property(self, "theme_override_constants/margin_top", margin, tween_speed)
-	var tween4 = get_tree().create_tween()
-	tween4.tween_property(self, "theme_override_constants/margin_bottom", margin, tween_speed)
+	hovered = _hovered
+
+	
+	if TK.ENABLE_ITEM_ICON_TWEEN and tween_container:
+		# Tween margins
+		var margin = -8.0 if hovered else 0.0
+		tween_container.z_index = int(-margin)
+		
+		var tween_speed = 0.2 if hovered else 0.4
+		var tween1 = get_tree().create_tween()
+		tween1.tween_property(tween_container, "theme_override_constants/margin_left", margin, tween_speed)
+		var tween2 = get_tree().create_tween()
+		tween2.tween_property(tween_container, "theme_override_constants/margin_right", margin, tween_speed)
+		var tween3 = get_tree().create_tween()
+		tween3.tween_property(tween_container, "theme_override_constants/margin_top", margin, tween_speed)
+		var tween4 = get_tree().create_tween()
+		tween4.tween_property(tween_container, "theme_override_constants/margin_bottom", margin, tween_speed)
+
+func show_tooltip():
+	if not tooltip_enabled:
+		return
+	if tooltip:
+		tooltip.queue_free()
+	tooltip = tooltip_scene.instantiate()
+	Globals.game.add_child(tooltip)
+	tooltip.set_item(item)
+	var tooltip_pos = get_global_rect().position + Vector2(0, get_global_rect().size[1] + 7.0)
+	tooltip.set_position(tooltip_pos)

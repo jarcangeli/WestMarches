@@ -59,6 +59,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 1
 drag_enabled = false
+tooltip_enabled = false
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 visible = false

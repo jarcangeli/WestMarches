@@ -24,16 +24,4 @@ layout_mode = 2
 [node name="StatLabel" parent="StatsGrid/StatDisplay2" index="0"]
 text = "201"
 
-[node name="StatDisplay3" parent="StatsGrid" instance=ExtResource("2_54irn")]
-layout_mode = 2
-
-[node name="StatDisplay4" parent="StatsGrid" instance=ExtResource("2_54irn")]
-layout_mode = 2
-
-[node name="StatDisplay5" parent="StatsGrid" instance=ExtResource("2_54irn")]
-layout_mode = 2
-
-[node name="StatDisplay6" parent="StatsGrid" instance=ExtResource("2_54irn")]
-layout_mode = 2
-
 [editable path="StatsGrid/StatDisplay2"]

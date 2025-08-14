@@ -398,34 +398,34 @@ script = ExtResource("4")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/ItemDetailView"]
+[node name="BiggerItemTooltip" type="MarginContainer" parent="VBoxContainer2/ItemDetailView"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/ItemDetailView/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/ItemDetailView/BiggerItemTooltip"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="ItemNameLabel" type="Label" parent="VBoxContainer2/ItemDetailView/MarginContainer/VBoxContainer"]
+[node name="ItemNameLabel" type="Label" parent="VBoxContainer2/ItemDetailView/BiggerItemTooltip/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
 text = "name"
 
-[node name="DetailLabel" type="Label" parent="VBoxContainer2/ItemDetailView/MarginContainer/VBoxContainer"]
+[node name="DetailLabel" type="Label" parent="VBoxContainer2/ItemDetailView/BiggerItemTooltip/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Item detail goes here"
 horizontal_alignment = 1
 
-[node name="StatsDisplay" parent="VBoxContainer2/ItemDetailView/MarginContainer/VBoxContainer" instance=ExtResource("7_tjcmg")]
+[node name="StatsDisplay" parent="VBoxContainer2/ItemDetailView/BiggerItemTooltip/VBoxContainer" instance=ExtResource("7_tjcmg")]
 unique_name_in_owner = true
 layout_mode = 2
 show_empty = false

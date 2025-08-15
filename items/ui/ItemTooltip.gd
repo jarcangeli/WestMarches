@@ -1,4 +1,4 @@
-extends Control
+extends PanelContainer
 class_name ItemTooltip
 
 @onready var stats_display: StatsDisplay = %StatsDisplay
@@ -13,3 +13,6 @@ func set_item(item : Item):
 		stats_display.set_stats(item.stats.values)
 	%ItemNameLabel.text = item_name
 	%DetailLabel.text = item_detail
+	
+	var style_box = get_theme_stylebox("panel")
+	style_box.set('bg_color', Globals.rarity_colours[item.rarity])

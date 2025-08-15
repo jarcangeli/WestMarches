@@ -20,9 +20,6 @@ var tooltip : ItemTooltip = null
 var tween_container = null
 
 const tooltip_scene := preload("res://items/ui/ItemTooltip.tscn")
-const selected_background_color = Color(0.4, 0.4, 0.4)
-const background_color = Color(0.2, 0.2, 0.2)
-
 const anim_speed = 4.0
 
 const border_base_texture = preload("res://assets/icons/border.png")
@@ -43,6 +40,7 @@ func _ready():
 	SignalBus.item_consumed.connect(on_item_consumed)
 	tween_container = texture_container
 	randomize_background_texture()
+	slot_texture.modulate = Globals.slot_colour
 
 func randomize_background_texture():
 	background_texture.texture = background_textures.pick_random()
@@ -63,7 +61,7 @@ func refresh_display():
 	slot_texture.texture = Item.slot_mini_icons[item.primary_slot_type]
 	var color = Globals.rarity_colours[item.rarity]
 	border_texture.modulate = color
-	background_texture.modulate = background_color
+	background_texture.modulate = Globals.background_colour_1
 
 func _get_drag_data(_position):
 	if not drag_enabled:
@@ -77,9 +75,9 @@ func set_selected(_selected):
 	if not select_enabled:
 		return
 	if _selected:
-		background_texture.modulate = selected_background_color
+		background_texture.modulate = Globals.background_colour_2
 	else:
-		background_texture.modulate = background_color
+		background_texture.modulate = Globals.background_colour_1
 	
 	if not select_enabled:
 		return
@@ -148,5 +146,5 @@ func show_tooltip():
 	tooltip = tooltip_scene.instantiate()
 	Globals.game.add_child(tooltip)
 	tooltip.set_item(item)
-	var tooltip_pos = get_global_rect().position + Vector2(0, get_global_rect().size[1] + 7.0)
+	var tooltip_pos = get_global_rect().position + Vector2(-4, get_global_rect().size[1] + 7.0)
 	tooltip.set_position(tooltip_pos)

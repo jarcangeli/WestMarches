@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://d12iqlv4bh3op"]
+[gd_scene load_steps=5 format=3 uid="uid://d12iqlv4bh3op"]
 
 [ext_resource type="Script" uid="uid://cimvti8jeu4u7" path="res://items/ui/ItemTooltip.gd" id="1_erslf"]
 [ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://core/StatsDisplay.tscn" id="1_m6mtj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erslf"]
-bg_color = Color(0.197937, 0.197937, 0.197937, 1)
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lwb4"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="ItemTooltip" type="PanelContainer"]
 z_index = 10
@@ -16,7 +19,18 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_erslf")
 script = ExtResource("1_erslf")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Panel" type="Panel" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1lwb4")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 4
@@ -24,21 +38,21 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="ItemNameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="ItemNameLabel" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 18
 text = "name"
 
-[node name="DetailLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="DetailLabel" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -46,7 +60,7 @@ size_flags_horizontal = 3
 text = "Item detail goes here"
 horizontal_alignment = 1
 
-[node name="StatsDisplay" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_m6mtj")]
+[node name="StatsDisplay" parent="MarginContainer2/MarginContainer/VBoxContainer" instance=ExtResource("1_m6mtj")]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2

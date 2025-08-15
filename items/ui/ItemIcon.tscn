@@ -42,6 +42,16 @@ texture = ExtResource("2_7lq8n")
 expand_mode = 4
 stretch_mode = 4
 
+[node name="IconTexture" type="TextureRect" parent="TextureContainer"]
+unique_name_in_owner = true
+modulate = Color(0.88, 0.7656, 0.5368, 1)
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_o0ggu")
+expand_mode = 4
+stretch_mode = 4
+
 [node name="BorderTexture" type="TextureRect" parent="TextureContainer"]
 unique_name_in_owner = true
 texture_filter = 1
@@ -53,19 +63,11 @@ stretch_mode = 4
 
 [node name="SlotTexture" type="TextureRect" parent="TextureContainer"]
 unique_name_in_owner = true
+modulate = Color(0.729412, 0.67451, 0.741176, 1)
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("3_5kxxi")
-expand_mode = 4
-stretch_mode = 4
-
-[node name="IconTexture" type="TextureRect" parent="TextureContainer"]
-unique_name_in_owner = true
-texture_filter = 1
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("4_o0ggu")
 expand_mode = 4
 stretch_mode = 4
 

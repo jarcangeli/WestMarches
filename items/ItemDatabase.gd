@@ -20,7 +20,10 @@ func load_row(row : Dictionary):
 	item_data.id = int(row["id"])
 	item_data.item_name = row["name"]
 	item_data.description = row["description"]
-	item_data.icon = icons_by_name[row["icon"]] #TODO: Test if wrong
+	var icon_name = row["icon"]
+	if not icon_name.ends_with('.png'):
+		icon_name += '.png'
+	item_data.icon = icons_by_name[icon_name] #TODO: Test if wrong
 	item_data.primary_slot_type = Item.shortname_to_slot(row["slot"])
 	item_data.consumed_on_acquire = bool(int(row["consumed"]))
 	item_data.currency_generated =int(row["currency_generated"])

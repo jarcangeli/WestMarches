@@ -104,7 +104,7 @@ text = "Loot"
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="LootContainer" type="GridContainer" parent="VBoxContainer/CenterContainer" node_paths=PackedStringArray("item_display_container")]
+[node name="LootContainer" type="GridContainer" parent="VBoxContainer/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -112,7 +112,6 @@ columns = 3
 script = ExtResource("4_yis78")
 item_display_scene_path = ExtResource("5_dr7r7")
 drop_enabled = false
-item_display_container = NodePath("")
 
 [connection signal="pressed" from="CenterMarginContainer/RewardUIContainer/TakeRewardsButton" to="." method="_on_take_rewards_button_pressed"]
 [connection signal="pressed" from="CenterMarginContainer/RewardUIContainer/AbandonQuestButton" to="." method="_on_abandon_quest_button_pressed"]

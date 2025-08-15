@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1ycsca7qo073"]
+[gd_scene load_steps=4 format=3 uid="uid://b1ycsca7qo073"]
 
 [ext_resource type="Script" uid="uid://dbt271x4hchn5" path="res://characters/ui/CharacterSummaryUI.gd" id="1_hgpji"]
 [ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="2_43xls"]
-[ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://items/ui/ItemButtonDisplay.tscn" id="2_hgpji"]
 [ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://core/StatsDisplay.tscn" id="3_j28tf"]
 
 [node name="CharacterSummaryUI" type="VBoxContainer"]
@@ -88,11 +87,5 @@ unique_name_in_owner = true
 layout_mode = 2
 columns = 3
 
-[node name="ItemButtonDisplay" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
-layout_mode = 2
-
-[node name="ItemButtonDisplay2" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
-layout_mode = 2
-
-[node name="ItemButtonDisplay3" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_hgpji")]
+[node name="ItemIcon" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/ItemDisplayContainer" instance=ExtResource("2_43xls")]
 layout_mode = 2

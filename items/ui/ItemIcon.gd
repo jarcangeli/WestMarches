@@ -1,5 +1,11 @@
-extends ItemDisplay
+extends Control
 class_name ItemIcon
+
+signal item_selected()
+
+@export var drag_enabled : bool = true
+@export var select_enabled : bool = true
+@export var tooltip_enabled : bool = true
 
 @onready var background_texture: TextureRect = %BackgroundTexture
 @onready var border_texture: TextureRect = %BorderTexture
@@ -7,6 +13,13 @@ class_name ItemIcon
 @onready var icon_texture: TextureRect = %IconTexture
 @onready var texture_container: MarginContainer = %TextureContainer
 
+var item : Item = null: get = get_item, set = set_item
+var selected := false
+var hovered = false
+var tooltip : ItemTooltip = null
+var tween_container = null
+
+const tooltip_scene := preload("res://items/ui/ItemTooltip.tscn")
 const selected_background_color = Color(0.4, 0.4, 0.4)
 const background_color = Color(0.2, 0.2, 0.2)
 
@@ -26,12 +39,15 @@ const background_textures := [
 ]
 
 func _ready():
+	refresh_display()
+	SignalBus.item_consumed.connect(on_item_consumed)
 	tween_container = texture_container
 	randomize_background_texture()
 
 func randomize_background_texture():
 	background_texture.texture = background_textures.pick_random()
 
+#TODO: Scuffed Texture2D animation
 var elapsed_time := 0.0
 func _process(delta: float) -> void:
 	elapsed_time = elapsed_time + delta * anim_speed #TODO: This has to be awful perf
@@ -64,4 +80,73 @@ func set_selected(_selected):
 		background_texture.modulate = selected_background_color
 	else:
 		background_texture.modulate = background_color
-	super.set_selected(_selected)
+	
+	if not select_enabled:
+		return
+	selected = _selected
+	if selected:
+		item_selected.emit()
+
+func set_item(new_item):
+	item = new_item
+	refresh_display()
+
+func get_item():
+	return item
+
+func on_other_item_selected(other_item):
+	if item != other_item:
+		set_selected(false)
+
+func on_item_consumed(consumed_item : Item):
+	if item and consumed_item == item:
+		queue_free()
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		set_selected(!selected)
+
+func on_mouse_entered():
+	set_hovered(true)
+	if select_enabled and not selected:
+		set_selected(true)
+	AudioBus.play.emit(AudioBus.object_interact)
+
+func on_mouse_excited():
+	set_hovered(false)
+
+func set_hovered(_hovered):
+	if not _hovered:
+		if tooltip:
+			tooltip.queue_free()
+	elif _hovered and not hovered:
+		show_tooltip()
+	
+	hovered = _hovered
+
+	
+	if TK.ENABLE_ITEM_ICON_TWEEN and tween_container and not is_queued_for_deletion():
+		# Tween margins
+		var margin = -8.0 if hovered else 0.0
+		tween_container.z_index = int(-margin)
+		
+		var tween_speed = 0.2 if hovered else 0.4
+		var tween1 = get_tree().create_tween()
+		tween1.tween_property(tween_container, "theme_override_constants/margin_left", margin, tween_speed)
+		var tween2 = get_tree().create_tween()
+		tween2.tween_property(tween_container, "theme_override_constants/margin_right", margin, tween_speed)
+		var tween3 = get_tree().create_tween()
+		tween3.tween_property(tween_container, "theme_override_constants/margin_top", margin, tween_speed)
+		var tween4 = get_tree().create_tween()
+		tween4.tween_property(tween_container, "theme_override_constants/margin_bottom", margin, tween_speed)
+
+func show_tooltip():
+	if not tooltip_enabled:
+		return
+	if tooltip:
+		tooltip.queue_free()
+	tooltip = tooltip_scene.instantiate()
+	Globals.game.add_child(tooltip)
+	tooltip.set_item(item)
+	var tooltip_pos = get_global_rect().position + Vector2(0, get_global_rect().size[1] + 7.0)
+	tooltip.set_position(tooltip_pos)

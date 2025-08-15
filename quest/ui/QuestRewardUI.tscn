@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfe2atjcmt605"]
+[gd_scene load_steps=6 format=3 uid="uid://bfe2atjcmt605"]
 
 [ext_resource type="Script" uid="uid://dpfordpnms0sa" path="res://quest/ui/QuestRewardUI.gd" id="1_0m5yx"]
 [ext_resource type="Script" uid="uid://jm3yoj5s1wvc" path="res://items/ui/ItemDropArea.gd" id="1_o6fn8"]
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="2_0m5yx"]
-[ext_resource type="PackedScene" uid="uid://dkpr3bn0cncv3" path="res://items/ui/ItemIconDisabled.tscn" id="4_rc7m1"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="4_yis78"]
-[ext_resource type="PackedScene" uid="uid://wx5sih5dc80a" path="res://items/ui/ItemButtonDisplayDisabled.tscn" id="6_2osik"]
+[ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="5_dr7r7"]
 
 [node name="QuestRewardUI" type="HBoxContainer"]
 anchors_preset = 15
@@ -51,7 +50,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("4_yis78")
-item_display_scene_path = ExtResource("4_rc7m1")
 item_display_container = NodePath(".")
 
 [node name="ItemsLabel" type="Label" parent="CenterMarginContainer/RewardUIContainer/ItemsDisplayContainer"]
@@ -84,7 +82,6 @@ text = "Back"
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("4_yis78")
-item_display_scene_path = ExtResource("6_2osik")
 item_display_container = NodePath(".")
 
 [node name="Label" type="Label" parent="CenterMarginContainer/RewardUIContainer/ReturnedItemsDisplay"]
@@ -96,18 +93,26 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LootContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("item_display_container")]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LootLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Loot"
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LootContainer" type="GridContainer" parent="VBoxContainer/CenterContainer" node_paths=PackedStringArray("item_display_container")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+columns = 3
 script = ExtResource("4_yis78")
-item_display_scene_path = ExtResource("6_2osik")
+item_display_scene_path = ExtResource("5_dr7r7")
 drop_enabled = false
-item_display_container = NodePath(".")
-
-[node name="LootLabel" type="Label" parent="LootContainer"]
-layout_mode = 2
-text = "Loot"
+item_display_container = NodePath("")
 
 [connection signal="pressed" from="CenterMarginContainer/RewardUIContainer/TakeRewardsButton" to="." method="_on_take_rewards_button_pressed"]
 [connection signal="pressed" from="CenterMarginContainer/RewardUIContainer/AbandonQuestButton" to="." method="_on_abandon_quest_button_pressed"]

@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource type="PackedScene" uid="uid://ckvawd0d573sn" path="res://items/ui/ItemButtonDisplay.tscn" id="1"]
-
-[node name="ItemInventoryDisplay" instance=ExtResource( 1 )]
-drag_enabled = false
-
-[node name="Button" parent="." index="0"]
-toggle_mode = true

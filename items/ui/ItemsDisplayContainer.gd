@@ -4,7 +4,7 @@ class_name ItemDisplayContainer
 signal item_selected(item)
 
 @export var select_enabled := true
-@export var item_display_scene_path : Resource = preload("res://items/ui/ItemButtonDisplay.tscn")
+@export var item_display_scene_path : Resource = preload("res://items/ui/ItemIconDisabled.tscn")
 @export var item_container : ItemContainer = null #if no item container set, acts as a view on other containers
 
 func _ready():
@@ -20,7 +20,7 @@ func set_item_container(container : ItemContainer):
 
 func clear_item_views():
 	for node in get_children():
-		if node is ItemButtonDisplay or node is ItemIcon:
+		if node is ItemIcon:
 			remove_child(node)
 			node.queue_free()
 
@@ -69,7 +69,7 @@ func remove_item_display(item):
 func get_displayed_items():
 	var items = []
 	for node in get_children():
-		if node is ItemButtonDisplay or node is ItemIcon:
+		if node is ItemIcon:
 			var item = node.item
 			if item:
 				items.append(node.item)
@@ -78,18 +78,13 @@ func get_displayed_items():
 func get_selected_items():
 	var items = []
 	for node in get_children():
-		if node is ItemButtonDisplay:
-			push_error("Trying to get selected items but ItemButtonDisplays aren't selectable")
-		elif node is ItemIcon and node.selected:
+		if node is ItemIcon and node.selected:
 			items.append(node.item)
 	return items
 
 func get_unselected_items():
 	var items = []
 	for node in get_children():
-		if node is ItemButtonDisplay:
-			push_warning("Trying to get unselected items but ItemButtonDisplays aren't selectable")
-			items.append(node.item)
-		elif node is ItemIcon and not node.selected:
+		if node is ItemIcon and not node.selected:
 			items.append(node.item)
 	return items

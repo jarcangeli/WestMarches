@@ -4,7 +4,7 @@ class_name QuestRewardUI
 signal quest_abandoned()
 signal quest_finished()
 
-@onready var party_loot_display: VBoxContainer = %LootContainer
+@onready var party_loot_display: Container = %LootContainer
 @onready var returned_items_display: ItemDisplayContainer = %ReturnedItemsDisplay
 @onready var player_loot_display: ItemDisplayContainer = %ItemsDisplayContainer
 @onready var coins_reward_label: Label = %CoinsRewardLabel

@@ -20,8 +20,8 @@ func load_row(row : Dictionary):
 	item_data.id = int(row["id"])
 	item_data.item_name = row["name"]
 	item_data.description = row["description"]
-	var icon_name = row["icon"]
-	if not icon_name.ends_with('.png'):
+	var icon_name : String = row["icon"]
+	if not icon_name.ends_with('.png') and not icon_name.ends_with(".svg"):
 		icon_name += '.png'
 	item_data.icon = icons_by_name[icon_name] #TODO: Test if wrong
 	item_data.primary_slot_type = Item.shortname_to_slot(row["slot"])

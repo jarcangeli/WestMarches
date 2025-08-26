@@ -15,6 +15,7 @@ signal quest_started()
 @onready var choice_threshold_label: Label = %ChoiceThresholdLabel
 @onready var reward_progress: ProgressBar = %RewardProgressBar
 @onready var start_quest_button: Button = %StartQuestButton
+@onready var character_equip_container: TabContainer = %CharacterEquipContainer
 
 var current_quest : Quest = null
 var loaned_item_value = 0
@@ -26,6 +27,8 @@ func _ready():
 	SignalBus.item_equipped.connect(on_item_equipped)
 	SignalBus.item_unequipped.connect(on_item_unequipped)
 	update_start_quest_button_state()
+	
+	inventory_display_container.item_selected.connect(on_item_selected)
 
 func on_quest_selected(quest : Quest):
 	current_quest = quest
@@ -102,3 +105,17 @@ func _on_start_quest_button_pressed() -> void:
 
 func update_start_quest_button_state():
 	start_quest_button.disabled = loaned_item_value <= 0
+
+func on_item_selected(item : Item):
+	#Try and equip to a slot on the active character
+	var slot = item.primary_slot_type
+	var character_equip_ui = character_equip_container.get_current_tab_control()
+	if not character_equip_ui or not character_equip_ui is CharacterEquipUI:
+		#TODO: Player facing popup
+		push_warning("Could not equip item as no valid character UI")
+		return
+	var containers = character_equip_ui.equipment_layout.get_equipment_containers()
+	for container : EquipmentContainer in containers:
+		if container.slot == slot:
+			container.set_item(item)
+			return

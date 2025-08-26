@@ -29,6 +29,9 @@ func _drop_data(_position, data):
 		return false
 	var _item : Item = data.get_item()
 	print("Dropped item " + _item.item_name)
+	set_item(_item)
+
+func set_item(_item : Item):
 	item = _item
 	SignalBus.item_equipped.emit(_item, self)
 	update_item_view()

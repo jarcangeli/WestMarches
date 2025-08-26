@@ -1,13 +1,14 @@
 extends ItemDropArea
 class_name ItemDisplayContainer
 
-signal item_selected(item)
+signal item_selected(item : Item)
 
 @export var select_enabled := true
 @export var item_display_scene_path : Resource = preload("res://items/ui/ItemIconDisabled.tscn")
 @export var item_container : ItemContainer = null #if no item container set, acts as a view on other containers
 
 func _ready():
+	clear_item_views()
 	set_item_container(item_container)
 	super._ready()
 

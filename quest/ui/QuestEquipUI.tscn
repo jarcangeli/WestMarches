@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgnhuy66p3u67"]
+[gd_scene load_steps=9 format=3 uid="uid://dgnhuy66p3u67"]
 
 [ext_resource type="Script" uid="uid://b6hbmx8mg0bv0" path="res://quest/ui/QuestEquipUI.gd" id="1_gtgdr"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="2_e2btp"]
 [ext_resource type="PackedScene" uid="uid://cjy6e3ym3cu6t" path="res://characters/ui/CharacterEquipUI.tscn" id="3_7p7gu"]
 [ext_resource type="Texture2D" uid="uid://oixhqqnlw8a4" path="res://assets/icons/line.png" id="4_dexsc"]
+[ext_resource type="PackedScene" uid="uid://dkpr3bn0cncv3" path="res://items/ui/ItemIconDisabled.tscn" id="4_h2eiy"]
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="4_r64x3"]
 [ext_resource type="Texture2D" uid="uid://b6gypqhutgbfp" path="res://assets/icons/question.png" id="5_olxkv"]
 [ext_resource type="Texture2D" uid="uid://bsj0q7eqljq3y" path="res://assets/icons/picker.png" id="6_h2eiy"]
@@ -42,11 +43,24 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="InventoryDisplayContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="InventoryDisplayContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+columns = 3
 script = ExtResource("2_e2btp")
+
+[node name="ItemIconDisabled" parent="VBoxContainer/ScrollContainer/MarginContainer/InventoryDisplayContainer" instance=ExtResource("4_h2eiy")]
+layout_mode = 2
+
+[node name="ItemIconDisabled2" parent="VBoxContainer/ScrollContainer/MarginContainer/InventoryDisplayContainer" instance=ExtResource("4_h2eiy")]
+layout_mode = 2
+
+[node name="ItemIconDisabled3" parent="VBoxContainer/ScrollContainer/MarginContainer/InventoryDisplayContainer" instance=ExtResource("4_h2eiy")]
+layout_mode = 2
+
+[node name="ItemIconDisabled4" parent="VBoxContainer/ScrollContainer/MarginContainer/InventoryDisplayContainer" instance=ExtResource("4_h2eiy")]
+layout_mode = 2
 
 [node name="CenterMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -241,6 +255,7 @@ text = "ADVENTURING PARTY"
 horizontal_alignment = 1
 
 [node name="CharacterEquipContainer" type="TabContainer" parent="PartyContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

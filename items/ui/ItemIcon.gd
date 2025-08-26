@@ -6,6 +6,7 @@ signal item_selected()
 @export var drag_enabled : bool = true
 @export var select_enabled : bool = true
 @export var tooltip_enabled : bool = true
+@export var hover_select_enabled : bool = false
 
 @onready var background_texture: TextureRect = %BackgroundTexture
 @onready var border_texture: TextureRect = %BorderTexture
@@ -101,12 +102,12 @@ func on_item_consumed(consumed_item : Item):
 		queue_free()
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index in [1, 2, 3]:
 		set_selected(!selected)
 
 func on_mouse_entered():
 	set_hovered(true)
-	if select_enabled and not selected:
+	if select_enabled and hover_select_enabled and not selected:
 		set_selected(true)
 	AudioBus.play.emit(AudioBus.object_interact)
 

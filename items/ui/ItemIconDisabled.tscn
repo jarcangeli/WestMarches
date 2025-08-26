@@ -3,6 +3,4 @@
 [ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="1_fl3sd"]
 
 [node name="ItemIconDisabled" instance=ExtResource("1_fl3sd")]
-size_flags_horizontal = 4
-size_flags_vertical = 4
 drag_enabled = false

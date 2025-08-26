@@ -1,4 +1,5 @@
 extends VBoxContainer
+class_name CharacterEquipUI
 
 @onready var equipment_layout: EquipmentSlotLayout = %EquipmentLayout
 

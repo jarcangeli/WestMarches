@@ -11,7 +11,7 @@ func set_item(item : Item):
 		item_name = item.item_name
 		item_detail = item.description
 		stats_display.set_stats(item.stats.values)
-	%ItemNameLabel.text = item_name
+	%ItemNameLabel.text = item_name + (" (loaned)" if item.loaned_character else "")
 	%DetailLabel.text = item_detail
 	
 	var style_box = get_theme_stylebox("panel")

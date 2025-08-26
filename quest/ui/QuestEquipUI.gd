@@ -116,6 +116,6 @@ func on_item_selected(item : Item):
 		return
 	var containers = character_equip_ui.equipment_layout.get_equipment_containers()
 	for container : EquipmentContainer in containers:
-		if container.slot == slot:
+		if container.slot == slot and container.drop_enabled:
 			container.set_item(item)
 			return

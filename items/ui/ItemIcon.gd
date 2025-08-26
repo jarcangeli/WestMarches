@@ -7,12 +7,14 @@ signal item_selected()
 @export var select_enabled : bool = true
 @export var tooltip_enabled : bool = true
 @export var hover_select_enabled : bool = false
+@export var show_loaned_overlay : bool = true
 
 @onready var background_texture: TextureRect = %BackgroundTexture
 @onready var border_texture: TextureRect = %BorderTexture
 @onready var slot_texture: TextureRect = %SlotTexture
 @onready var icon_texture: TextureRect = %IconTexture
 @onready var texture_container: MarginContainer = %TextureContainer
+@onready var loaned_texture: TextureRect = %LoanedTexture
 
 var item : Item = null: get = get_item, set = set_item
 var selected := false
@@ -63,6 +65,7 @@ func refresh_display():
 	var color = Globals.rarity_colours[item.rarity]
 	border_texture.modulate = color
 	background_texture.modulate = Globals.background_colour_1
+	loaned_texture.visible = show_loaned_overlay and item.loaned_character
 
 func _get_drag_data(_position):
 	if not drag_enabled:
@@ -85,6 +88,8 @@ func set_selected(_selected):
 	selected = _selected
 	if selected:
 		item_selected.emit()
+	
+	refresh_display.call_deferred()
 
 func set_item(new_item):
 	item = new_item

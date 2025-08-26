@@ -112,10 +112,15 @@ static func shortname_to_slot(slot_name):
 	return Slot.NONE
 
 static func make_item_preview(item) -> TextureRect:
+	#var preview_scene := load("res://items/ui/ItemIconDisabled.tscn")
+	#var preview = preview_scene.instantiate()
+	#preview.set_item(item)
+	#return preview
 	var sprite = TextureRect.new()
+	sprite.modulate = Color("#e0c389")
 	if is_instance_valid(item):
 		sprite.texture = item.icon
-	return sprite
+	return sprite #TODO: Does this get deleted ever?
 
 func _init(item_data : ItemData):
 	id = item_data.id

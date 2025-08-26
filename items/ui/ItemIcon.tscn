@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwt2awegps8rb"]
+[gd_scene load_steps=7 format=3 uid="uid://dwt2awegps8rb"]
 
 [ext_resource type="Script" uid="uid://dm7abjaa5541x" path="res://items/ui/ItemIcon.gd" id="1_7lq8n"]
 [ext_resource type="Texture2D" uid="uid://cw3cvgawjmk68" path="res://assets/icons/backgrounds/background_checked.png" id="2_7lq8n"]
 [ext_resource type="Texture2D" uid="uid://dgurk74pav4dr" path="res://assets/icons/slots/weapon_slot.png" id="3_5kxxi"]
 [ext_resource type="Texture2D" uid="uid://q20mrmbd2fdt" path="res://assets/icons/border_inner.png" id="3_7lq8n"]
 [ext_resource type="Texture2D" uid="uid://c4fdfngkvwsdv" path="res://assets/icons/items/scimitar.png" id="4_o0ggu"]
+[ext_resource type="Texture2D" uid="uid://bd725f0naaap1" path="res://assets/icons/l.png" id="6_5kxxi"]
 
 [node name="ItemIcon" type="MarginContainer"]
 custom_minimum_size = Vector2(32, 32)
@@ -68,6 +69,16 @@ texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("3_5kxxi")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="LoanedTexture" type="TextureRect" parent="TextureContainer"]
+unique_name_in_owner = true
+modulate = Color(1, 0.38, 0.38, 0.717647)
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("6_5kxxi")
 expand_mode = 4
 stretch_mode = 4
 

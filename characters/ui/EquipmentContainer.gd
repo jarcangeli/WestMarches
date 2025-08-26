@@ -60,7 +60,7 @@ func update_item_view():
 	if item:
 		item_view = Item.make_item_preview(item)
 		if item_view:
-			item_view.modulate = Color.WHITE
+			item_view.modulate = Color("#e0c389")
 	else:
 		item_view = Item.make_item_preview(base_item)
 		if item_view:

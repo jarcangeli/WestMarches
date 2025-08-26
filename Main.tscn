@@ -269,6 +269,7 @@ text = "0 gp"
 script = ExtResource("14")
 
 [node name="TextureRect" type="TextureRect" parent="GameWindow/TopBar/HBoxContainer"]
+modulate = Color(0.878431, 0.764706, 0.537255, 1)
 layout_mode = 2
 texture = ExtResource("23_bg4s2")
 

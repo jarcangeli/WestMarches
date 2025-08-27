@@ -6,6 +6,12 @@ var encounter_name : String
 var description : String
 var repeatable := false
 
+#TODO: Why am I duplicating all these?
+var on_start_message : String
+var on_combat_start_message : String
+var on_win_message : String
+var on_lose_message : String
+
 var monster_names : Array[String] = []
 var item_names : Array[String] = []
 
@@ -18,6 +24,10 @@ func _init(data : EncounterData = null): #TODO: Remove null default
 	name = encounter_name
 	monster_names = data.monster_names
 	item_names = data.item_names
+	on_start_message = data.on_start_message
+	on_combat_start_message = data.on_combat_start_message
+	on_win_message = data.on_win_message
+	on_lose_message = data.on_lose_message
 	generate_monsters()
 	generate_items()
 

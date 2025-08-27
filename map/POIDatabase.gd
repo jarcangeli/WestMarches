@@ -45,7 +45,21 @@ func load_pois_from_configs(path):
 					encounter_data.monster_names.append(config.get_value(section, key))
 				if key.begins_with("item"):
 					encounter_data.item_names.append(config.get_value(section, key))
+			encounter_data.on_start_message = config.get_value(section, "start_message", "")
+			encounter_data.on_combat_start_message = \
+				config.get_value(section, "combat_start_message", default_combat_start_message(encounter_data))
+			encounter_data.on_win_message = config.get_value(section, "win_message", "The monsters were defeated!")
+			encounter_data.on_lose_message = config.get_value(section, "lose_message", "The party was defeated...")
+
 			encounters.append(encounter_data)
 		poi_data.encounters = encounters
 		if poi_data.poi_name != "Template":
 			pois_by_name[poi_data.poi_name] = poi_data
+
+func default_combat_start_message(data : EncounterData):
+	if data.monster_names.is_empty():
+		return "The party find no creatures to slay"
+	elif len(data.monster_names) == 1:
+		return "The party come across %s" % data.monster_names[0]
+	else:
+		return "The party come across %s" % ', '.join(data.monster_names)

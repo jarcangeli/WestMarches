@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://2c7pawofwn6o"]
+[gd_scene load_steps=4 format=3 uid="uid://2c7pawofwn6o"]
 
 [ext_resource type="Script" uid="uid://c0y4dem6yj1n5" path="res://core/combat/CombatDamageMeter.gd" id="1_w5h5s"]
 [ext_resource type="PackedScene" uid="uid://4wmn2uapgel4" path="res://core/combat/DamageBar.tscn" id="2_fkamk"]
+[ext_resource type="Texture2D" uid="uid://bhir43ek1ivf0" path="res://assets/icons/skull.png" id="3_6cgdr"]
 
 [node name="DamageMeter" type="MarginContainer" node_paths=PackedStringArray("container")]
 anchors_preset = 15
@@ -22,7 +23,12 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
-columns = 3
+columns = 4
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_6cgdr")
+expand_mode = 3
 
 [node name="CharacterLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

@@ -13,9 +13,11 @@ enum Stat
 }
 
 var character_name : String
+var adventurer := false
 var damage_done : Array[int]
 var damage_received : Array[int]
 var healing := 0
+var dead := false
 
 func _init():
 	damage_done = []

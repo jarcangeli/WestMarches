@@ -44,10 +44,16 @@ func reset():
 	for adventurer in adventurers:
 		if adventurer.is_alive():
 			remaining_adventurers_alive += 1
+			var summary = CharacterCombatSummary.new()
+			summary.adventurer = true
+			combat_summary[adventurer] = summary
 	remaining_monsters_alive = 0
 	for monster in monsters:
 		if monster.is_alive():
 			remaining_monsters_alive += 1
+			var summary = CharacterCombatSummary.new()
+			summary.adventurer = false
+			combat_summary[monster] = summary
 
 func set_simulated(enabled : bool):
 	simulated = enabled
@@ -221,6 +227,7 @@ func target_weakest_character(characters):
 func on_kill_character(character : Character):
 	add_story(character.name + " was slain")
 	killed_characters.append(character)
+	combat_summary[character].dead = true
 	if character in monsters:
 		remaining_monsters_alive -= 1
 	elif character in adventurers:

@@ -3,7 +3,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkamk"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cgdr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex823"]
 bg_color = Color(0.6, 0.276, 0.276, 1)
 
 [node name="ProgressBar" type="ProgressBar"]
@@ -12,6 +12,6 @@ offset_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_fkamk")
-theme_override_styles/fill = SubResource("StyleBoxFlat_6cgdr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ex823")
 value = 45.0
 show_percentage = false

@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="West Marches"
+config/name="QWeM"
+config/description="Quartermaster of the Western Marches"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.4")
 config/icon="uid://cwlx1nsmq3ulg"

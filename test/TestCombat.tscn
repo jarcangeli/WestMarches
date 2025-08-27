@@ -64,15 +64,19 @@ experience = 1000
 
 [node name="Weapon" type="Node" parent="Conan"]
 script = ExtResource("3_me3qr")
-item_name = "Sylvan Axe"
+item_name = "Excalibur"
 
 [node name="Armor" type="Node" parent="Conan"]
 script = ExtResource("3_me3qr")
 item_name = "Platemail"
 
-[node name="Wolfy" type="Node" parent="."]
+[node name="Armor2" type="Node" parent="Conan"]
+script = ExtResource("3_me3qr")
+item_name = "Runed Helmet"
+
+[node name="Goblin1" type="Node" parent="."]
 script = ExtResource("4_2oxra")
-monster_name = "Warg"
+monster_name = "Goblin"
 
 [node name="Goblin" type="Node" parent="."]
 script = ExtResource("4_2oxra")

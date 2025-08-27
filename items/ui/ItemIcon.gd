@@ -42,11 +42,11 @@ func _ready():
 	refresh_display()
 	SignalBus.item_consumed.connect(on_item_consumed)
 	tween_container = texture_container
-	randomize_background_texture()
 	slot_texture.modulate = Globals.slot_colour
 
 func randomize_background_texture():
-	background_texture.texture = background_textures.pick_random()
+	var i = (item.id % (len(background_textures) - 1)) + 1 if item else 0
+	background_texture.texture = background_textures[i]
 
 #TODO: Scuffed Texture2D animation
 var elapsed_time := 0.0
@@ -66,6 +66,7 @@ func refresh_display():
 	border_texture.modulate = color
 	background_texture.modulate = Globals.background_colour_1
 	loaned_texture.visible = show_loaned_overlay and item.loaned_character
+	randomize_background_texture()
 
 func _get_drag_data(_position):
 	if not drag_enabled:

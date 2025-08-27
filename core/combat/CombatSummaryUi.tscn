@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://r0pxns6ha43u"]
+[gd_scene load_steps=4 format=3 uid="uid://r0pxns6ha43u"]
 
 [ext_resource type="Script" uid="uid://yefm7pldcmjn" path="res://core/combat/CombatSummaryUi.gd" id="1_1l4eh"]
 [ext_resource type="PackedScene" uid="uid://dq7xaybwu4gig" path="res://core/combat/CharacterCombatSummaryUi.tscn" id="2_xlgxc"]
+[ext_resource type="PackedScene" uid="uid://2c7pawofwn6o" path="res://core/combat/CombatDamageMeter.tscn" id="3_f07hi"]
 
 [node name="CombatSummaryUI" type="ScrollContainer" node_paths=PackedStringArray("container")]
 anchors_preset = 15
@@ -11,31 +12,45 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1l4eh")
 character_summary_ui_scene = ExtResource("2_xlgxc")
-container = NodePath("MarginContainer/CenterContainer/GridContainer")
+container = NodePath("MarginContainer/VBoxContainer/CenterContainer/GridContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Damage Dealt"
+horizontal_alignment = 1
+
+[node name="DamageMeter" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_f07hi")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/CenterContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 20
 columns = 3
 
-[node name="CharacterCombatSummaryUI" parent="MarginContainer/CenterContainer/GridContainer" instance=ExtResource("2_xlgxc")]
+[node name="CharacterCombatSummaryUI" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("2_xlgxc")]
 layout_mode = 2
 
-[node name="CharacterCombatSummaryUI2" parent="MarginContainer/CenterContainer/GridContainer" instance=ExtResource("2_xlgxc")]
+[node name="CharacterCombatSummaryUI2" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("2_xlgxc")]
 layout_mode = 2
 
-[node name="CharacterCombatSummaryUI3" parent="MarginContainer/CenterContainer/GridContainer" instance=ExtResource("2_xlgxc")]
+[node name="CharacterCombatSummaryUI3" parent="MarginContainer/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("2_xlgxc")]
 layout_mode = 2

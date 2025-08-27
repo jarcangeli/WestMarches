@@ -26,7 +26,7 @@ theme_override_constants/margin_bottom = 12
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_o6fn8")
-item_display_container = NodePath("ItemsDisplayContainer")
+item_display_container = NodePath("")
 
 [node name="HintMarginContainer" type="MarginContainer" parent="CenterMarginContainer/RewardUIContainer"]
 layout_mode = 2
@@ -45,17 +45,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ItemsDisplayContainer" type="VBoxContainer" parent="CenterMarginContainer/RewardUIContainer" node_paths=PackedStringArray("item_display_container")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("4_yis78")
-item_display_container = NodePath(".")
-
-[node name="ItemsLabel" type="Label" parent="CenterMarginContainer/RewardUIContainer/ItemsDisplayContainer"]
+[node name="ItemsLabel" type="Label" parent="CenterMarginContainer/RewardUIContainer"]
 layout_mode = 2
 text = "Items"
 horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterMarginContainer/RewardUIContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemsDisplayContainer" type="GridContainer" parent="CenterMarginContainer/RewardUIContainer/ScrollContainer" node_paths=PackedStringArray("item_display_container")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 5
+script = ExtResource("4_yis78")
+item_display_container = NodePath(".")
 
 [node name="CoinsRewardDisplay" type="HBoxContainer" parent="CenterMarginContainer/RewardUIContainer"]
 layout_mode = 2
@@ -78,20 +83,23 @@ text = "Take Rewards"
 layout_mode = 2
 text = "Back"
 
-[node name="ReturnedItemsDisplay" type="VBoxContainer" parent="CenterMarginContainer/RewardUIContainer" node_paths=PackedStringArray("item_display_container")]
+[node name="ScrollContainer2" type="ScrollContainer" parent="CenterMarginContainer/RewardUIContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ReturnedItemsDisplay" type="GridContainer" parent="CenterMarginContainer/RewardUIContainer/ScrollContainer2" node_paths=PackedStringArray("item_display_container")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 6
 script = ExtResource("4_yis78")
 item_display_container = NodePath(".")
 
-[node name="Label" type="Label" parent="CenterMarginContainer/RewardUIContainer/ReturnedItemsDisplay"]
+[node name="Label" type="Label" parent="CenterMarginContainer/RewardUIContainer/ScrollContainer2/ReturnedItemsDisplay"]
 layout_mode = 2
 text = "Returned Items"
 horizontal_alignment = 1
-
-[node name="FillControl" type="Control" parent="CenterMarginContainer/RewardUIContainer"]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -101,17 +109,18 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "Loot"
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="LootContainer" type="GridContainer" parent="VBoxContainer/CenterContainer"]
+[node name="LootContainer" type="GridContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-columns = 3
+columns = 6
 script = ExtResource("4_yis78")
 item_display_scene_path = ExtResource("5_dr7r7")
 drop_enabled = false
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [connection signal="pressed" from="CenterMarginContainer/RewardUIContainer/TakeRewardsButton" to="." method="_on_take_rewards_button_pressed"]
 [connection signal="pressed" from="CenterMarginContainer/RewardUIContainer/AbandonQuestButton" to="." method="_on_abandon_quest_button_pressed"]

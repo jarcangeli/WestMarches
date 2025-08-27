@@ -84,8 +84,6 @@ func set_selected(_selected):
 	else:
 		background_texture.modulate = Globals.background_colour_1
 	
-	if not select_enabled:
-		return
 	selected = _selected
 	if selected:
 		item_selected.emit()

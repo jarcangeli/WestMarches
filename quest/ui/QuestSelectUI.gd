@@ -30,10 +30,8 @@ var selected_quest : Quest = null
 enum Tabs #should match tabs in quest_info_tab_container (QuestInfoTabContainer)
 {
 	REWARDS_INFO,
-	START_INFO,
 	STORY,
-	COMBAT_SUMMARY,
-	COMBAT_LOG,
+	START_INFO,
 	SIZE
 }
 
@@ -52,10 +50,6 @@ func set_tab_titles():
 				tab_title = "Quest Details"
 			Tabs.STORY:
 				tab_title = "Quest Progress"
-			Tabs.COMBAT_SUMMARY:
-				tab_title = "Combat Summary"
-			Tabs.COMBAT_LOG:
-				tab_title = "Combat Log"
 		quest_info_tab_container.set_tab_title(i, tab_title)
 
 func clear_button_container(container):
@@ -120,9 +114,9 @@ func update_quest_panels():
 	# Hide rewards preview if not finished or already looted
 	quest_info_tab_container.set_tab_hidden(Tabs.REWARDS_INFO, not selected_quest.finished or selected_quest.completed)
 	
-	# Hide empty tabs	
-	quest_info_tab_container.set_tab_hidden(Tabs.COMBAT_LOG, quest_combat_log.text.is_empty())
-	quest_info_tab_container.set_tab_hidden(Tabs.COMBAT_SUMMARY, quest_combat_log.text.is_empty())
+	# Hide empty tabs / containers
+	quest_combat_log.visible = not quest_combat_log.text.is_empty()
+	combat_summary.visible = not quest_combat_log.text.is_empty()
 	quest_info_tab_container.set_tab_hidden(Tabs.STORY, quest_story.text.is_empty())
 
 	if selected_quest.finished and not selected_quest.completed:

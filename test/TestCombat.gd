@@ -5,15 +5,13 @@ extends Control
 @onready var combat_log: TextEdit = %CombatLog
 @onready var combat_summary: TextEdit = %CombatSummary
 @onready var sim_results: TextEdit = %SimResults
+@onready var damage_meter: Container = %DamageMeter
 
-#TODO: Why is conan hitting the goblin first, it has lower health
-
-func _on_run_combat_button_pressed():
+func run_single_combat():
 	adventurer.equip_best_gear()
 	
 	combat_log.clear()
 	combat_summary.clear()
-	sim_results.clear()
 	var monsters : Array[Character] = []
 	for node in get_children():
 		if node is Character and node != adventurer:
@@ -23,8 +21,18 @@ func _on_run_combat_button_pressed():
 	combat.combat_log.connect(on_combat_log_line)
 	combat.play_through()
 	print_summary(combat)
+	damage_meter.set_combat_results(combat.combat_summary)
+
+func simulate_combats():
+	sim_results.clear()
 	
-	# Now run a sim
+	adventurer.equip_best_gear()
+	
+	var monsters : Array[Character] = []
+	for node in get_children():
+		if node is Character and node != adventurer:
+			monsters.append(node)
+	
 	var start = Time.get_ticks_msec()
 	var iterations := 3000
 	var results := CombatSim.simulate([adventurer], monsters, iterations)
@@ -55,3 +63,10 @@ func print_summary(combat : Combat):
 		on_summary_line(str(character_summary.damage_received))
 		on_summary_line(str(character_summary.healing))
 		on_summary_line('')
+
+
+func _on_simulate_combats_button_pressed() -> void:
+	simulate_combats()
+
+func _on_run_single_combat_button_pressed() -> void:
+	run_single_combat()

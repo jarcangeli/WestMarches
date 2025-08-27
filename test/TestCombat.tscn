@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl4vuiwj85ev"]
+[gd_scene load_steps=6 format=3 uid="uid://dl4vuiwj85ev"]
 
 [ext_resource type="Script" uid="uid://8v260nocnrls" path="res://test/TestCombat.gd" id="1_kuu8u"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="1_oxyo4"]
+[ext_resource type="PackedScene" uid="uid://2c7pawofwn6o" path="res://core/combat/CombatDamageMeter.tscn" id="2_kuu8u"]
 [ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://items/LazyLoadItem.gd" id="3_me3qr"]
 [ext_resource type="Script" uid="uid://ba4hauhkd27l" path="res://characters/LazyLoadCharacter.gd" id="4_2oxra"]
 
@@ -14,12 +15,17 @@ grow_vertical = 2
 script = ExtResource("1_kuu8u")
 adventurer = NodePath("Conan")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+alignment = 1
 
-[node name="RunCombatButton" type="Button" parent="CenterContainer"]
+[node name="RunSingleCombatButton" type="Button" parent="CenterContainer"]
 layout_mode = 2
-text = "Run combat"
+text = "Run single combat"
+
+[node name="SimulateCombatsButton" type="Button" parent="CenterContainer"]
+layout_mode = 2
+text = "Simulate combats"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -35,9 +41,15 @@ editable = false
 
 [node name="CombatSummary" type="TextEdit" parent="HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 editable = false
+
+[node name="DamageMeter" parent="HBoxContainer" instance=ExtResource("2_kuu8u")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="SimResults" type="TextEdit" parent="."]
 unique_name_in_owner = true
@@ -48,6 +60,7 @@ editable = false
 [node name="Conan" type="Node" parent="."]
 script = ExtResource("1_oxyo4")
 character_name = "Conan the Bararian"
+experience = 1000
 
 [node name="Weapon" type="Node" parent="Conan"]
 script = ExtResource("3_me3qr")
@@ -65,4 +78,5 @@ monster_name = "Warg"
 script = ExtResource("4_2oxra")
 monster_name = "Goblin"
 
-[connection signal="pressed" from="CenterContainer/RunCombatButton" to="." method="_on_run_combat_button_pressed"]
+[connection signal="pressed" from="CenterContainer/RunSingleCombatButton" to="." method="_on_run_single_combat_button_pressed"]
+[connection signal="pressed" from="CenterContainer/SimulateCombatsButton" to="." method="_on_simulate_combats_button_pressed"]

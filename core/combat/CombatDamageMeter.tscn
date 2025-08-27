@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://2c7pawofwn6o"]
+
+[ext_resource type="Script" uid="uid://c0y4dem6yj1n5" path="res://core/combat/CombatDamageMeter.gd" id="1_w5h5s"]
+[ext_resource type="PackedScene" uid="uid://4wmn2uapgel4" path="res://core/combat/DamageBar.tscn" id="2_fkamk"]
+
+[node name="DamageMeter" type="MarginContainer" node_paths=PackedStringArray("container")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+script = ExtResource("1_w5h5s")
+container = NodePath("VBoxContainer/HBoxContainer")
+damage_bar_scene = ExtResource("2_fkamk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="CharacterLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Benjamin"
+
+[node name="ProgressBar" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_fkamk")]
+layout_mode = 2
+
+[node name="AmountLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "123"

@@ -64,7 +64,7 @@ func refresh_display():
 	slot_texture.texture = Item.slot_mini_icons[item.primary_slot_type]
 	var color = Globals.rarity_colours[item.rarity]
 	border_texture.modulate = color
-	background_texture.modulate = Globals.background_colour_1
+	update_background_colour(selected)
 	loaned_texture.visible = show_loaned_overlay and item.loaned_character
 	randomize_background_texture()
 
@@ -79,16 +79,20 @@ func _get_drag_data(_position):
 func set_selected(_selected):
 	if not select_enabled:
 		return
-	if _selected:
-		background_texture.modulate = Globals.background_colour_2
-	else:
-		background_texture.modulate = Globals.background_colour_1
+	
+	update_background_colour(_selected)
 	
 	selected = _selected
 	if selected:
 		item_selected.emit()
 	
 	refresh_display.call_deferred()
+
+func update_background_colour(_selected):
+	if _selected:
+		background_texture.modulate = Globals.background_colour_2
+	else:
+		background_texture.modulate = Globals.background_colour_1
 
 func set_item(new_item):
 	item = new_item

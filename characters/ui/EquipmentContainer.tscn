@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgh8xrv7w81qm"]
+[gd_scene load_steps=5 format=3 uid="uid://dgh8xrv7w81qm"]
 
 [ext_resource type="Script" uid="uid://cc0djh8gi6afg" path="res://characters/ui/EquipmentContainer.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ctwnbwnd4ou2r" path="res://assets/icons/icon.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://ynovd7yp0553" path="res://assets/icons/icon_32.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="4_vdviw"]
 
 [node name="EquipmentContainer" type="CenterContainer"]
 anchors_preset = 15
@@ -27,5 +28,11 @@ visible = false
 modulate = Color(0.458824, 0.458824, 0.458824, 1)
 layout_mode = 2
 texture = ExtResource("3")
+
+[node name="ItemIcon" parent="." instance=ExtResource("4_vdviw")]
+unique_name_in_owner = true
+layout_mode = 2
+drag_enabled = false
+select_enabled = false
 
 [connection signal="gui_input" from="." to="." method="on_gui_input"]

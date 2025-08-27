@@ -32,6 +32,16 @@ func _on_take_rewards_button_pressed() -> void:
 	if not current_quest:
 		push_error("Trying to take rewards for null quest")
 		return
+	# Return items
+	for character : Character in current_quest.party.get_characters(true):
+		var loaned_items = character.get_loaned_items()
+		Globals.player_inventory.add_items(loaned_items)
+		# Just adds items to the last character, items will be redistributed by the party
+		if current_quest.reward_tier == Quest.RewardTier.CHOICE:
+			character.add_items(player_loot_display.get_unselected_items())
+		character.add_items(party_loot_display.get_displayed_items())
+	
+	# Player rewards
 	if current_quest.reward_tier >= Quest.RewardTier.COINS:
 		Globals.player_currencies.add_gold(current_quest.get_gold_reward())
 		#TODO: Deduct from party?
@@ -39,17 +49,7 @@ func _on_take_rewards_button_pressed() -> void:
 		Globals.player_inventory.add_items(player_loot_display.get_selected_items())
 	elif current_quest.reward_tier == Quest.RewardTier.RANDOM:
 		Globals.player_inventory.add_items(player_loot_display.get_displayed_items())
-	# Return items
-	for character : Character in current_quest.party.get_characters():
-		var loaned_items = character.get_loaned_items()
-		Globals.player_inventory.add_items(loaned_items)
-		
-		#TODO: Just adds items to the last character
-		#TODO: Want a way to redistribute NEW items between party members (smartly)
-		#TODO: Let the player move items between party members in the tavern
-		if current_quest.reward_tier == Quest.RewardTier.CHOICE:
-			character.add_items(player_loot_display.get_unselected_items())
-		character.add_items(party_loot_display.get_displayed_items())
+	
 	current_quest.complete()
 	current_quest = null
 	quest_finished.emit()

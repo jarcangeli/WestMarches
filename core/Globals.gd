@@ -21,7 +21,8 @@ const rarity_colours_old = [
 ]
 
 const background_colour_1 = Color('#363732')
-const background_colour_2 = Color('#4A4B44')
+const background_colour_2 = Color('#76776d')
+#const background_colour_2 = Color('#4A4B44')
 const slot_colour = Color('#BAACBD')
 
 const rarity_colours = [

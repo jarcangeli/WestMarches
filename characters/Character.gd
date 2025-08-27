@@ -77,7 +77,11 @@ func unequip_item(item : Item):
 		var slot_item = equip_slots[slot]
 		if slot_item == item:
 			slot_item = null
+			equip_slots[slot] = null
 			return
+
+func unequip_all_items():
+	equip_slots.clear()
 
 func equip_best_gear(item_pool = null):
 	var items = get_items()

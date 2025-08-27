@@ -35,6 +35,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 theme = ExtResource("2")
 script = ExtResource("2_kjvhd")
@@ -71,8 +73,6 @@ display_name = "The Ladz"
 [node name="Ben" type="Node" parent="AdventuringParties/TheLadz"]
 script = ExtResource("12")
 character_name = "Ben"
-experience = null
-character_class = null
 
 [node name="PHShortsword" type="Node" parent="AdventuringParties/TheLadz/Ben"]
 script = ExtResource("7_2gh4u")
@@ -81,7 +81,6 @@ item_name = "Shortsword"
 [node name="Sam" type="Node" parent="AdventuringParties/TheLadz"]
 script = ExtResource("12")
 character_name = "Sam"
-experience = null
 character_class = 2
 
 [node name="PHShortbow" type="Node" parent="AdventuringParties/TheLadz/Sam"]
@@ -91,7 +90,6 @@ item_name = "Shortbow"
 [node name="Jen" type="Node" parent="AdventuringParties/TheLadz"]
 script = ExtResource("12")
 character_name = "Jen"
-experience = null
 character_class = 2
 
 [node name="PHShortbow" type="Node" parent="AdventuringParties/TheLadz/Jen"]
@@ -126,7 +124,6 @@ item_name = "Shortbow"
 script = ExtResource("12")
 character_name = "Gomli"
 experience = 60
-character_class = null
 
 [node name="Ugs" type="Node" parent="AdventuringParties"]
 script = ExtResource("13")
@@ -135,8 +132,6 @@ display_name = "Ugs"
 [node name="Ug" type="Node" parent="AdventuringParties/Ugs"]
 script = ExtResource("12")
 character_name = "Ug"
-experience = null
-character_class = null
 
 [node name="PHShortsword" type="Node" parent="AdventuringParties/Ugs/Ug"]
 script = ExtResource("7_2gh4u")
@@ -145,7 +140,6 @@ item_name = "Shortsword"
 [node name="Og" type="Node" parent="AdventuringParties/Ugs"]
 script = ExtResource("12")
 character_name = "Og"
-experience = null
 character_class = 3
 
 [node name="PHShortsword" type="Node" parent="AdventuringParties/Ugs/Og"]
@@ -155,7 +149,6 @@ item_name = "Shortsword"
 [node name="Ag" type="Node" parent="AdventuringParties/Ugs"]
 script = ExtResource("12")
 character_name = "Ag"
-experience = null
 character_class = 2
 
 [node name="PHShortbow" type="Node" parent="AdventuringParties/Ugs/Ag"]
@@ -170,7 +163,6 @@ display_name = "The Fellowship"
 script = ExtResource("12")
 character_name = "Aragorn"
 experience = 200
-character_class = null
 
 [node name="PHShortsword" type="Node" parent="AdventuringParties/TheFellowship/Aragorn"]
 script = ExtResource("7_2gh4u")
@@ -190,7 +182,6 @@ item_name = "Shortbow"
 script = ExtResource("12")
 character_name = "Gimli"
 experience = 200
-character_class = null
 
 [node name="PHAxe" type="Node" parent="AdventuringParties/TheFellowship/Gimli"]
 script = ExtResource("7_2gh4u")

@@ -73,7 +73,9 @@ func on_quest_completed(quest_completed : Quest):
 
 func redistribute_items():
 	# Move loot to party
-	for character in get_characters():
+	for character in get_characters(true): # include dead
+		if character.dead:
+			character.unequip_all_items()
 		add_items(character.get_unequipped_items())
 	# Equip best gear (including shared pool)
 	for character : Character in get_characters():

@@ -3,12 +3,14 @@ class_name EquipmentContainer
 
 @export var slot : Item.Slot # (Item.Slot)
 
-var item : Item = null
-var item_view : TextureRect = null
+@onready var item_icon: ItemIcon = %ItemIcon
 
+var item : Item = null
 var base_item : Item = null
 
+
 func _ready():
+	item_icon.visible = false
 	if slot >= 0 and slot < len(Item.slot_container_icons):
 		$Background.texture = Item.slot_container_icons[slot]
 	
@@ -43,29 +45,21 @@ func set_base_item(_base_item : Item):
 func remove_item():
 	if not item:
 		return
-	remove_item_view()
 	$ItemBackground.visible = false
 	SignalBus.item_unequipped.emit(item, self)
 	item = null
 	update_item_view()
 
-func remove_item_view():
-	if is_instance_valid(item_view):
-		item_view.queue_free()
-		item_view = null
-
 func update_item_view():
-	remove_item_view()
-	
+	item_icon.visible = true
 	if item:
-		item_view = Item.make_item_preview(item)
-		if item_view:
-			item_view.modulate = Color("#e0c389")
+		item_icon.set_item(item)
+		item_icon.modulate = Color.WHITE
+	elif base_item:
+		item_icon.set_item(base_item)
+		item_icon.modulate = Color.GRAY
 	else:
-		item_view = Item.make_item_preview(base_item)
-		if item_view:
-			item_view.modulate = Color.GRAY
-	add_child(item_view)
+		item_icon.visible = false
 	$ItemBackground.visible = true
 
 func on_gui_input(event):

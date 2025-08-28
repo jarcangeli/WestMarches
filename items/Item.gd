@@ -18,17 +18,17 @@ enum Slot {
 }
 
 const slot_container_icons = [
-	preload("res://assets/icons/slots/weapon.png"),
-	preload("res://assets/icons/slots/chest.png"),
-	preload("res://assets/icons/slots/head.png"),
-	preload("res://assets/icons/slots/legs.png"),
-	preload("res://assets/icons/slots/boot.png"),
-	preload("res://assets/icons/resources/bottle.png"),
-	preload("res://assets/icons/items/bow.png"),
-	preload("res://assets/icons/items/belt.png"),
-	preload("res://assets/icons/slots/ring.png"),
-	preload("res://assets/icons/slots/cape.png"),
-	preload("res://assets/icons/icon.png")
+	preload("res://assets/icons/slots/backgrounds/weapon.png"),
+	preload("res://assets/icons/slots/backgrounds/chest.png"),
+	preload("res://assets/icons/slots/backgrounds/head.png"),
+	preload("res://assets/icons/slots/backgrounds/legs.png"),
+	preload("res://assets/icons/slots/backgrounds/boot.png"),
+	preload("res://assets/icons/slots/backgrounds/bottle.png"),
+	preload("res://assets/icons/slots/backgrounds/bow.png"),
+	preload("res://assets/icons/slots/backgrounds/belt.png"),
+	preload("res://assets/icons/slots/backgrounds/ring.png"),
+	preload("res://assets/icons/slots/backgrounds/cape.png"),
+	preload("res://assets/icons/background_48.png")
 ]
 
 const slot_mini_icons = [

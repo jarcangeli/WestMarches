@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1ycsca7qo073"]
+[gd_scene load_steps=5 format=3 uid="uid://b1ycsca7qo073"]
 
 [ext_resource type="Script" uid="uid://dbt271x4hchn5" path="res://characters/ui/CharacterSummaryUI.gd" id="1_hgpji"]
 [ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="2_43xls"]
 [ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://core/StatsDisplay.tscn" id="3_j28tf"]
+[ext_resource type="PackedScene" uid="uid://q482js4uxeg" path="res://characters/ui/EquipmentSlotLayout.tscn" id="4_43xls"]
 
 [node name="CharacterSummaryUI" type="VBoxContainer"]
 anchors_preset = 15
@@ -25,6 +26,7 @@ text = "Test"
 horizontal_alignment = 1
 
 [node name="LevelContainer" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -71,13 +73,25 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StatsDisplay" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_j28tf")]
+[node name="CenterContainer3" type="CenterContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatsDisplay" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer3" instance=ExtResource("3_j28tf")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 show_empty = false
 icon_size = 12
 
+[node name="CenterContainer2" type="CenterContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EquipmentLayout" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2" instance=ExtResource("4_43xls")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="CenterContainer" type="CenterContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2

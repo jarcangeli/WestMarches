@@ -97,3 +97,7 @@ layout_mode = 2
 
 [node name="CharacterSummaryUI2" parent="VBoxContainer/CharacterSummariesScrollArea/CharacterSummaries" instance=ExtResource("2_dibcj")]
 layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/CharacterSummariesScrollArea/CharacterSummaries"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2

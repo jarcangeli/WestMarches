@@ -2,7 +2,7 @@ extends Node
 # [TODO] Class where things that need tuning go
 # when it's tuned, move it to an appropriate location
 
-const DEBUG := true
+const DEBUG := false
 
 const ENABLE_ITEM_ICON_TWEEN := true
 
@@ -20,6 +20,7 @@ const EPIC_CHANCE = 0.12
 const UNCOMMON_CHANCE = 0.30
 #const COMMON_CHANCE = 0.53
 
+const MAX_CHARACTER_LEVEL = 5
 const SLOT_UNLOCK_ORDER_BY_CLASS := {
 	Character.CharacterClass.NONE:
 		[ Item.Slot.WEAPON, Item.Slot.CHEST, Item.Slot.HEAD, Item.Slot.LEGS, Item.Slot.FEET,
@@ -43,4 +44,4 @@ func experience_from_monsters(monsters : Array[Character]) -> int:
 	return experience
 
 func level_from_experience(experience) -> int:
-	return 1 + floor(experience / float(40))
+	return min(1 + floor(experience / float(40)), MAX_CHARACTER_LEVEL)

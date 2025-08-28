@@ -13,7 +13,7 @@ script = ExtResource("1_un85m")
 layout_mode = 2
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 0
-columns = 2
+columns = 3
 
 [node name="StatDisplay" parent="StatsGrid" instance=ExtResource("2_54irn")]
 layout_mode = 2

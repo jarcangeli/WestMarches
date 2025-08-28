@@ -3,7 +3,7 @@ class_name EquipmentSlotLayout
 
 func set_character(character : Character):
 	var character_class := character.character_class
-	var slot_unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(character_class)
+	var slot_unlock_order : Array = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(character_class)
 	if not slot_unlock_order:
 		slot_unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(Character.CharacterClass.FIGHTER)
 	
@@ -16,8 +16,11 @@ func set_character(character : Character):
 	var containers = get_equipment_containers()
 	# enable only active slots
 	for container in containers:
+		var unlockable = slot_unlock_order.has(container.slot)
 		var enabled = unlocked_slots.has(container.slot)
-		container.set_enabled(enabled)
+		container.set_enabled_unlockable(enabled, unlockable)
+		var unlock_level = slot_unlock_order.find(container.slot) + 1
+		container.set_unlock_level(unlock_level)
 	
 	# update base item view (previouisly equipped)
 	for item : Item in character.get_equipped_items():

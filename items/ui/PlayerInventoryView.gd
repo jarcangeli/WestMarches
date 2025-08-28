@@ -4,14 +4,20 @@ extends Container
 @export var item_detail_view : Control = null
 @export var detailed_item_icon: ItemIcon
 
+@onready var inventory_side_panel = get_node_or_null("%InventorySidePanel")
+
 func _ready():
 	SignalBus.player_inventory_changed.connect(self.on_player_inventory_changed, CONNECT_DEFERRED)
 	
 	inventory_display_container.connect("item_selected", Callable(self, "on_item_selected"))
+	if inventory_side_panel:
+		inventory_side_panel.visible = false
 	
 	on_player_inventory_changed()
 
 func on_item_selected(item):
+	if inventory_side_panel:
+		inventory_side_panel.visible = true
 	if item_detail_view:
 		item_detail_view.set_item(item)
 	if detailed_item_icon:

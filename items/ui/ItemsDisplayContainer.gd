@@ -41,7 +41,10 @@ func add_items(items):
 
 func add_item(item : Item):
 	if item_container:
-		item_container.add_item(item)
+		if item_container.contains(item):
+			add_item_display(item)
+		else:
+			item_container.add_item(item)
 	else:
 		add_item_display(item)
 

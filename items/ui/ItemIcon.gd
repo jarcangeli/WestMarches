@@ -146,6 +146,11 @@ func set_hovered(_hovered):
 		tween3.tween_property(tween_container, "theme_override_constants/margin_top", margin, tween_speed)
 		var tween4 = get_tree().create_tween()
 		tween4.tween_property(tween_container, "theme_override_constants/margin_bottom", margin, tween_speed)
+		
+		tween1.bind_node(tween_container)
+		tween2.bind_node(tween_container)
+		tween3.bind_node(tween_container)
+		tween4.bind_node(tween_container)
 
 func show_tooltip():
 	if not tooltip_enabled:

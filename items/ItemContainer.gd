@@ -21,16 +21,8 @@ func add_item(item : Item):
 			item.get_parent().unequip_item(item)
 		item.get_parent().remove_child(item)
 	
-	item_added.emit(item) #TODO: This could cause issues if item is now consumed?
-	
-	#TODO: Do we need party to be able to loot coin pouches?
-	if item.consumed_on_acquire and self == Globals.player_inventory:
-		var currencies = item.get_currency_granted()
-		Globals.player_currencies.add_currencies(currencies)
-		SignalBus.item_consumed.emit(item)
-		item.queue_free()
-	else:
-		add_child(item, true)
+	item_added.emit(item)
+	add_child(item, true)
 
 func add_items(items) -> void:
 	for item in items:

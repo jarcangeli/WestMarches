@@ -3,17 +3,25 @@ class_name Shop
 
 @export var shop_inventory : ItemContainer
 
+@onready var player_items: ItemDisplayContainer = %PlayerItems
 @onready var sell_items: ItemDisplayContainer = %SellItems
 @onready var buy_items: ItemDisplayContainer = %BuyItems
+@onready var shop_items: ItemDisplayContainer = %ShopItems
+
 @onready var trade_button: Button = %TradeButton
 @onready var trade_amount_label: Label = %TradeAmountLabel
 @onready var sell_amount_label: Label = %SellAmountLabel
 @onready var buy_amount_label: Label = %BuyAmountLabel
-@onready var shop_items: ItemDisplayContainer = %ShopItems
 
 func _ready() -> void:
 	shop_items.set_item_container(shop_inventory)
+	
+	player_items.item_selected.connect(on_player_item_selected)
+	shop_items.item_selected.connect(on_shop_item_selected)
+	sell_items.item_selected.connect(on_sell_item_selected)
+	buy_items.item_selected.connect(on_buy_item_selected)
 	trade_button.pressed.connect(trade_button_pressed)
+	
 	sell_items.child_entered_tree.connect(update_amount_label, CONNECT_DEFERRED)
 	sell_items.child_exiting_tree.connect(update_amount_label, CONNECT_DEFERRED)
 	buy_items.child_entered_tree.connect(update_amount_label, CONNECT_DEFERRED)
@@ -61,3 +69,19 @@ func sell_item(party : AdventuringParty, item : Item):
 	shop_items.add_item(item)
 	party.gold += value
 	print(item.item_name, " sold to shop by ", party.display_name, " for ", str(value))
+
+func on_player_item_selected(item : Item):
+	player_items.remove_item_display(item)
+	sell_items.add_item(item)
+
+func on_shop_item_selected(item : Item):
+	shop_items.remove_item_display(item)
+	buy_items.add_item(item)
+
+func on_sell_item_selected(item : Item):
+	sell_items.remove_item_display(item)
+	player_items.add_item(item)
+
+func on_buy_item_selected(item : Item):
+	buy_items.remove_item_display(item)
+	shop_items.add_item(item)

@@ -1,10 +1,23 @@
 extends Node
 
+signal state_changed()
+
+enum GameState {
+	MENU		= 0,
+	GAME		= 1
+}
+
 var game : Control = null
 var player_inventory : ItemContainer = null
 var player_currencies : PlayerCurrencies = null
 var character_graveyard : CharacterGraveyard = null
 var shop : Shop = null
+var state : GameState = GameState.MENU
+
+func set_state(new_state : GameState):
+	if new_state != state:
+		state = new_state
+		state_changed.emit()
 
 enum Rarity {
 	COMMON		= 0,

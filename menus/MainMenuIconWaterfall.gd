@@ -12,6 +12,16 @@ func _ready():
 	timer.wait_time = icon_spawn_rate
 	timer.timeout.connect(spawn_icon)
 	timer.start()
+	
+	Globals.state_changed.connect(on_game_state_changed)
+
+func on_game_state_changed():
+	if Globals.state == Globals.GameState.MENU:
+		timer.start()
+		process_mode = Node.PROCESS_MODE_ALWAYS
+	else:
+		timer.stop()
+		process_mode = Node.PROCESS_MODE_DISABLED
 
 func _process(delta : float):
 	for node in get_children():

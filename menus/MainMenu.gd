@@ -10,7 +10,10 @@ extends MarginContainer
 @onready var resume_button: Button = %ResumeButton
 
 func _ready():
-	show_main_menu()
+	if TK.DEBUG:
+		start_game()
+	else:
+		show_main_menu()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -24,9 +27,13 @@ func _on_settings_button_pressed() -> void:
 	settings_menu_ui.visible = true
 
 func _on_start_button_pressed() -> void:
+	start_game()
+
+func start_game():
 	var game = game_scene.instantiate()
 	add_child(game)
 	menu_container.visible = false
+	Globals.set_state(Globals.GameState.GAME)
 
 func _on_back_button_pressed() -> void:
 	show_main_menu()
@@ -37,8 +44,10 @@ func _on_resume_button_pressed() -> void:
 	else:
 		menu_container.visible = false
 		Globals.game.visible = true
+	Globals.set_state(Globals.GameState.GAME)
 
 func show_main_menu():
+	Globals.set_state(Globals.GameState.MENU)
 	if Globals.game:
 		resume_button.visible = true
 		start_button.visible = false

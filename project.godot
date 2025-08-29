@@ -12,7 +12,7 @@ config_version=5
 
 config/name="QWeM"
 config/description="Quartermaster of the Western Marches"
-run/main_scene="res://Game.tscn"
+run/main_scene="uid://1jvgg15mw00q"
 config/features=PackedStringArray("4.4")
 config/icon="uid://cwlx1nsmq3ulg"
 

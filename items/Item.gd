@@ -55,10 +55,7 @@ var id : int = -1
 
 @export var primary_slot_type: Slot
 
-@export var consumed_on_acquire : bool = false
-
 var stats : AbilityStats = AbilityStats.new()
-var currency_generated : int = 0 #TODO: Implement
 var base_value := 1
 var loaned_character = null
 var rarity : Globals.Rarity
@@ -128,8 +125,6 @@ func _init(item_data : ItemData):
 	description = item_data.description
 	icon = item_data.icon
 	primary_slot_type = item_data.primary_slot_type
-	consumed_on_acquire = item_data.consumed_on_acquire
-	currency_generated = item_data.currency_generated
 	stats.values = item_data.stat_values
 	base_value = item_data.value
 	rarity = item_data.rarity
@@ -137,13 +132,6 @@ func _init(item_data : ItemData):
 
 func get_value() -> int:
 	return base_value
-
-func get_currency_granted():
-	if consumed_on_acquire:
-		var currencies = Currencies.new()
-		currencies.gold = currency_generated
-		return currencies
-	return null
 
 func get_container() -> ItemContainer:
 	var parent = get_parent()

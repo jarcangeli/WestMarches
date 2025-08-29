@@ -4,10 +4,12 @@ extends Control
 
 func _ready():
 	Globals.game = self
-	debug_generate.call_deferred()
+	advance_time_button.advance_time.call_deferred()
+	if TK.DEBUG:
+		debug_generate.call_deferred()
 
 func debug_generate():
-	advance_time_button.advance_time()
+	advance_time_button.advance_time.call_deferred()
 	debug_advance.call_deferred()
 
 func debug_advance():

@@ -14,6 +14,11 @@ var indexes_by_rarity = {
 func _ready():
 	preload_icons(icons_path, icons_by_name)
 	load_table(items_table_name)
+	
+	if TK.DEBUG:
+		print("Item rarity breakdown:")
+		for rarity in indexes_by_rarity.keys():
+			print(rarity, ": ", len(indexes_by_rarity[rarity]))
 
 func load_row(row : Dictionary):
 	var item_data = ItemData.new()
@@ -25,8 +30,7 @@ func load_row(row : Dictionary):
 		icon_name += '.png'
 	item_data.icon = icons_by_name[icon_name] #TODO: Test if wrong
 	item_data.primary_slot_type = Item.shortname_to_slot(row["slot"])
-	item_data.consumed_on_acquire = bool(int(row["consumed"]))
-	item_data.currency_generated =int(row["currency_generated"])
+	var base_value = int(row["base_value"])
 	item_data.stat_values.resize(AbilityStats.Type.SIZE)
 	item_data.stat_values.fill(0)
 	item_data.stat_values[AbilityStats.Type.CONSTITUTION] 	= int(row["constitution"])
@@ -42,7 +46,7 @@ func load_row(row : Dictionary):
 	item_data.stat_values[AbilityStats.Type.POISON_CHANCE] 	= int(row["poison_chance"])
 	item_data.stat_values[AbilityStats.Type.POISON_DAMAGE] 	= int(row["poison_damage"])
 	item_data.stat_values[AbilityStats.Type.SNIPE_DAMAGE] 	= int(row["snipe_damage"])
-	item_data.value = get_weighted_value(item_data.stat_values)
+	item_data.value = base_value + get_weighted_value(item_data.stat_values)
 	item_data.rarity = get_rarity_from_value(item_data.value)
 	if item_data.valid():
 		data_by_index[item_data.id] = item_data

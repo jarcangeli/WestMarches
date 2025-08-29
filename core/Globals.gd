@@ -26,7 +26,7 @@ const background_colour_2 = Color('#76776d')
 const slot_colour = Color('#BAACBD')
 
 const rarity_colours = [
-	Color('#944BBB'),
+	Color('#b5b5b5'),
 	Color('#558B6E'),
 	Color('#35A7FF'),
 	Color('#944BBB')

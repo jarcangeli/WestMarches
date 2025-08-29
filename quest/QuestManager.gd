@@ -29,6 +29,8 @@ func advance_time():
 	for party in parties.get_idle_parties():
 		print("Generating quest for " + party.display_name)
 		generate_quest(party)
+		if not TK.DEBUG:
+			break #only do one at a time
 
 func generate_quest(party : AdventuringParty):
 	#TODO: Some logic determing level of quest to generate, e.g. always have 2 easy, 1 med, sometimes a rare/hard
@@ -43,7 +45,7 @@ func generate_quest_kill(party : AdventuringParty):
 	var encounter : Encounter = null
 	var iterations := 0
 	
-	while encounter == null and iterations < TK.QUEST_MAX_ITERATIONS:
+	while encounter == null and iterations < TK.quest_max_iterations():
 		encounter = get_encounter(map)
 		if not is_instance_valid(encounter):
 			print("[TODO] No good encounter found to create kill quest, make some more")
@@ -51,7 +53,7 @@ func generate_quest_kill(party : AdventuringParty):
 		var results := CombatSim.simulate(party.get_characters(), encounter.get_monsters(), 100)
 		var win_p = results.get_win_percentage()
 		if results == null or win_p < TK.QUEST_MIN_PERCENT  or win_p > TK.QUEST_MAX_PERCENT:
-			if iterations < TK.QUEST_MAX_ITERATIONS - 1: # Keep last iteration whatever it is
+			if iterations < TK.quest_max_iterations() - 1: # Keep last iteration whatever it is
 				print("iteration " + str(iterations+1))
 				encounter = null
 			elif not TK.DEBUG:

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="4_svtxo"]
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="4_vdbi3"]
 
-[node name="Shop" type="MarginContainer"]
+[node name="Shop" type="MarginContainer" groups=["time"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

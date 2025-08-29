@@ -13,6 +13,9 @@ class_name Shop
 @onready var sell_amount_label: Label = %SellAmountLabel
 @onready var buy_amount_label: Label = %BuyAmountLabel
 
+const shop_stock := ["Coif", "Jerkin", "Sling", "Shortsword", "Boots", "Minor Healing Potion", \
+						"Supply Pack", "Topaz Ring", "Leather Belt"]
+
 func _ready() -> void:
 	shop_items.set_item_container(shop_inventory)
 	
@@ -29,6 +32,15 @@ func _ready() -> void:
 	update_amount_label()
 	
 	Globals.shop = self
+
+func advance_time():
+	for item_name in shop_stock:
+		if not shop_inventory.contains_name(item_name):
+			var item_data : ItemData = ItemDatabase.data_by_name[item_name]
+			if not item_data.valid():
+				continue
+			var item = Item.new(item_data)
+			shop_inventory.add_item(item)
 
 func trade_button_pressed():
 	var sold_items = sell_items.get_displayed_items()
@@ -63,6 +75,9 @@ func update_amount_label(_dummy = null):
 	
 	var amount = sell_amount - buy_amount
 	trade_amount_label.text = ("+" if amount >= 0 else "") + str(amount)
+	
+	trade_button.disabled = amount < -Globals.player_currencies.gold
+	trade_button.tooltip_text = "Not enough gold" if trade_button.disabled else ""
 
 func sell_item(party : AdventuringParty, item : Item):
 	var value = item.get_value()

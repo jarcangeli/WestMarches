@@ -10,6 +10,12 @@ func contains(item : Item) -> bool:
 			return true
 	return false #TODO: Optimize? Sorted nodes?
 
+func contains_name(item_name : String) -> bool:
+	for node in get_children():
+		if node is Item and node.item_name == item_name:
+			return true
+	return false #TODO: Optimize? Sorted nodes?
+
 func add_item(item : Item):
 	if not is_instance_valid(item) or contains(item):
 		return

@@ -153,7 +153,7 @@ func set_hovered(_hovered):
 		tween4.bind_node(tween_container)
 
 func show_tooltip():
-	if not tooltip_enabled:
+	if not tooltip_enabled or not Globals.game:
 		return
 	if tooltip:
 		tooltip.queue_free()

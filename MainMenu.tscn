@@ -1,0 +1,161 @@
+[gd_scene load_steps=8 format=3 uid="uid://1jvgg15mw00q"]
+
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_i26rj"]
+[ext_resource type="Script" uid="uid://da5kylricdcw7" path="res://menus/MainMenu.gd" id="2_7r1g0"]
+[ext_resource type="Script" uid="uid://caa27m2tsddc4" path="res://menus/MainMenuIconWaterfall.gd" id="2_h7a2f"]
+[ext_resource type="PackedScene" uid="uid://bwaojw2igp0kd" path="res://Game.tscn" id="3_cqjrg"]
+[ext_resource type="PackedScene" uid="uid://dkpr3bn0cncv3" path="res://items/ui/ItemIconDisabled.tscn" id="3_iwfq2"]
+[ext_resource type="Texture2D" uid="uid://cwlx1nsmq3ulg" path="res://assets/example_item.png" id="3_qoqlk"]
+[ext_resource type="Script" uid="uid://bbr40iytx555f" path="res://test/FPSLabel.gd" id="5_iwfq2"]
+
+[node name="Main" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_i26rj")
+script = ExtResource("2_7r1g0")
+game_scene = ExtResource("3_cqjrg")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="MenuContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LeftContainer" type="Control" parent="MenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="IconWaterfall" type="Control" parent="MenuContainer/LeftContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_h7a2f")
+icon_spawn_rate = 0.3
+item_icon_scene = ExtResource("3_iwfq2")
+
+[node name="CenterContainer" type="CenterContainer" parent="MenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingsMenuUI" type="VBoxContainer" parent="MenuContainer/CenterContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="VolumeSlider" type="VBoxContainer" parent="MenuContainer/CenterContainer/SettingsMenuUI"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuContainer/CenterContainer/SettingsMenuUI/VolumeSlider"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Master Volume"
+
+[node name="HSlider" type="HSlider" parent="MenuContainer/CenterContainer/SettingsMenuUI/VolumeSlider"]
+layout_mode = 2
+value = 50.0
+
+[node name="Label2" type="Label" parent="MenuContainer/CenterContainer/SettingsMenuUI/VolumeSlider"]
+layout_mode = 2
+text = "[Not Implemented]"
+
+[node name="BackButton" type="Button" parent="MenuContainer/CenterContainer/SettingsMenuUI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "    Back    "
+
+[node name="MainMenuUI" type="VBoxContainer" parent="MenuContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="MenuContainer/CenterContainer/MainMenuUI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "QWeM"
+
+[node name="CenterContainer" type="CenterContainer" parent="MenuContainer/CenterContainer/MainMenuUI"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="StartButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[node name="ResumeButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "   Settings   "
+
+[node name="QuitButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="TextureRect" type="TextureRect" parent="MenuContainer/CenterContainer/MainMenuUI"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_qoqlk")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="RightContainer" type="Control" parent="MenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="IconWaterfall" type="Control" parent="MenuContainer/RightContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_h7a2f")
+icon_spawn_rate = 0.3
+item_icon_scene = ExtResource("3_iwfq2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/RightContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer/RightContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="FPSLabel" type="Label" parent="MenuContainer/RightContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "FPS: 60"
+script = ExtResource("5_iwfq2")
+
+[connection signal="pressed" from="MenuContainer/CenterContainer/SettingsMenuUI/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

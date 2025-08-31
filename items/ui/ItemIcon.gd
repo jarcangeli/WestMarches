@@ -8,6 +8,7 @@ signal item_selected()
 @export var tooltip_enabled : bool = true
 @export var hover_select_enabled : bool = false
 @export var show_loaned_overlay : bool = true
+@export var hover_grow_enabled : bool = true
 
 @onready var background_texture: TextureRect = %BackgroundTexture
 @onready var border_texture: TextureRect = %BorderTexture
@@ -132,7 +133,8 @@ func set_hovered(_hovered):
 	hovered = _hovered
 
 	
-	if TK.ENABLE_ITEM_ICON_TWEEN and tween_container and not is_queued_for_deletion():
+	if TK.ENABLE_ITEM_ICON_TWEEN and tween_container \
+			and not is_queued_for_deletion() and hover_grow_enabled:
 		# Tween margins
 		var margin = -8.0 if hovered else 0.0
 		tween_container.z_index = int(-margin)

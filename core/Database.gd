@@ -32,8 +32,11 @@ func preload_icons(path, container):
 	var item_file_name = "gogogo"
 	while item_file_name != "":
 		item_file_name = dir.get_next()
-		if item_file_name.ends_with(".import") or item_file_name.is_empty():
+		if item_file_name.is_empty():
 			continue
+		if item_file_name.ends_with(".import"):
+			item_file_name = item_file_name.replace(".import", "")
+
 		var file_path = path + item_file_name
 		var icon : Texture2D = load(file_path)
 		if icon:

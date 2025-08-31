@@ -7,6 +7,7 @@ var db = SQLite.new()
 func _ready():
 	db.path = database_path
 	db.verbosity_level = SQLite.VerbosityLevel.NORMAL
+	db.read_only = true
 	if not db.open_db():
 		push_error("Could not open sqlite database")
 

@@ -17,11 +17,3 @@ columns = 3
 
 [node name="StatDisplay" parent="StatsGrid" instance=ExtResource("2_54irn")]
 layout_mode = 2
-
-[node name="StatDisplay2" parent="StatsGrid" instance=ExtResource("2_54irn")]
-layout_mode = 2
-
-[node name="StatLabel" parent="StatsGrid/StatDisplay2" index="0"]
-text = "201"
-
-[editable path="StatsGrid/StatDisplay2"]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d12iqlv4bh3op"]
+[gd_scene load_steps=7 format=3 uid="uid://d12iqlv4bh3op"]
 
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_a51t3"]
 [ext_resource type="Script" uid="uid://cimvti8jeu4u7" path="res://items/ui/ItemTooltip.gd" id="1_erslf"]
 [ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://core/StatsDisplay.tscn" id="1_m6mtj"]
+[ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="2_1lwb4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erslf"]
 bg_color = Color(1, 1, 1, 1)
@@ -11,11 +13,12 @@ bg_color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="ItemTooltip" type="PanelContainer"]
 z_index = 10
-offset_right = 83.0
-offset_bottom = 59.0
+offset_right = 108.0
+offset_bottom = 67.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
+theme = ExtResource("1_a51t3")
 theme_override_styles/panel = SubResource("StyleBoxFlat_erslf")
 script = ExtResource("1_erslf")
 
@@ -40,17 +43,37 @@ theme_override_constants/margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 mouse_filter = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="ItemNameLabel" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ItemNameLabel" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 18
 text = "name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ValueLabel" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 9
+text = "3"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+modulate = Color(0.878431, 0.764706, 0.537255, 1)
+layout_mode = 2
+size_flags_horizontal = 9
+texture = ExtResource("2_1lwb4")
+expand_mode = 2
 
 [node name="DetailLabel" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -63,6 +86,8 @@ horizontal_alignment = 1
 [node name="StatsDisplay" parent="MarginContainer2/MarginContainer/VBoxContainer" instance=ExtResource("1_m6mtj")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 2
 show_empty = false
 font_size = 22

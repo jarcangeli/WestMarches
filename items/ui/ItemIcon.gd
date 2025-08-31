@@ -23,6 +23,8 @@ var hovered = false
 var tooltip : ItemTooltip = null
 var tween_container = null
 
+var random_id = randi()
+
 const tooltip_scene := preload("res://items/ui/ItemTooltip.tscn")
 const anim_speed = 4.0
 

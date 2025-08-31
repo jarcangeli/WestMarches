@@ -31,16 +31,18 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="IconWaterfall" type="Control" parent="MenuContainer/LeftContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/LeftContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(1027, 274)
+theme_override_constants/margin_right = 32
+
+[node name="IconWaterfall" type="Control" parent="MenuContainer/LeftContainer/MarginContainer"]
+layout_mode = 2
 script = ExtResource("2_h7a2f")
-icon_spawn_rate = 0.3
 item_icon_scene = ExtResource("3_iwfq2")
 
 [node name="CenterContainer" type="CenterContainer" parent="MenuContainer"]
@@ -138,7 +140,6 @@ theme_override_constants/margin_right = 32
 [node name="IconWaterfall" type="Control" parent="MenuContainer/RightContainer/MarginContainer"]
 layout_mode = 2
 script = ExtResource("2_h7a2f")
-icon_spawn_rate = 0.3
 item_icon_scene = ExtResource("3_iwfq2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/RightContainer"]

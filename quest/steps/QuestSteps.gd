@@ -23,7 +23,7 @@ func advance_time() -> void:
 		step_index += 1
 		if  not get_party().is_alive():
 			var quest : Quest = get_quest()
-			quest.complete()
+			quest.finish()
 		elif get_child_count() <= step_index:
 			var quest : Quest = get_quest()
 			quest.finish()

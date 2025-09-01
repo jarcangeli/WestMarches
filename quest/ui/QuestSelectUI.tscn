@@ -186,10 +186,18 @@ drop_enabled = false
 item_display_container = NodePath(".")
 
 [node name="CollectRewardsButton" type="Button" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 modulate = Color(1, 0.55, 0.55, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "COLLECT REWARDS"
+
+[node name="TPKButton" type="Button" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(1, 0.55, 0.55, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "TOTAL PARTY KILL"
 
 [node name="QuestProgress" type="ScrollContainer" parent="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer"]
 visible = false
@@ -370,4 +378,5 @@ size_flags_horizontal = 4
 text = "SPONSOR QUEST"
 
 [connection signal="pressed" from="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer/CollectRewardsButton" to="." method="on_choose_quest_button_pressed"]
+[connection signal="pressed" from="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestRewardPanel/VBoxContainer/VBoxContainer/TPKButton" to="." method="_on_tpk_button_pressed"]
 [connection signal="pressed" from="QuestProgressPanel/MarginContainer/ScrollContainer/VBoxContainer/QuestInfoTabContainer/QuestInfoPanel/MarginContainer/VBoxContainer/ChooseQuestButton" to="." method="on_choose_quest_button_pressed"]

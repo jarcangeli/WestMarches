@@ -103,7 +103,6 @@ func update_quest_panels():
 	quest_combat_log.text = selected_quest.get_combat_log()
 	quest_info_panel.set_quest(selected_quest)
 	quest_reward_panel.set_quest(selected_quest)
-	quest_info_tab_container.set_current_tab(Tabs.START_INFO)
 	combat_summary.set_combat(selected_quest.get_combat())
 
 	#TODO: multiple combats?
@@ -122,9 +121,17 @@ func update_quest_panels():
 	if selected_quest.finished and not selected_quest.completed:
 		# Default to rewards preview if rewards need looting
 		quest_info_tab_container.set_current_tab(Tabs.REWARDS_INFO)
+	elif combat_summary.visible:
+		quest_info_tab_container.set_current_tab(Tabs.STORY)
+	else:
+		quest_info_tab_container.set_current_tab(Tabs.START_INFO)
 
 func on_choose_quest_button_pressed():
 	if not is_instance_valid(selected_quest):
 		return
 	quest_chosen.emit(selected_quest)
 	select_quest(null)
+
+func _on_tpk_button_pressed() -> void:
+	if selected_quest:
+		selected_quest.complete()

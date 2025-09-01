@@ -2,12 +2,12 @@ extends Node
 # [TODO] Class where things that need tuning go
 # when it's tuned, move it to an appropriate location
 
-const DEBUG := false
+const DEBUG := true
 
 const ENABLE_ITEM_ICON_TWEEN := true
 
-const QUEST_MIN_PERCENT = 5
-const QUEST_MAX_PERCENT = 99
+const QUEST_MIN_PERCENT = 0
+const QUEST_MAX_PERCENT = 20
 const QUEST_MAX_ITERATIONS = 10
 const QUEST_MAX_ITERATIONS_DEBUG = 3
 const QUEST_TRAVEL_ITEM_CHANCE = 1

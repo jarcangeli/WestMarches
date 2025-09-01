@@ -17,6 +17,7 @@ var popups_queue = []
 const POPUP_QUEUE_TIMER := 1.0
 
 func _ready():
+	force_close_popups()
 	child_entered_tree.connect(on_children_changed, CONNECT_DEFERRED)
 	child_exiting_tree.connect(on_children_changed, CONNECT_DEFERRED)
 	player_inventory.item_added.connect(on_player_item_gained)
@@ -49,7 +50,7 @@ func on_player_item_gained(item : Item):
 		popups_queue.append(item)
 		return
 	var popup = item_popup_scene.instantiate()
-	popup.popup_closed.connect(on_popup_force_closed)
+	popup.popup_closed.connect(force_close_popups)
 	add_child(popup)
 	popup.set_item(item)
 
@@ -60,7 +61,7 @@ func get_current_popups():
 			popups.append(node)
 	return popups
 
-func on_popup_force_closed():
+func force_close_popups():
 	popups_queue.clear()
 	for node in get_current_popups():
 		node.queue_free()

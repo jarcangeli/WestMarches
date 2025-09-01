@@ -228,6 +228,8 @@ func on_kill_character(character : Character):
 	add_story(character.name + " was slain")
 	killed_characters.append(character)
 	combat_summary[character].dead = true
+	if not simulated:
+		character.on_death()
 	if character in monsters:
 		remaining_monsters_alive -= 1
 	elif character in adventurers:

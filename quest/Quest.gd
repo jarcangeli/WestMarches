@@ -63,6 +63,11 @@ func advance_time():
 func active():
 	return started and not finished
 
+func lost():
+	if (not party) or party.is_alive():
+		return false
+	return true
+
 func get_progess_text():
 	var progress = travel_step.get_progress_text() + battle_step.get_progress_text() + return_step.get_progress_text()
 	return "\n".join(progress)

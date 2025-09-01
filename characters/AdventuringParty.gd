@@ -20,15 +20,12 @@ func get_position():
 	return position
 
 func is_alive():
-	for character in get_characters():
-		if character.is_alive():
-			return true
-	return false
+	return not get_characters(false).is_empty()
 
 func get_characters(include_dead := false) -> Array[Character]:
 	var characters : Array[Character] = []
 	for node in get_children():
-		if node is Character and (include_dead or not node.dead):
+		if node is Character and (include_dead or node.is_alive()):
 			characters.append(node)
 	characters.sort_custom(custom_character_comparison)
 	return characters
@@ -59,9 +56,7 @@ func on_quest_completed(quest_completed : Quest):
 		quest = null
 		var disband_party := true
 		for character in get_characters():
-			if not character.is_alive():
-				character.on_death()
-			else:
+			if character.is_alive():
 				disband_party = false
 		if disband_party:
 			if get_parent():

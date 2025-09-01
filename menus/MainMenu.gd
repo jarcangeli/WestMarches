@@ -10,6 +10,7 @@ extends MarginContainer
 @onready var resume_button: Button = %ResumeButton
 
 func _ready():
+	SignalBus.menu_requested.connect(show_main_menu)
 	if TK.DEBUG:
 		start_game()
 	else:

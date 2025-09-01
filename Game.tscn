@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=30 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_y5ctq"]
 [ext_resource type="Script" uid="uid://c4xyw8i5jmhfa" path="res://Game.gd" id="2_w7ht3"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://core/TimeLabel.gd" id="17_7vltt"]
 [ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://core/AdvanceTimeButton.gd" id="18_fj2yu"]
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/ui/QuestScreen.tscn" id="19_iueff"]
+[ext_resource type="Texture2D" uid="uid://dsg5q8nhyethd" path="res://assets/icons/hamburger.png" id="19_w7ht3"]
+[ext_resource type="Script" uid="uid://cm0tvckr3ukic" path="res://core/SignalBusButton.gd" id="20_8ktx7"]
 [ext_resource type="PackedScene" uid="uid://b3ruqllcfspo1" path="res://items/ui/PlayerInventoryView.tscn" id="20_n7324"]
 [ext_resource type="PackedScene" uid="uid://ct06m6nwbyn5k" path="res://Shop.tscn" id="21_o6tbt"]
 [ext_resource type="PackedScene" uid="uid://biym5k6isys7d" path="res://characters/ui/TavernUI.tscn" id="22_v5dxo"]
@@ -234,21 +236,26 @@ text = "Game Progress:"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameWindow/TopBar"]
+[node name="TimeLabel" type="Label" parent="GameWindow/TopBar"]
+layout_mode = 2
+script = ExtResource("17_7vltt")
+time_tracker_path = NodePath("../../../TimeTracker")
+
+[node name="GoldDisplay" type="HBoxContainer" parent="GameWindow/TopBar"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="PlayerCurrencyDisplay" type="Label" parent="GameWindow/TopBar/HBoxContainer"]
+[node name="PlayerCurrencyDisplay" type="Label" parent="GameWindow/TopBar/GoldDisplay"]
 layout_mode = 2
 text = "0 gp"
 script = ExtResource("14_2t1a5")
 
-[node name="TextureRect" type="TextureRect" parent="GameWindow/TopBar/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="GameWindow/TopBar/GoldDisplay"]
 modulate = Color(0.878431, 0.764706, 0.537255, 1)
 layout_mode = 2
 texture = ExtResource("15_8576b")
 
-[node name="Control3" type="Control" parent="GameWindow/TopBar"]
+[node name="Control2" type="Control" parent="GameWindow/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -257,20 +264,22 @@ layout_mode = 2
 text = "FPS:60"
 script = ExtResource("16_68r7h")
 
-[node name="Control2" type="Control" parent="GameWindow/TopBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TimeLabel" type="Label" parent="GameWindow/TopBar"]
-layout_mode = 2
-script = ExtResource("17_7vltt")
-time_tracker_path = NodePath("../../../TimeTracker")
-
 [node name="AdvanceTimeButton" type="Button" parent="GameWindow/TopBar"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Advance Day -->"
 script = ExtResource("18_fj2yu")
+
+[node name="MenuButton" type="Button" parent="GameWindow/TopBar"]
+modulate = Color(0.878431, 0.764706, 0.537255, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("19_w7ht3")
+expand_icon = true
+script = ExtResource("20_8ktx7")
+signal_string = "menu_requested"
 
 [node name="GameTabs" type="TabContainer" parent="GameWindow"]
 layout_mode = 2

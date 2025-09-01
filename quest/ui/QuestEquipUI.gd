@@ -75,7 +75,7 @@ func on_item_equipped(item, _slot):
 func on_item_unequipped(item, _slot):
 	loaned_item_value -= item.get_value()
 	value_label.text = str(loaned_item_value) + " gp"
-	reward_progress.value -= loaned_item_value
+	reward_progress.value = loaned_item_value
 	update_start_quest_button_state()
 
 func _on_abandon_quest_button_pressed() -> void:
@@ -117,5 +117,8 @@ func on_item_selected(item : Item):
 	var containers = character_equip_ui.equipment_layout.get_equipment_containers()
 	for container : EquipmentContainer in containers:
 		if container.slot == slot and container.drop_enabled:
+			var old_item = container.item
+			if old_item:
+				on_item_unequipped(old_item, slot)
 			container.set_item(item)
 			return

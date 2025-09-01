@@ -401,8 +401,8 @@ offset_bottom = 66.0
 layout_mode = 2
 offset_left = 193.0
 offset_top = 8.0
-offset_right = 239.0
-offset_bottom = 30.0
+offset_right = 264.0
+offset_bottom = 41.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 script = ExtResource("25_w250u")
@@ -411,9 +411,8 @@ item_popup_scene = ExtResource("26_3h3yf")
 player_currencies = NodePath("../PlayerCurrencies")
 
 [node name="Label" type="Label" parent="PopupManager"]
-visible = false
 layout_mode = 2
-text = "Gained"
+text = "Gained:"
 horizontal_alignment = 1
 
 [node name="GoldPopup" type="HBoxContainer" parent="PopupManager"]
@@ -436,5 +435,14 @@ texture = ExtResource("15_8576b")
 unique_name_in_owner = true
 wait_time = 4.0
 one_shot = true
+
+[node name="ItemPopup" parent="PopupManager" instance=ExtResource("26_3h3yf")]
+layout_mode = 2
+
+[node name="ItemPopup2" parent="PopupManager" instance=ExtResource("26_3h3yf")]
+layout_mode = 2
+
+[node name="ItemPopup3" parent="PopupManager" instance=ExtResource("26_3h3yf")]
+layout_mode = 2
 
 [node name="AudioPlayerPool" parent="." instance=ExtResource("27_nyc7o")]

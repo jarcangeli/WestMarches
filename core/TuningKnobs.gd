@@ -18,9 +18,9 @@ func quest_max_iterations():
 	else:
 		return QUEST_MAX_ITERATIONS
 
-const EPIC_VALUE = 12
-const RARE_VALUE = 8
-const UNCOMMON_VALUE = 5
+const UNCOMMON_VALUE = 7
+const RARE_VALUE = 13
+const EPIC_VALUE = 22
 
 const RARE_CHANCE = 0.05
 const EPIC_CHANCE = 0.12

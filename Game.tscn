@@ -399,12 +399,13 @@ offset_bottom = 66.0
 
 [node name="PopupManager" type="VBoxContainer" parent="." node_paths=PackedStringArray("player_inventory", "player_currencies")]
 layout_mode = 2
-offset_left = 193.0
+offset_left = 12.0
 offset_top = 8.0
-offset_right = 264.0
-offset_bottom = 41.0
+offset_right = 445.0
+offset_bottom = 216.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
+mouse_filter = 2
 script = ExtResource("25_w250u")
 player_inventory = NodePath("../PlayerInventory")
 item_popup_scene = ExtResource("26_3h3yf")

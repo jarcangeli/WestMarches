@@ -120,7 +120,8 @@ func on_mouse_entered():
 	set_hovered(true)
 	if select_enabled and hover_select_enabled and not selected:
 		set_selected(true)
-	AudioBus.play.emit(AudioBus.object_interact)
+	if hover_grow_enabled:
+		AudioBus.play.emit(AudioBus.object_interact)
 
 func on_mouse_excited():
 	set_hovered(false)

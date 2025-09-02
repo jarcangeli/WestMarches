@@ -46,7 +46,7 @@ func load_row(row : Dictionary):
 	item_data.stat_values[AbilityStats.Type.POISON_CHANCE] 	= int(row["poison_chance"])
 	item_data.stat_values[AbilityStats.Type.POISON_DAMAGE] 	= int(row["poison_damage"])
 	item_data.stat_values[AbilityStats.Type.SNIPE_DAMAGE] 	= int(row["snipe_damage"])
-	item_data.value = base_value + get_weighted_value(item_data.stat_values)
+	item_data.value = base_value + 2 * get_weighted_value(item_data.stat_values)
 	item_data.rarity = get_rarity_from_value(item_data.value)
 	if item_data.valid():
 		data_by_index[item_data.id] = item_data

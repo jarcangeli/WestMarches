@@ -7,12 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="3_o1ncq"]
 [ext_resource type="Texture2D" uid="uid://cj14q464lrv01" path="res://assets/icons/stats/attack.png" id="4_l0nhr"]
 
-[node name="PartySummaryUI" type="ScrollContainer"]
+[node name="PartySummaryUI" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 script = ExtResource("1_hokt6")
 character_summary_scene = ExtResource("2_dibcj")
 
@@ -21,25 +25,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NameLabel" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Test"
-horizontal_alignment = 1
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="CoinsLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "5"
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
-modulate = Color(0.878431, 0.764706, 0.537255, 1)
-layout_mode = 2
-texture = ExtResource("3_o1ncq")
+theme_override_font_sizes/font_size = 24
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(30, 0)
@@ -48,15 +44,35 @@ layout_mode = 2
 [node name="PowerLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Power Level"
+mouse_filter = 1
 text = "5"
 
 [node name="PowerRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
 modulate = Color(0.878431, 0.764706, 0.537255, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+tooltip_text = "Power Level"
 texture = ExtResource("4_l0nhr")
 expand_mode = 1
 stretch_mode = 3
+
+[node name="Control3" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="CoinsLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Gold Pieces"
+mouse_filter = 1
+text = "5"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+modulate = Color(0.878431, 0.764706, 0.537255, 1)
+layout_mode = 2
+tooltip_text = "Gold Pieces"
+texture = ExtResource("3_o1ncq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 visible = false

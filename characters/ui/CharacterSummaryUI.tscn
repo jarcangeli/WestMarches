@@ -74,6 +74,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="CenterContainer3" type="CenterContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="StatsDisplay" parent="ScrollContainer/MarginContainer/VBoxContainer/CenterContainer3" instance=ExtResource("3_j28tf")]

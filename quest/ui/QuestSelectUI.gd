@@ -39,6 +39,7 @@ func _ready():
 	update_quest_panels()
 	$QuestProgressPanel.visible = false
 	set_tab_titles()
+	
 
 func set_tab_titles():
 	for i in range(Tabs.SIZE):

@@ -7,6 +7,15 @@ extends MarginContainer
 
 func _ready():
 	visibility_changed.connect(on_made_visible)
+	
+	if TK.TUTORIAL:
+		SignalBus.quest_completed.connect(on_first_quest_completed, CONNECT_ONE_SHOT)
+		var tab_index = get_parent().get_tab_idx_from_control(self)
+		get_parent().set_tab_hidden(tab_index, true)
+
+func on_first_quest_completed(_quest):
+	var tab_index = get_parent().get_tab_idx_from_control(self)
+	get_parent().set_tab_hidden(tab_index, false)
 
 func on_made_visible():
 	if not visible:

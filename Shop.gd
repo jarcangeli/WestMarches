@@ -14,7 +14,7 @@ class_name Shop
 @onready var buy_amount_label: Label = %BuyAmountLabel
 
 const shop_stock := ["Coif", "Jerkin", "Sling", "Shortsword", "Boots", "Minor Healing Potion", \
-						"Supply Pack", "Topaz Ring", "Leather Belt"]
+						"Supply Pack", "Topaz Ring", "Leather Belt", "Chaps"]
 
 func _ready() -> void:
 	shop_items.set_item_container(shop_inventory)
@@ -32,6 +32,15 @@ func _ready() -> void:
 	update_amount_label()
 	
 	Globals.shop = self
+	
+	if TK.TUTORIAL:
+		SignalBus.quest_completed.connect(on_first_quest_completed, CONNECT_ONE_SHOT)
+		var tab_index = get_parent().get_tab_idx_from_control(self)
+		get_parent().set_tab_hidden(tab_index, true)
+
+func on_first_quest_completed(_quest):
+	var tab_index = get_parent().get_tab_idx_from_control(self)
+	get_parent().set_tab_hidden(tab_index, false)
 
 func advance_time():
 	for item_name in shop_stock:

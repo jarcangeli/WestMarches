@@ -16,9 +16,11 @@ signal quest_started()
 @onready var reward_progress: ProgressBar = %RewardProgressBar
 @onready var start_quest_button: Button = %StartQuestButton
 @onready var character_equip_container: TabContainer = %CharacterEquipContainer
+@onready var inventory_tutorial_label: Label = %InventoryTutorialLabel
 
 var current_quest : Quest = null
 var loaned_item_value = 0
+var tutorial_label_shown = true
 
 func _ready():
 	SignalBus.player_inventory_changed.connect(self.on_player_inventory_changed)
@@ -29,6 +31,9 @@ func _ready():
 	update_start_quest_button_state()
 	
 	inventory_display_container.item_selected.connect(on_item_selected)
+	
+	if TK.TUTORIAL:
+		tutorial_label_shown = false
 
 func on_quest_selected(quest : Quest):
 	current_quest = quest
@@ -37,6 +42,8 @@ func on_quest_selected(quest : Quest):
 		push_error("Equip screen for quest opened with invalid party")
 		clear_characters()
 		return
+	inventory_tutorial_label.visible = not tutorial_label_shown
+	
 	var characters = party.get_characters()
 	setup_characters(characters)
 	
@@ -86,6 +93,7 @@ func _on_start_quest_button_pressed() -> void:
 	if not is_instance_valid(current_quest):
 		quest_abandoned.emit()
 		return
+	tutorial_label_shown = true
 	
 	current_quest.set_reward_tier_from_sponsor(loaned_item_value)
 	

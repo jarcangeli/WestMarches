@@ -9,7 +9,7 @@ func set_character(character : Character):
 	
 	var unlocked_slots = []
 	var level = character.get_level()
-	for i in range(0, level):
+	for i in range(0, level + 1):
 		if len(slot_unlock_order) > i:
 			unlocked_slots.append(slot_unlock_order[i])
 	

@@ -62,6 +62,13 @@ layout_mode = 2
 [node name="ItemIconDisabled4" parent="VBoxContainer/ScrollContainer/MarginContainer/InventoryDisplayContainer" instance=ExtResource("4_h2eiy")]
 layout_mode = 2
 
+[node name="InventoryTutorialLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 2
+text = "This is your inventory. These items belong to you and will be returned to you if the quest is successfull"
+autowrap_mode = 3
+
 [node name="CenterMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3

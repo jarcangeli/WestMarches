@@ -4,9 +4,11 @@ extends Node
 
 const DEBUG := false
 
+const TUTORIAL := true
+
 const ENABLE_ITEM_ICON_TWEEN := true
 
-const QUEST_MIN_PERCENT = 5
+const QUEST_MIN_PERCENT = 10
 const QUEST_MAX_PERCENT = 99
 const QUEST_MAX_ITERATIONS = 10
 const QUEST_MAX_ITERATIONS_DEBUG = 3

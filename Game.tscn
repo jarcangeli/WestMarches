@@ -45,7 +45,6 @@ script = ExtResource("2_w7ht3")
 
 [node name="PlayerCurrencies" type="Node" parent="."]
 script = ExtResource("3_8ktx7")
-gold = 10
 
 [node name="TimeTracker" type="Node" parent="." groups=["time"]]
 script = ExtResource("4_hwsgv")

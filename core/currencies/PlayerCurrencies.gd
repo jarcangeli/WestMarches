@@ -7,6 +7,9 @@ func _ready():
 	var err = connect("changed", Callable(self, "on_changed"))
 	if err:
 		push_error(err)
+	
+	if TK.DEBUG:
+		add_gold(10)
 
 func on_changed():
 	SignalBus.player_currencies_changed.emit()

@@ -14,6 +14,19 @@ func _ready():
 		inventory_side_panel.visible = false
 	
 	on_player_inventory_changed()
+	
+	if TK.TUTORIAL and get_parent() is TabContainer:
+		var tab_container : TabContainer = get_parent()
+		SignalBus.quest_started.connect(on_first_quest_started, CONNECT_ONE_SHOT)
+		var tab_index = tab_container.get_tab_idx_from_control(self)
+		tab_container.set_tab_hidden(tab_index, true)
+		tab_container.get_tab_bar().visible = false
+
+func on_first_quest_started(_quest):
+	var tab_container : TabContainer = get_parent()
+	var tab_index = tab_container.get_tab_idx_from_control(self)
+	tab_container.set_tab_hidden(tab_index, false)
+	tab_container.get_tab_bar().visible = true
 
 func on_item_selected(item):
 	if inventory_side_panel:

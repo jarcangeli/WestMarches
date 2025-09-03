@@ -54,6 +54,18 @@ func get_max_health() -> int:
 func get_level() -> int:
 	return TK.level_from_experience(experience)
 
+func get_unlocked_slots() -> Array[int]:
+	var slot_unlock_order : Array = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(character_class)
+	if not slot_unlock_order:
+		slot_unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(Character.CharacterClass.FIGHTER)
+	var level = get_level()
+	
+	var unlocked_slots : Array[int] = []
+	for i in range(0, level + 1):
+		if len(slot_unlock_order) > i:
+			unlocked_slots.append(slot_unlock_order[i])
+	return unlocked_slots
+
 func get_power_level() -> int:
 	return stats.get_weighted_value()
 
@@ -77,7 +89,7 @@ func unequip_item(item : Item):
 		var slot_item = equip_slots[slot]
 		if slot_item == item:
 			slot_item = null
-			equip_slots[slot] = null
+			equip_slots.erase(slot)
 			return
 
 func unequip_all_items():
@@ -85,15 +97,20 @@ func unequip_all_items():
 
 func equip_best_gear(item_pool = null):
 	var items = get_items()
+	var unlocked_slots = get_unlocked_slots()
+	
 	for item : Item in items:
-		if not equip_slots.has(item.primary_slot_type):
+		if not item.primary_slot_type in unlocked_slots:
+			continue
+		
+		if not equip_slots.has(item.primary_slot_type) or equip_slots.get(item.primary_slot_type) == null:
 			equip_slots[item.primary_slot_type] = item
 		else:
 			if equip_slots.get(item.primary_slot_type).get_value() < item.get_value():
 				equip_slots[item.primary_slot_type] = item
 	if is_instance_valid(item_pool) and item_pool is ItemContainer:
 		for item : Item in item_pool.get_items():
-			if not equip_slots.has(item.primary_slot_type):
+			if not equip_slots.has(item.primary_slot_type) or equip_slots.get(item.primary_slot_type) == null:
 				add_item(item)
 				equip_slots[item.primary_slot_type] = item
 			else:

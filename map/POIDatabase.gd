@@ -1,4 +1,5 @@
 extends Node
+class_name POIDatabaseClass
 
 const pois_path := "res://map/pois/"
 
@@ -34,29 +35,32 @@ func load_pois_from_configs(path):
 		sections.remove_at(0)
 		var encounters : Array[EncounterData] = []
 		for section in sections:
-			var encounter_keys = config.get_section_keys(section)
-			var encounter_data := EncounterData.new()
-			encounter_data.encounter_name = config.get_value(section, "name")
-			encounter_data.description = config.get_value(section, "description")
-			if config.has_section_key(section, "repeatable"):
-				encounter_data.repeatable = bool(config.get_value(section, "repeatable"))
-			for key : String in encounter_keys:
-				if key.begins_with("monster"):
-					encounter_data.monster_names.append(config.get_value(section, key))
-				if key.begins_with("item"):
-					encounter_data.item_names.append(config.get_value(section, key))
-			encounter_data.on_start_message = config.get_value(section, "start_message", "")
-			encounter_data.on_combat_start_message = \
-				config.get_value(section, "combat_start_message", default_combat_start_message(encounter_data))
-			encounter_data.on_win_message = config.get_value(section, "win_message", "The monsters were defeated!")
-			encounter_data.on_lose_message = config.get_value(section, "lose_message", "The party was defeated...")
-
+			var encounter_data = get_encounter_data_from_cfg_section(config, section)
 			encounters.append(encounter_data)
 		poi_data.encounters = encounters
 		if poi_data.poi_name != "Template":
 			pois_by_name[poi_data.poi_name] = poi_data
 
-func default_combat_start_message(data : EncounterData):
+static func get_encounter_data_from_cfg_section(config, section) -> EncounterData:
+	var encounter_keys = config.get_section_keys(section)
+	var encounter_data := EncounterData.new()
+	encounter_data.encounter_name = config.get_value(section, "name")
+	encounter_data.description = config.get_value(section, "description")
+	if config.has_section_key(section, "repeatable"):
+		encounter_data.repeatable = bool(config.get_value(section, "repeatable"))
+	for key : String in encounter_keys:
+		if key.begins_with("monster"):
+			encounter_data.monster_names.append(config.get_value(section, key))
+		if key.begins_with("item"):
+			encounter_data.item_names.append(config.get_value(section, key))
+	encounter_data.on_start_message = config.get_value(section, "start_message", "")
+	encounter_data.on_combat_start_message = \
+		config.get_value(section, "combat_start_message", default_combat_start_message(encounter_data))
+	encounter_data.on_win_message = config.get_value(section, "win_message", "The monsters were defeated!")
+	encounter_data.on_lose_message = config.get_value(section, "lose_message", "The party was defeated...")
+	return encounter_data
+
+static func default_combat_start_message(data : EncounterData):
 	if data.monster_names.is_empty():
 		return "The party find no creatures to slay"
 	elif len(data.monster_names) == 1:

@@ -4,7 +4,7 @@ extends Node
 
 const DEBUG := false
 
-const TUTORIAL := true
+const TUTORIAL := false
 
 const ENABLE_ITEM_ICON_TWEEN := true
 

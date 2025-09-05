@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2ofrhjbtrwct"]
+[gd_scene load_steps=3 format=3 uid="uid://b2ofrhjbtrwct"]
 
 [ext_resource type="Script" uid="uid://ddd81j6t86iem" path="res://test/QuestEncounterNode.gd" id="1_a0iji"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a0iji"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="QuestEncounterNode" type="GraphNode"]
 offset_left = 496.0
@@ -10,11 +13,11 @@ offset_bottom = 533.0
 mouse_filter = 1
 position_offset = Vector2(496, 232)
 title = "Quest Encounter"
-slot/0/left_enabled = false
+slot/0/left_enabled = true
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
 slot/0/left_icon = null
-slot/0/right_enabled = false
+slot/0/right_enabled = true
 slot/0/right_type = 0
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = null
@@ -36,6 +39,13 @@ text = "Name:"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="StatusPanel" type="Panel" parent="VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a0iji")
 
 [node name="RepeatableCheckBox" type="CheckBox" parent="VBoxContainer"]
 unique_name_in_owner = true

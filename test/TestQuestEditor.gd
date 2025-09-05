@@ -16,15 +16,30 @@ func _ready():
 	var scene = ResourceLoader.load(save_path + save_file)
 	graph_edit = scene.instantiate()
 	parent.add_child(graph_edit)
+	connect_graph_edit()
 	for node in graph_edit.get_children():
 		if node is QuestEncounterNode:
 			node.set_owner(graph_edit)
 	load_data_file_to_nodes()
 
+func connect_graph_edit():
+	if not graph_edit:
+		push_error("Trying to connect null grap_edit")
+		return
+	graph_edit.right_disconnects = true
+	graph_edit.connection_request.connect(graph_connect)
+	graph_edit.disconnection_request.connect(graph_disconnect)
+
+func graph_connect(from_node: StringName, from_port: int, to_node: StringName, to_port: int):
+	graph_edit.connect_node(from_node, from_port, to_node, to_port)
+
+func graph_disconnect(from_node: StringName, from_port: int, to_node: StringName, to_port: int):
+	graph_edit.disconnect_node(from_node, from_port, to_node, to_port)
+
 func _on_add_quest_button_pressed() -> void:
 	var node : QuestEncounterNode = quest_node_scene.instantiate()
 	graph_edit.add_child(node)
-	node.update_owners(node, graph_edit)
+	node.set_owner(graph_edit)
 
 func _on_save_button_pressed() -> void:
 	# Store a backup of last open data
@@ -86,5 +101,6 @@ func load_data_file_to_nodes():
 	
 	for node in graph_edit.get_children():
 		if node is QuestEncounterNode:
+			node.set_slot(0, true, 0, Color(1,1,1), true, 0, Color(0,1,0))
 			var encounter_data := POIDatabaseClass.get_encounter_data_from_cfg_section(config, node.name)
 			node.set_encounter_data(encounter_data)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2ofrhjbtrwct"]
 
-[ext_resource type="Script" uid="uid://ddd81j6t86iem" path="res://test/QuestEncounterNode.gd" id="1_a0iji"]
+[ext_resource type="Script" uid="uid://ddd81j6t86iem" path="res://test/quest_graph/QuestEncounterNode.gd" id="1_a0iji"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a0iji"]
 bg_color = Color(1, 1, 1, 1)

@@ -1,36 +1,44 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="PackedScene" path="res://test/QuestEncounterNode.tscn" id="1_r8y2g"]
-[ext_resource type="Script" path="res://test/QuestEncounterNode.gd" id="2_r8y2g"]
+[ext_resource type="PackedScene" path="res://test/quest_graph/QuestEncounterNode.tscn" id="1_r8y2g"]
+[ext_resource type="Script" path="res://test/quest_graph/QuestEncounterNode.gd" id="2_r8y2g"]
+[ext_resource type="PackedScene" path="res://test/quest_graph/QuestPoiNode.tscn" id="3_72mes"]
+[ext_resource type="Script" path="res://test/quest_graph/QuestPoiNode.gd" id="4_knqga"]
 
 [node name="_GraphEdit_88" type="GraphEdit"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-scroll_offset = Vector2(4.32764, 104.525)
+scroll_offset = Vector2(-248, 58.7)
 right_disconnects = true
 connections = Array[Dictionary]([{
 "from_node": &"@GraphNode@109",
 "from_port": 0,
 "keep_alive": false,
-"to_node": &"@GraphNode@140",
-"to_port": 0
-}, {
-"from_node": &"@GraphNode@109",
-"from_port": 0,
-"keep_alive": false,
 "to_node": &"QuestEncounterNode",
 "to_port": 0
+}, {
+"from_node": &"QuestPOINode",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"@GraphNode@109",
+"to_port": 0
+}, {
+"from_node": &"QuestPOINode2",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"@GraphNode@140",
+"to_port": 0
 }])
-zoom = 0.726788
+zoom = 0.967354
 
 [node name="QuestEncounterNode" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 548.031
-offset_top = 26.297
-offset_right = 863.031
-offset_bottom = 327.297
-scale = Vector2(0.726788, 0.726788)
+offset_left = 983.189
+offset_top = 115.424
+offset_right = 1298.2
+offset_bottom = 416.424
+scale = Vector2(0.967354, 0.967354)
 mouse_filter = 1
 position_offset = Vector2(760, 180)
 title = "Quest Encounter"
@@ -47,11 +55,11 @@ script = ExtResource("2_r8y2g")
 
 [node name="@GraphNode@109" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 242.78
-offset_top = 26.297
-offset_right = 557.78
-offset_bottom = 327.297
-scale = Vector2(0.726788, 0.726788)
+offset_left = 576.9
+offset_top = 115.424
+offset_right = 891.9
+offset_bottom = 416.424
+scale = Vector2(0.967354, 0.967354)
 mouse_filter = 1
 position_offset = Vector2(340, 180)
 title = "Quest Encounter"
@@ -68,11 +76,11 @@ script = ExtResource("2_r8y2g")
 
 [node name="@GraphNode@140" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 548.031
-offset_top = 258.869
-offset_right = 863.032
-offset_bottom = 559.869
-scale = Vector2(0.726788, 0.726788)
+offset_left = 983.189
+offset_top = 424.977
+offset_right = 1298.2
+offset_bottom = 725.977
+scale = Vector2(0.967354, 0.967354)
 mouse_filter = 1
 position_offset = Vector2(760, 500)
 title = "Quest Encounter"
@@ -86,3 +94,43 @@ slot/0/right_color = Color(0, 1, 0, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
 script = ExtResource("2_r8y2g")
+
+[node name="QuestPOINode" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
+layout_mode = 0
+offset_left = 267.347
+offset_top = 212.159
+offset_right = 539.347
+offset_bottom = 428.158
+scale = Vector2(0.967354, 0.967354)
+mouse_filter = 1
+position_offset = Vector2(20, 280)
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0, 1, 0, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("4_knqga")
+
+[node name="QuestPOINode2" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
+layout_mode = 0
+offset_left = 402.777
+offset_top = 483.018
+offset_right = 674.777
+offset_bottom = 699.018
+scale = Vector2(0.967354, 0.967354)
+mouse_filter = 1
+position_offset = Vector2(160, 560)
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0, 1, 0, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("4_knqga")

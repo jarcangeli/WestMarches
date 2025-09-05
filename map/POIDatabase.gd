@@ -29,9 +29,7 @@ func load_pois_from_configs(path):
 			continue
 			
 		var sections = config.get_sections()
-		var poi_data := POIData.new()
-		poi_data.poi_name = config.get_value(sections[0], "name")
-		poi_data.description = config.get_value(sections[0], "description")
+		var poi_data := get_poi_data_from_cfg_section(config, sections[0])
 		sections.remove_at(0)
 		var encounters : Array[EncounterData] = []
 		for section in sections:
@@ -40,6 +38,12 @@ func load_pois_from_configs(path):
 		poi_data.encounters = encounters
 		if poi_data.poi_name != "Template":
 			pois_by_name[poi_data.poi_name] = poi_data
+
+static func get_poi_data_from_cfg_section(config, section) -> POIData:
+	var poi_data := POIData.new()
+	poi_data.poi_name = config.get_value(section, "name")
+	poi_data.description = config.get_value(section, "description")
+	return poi_data
 
 static func get_encounter_data_from_cfg_section(config, section) -> EncounterData:
 	var encounter_keys = config.get_section_keys(section)

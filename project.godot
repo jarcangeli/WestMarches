@@ -31,6 +31,11 @@ POIDatabase="*res://map/POIDatabase.gd"
 
 gdscript/warnings/unused_signal=false
 
+[display]
+
+window/size/viewport_width=1800
+window/size/viewport_height=900
+
 [editor]
 
 naming/scene_name_casing=1

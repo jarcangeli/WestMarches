@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://smuluikuu7p4"]
 
-[ext_resource type="Script" uid="uid://37hua6q76y1t" path="res://test/quest_graph/QuestPoiNode.gd" id="1_aeues"]
+[ext_resource type="Script" uid="uid://37hua6q76y1t" path="res://test/quest_graph/QuestPOINode.gd" id="1_aeues"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeues"]
 content_margin_left = 10.0
@@ -26,6 +26,7 @@ bg_color = Color(1, 1, 1, 1)
 offset_right = 272.0
 offset_bottom = 216.0
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_aeues")
+resizable = true
 title = "POI"
 slot/0/left_enabled = true
 slot/0/left_type = 0

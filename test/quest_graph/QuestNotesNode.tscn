@@ -23,6 +23,7 @@ corner_radius_bottom_left = 4
 offset_right = 274.0
 offset_bottom = 293.0
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_1jvei")
+resizable = true
 title = "Note"
 slot/0/left_enabled = false
 slot/0/left_type = 0

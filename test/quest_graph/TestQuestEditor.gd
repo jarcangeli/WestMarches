@@ -32,6 +32,7 @@ func connect_graph_edit():
 	graph_edit.right_disconnects = true
 	graph_edit.connection_request.connect(graph_connect)
 	graph_edit.disconnection_request.connect(graph_disconnect)
+	graph_edit.duplicate_nodes_request.connect(_on_graph_edit_duplicate_nodes_request)
 
 func graph_connect(from_node: StringName, from_port: int, to_node: StringName, to_port: int):
 	graph_edit.connect_node(from_node, from_port, to_node, to_port)
@@ -173,25 +174,43 @@ func get_note_from_cfg_section(config, section) -> Array[String]:
 func initial_position() -> Vector2:
 	return get_viewport_rect().size / 2
 
-func _on_add_quest_button_pressed() -> void:
+func _on_add_quest_button_pressed() -> QuestEncounterNode:
 	var node : QuestEncounterNode = quest_node_scene.instantiate()
 	graph_edit.add_child(node, true)
 	node.global_position = initial_position()
 	node.set_owner(graph_edit)
+	return node
 
-func _on_add_poi_button_pressed() -> void:
+func _on_add_poi_button_pressed() -> QuestPOINode:
 	var node : QuestPOINode = poi_node_scene.instantiate()
 	graph_edit.add_child(node, true)
 	node.global_position = initial_position()
 	node.set_owner(graph_edit)
+	return node
 
-func _on_add_note_button_pressed() -> void:
+func _on_add_note_button_pressed() -> QuestNoteNode:
 	var node : QuestNoteNode = note_node_scene.instantiate()
 	graph_edit.add_child(node, true)
 	node.global_position = initial_position()
 	node.set_owner(graph_edit)
+	return node
 
 func _on_delete_quest_button_pressed() -> void:
 	for node in graph_edit.get_children():
 		if node is GraphNode and node.selected:
 			node.queue_free()
+
+func _on_graph_edit_duplicate_nodes_request() -> void:
+	for node in graph_edit.get_children():
+		if node is QuestEncounterNode and node.selected:
+			node = node as QuestEncounterNode
+			var dupe_node := _on_add_quest_button_pressed()
+			dupe_node.set_encounter_data(node.get_encounter_data())
+		if node is QuestPOINode and node.selected:
+			node = node as QuestPOINode
+			var dupe_node := _on_add_poi_button_pressed()
+			dupe_node.set_poi_data(node.get_poi_data())
+		if node is QuestNoteNode and node.selected:
+			node = node as QuestNoteNode
+			var dupe_node := _on_add_note_button_pressed()
+			dupe_node.set_note(node.get_note())

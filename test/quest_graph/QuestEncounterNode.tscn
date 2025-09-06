@@ -8,10 +8,11 @@ bg_color = Color(1, 1, 1, 1)
 [node name="QuestEncounterNode" type="GraphNode"]
 offset_left = 496.0
 offset_top = 232.0
-offset_right = 811.0
-offset_bottom = 533.0
+offset_right = 888.0
+offset_bottom = 529.0
 mouse_filter = 1
 position_offset = Vector2(496, 232)
+resizable = true
 title = "Quest Encounter"
 slot/0/left_enabled = true
 slot/0/left_type = 0
@@ -62,11 +63,11 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 wrap_mode = 1
 
 [node name="DataContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 columns = 2
 
 [node name="Label2" type="Label" parent="VBoxContainer/DataContainer"]
@@ -78,7 +79,6 @@ text = "Monsters:"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="Label3" type="Label" parent="VBoxContainer/DataContainer"]
 layout_mode = 2
@@ -89,4 +89,3 @@ text = "Items:"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3

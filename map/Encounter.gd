@@ -5,6 +5,7 @@ class_name Encounter
 var encounter_name : String
 var description : String
 var repeatable := false
+var dependency : String
 
 #TODO: Why am I duplicating all these?
 var on_start_message : String
@@ -21,6 +22,7 @@ func _init(data : EncounterData = null): #TODO: Remove null default
 	encounter_name = data.encounter_name
 	description = data.description
 	repeatable = data.repeatable
+	dependency = data.dependency
 	name = encounter_name
 	monster_names = data.monster_names
 	item_names = data.item_names

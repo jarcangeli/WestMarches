@@ -13,17 +13,22 @@ const MAX_AVAILABLE_QUESTS = 4
 # e.g. a failed quest could be re-generated
 var encounters_already_encountered = []
 
+# Track dependencies completed
+var encounters_completed = []
+
 func _ready():
 	SignalBus.quest_completed.connect(on_quest_completed)
 
 func on_quest_completed(quest : Quest):
 	var encounter : Encounter = quest.battle_step.encounter
-	if encounter and encounter.repeatable:
-		encounter.generate_items()
-		encounter.generate_monsters()
-		var i = encounters_already_encountered.find(encounter)
-		if i >= 0:
-			encounters_already_encountered.remove_at(i)
+	if encounter:
+		encounters_completed.append(encounter.encounter_name)
+		if encounter.repeatable:
+				encounter.generate_items()
+				encounter.generate_monsters()
+				var i = encounters_already_encountered.find(encounter)
+				if i >= 0:
+					encounters_already_encountered.remove_at(i)
 
 func advance_time():
 	for party in parties.get_idle_parties():
@@ -84,8 +89,11 @@ func get_encounter(root) -> Encounter:
 	var children = root.get_children()
 	children.shuffle()
 	for node in children:
-		if (node is Encounter) and not node in encounters_already_encountered:
-			return node
+		if node is Encounter:
+			if not node.dependency.is_empty() and not (node.dependency in encounters_completed):
+				continue
+			if not node in encounters_already_encountered:
+				return node
 		else:
 			var encounter = get_encounter(node)
 			if (encounter is Encounter) and not encounter in encounters_already_encountered:

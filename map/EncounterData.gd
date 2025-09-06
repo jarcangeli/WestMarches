@@ -10,6 +10,7 @@ class_name EncounterData
 @export var item_names : Array[String] = []
 
 @export var repeatable := false
+@export var dependency : String = ""
 
 @export var on_start_message : String
 @export var on_combat_start_message : String

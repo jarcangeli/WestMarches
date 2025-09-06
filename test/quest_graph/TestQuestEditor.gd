@@ -8,10 +8,7 @@ extends MarginContainer
 @onready var graph_edit: GraphEdit = %GraphEdit
 
 const save_file 			= "quest_graph.tscn"
-const backup_file 			= "backup_quest_graph.tscn"
-
 const save_folder = "graph_data/"
-const backup_folder = "backup_graph_data/"
 
 func _ready():
 	var parent = graph_edit.get_parent()
@@ -40,16 +37,31 @@ func graph_connect(from_node: StringName, from_port: int, to_node: StringName, t
 func graph_disconnect(from_node: StringName, from_port: int, to_node: StringName, to_port: int):
 	graph_edit.disconnect_node(from_node, from_port, to_node, to_port)
 
-func store_connected_nodes_recursive(node_name, connections, node_save_order, data_file):
+func store_connected_nodes_recursive(node_name, connections, poi_name, dependency, data_file):
+	if node_name in stored_nodes:
+		return 	#Can have multiple connections
+	stored_nodes.append(node_name)
+	
+	var node = graph_edit.find_child(node_name)
+	if node is QuestPOINode:
+		store_poi_node(node, data_file)
+		poi_name = node.get_poi_data().poi_name
+	if node is QuestEncounterNode:
+		store_encounter_node(node, poi_name, dependency, data_file)
+		dependency = node.get_encounter_data().encounter_name
+
 	for connection in connections:
 		if connection["from_node"] == node_name:
-			var to_node = connection["to_node"]
-			node_save_order.append(to_node)
-			store_encounter_node(graph_edit.find_child(to_node), data_file)
-			store_connected_nodes_recursive(to_node, connections, node_save_order, data_file)
-			#TODO: Prevent recursion
+			var to_node_name = connection["to_node"]
+			var to_node = graph_edit.find_child(to_node_name)
+			if not to_node:
+				continue
+			store_connected_nodes_recursive(to_node_name, connections, poi_name, dependency, data_file)
 
+
+var stored_nodes = []
 func _on_save_button_pressed() -> void:
+	stored_nodes.clear()
 	# Store a backup of last open data
 	#var dir = DirAccess.open(save_path)
 	#var err = 0
@@ -60,25 +72,16 @@ func _on_save_button_pressed() -> void:
 			#push_error(err)
 			#return
 	
-	var node_save_order = []
+	var file_name = save_path + save_folder + "quests.cfg"
+	var data_file := FileAccess.open(file_name, FileAccess.WRITE)
+	var err = FileAccess.get_open_error()
+	if err or not data_file:
+		push_error(err)
 	var connections = graph_edit.connections
 	for poi_node in graph_edit.get_children():
 		if poi_node is QuestPOINode:
-			var poi_data := (poi_node as QuestPOINode).get_poi_data()
-			var file_name = save_path + save_folder + "%s.cfg" % poi_node.name
-			var data_file := FileAccess.open(file_name, FileAccess.WRITE)
-			var err = FileAccess.get_open_error()
-			if err or not data_file:
-				push_error(err)
-				
-			data_file.store_string("[%s]\n" % poi_node.name)
-			data_file.store_string("name=\"%s\"\n" % poi_data.poi_name)
-			data_file.store_string("description=\"%s\"\n" % poi_data.description)
-			data_file.store_string('\n')
-			node_save_order.append(poi_node.name)
-			
-			store_connected_nodes_recursive(poi_node.name, connections, node_save_order, data_file)
-			data_file.close()
+			store_connected_nodes_recursive(poi_node.name, connections, "", "", data_file)
+	data_file.close()
 	
 	# Handle orphaned nodes (editor only)
 	var orphan_data_file := FileAccess.open(save_path + save_folder + "orphaned.cfg", FileAccess.WRITE)
@@ -86,8 +89,8 @@ func _on_save_button_pressed() -> void:
 	if o_err or not orphan_data_file:
 		push_error(o_err)
 	for node in graph_edit.get_children():
-		if node is QuestEncounterNode and not node.name in node_save_order:
-			store_encounter_node(node as QuestEncounterNode, orphan_data_file)
+		if node is QuestEncounterNode and not node.name in stored_nodes:
+			store_encounter_node(node as QuestEncounterNode, "", "", orphan_data_file)
 	orphan_data_file.close()
 	
 	# Handle note nodes (editor only)
@@ -113,19 +116,37 @@ func _on_save_button_pressed() -> void:
 	scene.pack(graph_edit)
 	ResourceSaver.save(scene, save_path + save_file)
 
-func store_encounter_node(node : QuestEncounterNode, data_file : FileAccess):
-		var encounter_data := node.get_encounter_data()
-		data_file.store_string("[%s]\n" % node.name)
-		data_file.store_string("name=\"%s\"\n" % encounter_data.encounter_name)
-		data_file.store_string("description=\"%s\"\n" % encounter_data.description)
-		data_file.store_string("repeatable=%s\n" % ("true" if encounter_data.repeatable else "false"))
-		for i in range(len(encounter_data.monster_names)):
-			var monster_name = encounter_data.monster_names[i]
-			data_file.store_string("monster%d=\"%s\"\n" % [i+1, monster_name])
-		for i in range(len(encounter_data.item_names)):
-			var item_name = encounter_data.item_names[i]
-			data_file.store_string("item%d=\"%s\"\n" % [i+1, item_name])
-		data_file.store_string('\n')
+func store_poi_node(node : QuestPOINode, data_file : FileAccess):
+	var poi_data := node.get_poi_data()
+	data_file.store_string("[%s]\n" % node.name)
+	data_file.store_string("name=\"%s\"\n" % poi_data.poi_name)
+	data_file.store_string("description=\"%s\"\n" % poi_data.description)
+	data_file.store_string('\n')
+
+func store_encounter_node(node : QuestEncounterNode, poi_name : String, dependency : String, data_file : FileAccess):
+	var encounter_data := node.get_encounter_data()
+	data_file.store_string("[%s]\n" % node.name)
+	data_file.store_string("name=\"%s\"\n" % encounter_data.encounter_name)
+	data_file.store_string("description=\"%s\"\n" % encounter_data.description)
+	data_file.store_string("poi=\"%s\"\n" % poi_name)
+	data_file.store_string("repeatable=%s\n" % ("true" if encounter_data.repeatable else "false"))
+	if not dependency.is_empty():
+		data_file.store_string("dependency=\"%s\"\n" % dependency)
+	for i in range(len(encounter_data.monster_names)):
+		var monster_name = encounter_data.monster_names[i]
+		data_file.store_string("monster%d=\"%s\"\n" % [i+1, monster_name])
+	for i in range(len(encounter_data.item_names)):
+		var item_name = encounter_data.item_names[i]
+		data_file.store_string("item%d=\"%s\"\n" % [i+1, item_name])
+	data_file.store_string('\n')
+
+func get_node_depedency(node_name):
+	if not graph_edit:
+		return ""
+	for connection in graph_edit.connections:
+		if connection["to_node"] == node_name:
+			return connection["from_node"]
+	return ""
 
 func store_note_node(node : QuestNoteNode, data_file : FileAccess):
 		var note := node.get_note()

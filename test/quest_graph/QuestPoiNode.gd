@@ -8,6 +8,10 @@ class_name QuestPOINode
 const OK_COLOUR = Color.WEB_GREEN
 const BAD_COLOUR = Color.DARK_RED
 
+func _ready():
+	name_edit.text_changed.connect(any_text_changed)
+	description_edit.text_changed.connect(update_status)
+
 func get_poi_data() -> POIData:
 	var poi_data := POIData.new()
 	poi_data.poi_name = name_edit.text
@@ -21,6 +25,9 @@ func set_poi_data(poi_data : POIData):
 	name_edit.text = poi_data.poi_name
 	description_edit.text = poi_data.description
 	
+	update_status()
+
+func any_text_changed(_text):
 	update_status()
 
 func update_status():

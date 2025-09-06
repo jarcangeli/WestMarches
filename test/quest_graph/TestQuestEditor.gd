@@ -2,6 +2,7 @@ extends MarginContainer
 
 @export var quest_node_scene : PackedScene
 @export var poi_node_scene : PackedScene
+@export var note_node_scene : PackedScene
 @export var save_path : String
 
 @onready var graph_edit: GraphEdit = %GraphEdit
@@ -88,6 +89,16 @@ func _on_save_button_pressed() -> void:
 			store_encounter_node(node as QuestEncounterNode, orphan_data_file)
 	orphan_data_file.close()
 	
+	# Handle note nodes (editor only)
+	var notes_data_file := FileAccess.open(save_path + save_folder + "notes.cfg", FileAccess.WRITE)
+	var n_err = FileAccess.get_open_error()
+	if n_err or not notes_data_file:
+		push_error(n_err)
+	for node in graph_edit.get_children():
+		if node is QuestNoteNode:
+			store_note_node(node as QuestNoteNode, notes_data_file)
+	notes_data_file.close()
+	
 	# Store a backup of last open scene
 	#dir.remove(backup_file)
 	#if dir.file_exists(save_file):
@@ -113,6 +124,13 @@ func store_encounter_node(node : QuestEncounterNode, data_file : FileAccess):
 		for i in range(len(encounter_data.item_names)):
 			var item_name = encounter_data.item_names[i]
 			data_file.store_string("item%d=\"%s\"\n" % [i+1, item_name])
+		data_file.store_string('\n')
+
+func store_note_node(node : QuestNoteNode, data_file : FileAccess):
+		var note := node.get_note()
+		data_file.store_string("[%s]\n" % node.name)
+		data_file.store_string("title=\"%s\"\n" % note[0])
+		data_file.store_string("note=\"%s\"\n" % note[1])
 		data_file.store_string('\n')
 
 func load_data_files_to_nodes():
@@ -142,18 +160,38 @@ func load_data_file_to_nodes(file_name):
 			node.set_slot(0, true, 0, Color(1,1,1), true, 0, Color(0,1,0))
 			var poi_data := POIDatabaseClass.get_poi_data_from_cfg_section(config, section)
 			node.set_poi_data(poi_data)
+		if node is QuestNoteNode:
+			var note := get_note_from_cfg_section(config, section)
+			node.set_note(note)
+
+func get_note_from_cfg_section(config, section) -> Array[String]:
+	var note : Array[String] = []
+	note.append(config.get_value(section, "title"))
+	note.append(config.get_value(section, "note"))
+	return note
+
+func initial_position() -> Vector2:
+	return get_viewport_rect().size / 2
 
 func _on_add_quest_button_pressed() -> void:
 	var node : QuestEncounterNode = quest_node_scene.instantiate()
 	graph_edit.add_child(node, true)
+	node.global_position = initial_position()
 	node.set_owner(graph_edit)
 
 func _on_add_poi_button_pressed() -> void:
 	var node : QuestPOINode = poi_node_scene.instantiate()
 	graph_edit.add_child(node, true)
+	node.global_position = initial_position()
+	node.set_owner(graph_edit)
+
+func _on_add_note_button_pressed() -> void:
+	var node : QuestNoteNode = note_node_scene.instantiate()
+	graph_edit.add_child(node, true)
+	node.global_position = initial_position()
 	node.set_owner(graph_edit)
 
 func _on_delete_quest_button_pressed() -> void:
 	for node in graph_edit.get_children():
-		if node is QuestEncounterNode and node.selected:
+		if node is GraphNode and node.selected:
 			node.queue_free()

@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://onbpxccv5pg0"]
+
+[ext_resource type="Script" uid="uid://chq0cudyo2bwo" path="res://test/quest_graph/QuestNotesNode.gd" id="1_v6rg6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jvei"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.223103, 0.223103, 0.223103, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.216096, 0.588258, 0.701974, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="QuestNotesNde" type="GraphNode"]
+offset_right = 274.0
+offset_bottom = 293.0
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_1jvei")
+title = "Note"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_v6rg6")
+
+[node name="TitleEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NoteEdit" type="TextEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+wrap_mode = 1

@@ -11,6 +11,13 @@ class_name QuestEncounterNode
 const OK_COLOUR = Color.WEB_GREEN
 const BAD_COLOUR = Color.DARK_RED
 
+func _ready():
+	name_edit.text_changed.connect(any_text_changed)
+	repeatable_check_box.toggled.connect(any_text_changed)
+	description_edit.text_changed.connect(update_status)
+	monsters_edit.text_changed.connect(any_text_changed)
+	items_edit.text_changed.connect(any_text_changed)
+
 func get_encounter_data() -> EncounterData:
 	var encounter_data := EncounterData.new()
 	encounter_data.encounter_name = name_edit.text
@@ -30,6 +37,9 @@ func set_encounter_data(encounter_data : EncounterData):
 	items_edit.text = ','.join(encounter_data.item_names)
 	repeatable_check_box.set_pressed_no_signal(encounter_data.repeatable)
 	
+	update_status()
+
+func any_text_changed(_text):
 	update_status()
 
 func update_status():

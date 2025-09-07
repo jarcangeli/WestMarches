@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=29 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_y5ctq"]
 [ext_resource type="Script" uid="uid://c4xyw8i5jmhfa" path="res://Game.gd" id="2_w7ht3"]
@@ -28,13 +28,14 @@
 [ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="24_xc54d"]
 [ext_resource type="Script" uid="uid://d2ul0mcictsbl" path="res://PopupManager.gd" id="25_w250u"]
 [ext_resource type="PackedScene" uid="uid://nstp1h046lac" path="res://items/ui/ItemPopup.tscn" id="26_3h3yf"]
-[ext_resource type="PackedScene" uid="uid://dixnrlxogdft6" path="res://core/audio/AudioPlayerPool.tscn" id="27_nyc7o"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -501.0
+offset_bottom = -132.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -218,10 +219,8 @@ script = ExtResource("13_hxy8k")
 
 [node name="GameWindow" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 1148.0
-offset_bottom = 644.0
+offset_right = 1299.0
+offset_bottom = 768.0
 
 [node name="TopBar" type="HBoxContainer" parent="GameWindow"]
 layout_mode = 2
@@ -263,13 +262,13 @@ layout_mode = 2
 text = "FPS:60"
 script = ExtResource("16_68r7h")
 
-[node name="AdvanceTimeButton" type="Button" parent="GameWindow/TopBar"]
+[node name="AdvanceTimeButton" type="Button" parent="GameWindow/TopBar" groups=["button"]]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Advance Day -->"
 script = ExtResource("18_fj2yu")
 
-[node name="MenuButton" type="Button" parent="GameWindow/TopBar"]
+[node name="MenuButton" type="Button" parent="GameWindow/TopBar" groups=["button"]]
 modulate = Color(0.878431, 0.764706, 0.537255, 1)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -398,10 +397,9 @@ offset_bottom = 66.0
 
 [node name="PopupManager" type="VBoxContainer" parent="." node_paths=PackedStringArray("player_inventory", "player_currencies")]
 layout_mode = 2
-offset_left = 12.0
-offset_top = 8.0
-offset_right = 445.0
-offset_bottom = 216.0
+offset_left = 269.0
+offset_right = 319.0
+offset_bottom = 208.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 mouse_filter = 2
@@ -444,5 +442,3 @@ layout_mode = 2
 
 [node name="ItemPopup3" parent="PopupManager" instance=ExtResource("26_3h3yf")]
 layout_mode = 2
-
-[node name="AudioPlayerPool" parent="." instance=ExtResource("27_nyc7o")]

@@ -1,4 +1,4 @@
-extends Button
+extends AudioButton
 class_name QuestButton
 
 signal quest_selected(selected_quest)
@@ -6,6 +6,7 @@ signal quest_selected(selected_quest)
 var quest : Quest = null
 
 func _ready():
+	super._ready()
 	var err = connect("pressed", Callable(self, "on_pressed"))
 	if err:
 		push_warning(err)

@@ -2,8 +2,6 @@ extends Node
 
 func _ready():
 	var _err = AudioBus.play.connect(on_play_requested)
-	
-	setup_button_audio()
 
 func on_play_requested(stream):
 	var least_remaining_time = -1
@@ -29,11 +27,3 @@ func play(stream, player, pitch_range = 0.1, pitch_off = 0.0):
 	player.stream = stream
 	player.pitch_scale = 1 - (pitch_range/2.0 - randf()*pitch_range) - pitch_off
 	player.play()
-
-func setup_button_audio():
-	var buttons = get_tree().get_nodes_in_group("button")
-	for button in buttons:
-		button.pressed.connect(on_button_pressed)
-
-func on_button_pressed():
-	on_play_requested(AudioBus.button_press)

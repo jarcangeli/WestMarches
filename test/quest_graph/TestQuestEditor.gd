@@ -7,8 +7,8 @@ extends MarginContainer
 
 @onready var graph_edit: GraphEdit = %GraphEdit
 
-const save_file 			= "quest_graph.tscn"
-const save_folder = "graph_data/"
+const save_file 	= "quest_graph.tscn"
+const save_folder 	= "graph_data/"
 
 func _ready():
 	var parent = graph_edit.get_parent()
@@ -128,6 +128,7 @@ func store_encounter_node(node : QuestEncounterNode, poi_name : String, dependen
 	data_file.store_string("[%s]\n" % node.name)
 	data_file.store_string("name=\"%s\"\n" % encounter_data.encounter_name)
 	data_file.store_string("description=\"%s\"\n" % encounter_data.description)
+	data_file.store_string("victory_text=\"%s\"\n" % encounter_data.victory_text)
 	data_file.store_string("poi=\"%s\"\n" % poi_name)
 	data_file.store_string("repeatable=%s\n" % ("true" if encounter_data.repeatable else "false"))
 	if not dependency.is_empty():

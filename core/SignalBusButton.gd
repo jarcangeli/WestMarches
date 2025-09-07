@@ -1,8 +1,9 @@
-extends Button
+extends AudioButton
 
 @export var signal_string : String
 
 func _ready():
+	super._ready()
 	pressed.connect(on_button_pressed)
 
 func on_button_pressed():

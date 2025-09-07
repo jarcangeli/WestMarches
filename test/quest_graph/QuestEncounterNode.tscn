@@ -8,8 +8,8 @@ bg_color = Color(1, 1, 1, 1)
 [node name="QuestEncounterNode" type="GraphNode"]
 offset_left = 496.0
 offset_top = 232.0
-offset_right = 888.0
-offset_bottom = 529.0
+offset_right = 784.0
+offset_bottom = 586.0
 mouse_filter = 1
 position_offset = Vector2(496, 232)
 resizable = true
@@ -64,6 +64,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 wrap_mode = 1
 
 [node name="DataContainer" type="GridContainer" parent="VBoxContainer"]
@@ -89,3 +90,15 @@ text = "Items:"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Victory Text:"
+
+[node name="VictoryEdit" type="TextEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+wrap_mode = 1

@@ -50,6 +50,8 @@ static func get_encounter_data_from_cfg_section(config, section) -> EncounterDat
 	var encounter_data := EncounterData.new()
 	encounter_data.encounter_name = config.get_value(section, "name")
 	encounter_data.description = config.get_value(section, "description")
+	if config.has_section_key(section, "victory_text"):
+		encounter_data.victory_text = config.get_value(section, "victory_text")
 	if config.has_section_key(section, "dependency"):
 		encounter_data.dependency = config.get_value(section, "dependency")
 	if config.has_section_key(section, "repeatable"):

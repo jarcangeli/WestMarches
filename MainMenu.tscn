@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://1jvgg15mw00q"]
+[gd_scene load_steps=10 format=3 uid="uid://1jvgg15mw00q"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_i26rj"]
 [ext_resource type="Script" uid="uid://da5kylricdcw7" path="res://menus/MainMenu.gd" id="2_7r1g0"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dkpr3bn0cncv3" path="res://items/ui/ItemIconDisabled.tscn" id="3_iwfq2"]
 [ext_resource type="Texture2D" uid="uid://cwlx1nsmq3ulg" path="res://assets/example_item.png" id="3_qoqlk"]
 [ext_resource type="Script" uid="uid://bbr40iytx555f" path="res://test/FPSLabel.gd" id="5_iwfq2"]
+[ext_resource type="Script" uid="uid://b6253eg5pbgkg" path="res://core/audio/AudioButton.gd" id="6_fimr5"]
+[ext_resource type="PackedScene" uid="uid://dixnrlxogdft6" path="res://core/audio/AudioPlayerPool.tscn" id="8_e2xy7"]
 
 [node name="Main" type="MarginContainer"]
 anchors_preset = 15
@@ -75,6 +77,8 @@ text = "[Not Implemented]"
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "    Back    "
+script = ExtResource("6_fimr5")
+metadata/_custom_type_script = "uid://b6253eg5pbgkg"
 
 [node name="MainMenuUI" type="VBoxContainer" parent="MenuContainer/CenterContainer"]
 unique_name_in_owner = true
@@ -93,29 +97,37 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="StartButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer" groups=["button"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Start"
+script = ExtResource("6_fimr5")
+metadata/_custom_type_script = "uid://b6253eg5pbgkg"
 
-[node name="ResumeButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer" groups=["button"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Resume"
+script = ExtResource("6_fimr5")
+metadata/_custom_type_script = "uid://b6253eg5pbgkg"
 
-[node name="SettingsButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer" groups=["button"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "   Settings   "
+script = ExtResource("6_fimr5")
+metadata/_custom_type_script = "uid://b6253eg5pbgkg"
 
-[node name="QuitButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer" groups=["button"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Quit"
+script = ExtResource("6_fimr5")
+metadata/_custom_type_script = "uid://b6253eg5pbgkg"
 
 [node name="TextureRect" type="TextureRect" parent="MenuContainer/CenterContainer/MainMenuUI"]
 custom_minimum_size = Vector2(64, 64)
@@ -159,6 +171,9 @@ alignment = 2
 layout_mode = 2
 text = "FPS: 60"
 script = ExtResource("5_iwfq2")
+
+[node name="AudioPlayerPool" parent="." instance=ExtResource("8_e2xy7")]
+unique_name_in_owner = true
 
 [connection signal="pressed" from="MenuContainer/CenterContainer/SettingsMenuUI/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="MenuContainer/CenterContainer/MainMenuUI/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

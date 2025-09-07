@@ -9,6 +9,8 @@ extends MarginContainer
 @onready var start_button: Button = %StartButton
 @onready var resume_button: Button = %ResumeButton
 
+@onready var audio_player_pool: Node = %AudioPlayerPool
+
 func _ready():
 	SignalBus.menu_requested.connect(show_main_menu)
 	if TK.DEBUG:

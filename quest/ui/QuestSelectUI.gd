@@ -131,6 +131,7 @@ func on_choose_quest_button_pressed():
 	if not is_instance_valid(selected_quest):
 		return
 	quest_chosen.emit(selected_quest)
+	AudioBus.play.emit(AudioBus.quest_select)
 	select_quest(null)
 
 func _on_tpk_button_pressed() -> void:

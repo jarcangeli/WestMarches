@@ -1,6 +1,7 @@
-extends Button
+extends AudioButton
 
 func _ready():
+	super._ready()
 	pressed.connect(advance_time)
 	if TK.TUTORIAL:
 		visible = false

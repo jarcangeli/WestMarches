@@ -90,7 +90,9 @@ func _on_save_button_pressed() -> void:
 		push_error(o_err)
 	for node in graph_edit.get_children():
 		if node is QuestEncounterNode and not node.name in stored_nodes:
+			node = node as QuestEncounterNode
 			store_encounter_node(node as QuestEncounterNode, "", "", orphan_data_file)
+			push_warning("Orphaned node for encounter " + node.get_encounter_data().encounter_name)
 	orphan_data_file.close()
 	
 	# Handle note nodes (editor only)
@@ -194,26 +196,30 @@ func get_note_from_cfg_section(config, section) -> Array[String]:
 	return note
 
 func initial_position() -> Vector2:
-	return get_viewport_rect().size / 2
+	var pos = get_viewport_rect().size / 2
+	if graph_edit:
+		pos += graph_edit.get_scroll_offset()
+	print(pos)
+	return pos
 
 func _on_add_quest_button_pressed() -> QuestEncounterNode:
 	var node : QuestEncounterNode = quest_node_scene.instantiate()
 	graph_edit.add_child(node, true)
-	node.global_position = initial_position()
+	node.position_offset = initial_position()
 	node.set_owner(graph_edit)
 	return node
 
 func _on_add_poi_button_pressed() -> QuestPOINode:
 	var node : QuestPOINode = poi_node_scene.instantiate()
 	graph_edit.add_child(node, true)
-	node.global_position = initial_position()
+	node.position_offset = initial_position()
 	node.set_owner(graph_edit)
 	return node
 
 func _on_add_note_button_pressed() -> QuestNoteNode:
 	var node : QuestNoteNode = note_node_scene.instantiate()
 	graph_edit.add_child(node, true)
-	node.global_position = initial_position()
+	node.position_offset = initial_position()
 	node.set_owner(graph_edit)
 	return node
 

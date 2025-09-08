@@ -1,0 +1,160 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn2y72ww61wuq"]
+
+[ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://difficulty_atlas_texture_background.tres" id="1_sa7wd"]
+[ext_resource type="Script" uid="uid://ifctt8twgmkq" path="res://quest/ui/NewSelectUI/QuestSelectPanel.gd" id="1_yd824"]
+[ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://difficulty_atlas_texture.tres" id="2_yd824"]
+[ext_resource type="Texture2D" uid="uid://bhir43ek1ivf0" path="res://assets/icons/skull.png" id="3_m862f"]
+[ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="4_ttt85"]
+[ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="5_0yp5r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apknl"]
+atlas = ExtResource("3_m862f")
+region = Rect2(0, 0, 96, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huv61"]
+bg_color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="QuestSelectPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 537.0
+offset_top = 53.0
+offset_right = -602.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_yd824")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="QuestNameLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Grave Robbing"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="QuestDescriptionText" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "The burial mounds are known to hold the buried treasures of the deceased."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="DifficultyLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Difficulty"
+horizontal_alignment = 1
+
+[node name="DifficultyBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.878431, 0.764706, 0.537255, 1)
+texture_repeat = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+step = 0.1
+value = 100.0
+texture_under = ExtResource("1_sa7wd")
+texture_progress = ExtResource("2_yd824")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DeathsBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+texture_repeat = 2
+layout_mode = 2
+max_value = 3.0
+value = 1.0
+rounded = true
+texture_progress = SubResource("AtlasTexture_apknl")
+
+[node name="RewardsLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Possible Rewards"
+horizontal_alignment = 1
+
+[node name="QuestRewardsDisplay" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="RewardsContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 10
+script = ExtResource("4_ttt85")
+select_enabled = false
+drop_enabled = false
+
+[node name="ItemIcon" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/QuestRewardsDisplay/CenterContainer/RewardsContainer" instance=ExtResource("5_0yp5r")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_huv61")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ChooseQuestButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+modulate = Color(0.795166, 0.496383, 0.2431, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "    SELECT    "

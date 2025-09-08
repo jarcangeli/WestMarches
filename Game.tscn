@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=30 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_y5ctq"]
 [ext_resource type="Script" uid="uid://c4xyw8i5jmhfa" path="res://Game.gd" id="2_w7ht3"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="24_xc54d"]
 [ext_resource type="Script" uid="uid://d2ul0mcictsbl" path="res://PopupManager.gd" id="25_w250u"]
 [ext_resource type="PackedScene" uid="uid://nstp1h046lac" path="res://items/ui/ItemPopup.tscn" id="26_3h3yf"]
+[ext_resource type="PackedScene" uid="uid://b6gjspjilh735" path="res://quest/ui/NewSelectUI/PartyQuestTabUI.tscn" id="26_8ktx7"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -284,30 +285,37 @@ size_flags_vertical = 3
 tab_alignment = 1
 current_tab = 0
 
+[node name="Quests 2" parent="GameWindow/GameTabs" node_paths=PackedStringArray("debug_party") instance=ExtResource("26_8ktx7")]
+layout_mode = 2
+debug_party = NodePath("../../../AdventuringParties/LoneWolf")
+metadata/_tab_index = 0
+
 [node name="Quests" parent="GameWindow/GameTabs" node_paths=PackedStringArray("pending_quests", "available_quests", "active_quests", "completed_quests", "adventuring_parties") instance=ExtResource("19_iueff")]
+visible = false
 layout_mode = 2
 pending_quests = NodePath("../../../QuestManager/PendingQuests")
 available_quests = NodePath("../../../QuestManager/AvailableQuests")
 active_quests = NodePath("../../../QuestManager/ActiveQuests")
 completed_quests = NodePath("../../../QuestManager/CompletedQuests")
 adventuring_parties = NodePath("../../../AdventuringParties")
-metadata/_tab_index = 0
+metadata/_tab_index = 1
 
 [node name="Inventory" parent="GameWindow/GameTabs" instance=ExtResource("20_n7324")]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 1
+metadata/_tab_index = 2
 
 [node name="Shop" parent="GameWindow/GameTabs" node_paths=PackedStringArray("shop_inventory") instance=ExtResource("21_o6tbt")]
 visible = false
 layout_mode = 2
 shop_inventory = NodePath("../../../ShopInventory")
+metadata/_tab_index = 3
 
 [node name="Tavern" parent="GameWindow/GameTabs" node_paths=PackedStringArray("adventuring_parties") instance=ExtResource("22_v5dxo")]
 visible = false
 layout_mode = 2
 adventuring_parties = NodePath("../../../AdventuringParties")
-metadata/_tab_index = 3
+metadata/_tab_index = 4
 
 [node name="Cemetery" type="MarginContainer" parent="GameWindow/GameTabs" node_paths=PackedStringArray("container")]
 visible = false
@@ -318,7 +326,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("23_dyvha")
 container = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer")
-metadata/_tab_index = 4
+metadata/_tab_index = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameWindow/GameTabs/Cemetery"]
 layout_mode = 2

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6gjspjilh735"]
+
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_ebj5x"]
+[ext_resource type="Script" uid="uid://bvlm1ecsiiu4n" path="res://quest/ui/NewSelectUI/PartyQuestTabUI.gd" id="2_esl7e"]
+[ext_resource type="PackedScene" uid="uid://cd70bafotbi8e" path="res://quest/ui/NewSelectUI/PartyQuestUI.tscn" id="3_esl7e"]
+
+[node name="PartyQuestTabUI" type="MarginContainer" node_paths=PackedStringArray("party_quest_ui_container")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ebj5x")
+script = ExtResource("2_esl7e")
+party_quest_ui_scene = ExtResource("3_esl7e")
+party_quest_ui_container = NodePath("PartyQuestUIContainer")
+
+[node name="PartyQuestUIContainer" type="TabContainer" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+tab_alignment = 1
+current_tab = 0
+clip_tabs = false
+
+[node name="PartyQuestUI" parent="PartyQuestUIContainer" instance=ExtResource("3_esl7e")]
+layout_mode = 2
+
+[node name="PartyQuestUI2" parent="PartyQuestUIContainer" instance=ExtResource("3_esl7e")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1

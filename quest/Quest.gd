@@ -24,7 +24,7 @@ var started = false		# set out
 var finished = false 	# back in town
 var completed = false 	# got rewards
 
-var reward_tier : RewardTier = RewardTier.RANDOM
+var reward_tier : RewardTier = RewardTier.NONE
 var party : AdventuringParty = null
 var cached_simulation_results : CombatSimResults = null
 var random_reward_item : Item = null

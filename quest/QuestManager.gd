@@ -1,4 +1,5 @@
 extends Node
+class_name QuestManager
 
 @export var parties : AdventuringParties
 @export var available_quests : QuestContainerNode
@@ -17,6 +18,7 @@ var encounters_already_encountered = []
 var encounters_completed = []
 
 func _ready():
+	Globals.quest_manager = self
 	SignalBus.quest_completed.connect(on_quest_completed)
 
 func on_quest_completed(quest : Quest):
@@ -43,8 +45,9 @@ func generate_quest(party : AdventuringParty):
 	if quest == null:
 		#Could not generate a new quest
 		#TODO: this should never happen if we generate new monsters
-		return
+		return null
 	SignalBus.quest_created.emit(quest)
+	return quest
 
 func generate_quest_kill(party : AdventuringParty):
 	var encounter : Encounter = null

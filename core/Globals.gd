@@ -13,6 +13,7 @@ var player_currencies : PlayerCurrencies = null
 var character_graveyard : CharacterGraveyard = null
 var shop : Shop = null
 var state : GameState = GameState.MENU
+var quest_manager : QuestManager = null
 
 func set_state(new_state : GameState):
 	if new_state != state:

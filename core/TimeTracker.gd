@@ -1,6 +1,6 @@
 extends Node
 
-var day = 1
+var day = 0
 
 func advance_time():
 	day += 1

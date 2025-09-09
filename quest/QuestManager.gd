@@ -28,7 +28,7 @@ func on_quest_completed(quest : Quest):
 		if encounter.repeatable:
 				encounter.generate_items()
 				encounter.generate_monsters()
-				var i = encounters_already_encountered.find(encounter)
+				var i = encounters_already_encountered.find(encounter.encounter_name)
 				if i >= 0:
 					encounters_already_encountered.remove_at(i)
 
@@ -73,7 +73,7 @@ func generate_quest_kill(party : AdventuringParty):
 	quest.initialise(encounter, map)
 	quest.party = party
 	party.quest = quest #TODO: This is spaghett
-	encounters_already_encountered.append(encounter)
+	encounters_already_encountered.append(encounter.encounter_name)
 	return quest
 
 func get_poi(root):
@@ -95,11 +95,11 @@ func get_encounter(root) -> Encounter:
 		if node is Encounter:
 			if not node.dependency.is_empty() and not (node.dependency in encounters_completed):
 				continue
-			if not node in encounters_already_encountered:
+			if not node.encounter_name in encounters_already_encountered:
 				return node
 		else:
 			var encounter = get_encounter(node)
-			if (encounter is Encounter) and not encounter in encounters_already_encountered:
+			if (encounter is Encounter) and not encounter.encounter_name in encounters_already_encountered:
 					return encounter
 	return null
 

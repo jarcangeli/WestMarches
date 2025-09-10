@@ -1,33 +1,144 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd70bafotbi8e"]
+[gd_scene load_steps=7 format=3 uid="uid://cd70bafotbi8e"]
 
 [ext_resource type="PackedScene" uid="uid://cn2y72ww61wuq" path="res://quest/ui/NewSelectUI/QuestSelectPanel.tscn" id="1_3kl5t"]
 [ext_resource type="Script" uid="uid://ehfxo527ebsx" path="res://quest/ui/NewSelectUI/PartyQuestUI.gd" id="1_fclvp"]
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_mt73k"]
+[ext_resource type="PackedScene" uid="uid://dgnhuy66p3u67" path="res://quest/ui/QuestEquipUI.tscn" id="3_gscnh"]
+[ext_resource type="PackedScene" uid="uid://r0pxns6ha43u" path="res://core/combat/CombatSummaryUi.tscn" id="4_bti25"]
+[ext_resource type="PackedScene" uid="uid://c4gpi74fglbqm" path="res://quest/ui/NewSelectUI/QuestRewardPanel.tscn" id="5_6fuqt"]
 
-[node name="PartyQuestUI" type="MarginContainer" node_paths=PackedStringArray("quest_select_panel_container")]
+[node name="PartyQuestUI" type="MarginContainer" node_paths=PackedStringArray("quest_select_panel_container") groups=["time"]]
 offset_right = 1576.0
 offset_bottom = 884.0
+theme = ExtResource("1_mt73k")
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 30
 script = ExtResource("1_fclvp")
-quest_select_panel_container = NodePath("VBoxContainer/QuestSelectPanelContainer")
+quest_select_panel_container = NodePath("QuestStatusUI/QuestSelectPanelContainer")
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="QuestStatusUI" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="QuestSelectPanelContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="GuideLabel" type="Label" parent="QuestStatusUI"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Choose a quest for the party to embark on"
+horizontal_alignment = 1
+
+[node name="QuestSelectPanelContainer" type="HBoxContainer" parent="QuestStatusUI"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="QuestSelectPanel" parent="VBoxContainer/QuestSelectPanelContainer" instance=ExtResource("1_3kl5t")]
+[node name="QuestSelectPanel" parent="QuestStatusUI/QuestSelectPanelContainer" instance=ExtResource("1_3kl5t")]
+visible = false
 layout_mode = 2
 
-[node name="QuestSelectPanel2" parent="VBoxContainer/QuestSelectPanelContainer" instance=ExtResource("1_3kl5t")]
+[node name="QuestSelectPanel2" parent="QuestStatusUI/QuestSelectPanelContainer" instance=ExtResource("1_3kl5t")]
 layout_mode = 2
 
-[node name="QuestSelectPanel3" parent="VBoxContainer/QuestSelectPanelContainer" instance=ExtResource("1_3kl5t")]
+[node name="QuestSelectPanel3" parent="QuestStatusUI/QuestSelectPanelContainer" instance=ExtResource("1_3kl5t")]
+visible = false
+layout_mode = 2
+
+[node name="QuestInfoPanel" type="PanelContainer" parent="QuestStatusUI/QuestSelectPanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestProgress" type="ScrollContainer" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quest Progress"
+horizontal_alignment = 1
+
+[node name="QuestStatusLabel" type="Label" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "<started>"
+horizontal_alignment = 1
+
+[node name="QuestStory" type="TextEdit" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_fit_content_height = true
+
+[node name="CombatContainer" type="VBoxContainer" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Label2" type="Label" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer/CombatContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Combat Summary"
+horizontal_alignment = 1
+
+[node name="CombatSummary" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer/CombatContainer" instance=ExtResource("4_bti25")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+
+[node name="Label" type="Label" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer/CombatContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Full Combat Log"
+horizontal_alignment = 1
+
+[node name="QuestCombatLog" type="TextEdit" parent="QuestStatusUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer/CombatContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_fit_content_height = true
+
+[node name="QuestRewardPanel" parent="QuestStatusUI/QuestSelectPanelContainer" instance=ExtResource("5_6fuqt")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="QuestEquipUI" parent="." instance=ExtResource("3_gscnh")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2

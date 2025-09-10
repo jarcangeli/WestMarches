@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4gpi74fglbqm"]
+
+[ext_resource type="Script" uid="uid://bhi6jggiqku57" path="res://quest/ui/NewSelectUI/QuestRewardPanel.gd" id="1_6i8pt"]
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_df3sp"]
+[ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="2_df3sp"]
+[ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="3_mfaxi"]
+
+[node name="QuestRewardPanel" type="PanelContainer"]
+offset_right = 479.0
+offset_bottom = 664.0
+size_flags_horizontal = 3
+theme = ExtResource("1_df3sp")
+script = ExtResource("1_6i8pt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="RewardUIContainer" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/RewardUIContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Rewards"
+horizontal_alignment = 1
+
+[node name="HintLabel" type="Label" parent="MarginContainer/RewardUIContainer"]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 22
+text = "Select your rewards from the loot below"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/RewardUIContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerLootDisplay" type="GridContainer" parent="MarginContainer/RewardUIContainer/ScrollContainer" node_paths=PackedStringArray("item_display_container")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+columns = 5
+script = ExtResource("2_df3sp")
+item_display_container = NodePath(".")
+
+[node name="CoinsRewardDisplay" type="HBoxContainer" parent="MarginContainer/RewardUIContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinsRewardLabel" type="Label" parent="MarginContainer/RewardUIContainer/CoinsRewardDisplay"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "+4"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/RewardUIContainer/CoinsRewardDisplay"]
+modulate = Color(0.878431, 0.764706, 0.537255, 1)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_mfaxi")
+stretch_mode = 5
+
+[node name="TakeRewardsButton" type="Button" parent="MarginContainer/RewardUIContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "Complete Quest
+&
+Take Rewards
+"
+
+[node name="Label" type="Label" parent="MarginContainer/RewardUIContainer"]
+layout_mode = 2
+text = "Returned Items"
+horizontal_alignment = 1
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="MarginContainer/RewardUIContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ReturnedItemsDisplay" type="GridContainer" parent="MarginContainer/RewardUIContainer/ScrollContainer2" node_paths=PackedStringArray("item_display_container")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 6
+script = ExtResource("2_df3sp")
+item_display_container = NodePath(".")
+
+[node name="PartyLootContainer" type="GridContainer" parent="MarginContainer/RewardUIContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 6
+script = ExtResource("2_df3sp")
+drop_enabled = false
+
+[connection signal="pressed" from="MarginContainer/RewardUIContainer/TakeRewardsButton" to="." method="_on_take_rewards_button_pressed"]

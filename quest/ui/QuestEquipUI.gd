@@ -2,7 +2,7 @@ extends HBoxContainer
 class_name QuestEquipUI
 
 signal quest_abandoned()
-signal quest_started()
+signal quest_started(quest)
 
 @export var character_equip_ui_scene : Resource
 @onready var inventory_display_container: ItemDisplayContainer = %InventoryDisplayContainer
@@ -109,7 +109,7 @@ func _on_start_quest_button_pressed() -> void:
 	SignalBus.player_inventory_changed.emit()
 	current_quest.start()
 	
-	quest_started.emit()
+	quest_started.emit(current_quest)
 
 func update_start_quest_button_state():
 	start_quest_button.disabled = loaned_item_value <= 0

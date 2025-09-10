@@ -2,7 +2,7 @@ extends QuestStep
 class_name QuestStepBattle
 
 var encounter : Encounter
-var combat : Combat
+var combat : Combat = null
 
 var combat_log : Array = []
 var combat_story : Array = []

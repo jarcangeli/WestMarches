@@ -1,15 +1,21 @@
 extends Container
 class_name QuestSelectPanel
 
+signal quest_chosen(quest)
+
 @onready var quest_name_label: Label = %QuestNameLabel
 @onready var quest_description_text: Label = %QuestDescriptionText
 @onready var difficulty_bar: TextureProgressBar = %DifficultyBar
 @onready var deaths_bar: TextureProgressBar = %DeathsBar
 @onready var rewards_container: ItemDisplayContainer = %RewardsContainer
 @onready var choose_quest_button: Button = %ChooseQuestButton
+@onready var guide_label: Label = %GuideLabel
 
 var party : AdventuringParty = null
 var quest : Quest = null
+
+func _ready():
+	choose_quest_button.pressed.connect(on_choose_quest)
 
 func set_party(new_party : AdventuringParty):
 	party = new_party
@@ -47,3 +53,11 @@ func update_win_percentage():
 	var scaled_deaths = deaths * 3 / party.get_characters().size()
 	deaths_bar.value = scaled_deaths
 	deaths_bar.tooltip_text = "%.1f deaths" % deaths
+
+func on_choose_quest():
+	quest_chosen.emit(quest)
+	AudioBus.play.emit(AudioBus.quest_select) 
+
+func toggle_running_quest(is_running_quest):
+	choose_quest_button.visible = not is_running_quest
+	guide_label.text = "Current Quest" if is_running_quest else "Choose a quest for the party to embark on"

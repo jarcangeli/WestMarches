@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pasdpg40sm4w" path="res://test/TestQuests.gd" id="1_hxnl8"]
 [ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://items/ui/PlayerCurrencyDisplay.gd" id="2_4kdxb"]
-[ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/ui/QuestScreen.tscn" id="2_5kee0"]
+[ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/ui/archive/QuestScreen.tscn" id="2_5kee0"]
 [ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="2_rn7o8"]
 [ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="3_ghqp3"]
 [ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://core/TimeLabel.gd" id="3_rn7o8"]

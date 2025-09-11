@@ -15,9 +15,11 @@ func _ready():
 	tab_container.set_tab_hidden(tab_index, true)
 
 func on_character_died(character : Character):
-	if not character:
+	if not character or not character.get_parent() is AdventuringParty:
+		# Monster or unknown
 		return
+	var party = character.get_parent() as AdventuringParty
 	tab_container.set_tab_hidden(tab_index, false)
 	var label = Label.new()
-	label.text = character.character_name
+	label.text = "%s - %s" % [character.character_name, party.display_name]
 	container.add_child(label)

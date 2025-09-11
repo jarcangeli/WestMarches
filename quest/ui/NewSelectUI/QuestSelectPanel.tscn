@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cn2y72ww61wuq"]
 
-[ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://difficulty_atlas_texture_background.tres" id="1_sa7wd"]
+[ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://assets/difficulty_atlas_texture_background.tres" id="1_sa7wd"]
 [ext_resource type="Script" uid="uid://ifctt8twgmkq" path="res://quest/ui/NewSelectUI/QuestSelectPanel.gd" id="1_yd824"]
-[ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://difficulty_atlas_texture.tres" id="2_yd824"]
+[ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://assets/difficulty_atlas_texture.tres" id="2_yd824"]
 [ext_resource type="Texture2D" uid="uid://bhir43ek1ivf0" path="res://assets/icons/skull.png" id="3_m862f"]
 [ext_resource type="Script" uid="uid://muut3gmsg30f" path="res://items/ui/ItemsDisplayContainer.gd" id="4_ttt85"]
 [ext_resource type="PackedScene" uid="uid://dwt2awegps8rb" path="res://items/ui/ItemIcon.tscn" id="5_0yp5r"]

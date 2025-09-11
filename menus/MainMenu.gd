@@ -53,10 +53,8 @@ func show_main_menu():
 	Globals.set_state(Globals.GameState.MENU)
 	if Globals.game:
 		resume_button.visible = true
-		start_button.visible = false
 		Globals.game.visible = false
 	else:
-		start_button.visible = true
 		resume_button.visible = false
 	
 	menu_container.visible = true

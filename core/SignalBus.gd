@@ -1,6 +1,7 @@
 extends Node
 
 signal menu_requested()
+signal game_lost()
 
 signal item_equipped(item, slot)
 signal item_unequipped(item, slot)

@@ -1,7 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=30 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_y5ctq"]
-[ext_resource type="Script" uid="uid://c4xyw8i5jmhfa" path="res://Game.gd" id="2_w7ht3"]
+[ext_resource type="Script" uid="uid://c4xyw8i5jmhfa" path="res://main/Game.gd" id="2_w7ht3"]
 [ext_resource type="Script" uid="uid://bvsxe7140kkgc" path="res://core/currencies/PlayerCurrencies.gd" id="3_8ktx7"]
 [ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="4_hwsgv"]
 [ext_resource type="Script" uid="uid://dsujm37ljcj4u" path="res://items/PlayerInventory.gd" id="5_gebyw"]
@@ -21,21 +21,20 @@
 [ext_resource type="Texture2D" uid="uid://dsg5q8nhyethd" path="res://assets/icons/hamburger.png" id="19_w7ht3"]
 [ext_resource type="Script" uid="uid://cm0tvckr3ukic" path="res://core/SignalBusButton.gd" id="20_8ktx7"]
 [ext_resource type="PackedScene" uid="uid://b3ruqllcfspo1" path="res://items/ui/PlayerInventoryView.tscn" id="20_n7324"]
-[ext_resource type="PackedScene" uid="uid://ct06m6nwbyn5k" path="res://Shop.tscn" id="21_o6tbt"]
+[ext_resource type="PackedScene" uid="uid://ct06m6nwbyn5k" path="res://main/Shop.tscn" id="21_o6tbt"]
 [ext_resource type="PackedScene" uid="uid://biym5k6isys7d" path="res://characters/ui/TavernUI.tscn" id="22_v5dxo"]
 [ext_resource type="Script" uid="uid://d0ttfscisgsof" path="res://characters/Cemetery.gd" id="23_dyvha"]
 [ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="24_xc54d"]
-[ext_resource type="Script" uid="uid://d2ul0mcictsbl" path="res://PopupManager.gd" id="25_w250u"]
+[ext_resource type="Script" uid="uid://d2ul0mcictsbl" path="res://main/PopupManager.gd" id="25_w250u"]
 [ext_resource type="PackedScene" uid="uid://nstp1h046lac" path="res://items/ui/ItemPopup.tscn" id="26_3h3yf"]
 [ext_resource type="PackedScene" uid="uid://b6gjspjilh735" path="res://quest/ui/NewSelectUI/PartyQuestTabUI.tscn" id="26_8ktx7"]
+[ext_resource type="PackedScene" uid="uid://bkaunu282ok5r" path="res://main/GameOverScreen.tscn" id="29_8ktx7"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -501.0
-offset_bottom = -132.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -66,6 +65,7 @@ script = ExtResource("6_4my3f")
 item_name = "Sylvan Axe"
 
 [node name="AdventuringParties" type="Node" parent="." groups=["time"]]
+unique_name_in_owner = true
 script = ExtResource("7_aeq37")
 
 [node name="LoneWolf" type="Node" parent="AdventuringParties"]
@@ -436,3 +436,13 @@ layout_mode = 2
 
 [node name="ItemPopup3" parent="PopupManager" instance=ExtResource("26_3h3yf")]
 layout_mode = 2
+
+[node name="GameOverScreen" parent="." instance=ExtResource("29_8ktx7")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1

@@ -127,5 +127,7 @@ func update_tab_title():
 			tab_parent.set_tab_title(i, tab_title)
 
 func on_quest_completed(_quest : Quest):
+	if not party.is_alive():
+		queue_free()
 	generate_quests()
 	show_quest_select_ui()

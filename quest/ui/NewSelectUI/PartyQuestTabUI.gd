@@ -12,6 +12,9 @@ func _ready():
 		add_party.call_deferred(debug_party)
 
 func add_party(party : AdventuringParty):
+	if not party or not party.is_alive():
+		push_warning("Trying to add dead party to quest UI")
+		return
 	var party_quest_ui : PartyQuestUI = party_quest_ui_scene.instantiate()
 	party_quest_ui_container.add_child(party_quest_ui)
 	party_quest_ui.set_party.call_deferred(party)

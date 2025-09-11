@@ -23,7 +23,8 @@ func on_made_visible():
 	
 	clear_parties()
 	for party in adventuring_parties.get_children():
-		add_party(party)
+		if party is AdventuringParty and party.is_alive():
+			add_party(party)
 
 func clear_parties():
 	for child in party_container.get_children():

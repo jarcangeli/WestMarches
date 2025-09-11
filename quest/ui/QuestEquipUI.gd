@@ -49,6 +49,7 @@ func on_quest_selected(quest : Quest):
 	
 	reward_progress.max_value = quest.get_reward_tier_value(Quest.RewardTier.CHOICE)
 	reward_progress.value = 0
+	loaned_item_value = 0
 	coins_threshold_label.text = "%d gp" % quest.get_reward_tier_value(Quest.RewardTier.COINS)
 	random_threshold_label.text = "%d gp" % quest.get_reward_tier_value(Quest.RewardTier.RANDOM)
 	choice_threshold_label.text = "%d gp" % quest.get_reward_tier_value(Quest.RewardTier.CHOICE)

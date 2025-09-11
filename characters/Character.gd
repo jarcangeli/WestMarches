@@ -80,7 +80,7 @@ func heal(value : int):
 func get_loaned_items():
 	var items = []
 	for node in get_children():
-		if node is Item and node.loaned_character == self:
+		if node is Item and node.loaned_character:
 			items.append(node)
 	return items
 
@@ -146,6 +146,11 @@ func modify_exp(gain):
 	experience += gain
 
 func on_death():
+	var party = get_parent() as AdventuringParty
+	if party:
+		unequip_all_items()
+		var items = get_unequipped_items()
+		party.add_items(items)
 	SignalBus.character_died.emit(self)
 	dead = true
 	died.emit()

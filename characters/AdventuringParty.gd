@@ -77,6 +77,17 @@ func redistribute_items():
 		character.equip_best_gear(self)
 		add_items(character.get_unequipped_items())
 
+func get_loaned_items():
+	var loaned_items = []
+	for item in get_items():
+		if item.loaned_character:
+			loaned_items.append(item)
+	for character in get_characters(true):
+		var char_loaned_items = character.get_loaned_items()
+		for item in char_loaned_items:
+			loaned_items.append(item)
+	return loaned_items
+
 func sell_spare_items():
 	if not Globals.shop:
 		push_error("No shop to sell spare items to")

@@ -16,9 +16,9 @@ enum RewardTier
 const reward_tier_values = [0, 10, 20, 40]
 
 @onready var steps = $QuestSteps
-@onready var travel_step : QuestStepTravel = $QuestSteps/TravelStep
+@onready var travel_step : QuestStep = $QuestSteps/TravelStep
 @onready var battle_step : QuestStepBattle = $QuestSteps/BattleStep
-@onready var return_step : QuestStepTravel = $QuestSteps/ReturnStep
+@onready var return_step : QuestStep = $QuestSteps/ReturnStep
 
 var started = false		# set out
 var finished = false 	# back in town
@@ -32,13 +32,10 @@ var random_reward_item : Item = null
 func _ready():
 	add_to_group("time")
 
-func initialise(encounter : Encounter, map):
-	quest_name = encounter.name
+func initialise(encounter : Encounter, _map):
+	quest_name = encounter.encounter_name
 	quest_description = encounter.description
-	
-	travel_step.initialise(map.town, encounter.get_location())
 	battle_step.initialise(encounter)
-	return_step.initialise(encounter.get_location(), map.town)
 
 func start():
 	if not is_instance_valid(party):

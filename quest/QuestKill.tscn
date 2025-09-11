@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dqau2h1pv3bbt" path="res://quest/Quest.gd" id="1_j7jsm"]
 [ext_resource type="Script" uid="uid://cq02ts2n3ldcw" path="res://quest/steps/QuestSteps.gd" id="2_311wg"]
-[ext_resource type="Script" uid="uid://slgqm58yj5ld" path="res://quest/steps/QuestStepTravel.gd" id="3_y7bpy"]
+[ext_resource type="Script" uid="uid://djn4gi71dt3pk" path="res://quest/steps/QuestStepNull.gd" id="3_8vt7o"]
 [ext_resource type="Script" uid="uid://2oay62dhv34q" path="res://quest/steps/QuestStepBattle.gd" id="4_rhi58"]
 
 [node name="QuestKill" type="Node"]
@@ -12,10 +12,10 @@ script = ExtResource("1_j7jsm")
 script = ExtResource("2_311wg")
 
 [node name="TravelStep" type="Node" parent="QuestSteps"]
-script = ExtResource("3_y7bpy")
+script = ExtResource("3_8vt7o")
 
 [node name="BattleStep" type="Node" parent="QuestSteps"]
 script = ExtResource("4_rhi58")
 
 [node name="ReturnStep" type="Node" parent="QuestSteps"]
-script = ExtResource("3_y7bpy")
+script = ExtResource("3_8vt7o")

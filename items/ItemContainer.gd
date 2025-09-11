@@ -34,9 +34,9 @@ func add_items(items) -> void:
 	for item in items:
 		add_item(item)
 
-func get_items() -> Array:
-	var items : Array = []
+func get_items() -> Array[Item]:
+	var items : Array[Item] = []
 	for child in get_children():
 		if child is Item:
-			items.append(child)
+			items.append(child as Item)
 	return items

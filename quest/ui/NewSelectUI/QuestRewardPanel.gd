@@ -31,7 +31,7 @@ func show_rewards(quest : Quest):
 	player_loot_display.clear_item_views()
 	var reward_count = quest.get_player_rewards().size()
 	player_loot_display.add_items(quest.get_player_rewards())
-	player_loot_display.columns = min(reward_count, 5)
+	player_loot_display.columns = max(1, min(reward_count, 5))
 	
 	party_loot_display.clear_item_views()
 	party_loot_display.add_items(quest.get_party_rewards()) #TODO: Gets all the remaining
@@ -39,9 +39,8 @@ func show_rewards(quest : Quest):
 	
 	# Preview returned items
 	returned_items_display.clear_item_views()
-	for character : Character in quest.party.get_characters():
-		var loaned_items = character.get_loaned_items()
-		returned_items_display.add_items(loaned_items)
+	var loaned_items = quest.party.get_loaned_items()
+	returned_items_display.add_items(loaned_items)
 
 func show_loss_screen():
 	reward_ui_container.visible = false

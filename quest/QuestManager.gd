@@ -4,15 +4,9 @@ class_name QuestManager
 @export var parties : AdventuringParties
 @export var available_quests : QuestContainerNode
 
-@export var map : Node
-
 var quest_scene = preload("res://quest/QuestKill.tscn")
 
 const MAX_AVAILABLE_QUESTS = 4
-
- #TODO: Make this more sophisticated, want max 1 active quest per encounter
-# e.g. a failed quest could be re-generated
-var encounters_already_encountered = []
 
 # Track dependencies completed
 var encounters_completed = []
@@ -28,24 +22,17 @@ func on_quest_completed(quest : Quest):
 		if encounter.repeatable:
 				encounter.generate_items()
 				encounter.generate_monsters()
-				var i = encounters_already_encountered.find(encounter.encounter_name)
-				if i >= 0:
-					encounters_already_encountered.remove_at(i)
 
+var encounters_this_timestep = []
 func advance_time():
-	# Quest gen now handled by QuestScreen
-	pass
-	#for party in parties.get_idle_parties():
-		#print("Generating quest for " + party.display_name)
-		#generate_quest(party)
-		#if not TK.DEBUG:
-			#break #only do one at a time
+	encounters_this_timestep.clear()
+	POIDatabase.update_available_encounters(encounters_completed)
 
 func generate_quest(party : AdventuringParty):
 	#TODO: Some logic determing level of quest to generate, e.g. always have 2 easy, 1 med, sometimes a rare/hard
 	var quest : Quest = generate_quest_kill(party)
 	if quest == null:
-		#Could not generate a new quest
+		push_error("Could not generate a new quest")
 		#TODO: this should never happen if we generate new monsters
 		return null
 	SignalBus.quest_created.emit(quest)
@@ -56,9 +43,9 @@ func generate_quest_kill(party : AdventuringParty):
 	var iterations := 0
 	
 	while encounter == null and iterations < TK.quest_max_iterations():
-		encounter = get_encounter(map)
+		encounter = get_encounter()
 		if not is_instance_valid(encounter):
-			print("[TODO] No good encounter found to create kill quest, make some more")
+			push_warning("[TODO] No good encounter found to create kill quest, make some more")
 			return null
 		var results := CombatSim.simulate(party.get_characters(), encounter.get_monsters(), 100)
 		var win_p = results.get_win_percentage()
@@ -71,38 +58,23 @@ func generate_quest_kill(party : AdventuringParty):
 	
 	var quest : Quest = quest_scene.instantiate()
 	add_child(quest)
-	quest.initialise(encounter, map)
+	quest.initialise(encounter, null)
 	quest.party = party
 	party.quest = quest #TODO: This is spaghett
-	encounters_already_encountered.append(encounter.encounter_name)
+	encounters_this_timestep.append(encounter.encounter_name)
 	return quest
 
-func get_poi(root):
-	# HACK: map should expose an API
-	for node in root.get_children():
-		if node is POI:
-			return node
-		else:
-			var poi = get_poi(node)
-			if poi is POI:
-				return poi
-	return null
-
-func get_encounter(root) -> Encounter:
-	# HACK: map should expose an API
-	var children = root.get_children()
-	children.shuffle()
-	for node in children:
-		if node is Encounter:
-			if not node.dependency.is_empty() and not (node.dependency in encounters_completed):
-				continue
-			if not node.encounter_name in encounters_already_encountered:
-				return node
-		else:
-			var encounter = get_encounter(node)
-			if (encounter is Encounter) and not encounter.encounter_name in encounters_already_encountered:
-					return encounter
-	return null
+func get_encounter() -> Encounter:
+	const MAX_RETRIES := 100
+	var i = 0
+	var encounter : Encounter = null
+	while i < MAX_RETRIES and encounter == null:
+		i += 1
+		encounter = POIDatabase.get_random_encounter()
+		if encounter.encounter_name in encounters_this_timestep:
+			encounter = null
+			continue
+	return encounter
 
 func add_step_to_quest(quest, step):
 	var steps = quest.get_node("QuestSteps")

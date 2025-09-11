@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bwaojw2igp0kd"]
+[gd_scene load_steps=29 format=3 uid="uid://bwaojw2igp0kd"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_y5ctq"]
 [ext_resource type="Script" uid="uid://c4xyw8i5jmhfa" path="res://main/Game.gd" id="2_w7ht3"]
@@ -24,7 +24,6 @@
 [ext_resource type="PackedScene" uid="uid://ct06m6nwbyn5k" path="res://main/Shop.tscn" id="21_o6tbt"]
 [ext_resource type="PackedScene" uid="uid://biym5k6isys7d" path="res://characters/ui/TavernUI.tscn" id="22_v5dxo"]
 [ext_resource type="Script" uid="uid://d0ttfscisgsof" path="res://characters/Cemetery.gd" id="23_dyvha"]
-[ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="24_xc54d"]
 [ext_resource type="Script" uid="uid://d2ul0mcictsbl" path="res://main/PopupManager.gd" id="25_w250u"]
 [ext_resource type="PackedScene" uid="uid://nstp1h046lac" path="res://items/ui/ItemPopup.tscn" id="26_3h3yf"]
 [ext_resource type="PackedScene" uid="uid://b6gjspjilh735" path="res://quest/ui/NewSelectUI/PartyQuestTabUI.tscn" id="26_8ktx7"]
@@ -76,6 +75,8 @@ metadata/_custom_type_script = "uid://bxu4cx67teei7"
 [node name="Noragar" type="Node" parent="AdventuringParties/LoneWolf"]
 script = ExtResource("9_202ut")
 character_name = "Noragar"
+experience = null
+character_class = null
 metadata/_custom_type_script = "uid://bftwko1mxftug"
 
 [node name="GreenShoots" type="Node" parent="AdventuringParties"]
@@ -85,15 +86,19 @@ display_name = "Green Shoots"
 [node name="Ben" type="Node" parent="AdventuringParties/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Benthar"
+experience = null
+character_class = null
 
 [node name="Sam" type="Node" parent="AdventuringParties/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Samwise"
+experience = null
 character_class = 2
 
 [node name="Gen" type="Node" parent="AdventuringParties/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Genevieve"
+experience = null
 character_class = 2
 
 [node name="AdventuringParties2" type="Node" parent="." groups=["time"]]
@@ -128,6 +133,7 @@ item_name = "Shortbow"
 script = ExtResource("9_202ut")
 character_name = "Gomli"
 experience = 60
+character_class = null
 
 [node name="PHAxe" type="Node" parent="AdventuringParties2/YeParte/Gomli"]
 script = ExtResource("6_4my3f")
@@ -140,6 +146,8 @@ display_name = "Ugs"
 [node name="Ug" type="Node" parent="AdventuringParties2/Ugs"]
 script = ExtResource("9_202ut")
 character_name = "Ug"
+experience = null
+character_class = null
 
 [node name="PHShortsword" type="Node" parent="AdventuringParties2/Ugs/Ug"]
 script = ExtResource("6_4my3f")
@@ -148,6 +156,7 @@ item_name = "Shortsword"
 [node name="Og" type="Node" parent="AdventuringParties2/Ugs"]
 script = ExtResource("9_202ut")
 character_name = "Og"
+experience = null
 character_class = 3
 
 [node name="PHShortsword" type="Node" parent="AdventuringParties2/Ugs/Og"]
@@ -157,6 +166,7 @@ item_name = "Shortsword"
 [node name="Ag" type="Node" parent="AdventuringParties2/Ugs"]
 script = ExtResource("9_202ut")
 character_name = "Ag"
+experience = null
 character_class = 2
 
 [node name="PHShortbow" type="Node" parent="AdventuringParties2/Ugs/Ag"]
@@ -171,6 +181,7 @@ display_name = "The Fellowship"
 script = ExtResource("9_202ut")
 character_name = "Aragorn"
 experience = 200
+character_class = null
 
 [node name="PHShortsword" type="Node" parent="AdventuringParties2/TheFellowship/Aragorn"]
 script = ExtResource("6_4my3f")
@@ -190,12 +201,12 @@ item_name = "Shortbow"
 script = ExtResource("9_202ut")
 character_name = "Gimli"
 experience = 200
+character_class = null
 
-[node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests", "map") groups=["time"]]
+[node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests") groups=["time"]]
 script = ExtResource("10_5he1h")
 parties = NodePath("../AdventuringParties")
 available_quests = NodePath("AvailableQuests")
-map = NodePath("../GameWindow/HiddenTabs/Map")
 
 [node name="PendingQuests" type="Node" parent="QuestManager"]
 script = ExtResource("11_xwkxq")
@@ -392,14 +403,6 @@ size_flags_vertical = 6
 text = "TODO"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Map" parent="GameWindow/HiddenTabs" instance=ExtResource("24_xc54d")]
-visible = false
-layout_mode = 2
-anchors_preset = 0
-offset_top = 66.0
-offset_right = 4.0
-offset_bottom = 66.0
 
 [node name="PopupManager" type="VBoxContainer" parent="." node_paths=PackedStringArray("player_inventory", "player_currencies")]
 layout_mode = 2

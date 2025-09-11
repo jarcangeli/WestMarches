@@ -5,4 +5,4 @@ class_name POIData
 
 @export var description : String
 
-@export var encounters : Array[EncounterData]
+var encounters : Array[Encounter]

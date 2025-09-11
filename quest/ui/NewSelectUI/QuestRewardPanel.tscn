@@ -21,7 +21,6 @@ theme_override_constants/margin_bottom = 10
 
 [node name="RewardUIContainer" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -110,6 +109,7 @@ drop_enabled = false
 
 [node name="LossUI" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 40
 

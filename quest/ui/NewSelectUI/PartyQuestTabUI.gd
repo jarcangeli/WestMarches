@@ -1,15 +1,16 @@
 extends Container
 
+@export var adventuring_parties : AdventuringParties
 @export var party_quest_ui_scene : PackedScene
-@export var debug_party : AdventuringParty
 @export var party_quest_ui_container : Container
 
 func _ready():
 	for node in party_quest_ui_container.get_children():
 		node.queue_free()
 	
-	if debug_party:
-		add_party.call_deferred(debug_party)
+	for node in adventuring_parties.get_children():
+		if node is AdventuringParty:
+			add_party.call_deferred(node)
 
 func add_party(party : AdventuringParty):
 	if not party or not party.is_alive():

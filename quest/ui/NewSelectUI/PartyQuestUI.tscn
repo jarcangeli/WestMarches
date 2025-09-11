@@ -12,6 +12,7 @@ offset_right = 1576.0
 offset_bottom = 884.0
 theme = ExtResource("1_mt73k")
 theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 30
 script = ExtResource("1_fclvp")

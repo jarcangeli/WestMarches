@@ -78,27 +78,27 @@ script = ExtResource("9_202ut")
 character_name = "Noragar"
 metadata/_custom_type_script = "uid://bftwko1mxftug"
 
-[node name="AdventuringParties2" type="Node" parent="." groups=["time"]]
-unique_name_in_owner = true
-script = ExtResource("7_aeq37")
-
-[node name="GreenShoots" type="Node" parent="AdventuringParties2"]
+[node name="GreenShoots" type="Node" parent="AdventuringParties"]
 script = ExtResource("8_suycs")
 display_name = "Green Shoots"
 
-[node name="Ben" type="Node" parent="AdventuringParties2/GreenShoots"]
+[node name="Ben" type="Node" parent="AdventuringParties/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Benthar"
 
-[node name="Sam" type="Node" parent="AdventuringParties2/GreenShoots"]
+[node name="Sam" type="Node" parent="AdventuringParties/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Samwise"
 character_class = 2
 
-[node name="Gen" type="Node" parent="AdventuringParties2/GreenShoots"]
+[node name="Gen" type="Node" parent="AdventuringParties/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Genevieve"
 character_class = 2
+
+[node name="AdventuringParties2" type="Node" parent="." groups=["time"]]
+unique_name_in_owner = true
+script = ExtResource("7_aeq37")
 
 [node name="YeParte" type="Node" parent="AdventuringParties2"]
 script = ExtResource("8_suycs")
@@ -291,9 +291,9 @@ size_flags_vertical = 3
 tab_alignment = 1
 current_tab = 0
 
-[node name="Quests" parent="GameWindow/GameTabs" node_paths=PackedStringArray("debug_party") instance=ExtResource("26_8ktx7")]
+[node name="Quests" parent="GameWindow/GameTabs" node_paths=PackedStringArray("adventuring_parties") instance=ExtResource("26_8ktx7")]
 layout_mode = 2
-debug_party = NodePath("../../../AdventuringParties/LoneWolf")
+adventuring_parties = NodePath("../../../AdventuringParties")
 metadata/_tab_index = 0
 
 [node name="Inventory" parent="GameWindow/GameTabs" instance=ExtResource("20_n7324")]

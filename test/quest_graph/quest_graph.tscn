@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="PackedScene" path="res://test/quest_graph/QuestEncounterNode.tscn" id="1_r8y2g"]
 [ext_resource type="Script" path="res://test/quest_graph/QuestNotesNode.gd" id="2_u1k0x"]
@@ -143,11 +143,28 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdsk7"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.259294, 0.259294, 0.259294, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.322473, 0.526148, 0.36221, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="_GraphEdit_88" type="GraphEdit"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-scroll_offset = Vector2(-169.597, -336.473)
+scroll_offset = Vector2(854.003, -715.543)
 right_disconnects = true
 connections = Array[Dictionary]([{
 "from_node": &"QuestPOINode",
@@ -317,16 +334,40 @@ connections = Array[Dictionary]([{
 "keep_alive": false,
 "to_node": &"QuestEncounterNode24",
 "to_port": 0
+}, {
+"from_node": &"QuestEncounterNode8",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"QuestEncounterNode25",
+"to_port": 0
+}, {
+"from_node": &"QuestPOINode9",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"QuestEncounterNode26",
+"to_port": 0
+}, {
+"from_node": &"QuestEncounterNode26",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"QuestEncounterNode27",
+"to_port": 0
+}, {
+"from_node": &"QuestPOINode9",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"QuestEncounterNode28",
+"to_port": 0
 }])
-zoom = 0.339049
+zoom = 0.546042
 
 [node name="QuestNotesNde" type="GraphNode" parent="." instance=ExtResource("5_u1k0x")]
 layout_mode = 0
-offset_left = 81.4443
-offset_top = 302.568
-offset_right = 441.444
-offset_bottom = 662.578
-scale = Vector2(0.339049, 0.339049)
+offset_left = -995.974
+offset_top = 660.939
+offset_right = -635.974
+offset_bottom = 1020.95
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_1jvei")
 position_offset = Vector2(-260, -100)
@@ -354,11 +395,11 @@ script = ExtResource("2_u1k0x")
 
 [node name="QuestNotesNde2" type="GraphNode" parent="." instance=ExtResource("5_u1k0x")]
 layout_mode = 0
-offset_left = 74.6633
-offset_top = 634.836
-offset_right = 388.623
-offset_bottom = 1134.52
-scale = Vector2(0.339049, 0.339049)
+offset_left = -1006.89
+offset_top = 1196.06
+offset_right = -692.935
+offset_bottom = 1695.74
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_1jvei")
 position_offset = Vector2(-280, 880)
@@ -386,11 +427,11 @@ script = ExtResource("2_u1k0x")
 
 [node name="QuestPOINode3" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
 layout_mode = 0
-offset_left = 454.398
-offset_top = 634.836
-offset_right = 726.398
-offset_bottom = 850.826
-scale = Vector2(0.339049, 0.339049)
+offset_left = -395.328
+offset_top = 1196.06
+offset_right = -123.328
+offset_bottom = 1412.05
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_7uv0y")
 position_offset = Vector2(840, 880)
@@ -409,11 +450,11 @@ script = ExtResource("4_7uv0y")
 
 [node name="QuestPOINode4" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
 layout_mode = 0
-offset_left = 203.502
-offset_top = 634.836
-offset_right = 475.492
-offset_bottom = 850.826
-scale = Vector2(0.339049, 0.339049)
+offset_left = -799.399
+offset_top = 1196.06
+offset_right = -527.409
+offset_bottom = 1412.05
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_7uv0y")
 position_offset = Vector2(100, 880)
@@ -432,11 +473,11 @@ script = ExtResource("4_7uv0y")
 
 [node name="QuestPOINode2" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
 layout_mode = 0
-offset_left = 759.542
-offset_top = 634.836
-offset_right = 1031.54
-offset_bottom = 850.826
-scale = Vector2(0.339049, 0.339049)
+offset_left = 96.1093
+offset_top = 1196.06
+offset_right = 368.107
+offset_bottom = 1412.05
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_aeues")
 position_offset = Vector2(1740, 880)
@@ -455,11 +496,11 @@ script = ExtResource("4_7uv0y")
 
 [node name="@GraphNode@140" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 1017.22
-offset_top = 702.646
-offset_right = 1397.24
-offset_bottom = 1062.67
-scale = Vector2(0.339049, 0.339049)
+offset_left = 511.101
+offset_top = 1305.27
+offset_right = 891.121
+offset_bottom = 1665.29
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(2500, 1080)
 resizable = true
@@ -477,11 +518,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode2" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 583.237
-offset_top = 702.646
-offset_right = 1003.24
-offset_bottom = 1102.65
-scale = Vector2(0.339049, 0.339049)
+offset_left = -187.832
+offset_top = 1305.27
+offset_right = 232.171
+offset_bottom = 1705.27
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(1220, 1080)
 resizable = true
@@ -499,11 +540,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode4" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 311.998
-offset_top = 702.646
-offset_right = 691.999
-offset_bottom = 1062.66
-scale = Vector2(0.339049, 0.339049)
+offset_left = -624.666
+offset_top = 1305.27
+offset_right = -244.665
+offset_bottom = 1665.28
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(420, 1080)
 resizable = true
@@ -521,11 +562,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestNotesNde3" type="GraphNode" parent="." instance=ExtResource("5_u1k0x")]
 layout_mode = 0
-offset_left = 217.064
-offset_top = 302.568
-offset_right = 491.074
-offset_bottom = 595.578
-scale = Vector2(0.339049, 0.339049)
+offset_left = -777.557
+offset_top = 660.939
+offset_right = -503.547
+offset_bottom = 953.949
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_u1k0x")
 position_offset = Vector2(140, -100)
@@ -553,11 +594,11 @@ script = ExtResource("2_u1k0x")
 
 [node name="QuestPOINode" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
 layout_mode = 0
-offset_left = 244.188
-offset_top = 431.407
-offset_right = 516.181
-offset_bottom = 647.397
-scale = Vector2(0.339049, 0.339049)
+offset_left = -733.874
+offset_top = 868.434
+offset_right = -461.881
+offset_bottom = 1084.42
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_aeues")
 position_offset = Vector2(220, 280)
@@ -576,11 +617,11 @@ script = ExtResource("4_7uv0y")
 
 [node name="QuestEncounterNode6" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 501.865
-offset_top = 370.378
-offset_right = 861.868
-offset_bottom = 724.378
-scale = Vector2(0.339049, 0.339049)
+offset_left = -318.882
+offset_top = 770.147
+offset_right = 41.1207
+offset_bottom = 1124.15
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(980, 100)
 resizable = true
@@ -598,11 +639,11 @@ script = ExtResource("6_6d88k")
 
 [node name="@GraphNode@109" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 393.369
-offset_top = 370.378
-offset_right = 708.379
-offset_bottom = 724.378
-scale = Vector2(0.339049, 0.339049)
+offset_left = -493.616
+offset_top = 770.147
+offset_right = -178.606
+offset_bottom = 1124.15
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(660, 100)
 resizable = true
@@ -620,11 +661,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 393.369
-offset_top = 492.435
-offset_right = 708.379
-offset_bottom = 846.435
-scale = Vector2(0.339049, 0.339049)
+offset_left = -493.616
+offset_top = 966.722
+offset_right = -178.606
+offset_bottom = 1320.72
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(660, 460)
 resizable = true
@@ -642,11 +683,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode5" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 501.865
-offset_top = 492.435
-offset_right = 893.868
-offset_bottom = 846.435
-scale = Vector2(0.339049, 0.339049)
+offset_left = -318.882
+offset_top = 966.722
+offset_right = 73.1207
+offset_bottom = 1320.72
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(980, 460)
 resizable = true
@@ -664,11 +705,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode3" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 868.038
-offset_top = 702.646
-offset_right = 1248.04
-offset_bottom = 1062.66
-scale = Vector2(0.339049, 0.339049)
+offset_left = 270.843
+offset_top = 1305.27
+offset_right = 650.845
+offset_bottom = 1665.28
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(2060, 1080)
 resizable = true
@@ -686,11 +727,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestPOINode5" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
 layout_mode = 0
-offset_left = 691.733
-offset_top = 411.064
-offset_right = 963.736
-offset_bottom = 627.064
-scale = Vector2(0.339049, 0.339049)
+offset_left = -13.0991
+offset_top = 835.672
+offset_right = 258.904
+offset_bottom = 1051.67
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_6d88k")
 position_offset = Vector2(1540, 220)
@@ -709,11 +750,11 @@ script = ExtResource("4_7uv0y")
 
 [node name="QuestEncounterNode7" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 807.009
-offset_top = 289.006
-offset_right = 1107.01
-offset_bottom = 729.012
-scale = Vector2(0.339049, 0.339049)
+offset_left = 172.555
+offset_top = 639.097
+offset_right = 472.556
+offset_bottom = 1079.1
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(1880, -140)
 resizable = true
@@ -731,11 +772,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode10" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 915.505
-offset_top = 289.006
-offset_right = 1215.5
-offset_bottom = 729.012
-scale = Vector2(0.339049, 0.339049)
+offset_left = 347.288
+offset_top = 639.097
+offset_right = 647.283
+offset_bottom = 1079.1
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(2200, -140)
 resizable = true
@@ -753,11 +794,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode11" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 807.009
-offset_top = 458.531
-offset_right = 1095.01
-offset_bottom = 812.531
-scale = Vector2(0.339049, 0.339049)
+offset_left = 172.555
+offset_top = 912.118
+offset_right = 460.556
+offset_bottom = 1266.12
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(1880, 360)
 resizable = true
@@ -775,11 +816,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode8" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 915.505
-offset_top = 458.531
-offset_right = 1235.5
-offset_bottom = 878.531
-scale = Vector2(0.339049, 0.339049)
+offset_left = 347.288
+offset_top = 912.118
+offset_right = 667.288
+offset_bottom = 1372.12
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(2200, 360)
 resizable = true
@@ -795,35 +836,13 @@ slot/0/right_icon = null
 slot/0/draw_stylebox = true
 script = ExtResource("6_6d88k")
 
-[node name="QuestEncounterNode9" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
-layout_mode = 0
-offset_left = 1037.56
-offset_top = 458.531
-offset_right = 1325.56
-offset_bottom = 812.531
-scale = Vector2(0.339049, 0.339049)
-mouse_filter = 1
-position_offset = Vector2(2560, 360)
-resizable = true
-title = "Quest Encounter"
-slot/0/left_enabled = true
-slot/0/left_type = 0
-slot/0/left_color = Color(1, 1, 1, 1)
-slot/0/left_icon = null
-slot/0/right_enabled = true
-slot/0/right_type = 0
-slot/0/right_color = Color(0, 1, 0, 1)
-slot/0/right_icon = null
-slot/0/draw_stylebox = true
-script = ExtResource("6_6d88k")
-
 [node name="QuestPOINode6" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
 layout_mode = 0
-offset_left = 1207.09
-offset_top = 417.845
-offset_right = 1479.09
-offset_bottom = 633.845
-scale = Vector2(0.339049, 0.339049)
+offset_left = 816.884
+offset_top = 846.593
+offset_right = 1088.88
+offset_bottom = 1062.59
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_1wqwl")
 position_offset = Vector2(3060, 240)
@@ -842,11 +861,11 @@ script = ExtResource("4_7uv0y")
 
 [node name="QuestEncounterNode13" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 1308.8
-offset_top = 336.473
-offset_right = 1596.8
-offset_bottom = 690.473
-scale = Vector2(0.339049, 0.339049)
+offset_left = 980.697
+offset_top = 715.543
+offset_right = 1268.7
+offset_bottom = 1069.54
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(3360, 0)
 resizable = true
@@ -864,11 +883,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode12" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 1417.3
-offset_top = 336.473
-offset_right = 1705.3
-offset_bottom = 690.473
-scale = Vector2(0.339049, 0.339049)
+offset_left = 1155.43
+offset_top = 715.543
+offset_right = 1443.43
+offset_bottom = 1069.54
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(3680, 0)
 resizable = true
@@ -886,11 +905,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode14" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 1308.8
-offset_top = 465.312
-offset_right = 1596.8
-offset_bottom = 819.312
-scale = Vector2(0.339049, 0.339049)
+offset_left = 980.697
+offset_top = 923.039
+offset_right = 1268.7
+offset_bottom = 1277.04
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(3360, 380)
 resizable = true
@@ -908,11 +927,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode15" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 1525.79
-offset_top = 336.473
-offset_right = 1813.79
-offset_bottom = 690.473
-scale = Vector2(0.339049, 0.339049)
+offset_left = 1330.16
+offset_top = 715.543
+offset_right = 1618.16
+offset_bottom = 1069.54
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(4000, 0)
 resizable = true
@@ -930,11 +949,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode16" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 1641.07
-offset_top = 329.692
-offset_right = 1941.07
-offset_bottom = 709.692
-scale = Vector2(0.339049, 0.339049)
+offset_left = 1515.82
+offset_top = 704.622
+offset_right = 1815.82
+offset_bottom = 1084.62
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(4340, -20)
 resizable = true
@@ -952,11 +971,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestPOINode7" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
 layout_mode = 0
-offset_left = 522.208
-offset_top = 112.701
-offset_right = 794.208
-offset_bottom = 328.701
-scale = Vector2(0.339049, 0.339049)
+offset_left = -286.12
+offset_top = 355.155
+offset_right = -14.1198
+offset_bottom = 571.155
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_47x8o")
 position_offset = Vector2(1040, -660)
@@ -975,11 +994,11 @@ script = ExtResource("4_7uv0y")
 
 [node name="QuestEncounterNode20" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 630.704
-offset_top = 31.3288
-offset_right = 918.704
-offset_bottom = 385.329
-scale = Vector2(0.339049, 0.339049)
+offset_left = -111.387
+offset_top = 224.105
+offset_right = 176.613
+offset_bottom = 578.106
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(1360, -900)
 resizable = true
@@ -997,11 +1016,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode18" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 630.704
-offset_top = 153.386
-offset_right = 918.704
-offset_bottom = 507.386
-scale = Vector2(0.339049, 0.339049)
+offset_left = -111.387
+offset_top = 420.68
+offset_right = 176.613
+offset_bottom = 774.68
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(1360, -540)
 resizable = true
@@ -1019,11 +1038,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode19" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 739.199
-offset_top = 31.3288
-offset_right = 1027.2
-offset_bottom = 385.329
-scale = Vector2(0.339049, 0.339049)
+offset_left = 63.3467
+offset_top = 224.105
+offset_right = 351.348
+offset_bottom = 578.106
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(1680, -900)
 resizable = true
@@ -1041,11 +1060,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode17" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 739.199
-offset_top = 153.386
-offset_right = 1027.2
-offset_bottom = 507.386
-scale = Vector2(0.339049, 0.339049)
+offset_left = 63.3467
+offset_top = 420.68
+offset_right = 351.348
+offset_bottom = 774.68
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(1680, -540)
 resizable = true
@@ -1063,11 +1082,11 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestEncounterNode21" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 847.695
-offset_top = 31.3288
-offset_right = 1135.69
-offset_bottom = 385.329
-scale = Vector2(0.339049, 0.339049)
+offset_left = 238.08
+offset_top = 224.105
+offset_right = 526.075
+offset_bottom = 578.106
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 position_offset = Vector2(2000, -900)
 resizable = true
@@ -1085,14 +1104,147 @@ script = ExtResource("6_6d88k")
 
 [node name="QuestPOINode8" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
 layout_mode = 0
-offset_left = 1247.77
-offset_top = 668.741
-offset_right = 1519.77
-offset_bottom = 884.741
-scale = Vector2(0.339049, 0.339049)
+offset_left = 882.409
+offset_top = 1250.66
+offset_right = 1154.41
+offset_bottom = 1466.66
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
 theme_override_styles/titlebar = SubResource("StyleBoxFlat_n16wa")
 position_offset = Vector2(3180, 980)
+resizable = true
+title = "POI"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0, 1, 0, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("4_7uv0y")
+
+[node name="QuestEncounterNode23" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
+layout_mode = 0
+offset_left = 1068.06
+offset_top = 1370.79
+offset_right = 1356.06
+offset_bottom = 1724.79
+scale = Vector2(0.546042, 0.546042)
+mouse_filter = 1
+position_offset = Vector2(3520, 1200)
+resizable = true
+title = "Quest Encounter"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0, 1, 0, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("6_6d88k")
+
+[node name="QuestEncounterNode22" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
+layout_mode = 0
+offset_left = 1068.06
+offset_top = 1163.3
+offset_right = 1356.06
+offset_bottom = 1517.3
+scale = Vector2(0.546042, 0.546042)
+mouse_filter = 1
+position_offset = Vector2(3520, 820)
+resizable = true
+title = "Quest Encounter"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0, 1, 0, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("6_6d88k")
+
+[node name="QuestEncounterNode24" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
+layout_mode = 0
+offset_left = 1253.72
+offset_top = 1163.3
+offset_right = 1541.72
+offset_bottom = 1517.3
+scale = Vector2(0.546042, 0.546042)
+mouse_filter = 1
+position_offset = Vector2(3860, 820)
+resizable = true
+title = "Quest Encounter"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0, 1, 0, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("6_6d88k")
+
+[node name="QuestEncounterNode9" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
+layout_mode = 0
+offset_left = 587.547
+offset_top = 1032.25
+offset_right = 875.547
+offset_bottom = 1386.25
+scale = Vector2(0.546042, 0.546042)
+mouse_filter = 1
+position_offset = Vector2(2640, 580)
+resizable = true
+title = "Quest Encounter"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0, 1, 0, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("6_6d88k")
+
+[node name="QuestEncounterNode25" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
+layout_mode = 0
+offset_left = 587.547
+offset_top = 824.751
+offset_right = 875.547
+offset_bottom = 1178.75
+scale = Vector2(0.546042, 0.546042)
+mouse_filter = 1
+position_offset = Vector2(2640, 200)
+resizable = true
+title = "Quest Encounter"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("6_6d88k")
+
+[node name="QuestPOINode9" type="GraphNode" parent="." instance=ExtResource("3_72mes")]
+layout_mode = 0
+offset_left = 631.23
+offset_top = 464.364
+offset_right = 903.23
+offset_bottom = 680.364
+scale = Vector2(0.546042, 0.546042)
+mouse_filter = 1
+theme_override_styles/titlebar = SubResource("StyleBoxFlat_cdsk7")
+position_offset = Vector2(2720, -460)
 resizable = true
 title = "POI"
 slot/0/left_enabled = true
@@ -1106,15 +1258,15 @@ slot/0/right_icon = null
 slot/0/draw_stylebox = true
 script = ExtResource("4_7uv0y")
 
-[node name="QuestEncounterNode23" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
+[node name="QuestEncounterNode26" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 1363.05
-offset_top = 743.332
-offset_right = 1651.05
-offset_bottom = 1097.33
-scale = Vector2(0.339049, 0.339049)
+offset_left = 816.884
+offset_top = 289.63
+offset_right = 1104.88
+offset_bottom = 643.63
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
-position_offset = Vector2(3520, 1200)
+position_offset = Vector2(3060, -780)
 resizable = true
 title = "Quest Encounter"
 slot/0/left_enabled = true
@@ -1128,15 +1280,15 @@ slot/0/right_icon = null
 slot/0/draw_stylebox = true
 script = ExtResource("6_6d88k")
 
-[node name="QuestEncounterNode22" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
+[node name="QuestEncounterNode27" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 1363.05
-offset_top = 614.493
-offset_right = 1651.05
-offset_bottom = 968.493
-scale = Vector2(0.339049, 0.339049)
+offset_left = 1002.54
+offset_top = 289.63
+offset_right = 1290.54
+offset_bottom = 643.63
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
-position_offset = Vector2(3520, 820)
+position_offset = Vector2(3400, -780)
 resizable = true
 title = "Quest Encounter"
 slot/0/left_enabled = true
@@ -1150,15 +1302,15 @@ slot/0/right_icon = null
 slot/0/draw_stylebox = true
 script = ExtResource("6_6d88k")
 
-[node name="QuestEncounterNode24" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
+[node name="QuestEncounterNode28" type="GraphNode" parent="." instance=ExtResource("1_r8y2g")]
 layout_mode = 0
-offset_left = 1478.33
-offset_top = 614.493
-offset_right = 1766.33
-offset_bottom = 968.493
-scale = Vector2(0.339049, 0.339049)
+offset_left = 816.884
+offset_top = 497.126
+offset_right = 1104.88
+offset_bottom = 851.126
+scale = Vector2(0.546042, 0.546042)
 mouse_filter = 1
-position_offset = Vector2(3860, 820)
+position_offset = Vector2(3060, -400)
 resizable = true
 title = "Quest Encounter"
 slot/0/left_enabled = true

@@ -14,13 +14,14 @@ script = ExtResource("1_6i8pt")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 10
 
 [node name="RewardUIContainer" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -107,4 +108,34 @@ columns = 6
 script = ExtResource("2_df3sp")
 drop_enabled = false
 
+[node name="LossUI" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/LossUI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Total Party Kill"
+horizontal_alignment = 1
+
+[node name="HintLabel" type="Label" parent="MarginContainer/LossUI"]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 22
+text = "None of the adventurers made it back from their adventure. All items loaned to them have been lost."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AcceptDefeatButton" type="Button" parent="MarginContainer/LossUI"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "Accept Defeat
+"
+
 [connection signal="pressed" from="MarginContainer/RewardUIContainer/TakeRewardsButton" to="." method="_on_take_rewards_button_pressed"]
+[connection signal="pressed" from="MarginContainer/LossUI/AcceptDefeatButton" to="." method="_on_accept_defeat_button_pressed"]

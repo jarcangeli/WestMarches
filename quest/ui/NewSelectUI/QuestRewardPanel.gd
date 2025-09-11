@@ -9,16 +9,24 @@ signal quest_completed(quest : Quest)
 @onready var returned_items_display: ItemDisplayContainer = %ReturnedItemsDisplay
 @onready var player_loot_display: ItemDisplayContainer = %PlayerLootDisplay
 @onready var coins_reward_label: Label = %CoinsRewardLabel
+@onready var loss_ui: Container = %LossUI
 
 var current_quest : Quest = null
 
 func hide_rewards():
 	current_quest = null
 	reward_ui_container.visible = false
+	loss_ui.visible = false
 
 func show_rewards(quest : Quest):
 	current_quest = quest
+	
+	if current_quest == null or current_quest.lost():
+		show_loss_screen()
+		return
+	
 	reward_ui_container.visible = true
+	loss_ui.visible = false
 
 	player_loot_display.clear_item_views()
 	var reward_count = quest.get_player_rewards().size()
@@ -34,6 +42,10 @@ func show_rewards(quest : Quest):
 	for character : Character in quest.party.get_characters():
 		var loaned_items = character.get_loaned_items()
 		returned_items_display.add_items(loaned_items)
+
+func show_loss_screen():
+	reward_ui_container.visible = false
+	loss_ui.visible = true
 
 func undo_quest_reward_ui_setup():
 	returned_items_display.clear_item_views()
@@ -60,6 +72,15 @@ func _on_take_rewards_button_pressed() -> void:
 	elif current_quest.reward_tier == Quest.RewardTier.RANDOM:
 		Globals.player_inventory.add_items(player_loot_display.get_displayed_items())
 	
+	current_quest.complete()
+	current_quest = null
+	quest_completed.emit(current_quest)
+
+
+func _on_accept_defeat_button_pressed() -> void:
+	if not current_quest:
+		push_error("Trying to accept defeat for null quest")
+		return
 	current_quest.complete()
 	current_quest = null
 	quest_completed.emit(current_quest)

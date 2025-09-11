@@ -231,54 +231,74 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="GameWindow/TopBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameWindow/TopBar"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GameWindow/TopBar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Game Progress:"
 
-[node name="Control" type="Control" parent="GameWindow/TopBar"]
+[node name="Control" type="Control" parent="GameWindow/TopBar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="TimeLabel" type="Label" parent="GameWindow/TopBar"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 script = ExtResource("17_7vltt")
 time_tracker_path = NodePath("../../../TimeTracker")
-
-[node name="GoldDisplay" type="HBoxContainer" parent="GameWindow/TopBar"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="PlayerCurrencyDisplay" type="Label" parent="GameWindow/TopBar/GoldDisplay"]
-layout_mode = 2
-text = "0 gp"
-script = ExtResource("14_2t1a5")
-
-[node name="TextureRect" type="TextureRect" parent="GameWindow/TopBar/GoldDisplay"]
-modulate = Color(0.878431, 0.764706, 0.537255, 1)
-layout_mode = 2
-texture = ExtResource("15_8576b")
-
-[node name="Control2" type="Control" parent="GameWindow/TopBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="FPSLabel" type="Label" parent="GameWindow/TopBar"]
-layout_mode = 2
-text = "FPS:60"
-script = ExtResource("16_68r7h")
 
 [node name="AdvanceTimeButton" type="Button" parent="GameWindow/TopBar" groups=["button"]]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Advance Day -->"
+theme_override_font_sizes/font_size = 20
+text = "Advance Day"
 script = ExtResource("18_fj2yu")
 
-[node name="MenuButton" type="Button" parent="GameWindow/TopBar" groups=["button"]]
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameWindow/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Control2" type="Control" parent="GameWindow/TopBar/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoldDisplay" type="HBoxContainer" parent="GameWindow/TopBar/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PlayerCurrencyDisplay" type="Label" parent="GameWindow/TopBar/HBoxContainer2/GoldDisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0 gp"
+script = ExtResource("14_2t1a5")
+
+[node name="TextureRect" type="TextureRect" parent="GameWindow/TopBar/HBoxContainer2/GoldDisplay"]
 modulate = Color(0.878431, 0.764706, 0.537255, 1)
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("15_8576b")
+
+[node name="FPSLabel" type="Label" parent="GameWindow/TopBar/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "FPS:60"
+script = ExtResource("16_68r7h")
+
+[node name="MenuButton" type="Button" parent="GameWindow/TopBar/HBoxContainer2" groups=["button"]]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/icon_hover_pressed_color = Color(0.878431, 0.764706, 0.537255, 1)
+theme_override_colors/icon_hover_color = Color(0.878431, 0.764706, 0.537255, 1)
+theme_override_colors/icon_pressed_color = Color(0.878431, 0.764706, 0.537255, 1)
+theme_override_colors/icon_focus_color = Color(0.878431, 0.764706, 0.537255, 1)
+theme_override_colors/icon_normal_color = Color(0.878431, 0.764706, 0.537255, 1)
+theme_override_font_sizes/font_size = 20
 icon = ExtResource("19_w7ht3")
 expand_icon = true
 script = ExtResource("20_8ktx7")

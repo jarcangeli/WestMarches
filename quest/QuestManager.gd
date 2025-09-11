@@ -33,11 +33,13 @@ func on_quest_completed(quest : Quest):
 					encounters_already_encountered.remove_at(i)
 
 func advance_time():
-	for party in parties.get_idle_parties():
-		print("Generating quest for " + party.display_name)
-		generate_quest(party)
-		if not TK.DEBUG:
-			break #only do one at a time
+	# Quest gen now handled by QuestScreen
+	pass
+	#for party in parties.get_idle_parties():
+		#print("Generating quest for " + party.display_name)
+		#generate_quest(party)
+		#if not TK.DEBUG:
+			#break #only do one at a time
 
 func generate_quest(party : AdventuringParty):
 	#TODO: Some logic determing level of quest to generate, e.g. always have 2 easy, 1 med, sometimes a rare/hard
@@ -62,7 +64,6 @@ func generate_quest_kill(party : AdventuringParty):
 		var win_p = results.get_win_percentage()
 		if results == null or win_p < TK.QUEST_MIN_PERCENT  or win_p > TK.QUEST_MAX_PERCENT:
 			if iterations < TK.quest_max_iterations() - 1: # Keep last iteration whatever it is
-				print("iteration " + str(iterations+1))
 				encounter = null
 			elif not TK.DEBUG:
 				push_warning("Falling back to innapropriate encounter %s for party %s as reached max iterations" % [party.display_name, encounter.encounter_name])

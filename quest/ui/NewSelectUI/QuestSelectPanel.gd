@@ -60,4 +60,4 @@ func on_choose_quest():
 
 func toggle_running_quest(is_running_quest):
 	choose_quest_button.visible = not is_running_quest
-	guide_label.text = "Current Quest" if is_running_quest else "Choose a quest for the party to embark on"
+	guide_label.text = "Current Quest. Advance time to progress." if is_running_quest else "Choose a quest for the party to embark on"

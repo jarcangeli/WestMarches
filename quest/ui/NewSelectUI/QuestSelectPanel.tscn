@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cn2y72ww61wuq"]
+[gd_scene load_steps=10 format=3 uid="uid://cn2y72ww61wuq"]
 
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_m862f"]
 [ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://assets/difficulty_atlas_texture_background.tres" id="1_sa7wd"]
 [ext_resource type="Script" uid="uid://ifctt8twgmkq" path="res://quest/ui/NewSelectUI/QuestSelectPanel.gd" id="1_yd824"]
 [ext_resource type="Texture2D" uid="uid://daysrbhdeip5v" path="res://assets/difficulty_atlas_texture.tres" id="2_yd824"]
@@ -26,6 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_m862f")
 script = ExtResource("1_yd824")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -153,7 +155,6 @@ theme_override_constants/margin_bottom = 10
 
 [node name="ChooseQuestButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
-modulate = Color(0.795166, 0.496383, 0.2431, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 40

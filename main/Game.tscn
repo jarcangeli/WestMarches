@@ -195,7 +195,7 @@ experience = 200
 script = ExtResource("10_5he1h")
 parties = NodePath("../AdventuringParties")
 available_quests = NodePath("AvailableQuests")
-map = NodePath("../GameWindow/PHTabs/Map")
+map = NodePath("../GameWindow/HiddenTabs/Map")
 
 [node name="PendingQuests" type="Node" parent="QuestManager"]
 script = ExtResource("11_xwkxq")
@@ -220,9 +220,12 @@ script = ExtResource("12_wdm1y")
 script = ExtResource("13_hxy8k")
 
 [node name="GameWindow" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_right = 1299.0
-offset_bottom = 768.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TopBar" type="HBoxContainer" parent="GameWindow"]
 layout_mode = 2
@@ -348,11 +351,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PHTabs" type="Control" parent="GameWindow"]
+[node name="HiddenTabs" type="Control" parent="GameWindow"]
 visible = false
 layout_mode = 2
 
-[node name="[PH]Forge" type="MarginContainer" parent="GameWindow/PHTabs"]
+[node name="[PH]Forge" type="MarginContainer" parent="GameWindow/HiddenTabs"]
 visible = false
 layout_mode = 0
 anchor_right = 1.0
@@ -362,7 +365,7 @@ offset_top = -520.0
 offset_right = -4.0
 offset_bottom = -498.0
 
-[node name="Label" type="Label" parent="GameWindow/PHTabs/[PH]Forge"]
+[node name="Label" type="Label" parent="GameWindow/HiddenTabs/[PH]Forge"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -370,22 +373,7 @@ text = "TODO"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="[PH]Shop" type="MarginContainer" parent="GameWindow/PHTabs"]
-visible = false
-layout_mode = 0
-offset_top = -560.0
-offset_right = 47.0
-offset_bottom = -520.0
-
-[node name="Label" type="Label" parent="GameWindow/PHTabs/[PH]Shop"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "TODO"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Map" parent="GameWindow/PHTabs" instance=ExtResource("24_xc54d")]
+[node name="Map" parent="GameWindow/HiddenTabs" instance=ExtResource("24_xc54d")]
 visible = false
 layout_mode = 2
 anchors_preset = 0
@@ -443,10 +431,13 @@ layout_mode = 2
 
 [node name="GameOverScreen" parent="." instance=ExtResource("29_8ktx7")]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -167.0
+offset_right = 220.0
+offset_bottom = 167.0

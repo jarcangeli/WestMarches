@@ -7,7 +7,7 @@ enum GameState {
 	GAME		= 1
 }
 
-var game : Control = null
+var game : Game = null
 var player_inventory : ItemContainer = null
 var player_currencies : PlayerCurrencies = null
 var character_graveyard : CharacterGraveyard = null

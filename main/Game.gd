@@ -1,4 +1,5 @@
 extends Control
+class_name Game
 
 @onready var advance_time_button: Button = %AdvanceTimeButton
 @onready var adventuring_parties: AdventuringParties = %AdventuringParties
@@ -9,6 +10,7 @@ var game_over := false
 func _ready():
 	if Globals.game and Globals.game != self:
 		Globals.game.queue_free()
+		Globals.game = null
 	Globals.game = self
 	advance_time_button.advance_time.call_deferred()
 	if TK.DEBUG:

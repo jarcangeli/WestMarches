@@ -78,111 +78,115 @@ script = ExtResource("9_202ut")
 character_name = "Noragar"
 metadata/_custom_type_script = "uid://bftwko1mxftug"
 
-[node name="GreenShoots" type="Node" parent="AdventuringParties"]
+[node name="AdventuringParties2" type="Node" parent="." groups=["time"]]
+unique_name_in_owner = true
+script = ExtResource("7_aeq37")
+
+[node name="GreenShoots" type="Node" parent="AdventuringParties2"]
 script = ExtResource("8_suycs")
 display_name = "Green Shoots"
 
-[node name="Ben" type="Node" parent="AdventuringParties/GreenShoots"]
+[node name="Ben" type="Node" parent="AdventuringParties2/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Benthar"
 
-[node name="Sam" type="Node" parent="AdventuringParties/GreenShoots"]
+[node name="Sam" type="Node" parent="AdventuringParties2/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Samwise"
 character_class = 2
 
-[node name="Gen" type="Node" parent="AdventuringParties/GreenShoots"]
+[node name="Gen" type="Node" parent="AdventuringParties2/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Genevieve"
 character_class = 2
 
-[node name="YeParte" type="Node" parent="AdventuringParties"]
+[node name="YeParte" type="Node" parent="AdventuringParties2"]
 script = ExtResource("8_suycs")
 display_name = "Ye Parte"
 
-[node name="Arthur" type="Node" parent="AdventuringParties/YeParte"]
+[node name="Arthur" type="Node" parent="AdventuringParties2/YeParte"]
 script = ExtResource("9_202ut")
 character_name = "Arthur"
 experience = 50
 character_class = 3
 
-[node name="PHShortsword" type="Node" parent="AdventuringParties/YeParte/Arthur"]
+[node name="PHShortsword" type="Node" parent="AdventuringParties2/YeParte/Arthur"]
 script = ExtResource("6_4my3f")
 item_name = "Shortsword"
 
-[node name="Benthwyn" type="Node" parent="AdventuringParties/YeParte"]
+[node name="Benthwyn" type="Node" parent="AdventuringParties2/YeParte"]
 script = ExtResource("9_202ut")
 character_name = "Benthwyn"
 experience = 320
 character_class = 2
 
-[node name="PHShortbow" type="Node" parent="AdventuringParties/YeParte/Benthwyn"]
+[node name="PHShortbow" type="Node" parent="AdventuringParties2/YeParte/Benthwyn"]
 script = ExtResource("6_4my3f")
 item_name = "Shortbow"
 
-[node name="Gomli" type="Node" parent="AdventuringParties/YeParte"]
+[node name="Gomli" type="Node" parent="AdventuringParties2/YeParte"]
 script = ExtResource("9_202ut")
 character_name = "Gomli"
 experience = 60
 
-[node name="PHAxe" type="Node" parent="AdventuringParties/YeParte/Gomli"]
+[node name="PHAxe" type="Node" parent="AdventuringParties2/YeParte/Gomli"]
 script = ExtResource("6_4my3f")
 item_name = "Battleaxe"
 
-[node name="Ugs" type="Node" parent="AdventuringParties"]
+[node name="Ugs" type="Node" parent="AdventuringParties2"]
 script = ExtResource("8_suycs")
 display_name = "Ugs"
 
-[node name="Ug" type="Node" parent="AdventuringParties/Ugs"]
+[node name="Ug" type="Node" parent="AdventuringParties2/Ugs"]
 script = ExtResource("9_202ut")
 character_name = "Ug"
 
-[node name="PHShortsword" type="Node" parent="AdventuringParties/Ugs/Ug"]
+[node name="PHShortsword" type="Node" parent="AdventuringParties2/Ugs/Ug"]
 script = ExtResource("6_4my3f")
 item_name = "Shortsword"
 
-[node name="Og" type="Node" parent="AdventuringParties/Ugs"]
+[node name="Og" type="Node" parent="AdventuringParties2/Ugs"]
 script = ExtResource("9_202ut")
 character_name = "Og"
 character_class = 3
 
-[node name="PHShortsword" type="Node" parent="AdventuringParties/Ugs/Og"]
+[node name="PHShortsword" type="Node" parent="AdventuringParties2/Ugs/Og"]
 script = ExtResource("6_4my3f")
 item_name = "Shortsword"
 
-[node name="Ag" type="Node" parent="AdventuringParties/Ugs"]
+[node name="Ag" type="Node" parent="AdventuringParties2/Ugs"]
 script = ExtResource("9_202ut")
 character_name = "Ag"
 character_class = 2
 
-[node name="PHShortbow" type="Node" parent="AdventuringParties/Ugs/Ag"]
+[node name="PHShortbow" type="Node" parent="AdventuringParties2/Ugs/Ag"]
 script = ExtResource("6_4my3f")
 item_name = "Shortbow"
 
-[node name="TheFellowship" type="Node" parent="AdventuringParties"]
+[node name="TheFellowship" type="Node" parent="AdventuringParties2"]
 script = ExtResource("8_suycs")
 display_name = "The Fellowship"
 
-[node name="Aragorn" type="Node" parent="AdventuringParties/TheFellowship"]
+[node name="Aragorn" type="Node" parent="AdventuringParties2/TheFellowship"]
 script = ExtResource("9_202ut")
 character_name = "Aragorn"
 experience = 200
 
-[node name="PHShortsword" type="Node" parent="AdventuringParties/TheFellowship/Aragorn"]
+[node name="PHShortsword" type="Node" parent="AdventuringParties2/TheFellowship/Aragorn"]
 script = ExtResource("6_4my3f")
 item_name = "Shortsword"
 
-[node name="Legolas" type="Node" parent="AdventuringParties/TheFellowship"]
+[node name="Legolas" type="Node" parent="AdventuringParties2/TheFellowship"]
 script = ExtResource("9_202ut")
 character_name = "Legolas"
 experience = 200
 character_class = 2
 
-[node name="PHShortbow" type="Node" parent="AdventuringParties/TheFellowship/Legolas"]
+[node name="PHShortbow" type="Node" parent="AdventuringParties2/TheFellowship/Legolas"]
 script = ExtResource("6_4my3f")
 item_name = "Shortbow"
 
-[node name="Gimli" type="Node" parent="AdventuringParties/TheFellowship"]
+[node name="Gimli" type="Node" parent="AdventuringParties2/TheFellowship"]
 script = ExtResource("9_202ut")
 character_name = "Gimli"
 experience = 200

@@ -4,11 +4,12 @@ class_name ItemDropArea
 @export var drop_enabled := true
 @export var item_display_container : ItemDisplayContainer
 
-@export var source_whitelist : Array
+@export var source_whitelist : Array = []
 
 func _ready():
 	for i in range(0, len(source_whitelist)):
-		source_whitelist[i] = get_node_or_null(source_whitelist[i])
+		if is_instance_valid(source_whitelist[i]) and not source_whitelist[i] is Object:
+			source_whitelist[i] = get_node_or_null(source_whitelist[i])
 
 func _can_drop_data(_position, data):
 	if not drop_enabled:

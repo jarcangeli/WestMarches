@@ -2,7 +2,7 @@ extends Node
 # [TODO] Class where things that need tuning go
 # when it's tuned, move it to an appropriate location
 
-const DEBUG := true
+const DEBUG := false
 
 const TUTORIAL := false
 

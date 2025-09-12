@@ -70,6 +70,7 @@ script = ExtResource("7_aeq37")
 [node name="LoneWolf" type="Node" parent="AdventuringParties"]
 script = ExtResource("8_suycs")
 display_name = "The Lone Wolf"
+preset_quests = Array[String](["Crystal Pool", "Guard Dogs"])
 metadata/_custom_type_script = "uid://bxu4cx67teei7"
 
 [node name="Noragar" type="Node" parent="AdventuringParties/LoneWolf"]

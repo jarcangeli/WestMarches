@@ -40,8 +40,13 @@ func generate_quest(party : AdventuringParty):
 
 func generate_quest_kill(party : AdventuringParty):
 	var encounter : Encounter = null
-	var iterations := 0
 	
+	while not party.preset_quests.is_empty() and encounter == null:
+		var preset_encounter_name = party.preset_quests[0]
+		party.preset_quests.remove_at(0)
+		encounter = POIDatabase.encounters_by_name.get(preset_encounter_name, null)
+	
+	var iterations := 0
 	while encounter == null and iterations < TK.quest_max_iterations():
 		encounter = get_encounter()
 		if not is_instance_valid(encounter):

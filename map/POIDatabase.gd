@@ -6,6 +6,7 @@ const pois_file := "res://test/quest_graph/graph_data/quests.cfg"
 var pois_by_name := {}
 var all_encounters : Array[Encounter] = []
 var available_encounters : Array[Encounter] = []
+var encounters_by_name := {}
 
 func _ready():
 	load_pois_from_file(pois_file)
@@ -41,6 +42,7 @@ func load_pois_from_file(config_file_name):
 			var encounter = Encounter.new(encounter_data)
 			add_child(encounter, true)
 			all_encounters.append(encounter)
+			encounters_by_name[encounter.encounter_name] = encounter
 			if poi_data:
 				poi_data.encounters.append(encounter)
 

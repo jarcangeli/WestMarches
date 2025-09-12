@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cimbnhhermucy"]
+[gd_scene load_steps=8 format=3 uid="uid://cimbnhhermucy"]
 
+[ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_63i3k"]
 [ext_resource type="Script" uid="uid://k0vbt4r1gvu0" path="res://characters/ui/PartySummaryUI.gd" id="1_hokt6"]
 [ext_resource type="PackedScene" uid="uid://b1ycsca7qo073" path="res://characters/ui/CharacterSummaryUI.tscn" id="2_dibcj"]
 [ext_resource type="Texture2D" uid="uid://bu4i6uwbeww7j" path="res://assets/difficulty_atlas_texture_background.tres" id="2_kchre"]
@@ -8,11 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cj14q464lrv01" path="res://assets/icons/stats/attack.png" id="4_l0nhr"]
 
 [node name="PartySummaryUI" type="MarginContainer" groups=["time"]]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 200.0
+offset_bottom = 748.0
+theme = ExtResource("1_63i3k")
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -29,6 +28,10 @@ size_flags_vertical = 3
 layout_mode = 2
 alignment = 1
 
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Party Strength:"
+
 [node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 visible = false
@@ -38,16 +41,14 @@ text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-
 [node name="PowerLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 tooltip_text = "Power Level"
 mouse_filter = 1
 text = "5"
+horizontal_alignment = 2
 
 [node name="PowerRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
 modulate = Color(0.878431, 0.764706, 0.537255, 1)
@@ -58,18 +59,18 @@ texture = ExtResource("4_l0nhr")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="Control3" type="Control" parent="VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-
 [node name="CoinsLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 tooltip_text = "Gold Pieces"
 mouse_filter = 1
 text = "5"
+horizontal_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+visible = false
 modulate = Color(0.878431, 0.764706, 0.537255, 1)
 layout_mode = 2
 tooltip_text = "Gold Pieces"
@@ -99,9 +100,8 @@ texture_progress = ExtResource("3_dibcj")
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 0
 
-[node name="CharacterSummaries" type="HBoxContainer" parent="VBoxContainer/CharacterSummariesScrollArea"]
+[node name="CharacterSummaries" type="VBoxContainer" parent="VBoxContainer/CharacterSummariesScrollArea"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -109,12 +109,22 @@ size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/CharacterSummariesScrollArea/CharacterSummaries"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
 [node name="CharacterSummaryUI" parent="VBoxContainer/CharacterSummariesScrollArea/CharacterSummaries" instance=ExtResource("2_dibcj")]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/CharacterSummariesScrollArea/CharacterSummaries"]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
 [node name="CharacterSummaryUI2" parent="VBoxContainer/CharacterSummariesScrollArea/CharacterSummaries" instance=ExtResource("2_dibcj")]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/CharacterSummariesScrollArea/CharacterSummaries"]
+custom_minimum_size = Vector2(4, 0)
 layout_mode = 2

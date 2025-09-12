@@ -31,13 +31,13 @@ func set_party(new_party : AdventuringParty):
 	if party == null:
 		return
 	
-	add_vertical_line()
+	add_horizontal_line()
 	for character in party.get_characters():
 		var character_summary = character_summary_scene.instantiate()
 		character_summaries.add_child(character_summary)
 		character_summary.set_character(character)
 		character_summary.set_scroll_enabled(scroll_areas_enabled)
-		add_vertical_line()
+		add_horizontal_line()
 	
 	%NameLabel.text = party.display_name
 	%LevelBar.value = party.get_average_level() / 300 * 5
@@ -47,4 +47,9 @@ func set_party(new_party : AdventuringParty):
 func add_vertical_line():
 	var panel = Panel.new()
 	panel.custom_minimum_size.x = 4
+	character_summaries.add_child(panel)
+
+func add_horizontal_line():
+	var panel = Panel.new()
+	panel.custom_minimum_size.y = 4
 	character_summaries.add_child(panel)

@@ -3,6 +3,8 @@ class_name AdventuringParty
 
 @export var display_name : String
 
+@export var preset_quests : Array[String]
+
 var position = Vector2.ZERO
 
 var quest = null

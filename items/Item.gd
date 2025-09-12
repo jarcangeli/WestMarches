@@ -45,6 +45,21 @@ const slot_mini_icons = [
 	preload("res://assets/icons/icon.png")
 ]
 
+
+const slot_tiny_icons = [
+	preload("res://assets/icons/slots/weapon_slot_tiny.png"),
+	preload("res://assets/icons/slots/chest_slot_tiny.png"),
+	preload("res://assets/icons/slots/helm_slot_tiny.png"),
+	preload("res://assets/icons/slots/leg_slot_tiny.png"),
+	preload("res://assets/icons/slots/feet_slot_tiny.png"),
+	preload("res://assets/icons/slots/potion_slot_tiny.png"),
+	preload("res://assets/icons/slots/ranged_slot_tiny.png"),
+	preload("res://assets/icons/slots/belt_slot_tiny.png"),
+	preload("res://assets/icons/slots/ring_slot_tiny.png"),
+	preload("res://assets/icons/slots/cape_slot_tiny.png"),
+	preload("res://assets/icons/slots/weapon_slot_tiny.png")
+]
+
 var id : int = -1
 
 @export var item_name : String = "Name"
@@ -59,6 +74,30 @@ var stats : AbilityStats = AbilityStats.new()
 var base_value := 1
 var loaned_character = null
 var rarity : Globals.Rarity
+
+static func slot_to_name(slot):
+	match slot:
+		Slot.WEAPON:
+			return "Weapon"
+		Slot.CHEST:
+			return "Chest"
+		Slot.HEAD:
+			return "Helm"
+		Slot.LEGS:
+			return "Leg"
+		Slot.FEET:
+			return "Boot"
+		Slot.POTION:
+			return "Potion"
+		Slot.RANGED:
+			return "Ranged"
+		Slot.BELT:
+			return "Belt"
+		Slot.RING:
+			return "Ring"
+		Slot.CAPE:
+			return "Cape"
+	return "No"
 
 static func slot_to_shortname(slot):
 	match slot:

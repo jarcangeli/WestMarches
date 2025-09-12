@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://d12iqlv4bh3op"]
+[gd_scene load_steps=8 format=3 uid="uid://d12iqlv4bh3op"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_a51t3"]
 [ext_resource type="Script" uid="uid://cimvti8jeu4u7" path="res://items/ui/ItemTooltip.gd" id="1_erslf"]
 [ext_resource type="PackedScene" uid="uid://cep2vfoh14qxb" path="res://core/StatsDisplay.tscn" id="1_m6mtj"]
 [ext_resource type="Texture2D" uid="uid://bg87pigjk72d3" path="res://assets/icons/resources/coins.png" id="2_1lwb4"]
+[ext_resource type="Texture2D" uid="uid://dinmau1lt0uun" path="res://assets/icons/slots/chest_slot_tiny.png" id="5_vyi6c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erslf"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.613909, 0.310868, 0.425854, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lwb4"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -93,3 +94,37 @@ show_empty = false
 font_size = 22
 icon_size = 24
 stat_h_separation = 20
+
+[node name="EquipInfo" type="VBoxContainer" parent="MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer2/MarginContainer/VBoxContainer/EquipInfo"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer2/MarginContainer/VBoxContainer/EquipInfo/HBoxContainer2"]
+layout_mode = 2
+
+[node name="SlotTinyIcon" type="TextureRect" parent="MarginContainer2/MarginContainer/VBoxContainer/EquipInfo/HBoxContainer2/CenterContainer"]
+unique_name_in_owner = true
+modulate = Color(0.729412, 0.67451, 0.741176, 1)
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+texture = ExtResource("5_vyi6c")
+expand_mode = 3
+
+[node name="SlotLabel" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer/EquipInfo/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Chest slot"
+
+[node name="LevelsLabel" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer/EquipInfo"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.501407, 0.501406, 0.501406, 1)
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 12
+text = "Rogue 1
+Fighter 1"

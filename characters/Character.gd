@@ -8,8 +8,19 @@ enum CharacterClass
 	NONE,
 	FIGHTER,
 	RANGER,
-	THIEF
+	THIEF,
+	SIZE
 }
+
+static func character_class_name(i : CharacterClass):
+	match i:
+		CharacterClass.FIGHTER:
+			return "Fighter"
+		CharacterClass.RANGER:
+			return "Ranger"
+		CharacterClass.THIEF:
+			return "Thief"
+	return "None"
 
 @export var character_name : String
 @export var experience := 0

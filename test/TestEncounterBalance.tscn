@@ -44,92 +44,84 @@ metadata/_tab_index = 0
 
 [node name="Parties" type="Node" parent="."]
 
-[node name="Ugs" type="Node" parent="Parties"]
+[node name="LoneWolf" type="Node" parent="Parties"]
 script = ExtResource("2_psxil")
-display_name = "Ugs"
+display_name = "The Lone Wolf"
+preset_quests = Array[String](["Crystal Pool", "Guard Dogs"])
+metadata/_custom_type_script = "uid://bxu4cx67teei7"
 
-[node name="Ug" type="Node" parent="Parties/Ugs"]
+[node name="Noragar" type="Node" parent="Parties/LoneWolf"]
 script = ExtResource("3_lxiss")
-character_name = "Ug"
-experience = null
-character_class = null
+character_name = "Noragar"
+character_class = 4
+metadata/_custom_type_script = "uid://bftwko1mxftug"
 
-[node name="PHShortsword" type="Node" parent="Parties/Ugs/Ug"]
+[node name="Weapon" type="Node" parent="Parties/LoneWolf/Noragar"]
 script = ExtResource("4_ql5us")
 item_name = "Shortsword"
 
-[node name="Og" type="Node" parent="Parties/Ugs"]
+[node name="Armor" type="Node" parent="Parties/LoneWolf/Noragar"]
+script = ExtResource("4_ql5us")
+item_name = "Coif"
+
+[node name="GreenShoots" type="Node" parent="Parties"]
+script = ExtResource("2_psxil")
+display_name = "Green Shoots"
+
+[node name="Ben" type="Node" parent="Parties/GreenShoots"]
 script = ExtResource("3_lxiss")
-character_name = "Og"
-experience = null
+character_name = "Benthar"
+
+[node name="Weapon" type="Node" parent="Parties/GreenShoots/Ben"]
+script = ExtResource("4_ql5us")
+item_name = "Shortsword"
+
+[node name="Armor" type="Node" parent="Parties/GreenShoots/Ben"]
+script = ExtResource("4_ql5us")
+item_name = "Jerkin"
+
+[node name="Sam" type="Node" parent="Parties/GreenShoots"]
+script = ExtResource("3_lxiss")
+character_name = "Samwise"
 character_class = 3
 
-[node name="PHShortsword" type="Node" parent="Parties/Ugs/Og"]
+[node name="Weapon" type="Node" parent="Parties/GreenShoots/Sam"]
 script = ExtResource("4_ql5us")
 item_name = "Shortsword"
 
-[node name="Ag" type="Node" parent="Parties/Ugs"]
+[node name="Armor" type="Node" parent="Parties/GreenShoots/Sam"]
+script = ExtResource("4_ql5us")
+item_name = "Trimmed Cape"
+
+[node name="Gen" type="Node" parent="Parties/GreenShoots"]
 script = ExtResource("3_lxiss")
-character_name = "Ag"
-experience = null
+character_name = "Genevieve"
 character_class = 2
 
-[node name="PHShortbow" type="Node" parent="Parties/Ugs/Ag"]
+[node name="Weapon" type="Node" parent="Parties/GreenShoots/Gen"]
+script = ExtResource("4_ql5us")
+item_name = "Shortsword"
+
+[node name="Weapon2" type="Node" parent="Parties/GreenShoots/Gen"]
 script = ExtResource("4_ql5us")
 item_name = "Shortbow"
 
-[node name="TheFellowship" type="Node" parent="Parties"]
+[node name="GreenShoots2" type="Node" parent="Parties"]
 script = ExtResource("2_psxil")
-display_name = "The Fellowship"
+display_name = "Naked Green Shoots"
 
-[node name="Aragorn" type="Node" parent="Parties/TheFellowship"]
+[node name="Ben" type="Node" parent="Parties/GreenShoots2"]
 script = ExtResource("3_lxiss")
-character_name = "Aragorn"
-experience = 200
-character_class = null
+character_name = "Benthar"
 
-[node name="PHSword" type="Node" parent="Parties/TheFellowship/Aragorn"]
-script = ExtResource("4_ql5us")
-item_name = "Runed Greatsword"
-
-[node name="Helm" type="Node" parent="Parties/TheFellowship/Aragorn"]
-script = ExtResource("4_ql5us")
-item_name = "Winged Helmet"
-
-[node name="Chest" type="Node" parent="Parties/TheFellowship/Aragorn"]
-script = ExtResource("4_ql5us")
-item_name = "Studded Leather"
-
-[node name="Legolas" type="Node" parent="Parties/TheFellowship"]
+[node name="Sam" type="Node" parent="Parties/GreenShoots2"]
 script = ExtResource("3_lxiss")
-character_name = "Legolas"
-experience = 200
+character_name = "Samwise"
+character_class = 3
+
+[node name="Gen" type="Node" parent="Parties/GreenShoots2"]
+script = ExtResource("3_lxiss")
+character_name = "Genevieve"
 character_class = 2
-
-[node name="PHShortbow" type="Node" parent="Parties/TheFellowship/Legolas"]
-script = ExtResource("4_ql5us")
-item_name = "Shortbow"
-
-[node name="PHSword" type="Node" parent="Parties/TheFellowship/Legolas"]
-script = ExtResource("4_ql5us")
-item_name = "Longsword"
-
-[node name="Gimli" type="Node" parent="Parties/TheFellowship"]
-script = ExtResource("3_lxiss")
-character_name = "Gimli"
-experience = 200
-character_class = null
-
-[node name="PHAxe" type="Node" parent="Parties/TheFellowship/Gimli"]
-script = ExtResource("4_ql5us")
-item_name = "Battleaxe"
-
-[node name="Helm" type="Node" parent="Parties/TheFellowship/Gimli"]
-script = ExtResource("4_ql5us")
-item_name = "Darkiron Helmet"
-
-[node name="Chest" type="Node" parent="Parties/TheFellowship/Gimli"]
-script = ExtResource("4_ql5us")
-item_name = "Breastplate"
 
 [connection signal="pressed" from="VBoxContainer/CenterContainer/Button" to="." method="_on_button_pressed"]

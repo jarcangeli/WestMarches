@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2a1ptlabf4qg"]
+[gd_scene load_steps=13 format=3 uid="uid://c2a1ptlabf4qg"]
 
 [ext_resource type="Script" uid="uid://pasdpg40sm4w" path="res://test/TestQuests.gd" id="1_hxnl8"]
 [ext_resource type="Script" uid="uid://g3sofqeyh8i2" path="res://items/ui/PlayerCurrencyDisplay.gd" id="2_4kdxb"]
 [ext_resource type="PackedScene" uid="uid://c2xf0hqwsw5f7" path="res://quest/ui/archive/QuestScreen.tscn" id="2_5kee0"]
 [ext_resource type="Script" uid="uid://kexivlvyyg87" path="res://core/TimeTracker.gd" id="2_rn7o8"]
-[ext_resource type="PackedScene" uid="uid://cormuewc0570n" path="res://map/Map.tscn" id="3_ghqp3"]
 [ext_resource type="Script" uid="uid://dfnqbkmy7vepb" path="res://core/TimeLabel.gd" id="3_rn7o8"]
 [ext_resource type="Script" uid="uid://37lfxcb774f2" path="res://quest/QuestManager.gd" id="4_4kdxb"]
 [ext_resource type="Script" uid="uid://ci4sf0jejbix8" path="res://core/AdvanceTimeButton.gd" id="4_rm5kl"]
@@ -69,15 +68,10 @@ active_quests = NodePath("../QuestManager/ActiveQuests")
 completed_quests = NodePath("../QuestManager/CompletedQuests")
 adventuring_parties = NodePath("../AdventuringParties")
 
-[node name="Map" parent="." instance=ExtResource("3_ghqp3")]
-visible = false
-layout_mode = 2
-
-[node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests", "map") groups=["time"]]
+[node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests") groups=["time"]]
 script = ExtResource("4_4kdxb")
 parties = NodePath("../AdventuringParties")
 available_quests = NodePath("AvailableQuests")
-map = NodePath("../Map")
 
 [node name="PendingQuests" type="Node" parent="QuestManager"]
 script = ExtResource("5_rn7o8")
@@ -98,30 +92,22 @@ quest_signal = "quest_completed"
 [node name="AdventuringParties" type="Node" parent="."]
 script = ExtResource("6_rm5kl")
 
-[node name="Party1" type="Node" parent="AdventuringParties"]
+[node name="LoneWolf" type="Node" parent="AdventuringParties"]
 script = ExtResource("7_3y0sa")
-display_name = "The Ladz"
+display_name = "The Lone Wolf"
+preset_quests = Array[String](["Crystal Pool", "Guard Dogs"])
+metadata/_custom_type_script = "uid://bxu4cx67teei7"
 
-[node name="Ben" type="Node" parent="AdventuringParties/Party1"]
+[node name="Noragar" type="Node" parent="AdventuringParties/LoneWolf"]
 script = ExtResource("8_5txy0")
-character_name = "Ben"
+character_name = "Noragar"
+character_class = 4
+metadata/_custom_type_script = "uid://bftwko1mxftug"
 
-[node name="PHShortsword" type="Node" parent="AdventuringParties/Party1/Ben"]
+[node name="Weapon" type="Node" parent="AdventuringParties/LoneWolf/Noragar"]
 script = ExtResource("9_p1mye")
 item_name = "Shortsword"
 
-[node name="Sam" type="Node" parent="AdventuringParties/Party1"]
-script = ExtResource("8_5txy0")
-character_name = "Sam"
-
-[node name="PHShortbow" type="Node" parent="AdventuringParties/Party1/Sam"]
+[node name="Armor" type="Node" parent="AdventuringParties/LoneWolf/Noragar"]
 script = ExtResource("9_p1mye")
-item_name = "Shortbow"
-
-[node name="Jen" type="Node" parent="AdventuringParties/Party1"]
-script = ExtResource("8_5txy0")
-character_name = "Jen"
-
-[node name="PHShortbow" type="Node" parent="AdventuringParties/Party1/Jen"]
-script = ExtResource("9_p1mye")
-item_name = "Shortbow"
+item_name = "Coif"

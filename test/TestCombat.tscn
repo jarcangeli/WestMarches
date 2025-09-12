@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl4vuiwj85ev"]
+[gd_scene load_steps=7 format=3 uid="uid://dl4vuiwj85ev"]
 
 [ext_resource type="Script" uid="uid://8v260nocnrls" path="res://test/TestCombat.gd" id="1_kuu8u"]
 [ext_resource type="Script" uid="uid://bftwko1mxftug" path="res://characters/Character.gd" id="1_oxyo4"]
 [ext_resource type="PackedScene" uid="uid://2c7pawofwn6o" path="res://core/combat/CombatDamageMeter.tscn" id="2_kuu8u"]
+[ext_resource type="Script" uid="uid://bxu4cx67teei7" path="res://characters/AdventuringParty.gd" id="3_lfx2d"]
 [ext_resource type="Script" uid="uid://cr3ryrsq5m4v0" path="res://items/LazyLoadItem.gd" id="3_me3qr"]
 [ext_resource type="Script" uid="uid://ba4hauhkd27l" path="res://characters/LazyLoadCharacter.gd" id="4_2oxra"]
 
@@ -13,7 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kuu8u")
-adventurer = NodePath("Conan")
+adventurer = NodePath("LoneWolf/Noragar")
 
 [node name="CenterContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -56,6 +57,26 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 editable = false
+
+[node name="LoneWolf" type="Node" parent="."]
+script = ExtResource("3_lfx2d")
+display_name = "The Lone Wolf"
+preset_quests = Array[String](["Crystal Pool", "Guard Dogs"])
+metadata/_custom_type_script = "uid://bxu4cx67teei7"
+
+[node name="Noragar" type="Node" parent="LoneWolf"]
+script = ExtResource("1_oxyo4")
+character_name = "Noragar"
+character_class = 4
+metadata/_custom_type_script = "uid://bftwko1mxftug"
+
+[node name="Weapon" type="Node" parent="LoneWolf/Noragar"]
+script = ExtResource("3_me3qr")
+item_name = "Shortsword"
+
+[node name="Armor" type="Node" parent="LoneWolf/Noragar"]
+script = ExtResource("3_me3qr")
+item_name = "Coif"
 
 [node name="Conan" type="Node" parent="."]
 script = ExtResource("1_oxyo4")

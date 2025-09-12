@@ -5,6 +5,8 @@ var wins : int = 0
 var losses : int = 0
 var character_deaths : int = 0
 
+var encounter = null
+
 func get_win_percentage() -> float:
 	return wins / float(wins + losses) * 100.0
 

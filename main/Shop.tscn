@@ -184,6 +184,7 @@ text = "Shop Items"
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+vertical_scroll_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2

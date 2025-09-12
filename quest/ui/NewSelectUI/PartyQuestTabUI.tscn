@@ -23,11 +23,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 40
 tab_alignment = 1
+current_tab = 0
 clip_tabs = false
 deselect_enabled = true
 
 [node name="PartyQuestUI" parent="HBoxContainer/PartyQuestUIContainer" instance=ExtResource("3_esl7e")]
-visible = false
 layout_mode = 2
 
 [node name="PartyQuestUI2" parent="HBoxContainer/PartyQuestUIContainer" instance=ExtResource("3_esl7e")]

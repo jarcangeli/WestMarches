@@ -14,8 +14,7 @@ func load_data(data : POIData):
 	poi_name = data.poi_name
 	description = data.description
 	name = poi_name
-	for encounter_data : EncounterData in data.encounters:
-		var encounter := Encounter.new(encounter_data)
+	for encounter : Encounter in data.encounters:
 		add_child.call_deferred(encounter)
 
 func update_display():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1jvgg15mw00q"]
+[gd_scene load_steps=11 format=3 uid="uid://1jvgg15mw00q"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_i26rj"]
 [ext_resource type="Script" uid="uid://da5kylricdcw7" path="res://menus/MainMenu.gd" id="2_7r1g0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cwlx1nsmq3ulg" path="res://assets/example_item.png" id="3_qoqlk"]
 [ext_resource type="Script" uid="uid://bbr40iytx555f" path="res://test/FPSLabel.gd" id="5_iwfq2"]
 [ext_resource type="Script" uid="uid://b6253eg5pbgkg" path="res://core/audio/AudioButton.gd" id="6_fimr5"]
+[ext_resource type="Script" uid="uid://dqo0ch5ewtnaw" path="res://main/MasterVolumeSlider.gd" id="6_hioc5"]
 [ext_resource type="PackedScene" uid="uid://dixnrlxogdft6" path="res://core/audio/AudioPlayerPool.tscn" id="8_e2xy7"]
 
 [node name="Main" type="MarginContainer"]
@@ -65,13 +66,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Master Volume"
 
-[node name="HSlider" type="HSlider" parent="MenuContainer/CenterContainer/SettingsMenuUI/VolumeSlider"]
+[node name="MasterVolumeSlider" type="HSlider" parent="MenuContainer/CenterContainer/SettingsMenuUI/VolumeSlider"]
 layout_mode = 2
-value = 50.0
-
-[node name="Label2" type="Label" parent="MenuContainer/CenterContainer/SettingsMenuUI/VolumeSlider"]
-layout_mode = 2
-text = "[Not Implemented]"
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("6_hioc5")
 
 [node name="BackButton" type="Button" parent="MenuContainer/CenterContainer/SettingsMenuUI"]
 layout_mode = 2

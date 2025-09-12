@@ -43,18 +43,7 @@ func on_first_quest_completed(_quest):
 	get_parent().set_tab_hidden(tab_index, false)
 
 func advance_time():
-	clear_dupes()
 	restock()
-
-func clear_dupes():
-	#TODO: Poor performance
-	var found_names = []
-	for item in shop_items.get_displayed_items():
-		if item.item_name in found_names:
-			shop_items.remove_item_display(item)
-			item.queue_free()
-		else:
-			found_names.append(item.item_name)
 
 func restock():
 	for item_name in shop_stock:

@@ -13,6 +13,7 @@ func _ready():
 	for node in adventuring_parties.get_children():
 		if node is AdventuringParty:
 			add_party.call_deferred(node)
+	deselect_all.call_deferred()
 
 func add_party(party : AdventuringParty):
 	if not party or not party.is_alive():
@@ -21,3 +22,6 @@ func add_party(party : AdventuringParty):
 	var party_quest_ui : PartyQuestUI = party_quest_ui_scene.instantiate()
 	party_quest_ui_container.add_child(party_quest_ui)
 	party_quest_ui.set_party.call_deferred(party)
+
+func deselect_all():
+	party_quest_ui_container.current_tab = -1

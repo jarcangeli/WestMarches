@@ -67,7 +67,7 @@ func get_unlocked_slots() -> Array:
 	var unlocked_slots = []
 	for slot in TK.GLOBAL_UNLOCKED_SLOTS:
 		unlocked_slots.append(slot)
-	for i in range(0, level + 1):
+	for i in range(0, level):
 		if len(slot_unlock_order) > i:
 			unlocked_slots.append(slot_unlock_order[i])
 	return unlocked_slots

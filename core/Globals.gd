@@ -6,7 +6,7 @@ enum GameState {
 	MENU		= 0,
 	GAME		= 1
 }
-
+var day := 0
 var game : Game = null
 var player_inventory : ItemContainer = null
 var player_currencies : PlayerCurrencies = null

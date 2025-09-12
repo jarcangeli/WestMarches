@@ -126,7 +126,7 @@ func update_tab_title():
 		var i = tab_parent.get_tab_idx_from_control(self)
 		if i >= 0:
 			var tab_title = party.display_name if party else "Party %d" % (i+1)
-			tab_title = "  %s  " % tab_title
+			tab_title = "    %s    " % tab_title
 			tab_parent.set_tab_title(i, tab_title)
 
 func on_quest_completed(_quest : Quest):

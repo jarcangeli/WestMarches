@@ -21,4 +21,4 @@ func get_progress_text():
 	return text
 
 func get_item_rewards():
-	return []
+	return [ItemDatabase.generate_random_item()]

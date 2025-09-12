@@ -31,10 +31,13 @@ func update_slot_info(slot : Item.Slot):
 	slot_tiny_icon.texture = Item.slot_tiny_icons[slot]
 	slot_label.text = "%s slot" % Item.slot_to_name(slot)
 	levels_label.text = ""
-	for character in range(1, Character.CharacterClass.SIZE):
-		var unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS[character]
-		var i = unlock_order.find(slot)
-		if i >= 0:
-			var character_class_name = Character.character_class_name(character)
-			levels_label.text += ("" if levels_label.text.is_empty() else "\n") + \
-					"%s %d" % [character_class_name, i+1]
+	if slot in TK.GLOBAL_UNLOCKED_SLOTS:
+		levels_label.text = "all classes"
+	else:
+		for character in range(1, Character.CharacterClass.SIZE):
+			var unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS[character]
+			var i = unlock_order.find(slot)
+			if i >= 0 and i <= TK.MAX_CHARACTER_LEVEL:
+				var character_class_name = Character.character_class_to_string(character)
+				levels_label.text += ("" if levels_label.text.is_empty() else "\n") + \
+						"%s %d" % [character_class_name, i+1]

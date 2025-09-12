@@ -2,9 +2,11 @@ extends Container
 
 @export var adventuring_parties : AdventuringParties
 @export var party_quest_ui_scene : PackedScene
-@export var party_quest_ui_container : Container
+
+@onready var party_quest_ui_container: TabContainer = %PartyQuestUIContainer
 
 func _ready():
+	
 	for node in party_quest_ui_container.get_children():
 		node.queue_free()
 	

@@ -6,25 +6,16 @@ signal died()
 enum CharacterClass
 {
 	NONE,
-	FIGHTER,
+	BRAWLER,
 	RANGER,
 	THIEF,
+	CHAMPION,
 	SIZE
 }
 
-static func character_class_name(i : CharacterClass):
-	match i:
-		CharacterClass.FIGHTER:
-			return "Fighter"
-		CharacterClass.RANGER:
-			return "Ranger"
-		CharacterClass.THIEF:
-			return "Thief"
-	return "None"
-
 @export var character_name : String
 @export var experience := 0
-@export var character_class : CharacterClass = CharacterClass.FIGHTER
+@export var character_class : CharacterClass = CharacterClass.BRAWLER
 
 @onready var health := get_max_health()
 
@@ -48,12 +39,14 @@ func _init(data : CharacterData = null):
 
 static func character_class_to_string(_character_class : CharacterClass):
 	match _character_class:
-		CharacterClass.FIGHTER:
+		CharacterClass.BRAWLER:
 			return "Fighter"
 		CharacterClass.RANGER:
 			return "Ranger"
 		CharacterClass.THIEF:
 			return "Thief"
+		CharacterClass.CHAMPION:
+			return "Champion"
 	return "None"
 
 func is_alive(): # TODO: Rework to use dead? (care in combat)
@@ -65,13 +58,15 @@ func get_max_health() -> int:
 func get_level() -> int:
 	return TK.level_from_experience(experience)
 
-func get_unlocked_slots() -> Array[int]:
+func get_unlocked_slots() -> Array:
 	var slot_unlock_order : Array = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(character_class)
 	if not slot_unlock_order:
-		slot_unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(Character.CharacterClass.FIGHTER)
+		slot_unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(Character.CharacterClass.BRAWLER)
 	var level = get_level()
 	
-	var unlocked_slots : Array[int] = []
+	var unlocked_slots = []
+	for slot in TK.GLOBAL_UNLOCKED_SLOTS:
+		unlocked_slots.append(slot)
 	for i in range(0, level + 1):
 		if len(slot_unlock_order) > i:
 			unlocked_slots.append(slot_unlock_order[i])

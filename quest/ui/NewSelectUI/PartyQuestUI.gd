@@ -7,6 +7,7 @@ class_name PartyQuestUI
 @onready var quest_equip_ui: QuestEquipUI = %QuestEquipUI
 @onready var quest_info_panel: PanelContainer = %QuestInfoPanel
 @onready var quest_reward_panel: QuestRewardPanel = %QuestRewardPanel
+@onready var party_summary_ui: PartySummaryUI = %PartySummaryUI
 
 # Quest Progress Info
 @onready var combat_container: VBoxContainer = %CombatContainer
@@ -103,6 +104,7 @@ func set_party(new_party : AdventuringParty):
 		return
 	
 	party = new_party
+	party_summary_ui.set_party(party)
 	update_tab_title()
 	generate_quests()
 

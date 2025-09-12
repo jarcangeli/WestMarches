@@ -23,7 +23,7 @@ func _ready():
 func set_enabled_unlockable(enabled, unlockable):
 	drop_enabled = enabled
 	border.visible = enabled
-	background.visible = unlockable
+	background.visible = unlockable or enabled
 	if enabled:
 		background.modulate = unlocked_color
 	else:

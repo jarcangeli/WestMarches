@@ -8,12 +8,28 @@ class_name PartySummaryUI
 @onready var coins_label: Label = %CoinsLabel
 @onready var power_label: Label = %PowerLabel
 
+var party : AdventuringParty = null
+
+func _ready() -> void:
+	SignalBus.quest_started.connect(refresh_party)
+	SignalBus.quest_finished.connect(refresh_party)
+	SignalBus.quest_completed.connect(refresh_party)
+
+func advance_time():
+	refresh_party()
+
 func clear_party():
 	for node in character_summaries.get_children():
 		node.queue_free()
 
-func set_party(party : AdventuringParty):
+func refresh_party(_dummy = null):
+	set_party(party)
+
+func set_party(new_party : AdventuringParty):
+	party = new_party
 	clear_party()
+	if party == null:
+		return
 	
 	add_vertical_line()
 	for character in party.get_characters():

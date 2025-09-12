@@ -11,7 +11,7 @@ const ENABLE_ITEM_ICON_TWEEN := true
 const QUEST_MIN_PERCENT = 10
 const QUEST_MAX_PERCENT = 99
 const QUEST_MAX_ITERATIONS = 10
-const QUEST_MAX_ITERATIONS_DEBUG = 3
+const QUEST_MAX_ITERATIONS_DEBUG = 10
 const QUEST_TRAVEL_ITEM_CHANCE = 0
 
 func quest_max_iterations():
@@ -30,16 +30,19 @@ const UNCOMMON_CHANCE = 0.30
 #const COMMON_CHANCE = 0.53
 
 const MAX_CHARACTER_LEVEL = 5
+const GLOBAL_UNLOCKED_SLOTS := [ Item.Slot.WEAPON ]
 const SLOT_UNLOCK_ORDER_BY_CLASS := {
 	Character.CharacterClass.NONE:
 		[ Item.Slot.WEAPON, Item.Slot.CHEST, Item.Slot.HEAD, Item.Slot.LEGS, Item.Slot.FEET,
 		Item.Slot.POTION, Item.Slot.RANGED, Item.Slot.BELT, Item.Slot.RING, Item.Slot.CAPE],
-	Character.CharacterClass.FIGHTER:
-		[ Item.Slot.WEAPON, Item.Slot.CHEST, Item.Slot.HEAD, Item.Slot.LEGS, Item.Slot.POTION ],
+	Character.CharacterClass.BRAWLER:
+		[ Item.Slot.CHEST, Item.Slot.HEAD, Item.Slot.LEGS, Item.Slot.POTION, Item.Slot.RANGED ],
 	Character.CharacterClass.RANGER:
-		[ Item.Slot.RANGED, Item.Slot.LEGS, Item.Slot.FEET, Item.Slot.BELT, Item.Slot.WEAPON ],
+		[ Item.Slot.RANGED, Item.Slot.FEET, Item.Slot.LEGS, Item.Slot.BELT, Item.Slot.CAPE],
 	Character.CharacterClass.THIEF:
-		[ Item.Slot.WEAPON, Item.Slot.POTION, Item.Slot.RING, Item.Slot.FEET, Item.Slot.CAPE  ]
+		[ Item.Slot.CAPE, Item.Slot.POTION, Item.Slot.RING, Item.Slot.FEET, Item.Slot.LEGS  ],
+	Character.CharacterClass.CHAMPION:
+		[  Item.Slot.HEAD, Item.Slot.BELT, Item.Slot.CAPE, Item.Slot.RING, Item.Slot.CHEST  ]
 	}
 
 func experience_from_monster(monster : Character) -> int:

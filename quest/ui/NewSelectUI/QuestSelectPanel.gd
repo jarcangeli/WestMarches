@@ -50,8 +50,9 @@ func update_win_percentage():
 	difficulty_bar.value = 100.0 - win_percent
 	difficulty_bar.tooltip_text =  "%.1f%% victory" % win_percent
 	var deaths = results.get_average_character_deaths()
-	var scaled_deaths = deaths * 3 / party.get_characters().size()
-	deaths_bar.value = scaled_deaths
+	var scaled_deaths = round(deaths * 3.0 / party.get_characters().size())
+	#print("Deaths ", deaths, ". scaled: ", scaled_deaths)
+	deaths_bar.value = round(scaled_deaths)
 	deaths_bar.tooltip_text = "%.1f deaths" % deaths
 
 func on_choose_quest():

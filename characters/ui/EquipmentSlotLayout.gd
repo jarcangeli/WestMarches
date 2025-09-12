@@ -5,9 +5,11 @@ func set_character(character : Character):
 	var character_class := character.character_class
 	var slot_unlock_order : Array = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(character_class)
 	if not slot_unlock_order:
-		slot_unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(Character.CharacterClass.FIGHTER)
+		slot_unlock_order = TK.SLOT_UNLOCK_ORDER_BY_CLASS.get(Character.CharacterClass.BRAWLER)
 	
 	var unlocked_slots = []
+	for slot in TK.GLOBAL_UNLOCKED_SLOTS:
+		unlocked_slots.append(slot)
 	var level = character.get_level()
 	for i in range(0, level):
 		if len(slot_unlock_order) > i:

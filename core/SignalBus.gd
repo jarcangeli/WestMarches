@@ -18,3 +18,5 @@ signal quest_finished(quest) 	# party has finished steps
 signal quest_completed(quest) 	# player has resolved rewards
 
 signal character_died(character : Character)
+
+signal show_fps_toggled(toggle)

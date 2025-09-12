@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://1jvgg15mw00q"]
+[gd_scene load_steps=12 format=3 uid="uid://1jvgg15mw00q"]
 
 [ext_resource type="Theme" uid="uid://cxldawy7hnlku" path="res://default_theme.tres" id="1_i26rj"]
 [ext_resource type="Script" uid="uid://da5kylricdcw7" path="res://menus/MainMenu.gd" id="2_7r1g0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bbr40iytx555f" path="res://test/FPSLabel.gd" id="5_iwfq2"]
 [ext_resource type="Script" uid="uid://b6253eg5pbgkg" path="res://core/audio/AudioButton.gd" id="6_fimr5"]
 [ext_resource type="Script" uid="uid://dqo0ch5ewtnaw" path="res://main/MasterVolumeSlider.gd" id="6_hioc5"]
+[ext_resource type="Script" uid="uid://cso1koioovfye" path="res://main/FPSCheckBox.gd" id="7_fl5gf"]
 [ext_resource type="PackedScene" uid="uid://dixnrlxogdft6" path="res://core/audio/AudioPlayerPool.tscn" id="8_e2xy7"]
 
 [node name="Main" type="MarginContainer"]
@@ -54,7 +55,6 @@ size_flags_horizontal = 3
 
 [node name="SettingsMenuUI" type="VBoxContainer" parent="MenuContainer/CenterContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 30
 
@@ -73,6 +73,12 @@ step = 0.05
 value = 0.5
 script = ExtResource("6_hioc5")
 
+[node name="FPSCheckBox" type="CheckBox" parent="MenuContainer/CenterContainer/SettingsMenuUI"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+text = "Show FPS"
+script = ExtResource("7_fl5gf")
+
 [node name="BackButton" type="Button" parent="MenuContainer/CenterContainer/SettingsMenuUI"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
@@ -82,6 +88,7 @@ metadata/_custom_type_script = "uid://b6253eg5pbgkg"
 
 [node name="MainMenuUI" type="VBoxContainer" parent="MenuContainer/CenterContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 30
 

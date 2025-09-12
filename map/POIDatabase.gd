@@ -12,6 +12,9 @@ func _ready():
 	for encounter in all_encounters:
 		if encounter.dependency.is_empty():
 			available_encounters.append(encounter)
+	
+	if TK.DEBUG:
+		print("%d pois loaded with %d encounters. %d encounters immediately available." % [len(pois_by_name), len(all_encounters), len(available_encounters)])
 
 func load_pois_from_file(config_file_name):
 	if not config_file_name.ends_with(".cfg") or config_file_name.is_empty():

@@ -70,7 +70,7 @@ script = ExtResource("7_aeq37")
 [node name="LoneWolf" type="Node" parent="AdventuringParties"]
 script = ExtResource("8_suycs")
 display_name = "The Lone Wolf"
-preset_quests = Array[String](["Crystal Pool", "Guard Dogs"])
+preset_quests = Array[String](["Crystal Pool", "Grave Robbing", "Enemy at the Gates"])
 metadata/_custom_type_script = "uid://bxu4cx67teei7"
 
 [node name="Noragar" type="Node" parent="AdventuringParties/LoneWolf"]
@@ -82,6 +82,7 @@ metadata/_custom_type_script = "uid://bftwko1mxftug"
 [node name="GreenShoots" type="Node" parent="AdventuringParties"]
 script = ExtResource("8_suycs")
 display_name = "Green Shoots"
+preset_quests = Array[String](["Hilltop Scramble", "Enemy at the Gates"])
 
 [node name="Ben" type="Node" parent="AdventuringParties/GreenShoots"]
 script = ExtResource("9_202ut")
@@ -308,7 +309,6 @@ signal_string = "menu_requested"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-tab_alignment = 1
 current_tab = 0
 
 [node name="Quests" parent="GameWindow/GameTabs" node_paths=PackedStringArray("adventuring_parties") instance=ExtResource("26_8ktx7")]

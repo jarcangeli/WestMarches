@@ -67,6 +67,7 @@ item_name = "Coif"
 [node name="GreenShoots" type="Node" parent="Parties"]
 script = ExtResource("2_psxil")
 display_name = "Green Shoots"
+preset_quests = Array[String](["Swamp Gardens", "Deaths Gaze", "Hilltop Scramble"])
 
 [node name="Ben" type="Node" parent="Parties/GreenShoots"]
 script = ExtResource("3_lxiss")

@@ -10,6 +10,7 @@ signal quest_chosen(quest)
 @onready var rewards_container: ItemDisplayContainer = %RewardsContainer
 @onready var choose_quest_button: Button = %ChooseQuestButton
 @onready var guide_label: Label = %GuideLabel
+@onready var poi_label: Label = %POILabel
 
 var party : AdventuringParty = null
 var quest : Quest = null
@@ -29,12 +30,18 @@ func set_quest(new_quest : Quest):
 	if not quest:
 		quest_name_label.text = "Quest: -"
 		quest_description_text.text = "..."
+		poi_label.text = ""
+		poi_label.tooltip_text = ""
 		return
 	
 	quest.party = party
 	quest_name_label.text = quest.quest_name
 	quest_description_text.text = quest.quest_description
 	rewards_container.add_items(quest.get_party_rewards())
+	var poi_data =  quest.battle_step.encounter.poi_data
+	if poi_data:
+		poi_label.text = poi_data.poi_name
+		poi_label.tooltip_text = poi_data.description
 	
 	update_win_percentage()
 

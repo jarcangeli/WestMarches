@@ -18,6 +18,8 @@ class_name EncounterData
 @export var on_win_message : String
 @export var on_lose_message : String
 
+var poi_data = null
+
 func valid() -> bool:
 	if encounter_name.is_empty() or monster_names.is_empty():
 		return false

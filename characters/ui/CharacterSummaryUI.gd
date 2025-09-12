@@ -39,7 +39,7 @@ func clear_items():
 	for item in item_container.get_children():
 		item.queue_free()
 
-func set_scroll_enabled(enabled):
+func set_scroll_enabled(_enabled):
 	#TODO: Remove?
 	#%ScrollContainer.vertical_scroll_mode = int(enabled)
 	pass

@@ -16,6 +16,8 @@ var on_lose_message : String
 var monster_names : Array[String] = []
 var item_names : Array[String] = []
 
+var poi_data : POIData
+
 func _init(data : EncounterData = null): #TODO: Remove null default
 	if not data:
 		return
@@ -30,6 +32,7 @@ func _init(data : EncounterData = null): #TODO: Remove null default
 	on_combat_start_message = data.on_combat_start_message
 	on_win_message = data.on_win_message
 	on_lose_message = data.on_lose_message
+	poi_data = data.poi_data
 	generate_monsters()
 	generate_items()
 

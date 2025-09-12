@@ -37,6 +37,7 @@ func load_pois_from_file(config_file_name):
 			poi_data = get_poi_data_from_cfg_section(config, section)
 		else:
 			var encounter_data = get_encounter_data_from_cfg_section(config, section)
+			encounter_data.poi_data = poi_data
 			if not encounter_data.valid():
 				continue
 			var encounter = Encounter.new(encounter_data)

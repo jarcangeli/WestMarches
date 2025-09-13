@@ -13,7 +13,7 @@ enum RewardTier
 	CHOICE
 }
 
-const reward_tier_values = [0, 10, 20, 40]
+const reward_tier_values = [0, 5, 20, 40]
 
 @onready var steps = $QuestSteps
 @onready var travel_step : QuestStep = $QuestSteps/TravelStep
@@ -120,7 +120,7 @@ func get_player_rewards():
 	return []
 
 func get_gold_reward():
-	return roundi(reward_tier_values[RewardTier.COINS] / 2.0)
+	return reward_tier_values[RewardTier.COINS]
 
 func get_party_rewards():
 	var all_rewards = []

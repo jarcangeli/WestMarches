@@ -5,6 +5,8 @@ class_name AdventuringParty
 
 @export var preset_quests : Array[String]
 
+@export var first_day := 0
+
 var position = Vector2.ZERO
 
 var quest = null

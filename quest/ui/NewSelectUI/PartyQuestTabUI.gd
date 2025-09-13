@@ -4,16 +4,24 @@ extends Container
 @export var party_quest_ui_scene : PackedScene
 
 @onready var party_quest_ui_container: TabContainer = %PartyQuestUIContainer
+@onready var temp_panel: Panel = %TempPanel
 
 func _ready():
+	temp_panel.visible = not TK.DEBUG
 	
 	for node in party_quest_ui_container.get_children():
 		node.queue_free()
 	
 	for node in adventuring_parties.get_children():
 		if node is AdventuringParty:
-			add_party.call_deferred(node)
-	deselect_all.call_deferred()
+			add_party(node)
+	adventuring_parties.party_added.connect(add_party)
+	deselect_all()
+	
+	party_quest_ui_container.tab_selected.connect(on_tab_selected)
+
+func on_tab_selected(_i : int):
+	temp_panel.visible = false
 
 func add_party(party : AdventuringParty):
 	if not party or not party.is_alive():

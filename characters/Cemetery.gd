@@ -21,5 +21,7 @@ func on_character_died(character : Character):
 	var party = character.get_parent() as AdventuringParty
 	tab_container.set_tab_hidden(tab_index, false)
 	var label = Label.new()
+	label.add_theme_font_size_override("font_size", 36)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.text = "%s - %s" % [character.character_name, party.display_name]
 	container.add_child(label)

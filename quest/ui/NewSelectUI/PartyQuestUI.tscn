@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cd70bafotbi8e"]
+[gd_scene load_steps=9 format=3 uid="uid://cd70bafotbi8e"]
 
 [ext_resource type="PackedScene" uid="uid://cn2y72ww61wuq" path="res://quest/ui/NewSelectUI/QuestSelectPanel.tscn" id="1_3kl5t"]
 [ext_resource type="Script" uid="uid://ehfxo527ebsx" path="res://quest/ui/NewSelectUI/PartyQuestUI.gd" id="1_fclvp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cimbnhhermucy" path="res://characters/ui/PartySummaryUI.tscn" id="3_mt73k"]
 [ext_resource type="PackedScene" uid="uid://r0pxns6ha43u" path="res://core/combat/CombatSummaryUi.tscn" id="4_bti25"]
 [ext_resource type="PackedScene" uid="uid://c4gpi74fglbqm" path="res://quest/ui/NewSelectUI/QuestRewardPanel.tscn" id="5_6fuqt"]
+[ext_resource type="Script" uid="uid://h6yatree38ld" path="res://quest/ui/NewSelectUI/ShowCombatLogButton.gd" id="6_bti25"]
 
 [node name="PartyQuestUI" type="MarginContainer" node_paths=PackedStringArray("quest_select_panel_container") groups=["time"]]
 offset_right = 1576.0
@@ -125,13 +126,25 @@ layout_mode = 2
 size_flags_vertical = 3
 vertical_scroll_mode = 0
 
-[node name="Label" type="Label" parent="QuestStatusUI/QuestUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer/CombatContainer"]
+[node name="ShowCombatLogButton" type="Button" parent="QuestStatusUI/QuestUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer/CombatContainer" node_paths=PackedStringArray("combat_log_container")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Show Combat Log"
+script = ExtResource("6_bti25")
+combat_log_container = NodePath("../CombatLogContainer")
+
+[node name="CombatLogContainer" type="VBoxContainer" parent="QuestStatusUI/QuestUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer/CombatContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="QuestStatusUI/QuestUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer/CombatContainer/CombatLogContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Full Combat Log"
 horizontal_alignment = 1
 
-[node name="QuestCombatLog" type="TextEdit" parent="QuestStatusUI/QuestUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer/CombatContainer"]
+[node name="QuestCombatLog" type="TextEdit" parent="QuestStatusUI/QuestUI/QuestSelectPanelContainer/QuestInfoPanel/QuestProgress/MarginContainer/VBoxContainer/CombatContainer/CombatLogContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3

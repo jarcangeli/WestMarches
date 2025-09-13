@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://b6gjspjilh735" path="res://quest/ui/NewSelectUI/PartyQuestTabUI.tscn" id="26_8ktx7"]
 [ext_resource type="PackedScene" uid="uid://bkaunu282ok5r" path="res://main/GameOverScreen.tscn" id="29_8ktx7"]
 
-[node name="Game" type="Control"]
+[node name="Game" type="Control" groups=["time"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,9 +59,10 @@ item_name = "Shortsword"
 script = ExtResource("6_4my3f")
 item_name = "Coif"
 
-[node name="AdventuringParties" type="Node" parent="." groups=["time"]]
+[node name="AdventuringParties" type="Node" parent="." node_paths=PackedStringArray("pending_adventuring_parties") groups=["time"]]
 unique_name_in_owner = true
 script = ExtResource("7_aeq37")
+pending_adventuring_parties = NodePath("../PendingAdventuringParties")
 
 [node name="LoneWolf" type="Node" parent="AdventuringParties"]
 script = ExtResource("8_suycs")
@@ -75,119 +76,29 @@ character_name = "Noragar"
 character_class = 4
 metadata/_custom_type_script = "uid://bftwko1mxftug"
 
-[node name="GreenShoots" type="Node" parent="AdventuringParties"]
+[node name="PendingAdventuringParties" type="Node" parent="." groups=["time"]]
+unique_name_in_owner = true
+script = ExtResource("7_aeq37")
+
+[node name="GreenShoots" type="Node" parent="PendingAdventuringParties"]
 script = ExtResource("8_suycs")
 display_name = "Green Shoots"
 preset_quests = Array[String](["Hilltop Scramble", "Enemy at the Gates"])
+first_day = 3
 
-[node name="Ben" type="Node" parent="AdventuringParties/GreenShoots"]
+[node name="Ben" type="Node" parent="PendingAdventuringParties/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Benthar"
 
-[node name="Sam" type="Node" parent="AdventuringParties/GreenShoots"]
+[node name="Sam" type="Node" parent="PendingAdventuringParties/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Samwise"
 character_class = 3
 
-[node name="Gen" type="Node" parent="AdventuringParties/GreenShoots"]
+[node name="Gen" type="Node" parent="PendingAdventuringParties/GreenShoots"]
 script = ExtResource("9_202ut")
 character_name = "Genevieve"
 character_class = 2
-
-[node name="AdventuringParties2" type="Node" parent="." groups=["time"]]
-unique_name_in_owner = true
-script = ExtResource("7_aeq37")
-
-[node name="YeParte" type="Node" parent="AdventuringParties2"]
-script = ExtResource("8_suycs")
-display_name = "Ye Parte"
-
-[node name="Arthur" type="Node" parent="AdventuringParties2/YeParte"]
-script = ExtResource("9_202ut")
-character_name = "Arthur"
-experience = 50
-character_class = 3
-
-[node name="PHShortsword" type="Node" parent="AdventuringParties2/YeParte/Arthur"]
-script = ExtResource("6_4my3f")
-item_name = "Shortsword"
-
-[node name="Benthwyn" type="Node" parent="AdventuringParties2/YeParte"]
-script = ExtResource("9_202ut")
-character_name = "Benthwyn"
-experience = 320
-character_class = 2
-
-[node name="PHShortbow" type="Node" parent="AdventuringParties2/YeParte/Benthwyn"]
-script = ExtResource("6_4my3f")
-item_name = "Shortbow"
-
-[node name="Gomli" type="Node" parent="AdventuringParties2/YeParte"]
-script = ExtResource("9_202ut")
-character_name = "Gomli"
-experience = 60
-
-[node name="PHAxe" type="Node" parent="AdventuringParties2/YeParte/Gomli"]
-script = ExtResource("6_4my3f")
-item_name = "Battleaxe"
-
-[node name="Ugs" type="Node" parent="AdventuringParties2"]
-script = ExtResource("8_suycs")
-display_name = "Ugs"
-
-[node name="Ug" type="Node" parent="AdventuringParties2/Ugs"]
-script = ExtResource("9_202ut")
-character_name = "Ug"
-
-[node name="PHShortsword" type="Node" parent="AdventuringParties2/Ugs/Ug"]
-script = ExtResource("6_4my3f")
-item_name = "Shortsword"
-
-[node name="Og" type="Node" parent="AdventuringParties2/Ugs"]
-script = ExtResource("9_202ut")
-character_name = "Og"
-character_class = 3
-
-[node name="PHShortsword" type="Node" parent="AdventuringParties2/Ugs/Og"]
-script = ExtResource("6_4my3f")
-item_name = "Shortsword"
-
-[node name="Ag" type="Node" parent="AdventuringParties2/Ugs"]
-script = ExtResource("9_202ut")
-character_name = "Ag"
-character_class = 2
-
-[node name="PHShortbow" type="Node" parent="AdventuringParties2/Ugs/Ag"]
-script = ExtResource("6_4my3f")
-item_name = "Shortbow"
-
-[node name="TheFellowship" type="Node" parent="AdventuringParties2"]
-script = ExtResource("8_suycs")
-display_name = "The Fellowship"
-
-[node name="Aragorn" type="Node" parent="AdventuringParties2/TheFellowship"]
-script = ExtResource("9_202ut")
-character_name = "Aragorn"
-experience = 200
-
-[node name="PHShortsword" type="Node" parent="AdventuringParties2/TheFellowship/Aragorn"]
-script = ExtResource("6_4my3f")
-item_name = "Shortsword"
-
-[node name="Legolas" type="Node" parent="AdventuringParties2/TheFellowship"]
-script = ExtResource("9_202ut")
-character_name = "Legolas"
-experience = 200
-character_class = 2
-
-[node name="PHShortbow" type="Node" parent="AdventuringParties2/TheFellowship/Legolas"]
-script = ExtResource("6_4my3f")
-item_name = "Shortbow"
-
-[node name="Gimli" type="Node" parent="AdventuringParties2/TheFellowship"]
-script = ExtResource("9_202ut")
-character_name = "Gimli"
-experience = 200
 
 [node name="QuestManager" type="Node" parent="." node_paths=PackedStringArray("parties", "available_quests") groups=["time"]]
 script = ExtResource("10_5he1h")

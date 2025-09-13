@@ -8,6 +8,7 @@ class_name PartyQuestUI
 @onready var quest_info_panel: PanelContainer = %QuestInfoPanel
 @onready var quest_reward_panel: QuestRewardPanel = %QuestRewardPanel
 @onready var party_summary_ui: PartySummaryUI = %PartySummaryUI
+@onready var show_combat_log_button: Button = %ShowCombatLogButton
 
 # Quest Progress Info
 @onready var combat_container: VBoxContainer = %CombatContainer
@@ -132,5 +133,6 @@ func update_tab_title():
 func on_quest_completed(_quest : Quest):
 	if not party.is_alive():
 		queue_free()
+	show_combat_log_button.reset()
 	generate_quests()
 	show_quest_select_ui()

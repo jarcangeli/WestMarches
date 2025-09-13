@@ -1,8 +1,17 @@
 extends Node
 class_name AdventuringParties
 
+signal party_added(party : AdventuringParty)
+
+@export var pending_adventuring_parties : AdventuringParties = null
+
 func advance_time():
-	pass #TODO: Generate parties
+	if pending_adventuring_parties:
+		for party in pending_adventuring_parties.get_children():
+			if party is AdventuringParty and party.first_day <= Globals.day:
+				pending_adventuring_parties.remove_child(party)
+				add_child(party)
+				party_added.emit(party)
 
 func get_next_idle_party() -> AdventuringParty:
 	for node in get_children():

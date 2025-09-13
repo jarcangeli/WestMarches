@@ -3,6 +3,7 @@ class_name Game
 
 @onready var advance_time_button: Button = %AdvanceTimeButton
 @onready var adventuring_parties: AdventuringParties = %AdventuringParties
+@onready var pending_adventuring_parties: AdventuringParties = %PendingAdventuringParties
 @onready var game_over_screen: CenterContainer = %GameOverScreen
 
 var game_over := false
@@ -19,5 +20,9 @@ func check_if_lost(_quest : Quest):
 	for party in adventuring_parties.get_children():
 		if party is AdventuringParty and party.is_alive():
 			return # not lost yet!
+	for party in pending_adventuring_parties.get_children():
+		if party is AdventuringParty and party.is_alive():
+			return
 	# No more adventuring parties, game over
+	game_over_screen.set_party_loss()
 	game_over_screen.visible = true

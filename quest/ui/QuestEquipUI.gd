@@ -77,7 +77,7 @@ func on_player_inventory_changed():
 func on_item_equipped(item, _slot):
 	loaned_item_value += item.get_value()
 	value_label.text = str(loaned_item_value) + " gp"
-	reward_progress.value += loaned_item_value
+	reward_progress.value = loaned_item_value
 	update_start_quest_button_state()
 
 func on_item_unequipped(item, _slot):
